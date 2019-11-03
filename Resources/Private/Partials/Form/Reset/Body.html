@@ -1,0 +1,24 @@
+<f:form.validationResults for="request">
+    <f:variable name="requestAttemptErrors" value="{validationResults.errors}" />
+</f:form.validationResults>
+
+<f:form class="form-horizontal" name="request" object="{request}" action="reset" method="POST" enctype="multipart/form-data">
+
+    <f:form.hidden property="token" value="{token}" />
+    <f:form.hidden property="user" value="{user}" />
+
+    <f:render partial="Form/Reset/Property/PasswordConfirmation" arguments="{_all}"/>
+
+    <f:for each="{requestAttemptErrors}" as="error">
+        <div class="alert alert-danger" role="alert">
+            {error}
+        </div>
+    </f:for>
+
+    <f:form.submit
+        id="change-password-link"
+        class="btn btn-primary"
+        value="{f:translate(key: 'LLL:EXT:login/Resources/Private/Language/locallang.xlf:form_reset.submit')}"
+    />
+
+</f:form>

@@ -1,0 +1,10 @@
+<f:form class="form-horizontal" action="sendResetLinkEmail" method="POST" enctype="multipart/form-data">
+
+    <f:render partial="Form/Forgot/Property/Email" arguments="{_all}"/>
+
+    <f:form.submit
+        id="send-reset-link"
+        class="btn btn-primary submit"
+        value="{f:translate(key: 'LLL:EXT:login/Resources/Private/Language/locallang.xlf:form_forgot.submit')}"
+    />
+</f:form>

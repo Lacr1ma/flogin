@@ -1,0 +1,95 @@
+plugin.tx_login_userapi.features.requireCHashArgumentForActionArguments = 0
+
+plugin.tx_login {
+  features.requireCHashArgumentForActionArguments = 1
+
+  view {
+    templateRootPaths.0 = {$plugin.tx_login.view.templateRootPath}
+    partialRootPaths.0 = {$plugin.tx_login.view.partialRootPath}
+    layoutRootPaths.0 = {$plugin.tx_login.view.layoutRootPath}
+  }
+
+  settings {
+
+    validation {
+      translationFilePrefix = {$plugin.tx_login.settings.validation.translationFilePrefix}
+    }
+
+    page {
+      login = {$plugin.tx_login.settings.page.login}
+    }
+
+    redirect {
+      alreadyAuthenticated = {$plugin.tx_login.settings.redirect.alreadyAuthenticated}
+      afterLoginPage = {$plugin.tx_login.settings.redirect.afterLoginPage}
+      afterLogoutPage = {$plugin.tx_login.settings.redirect.afterLogoutPage}
+      afterResetMailSentPage = {$plugin.tx_login.settings.redirect.afterResetMailSentPage}
+      afterResetFormSubmittedPage = {$plugin.tx_login.settings.redirect.afterResetFormSubmittedPage}
+      afterMagicLinkSentPage = {$plugin.tx_login.settings.redirect.afterMagicLinkSentPage}
+      afterUnlockedPage = {$plugin.tx_login.settings.redirect.afterUnlockedPage}
+
+      error {
+        whenTokenExpiredPage = {$plugin.tx_login.settings.redirect.error.whenTokenExpiredPage}
+        whenTokenNotFoundPage = {$plugin.tx_login.settings.redirect.error.whenTokenNotFoundPage}
+        whenLockedPage = {$plugin.tx_login.settings.redirect.error.whenLockedPage}
+      }
+    }
+
+    throttling {
+      maxAttempts = {$plugin.tx_login.settings.throttling.maxAttempts}
+      decayMinutes = {$plugin.tx_login.settings.throttling.decayMinutes}
+      lockIntervalInMinutes = {$plugin.tx_login.settings.throttling.lockIntervalInMinutes}
+    }
+
+    email {
+      magicLink {
+        subject = {$plugin.tx_login.settings.email.magicLink.subject}
+        linkLifetimeInMinutes = {$plugin.tx_login.settings.email.magicLink.linkLifetimeInMinutes}
+      }
+
+      passwordResetRequest {
+        subject = {$plugin.tx_login.settings.email.passwordResetRequest.subject}
+        linkLifetimeInMinutes = {$plugin.tx_login.settings.email.passwordResetRequest.linkLifetimeInMinutes}
+      }
+
+      passwordUpdated {
+        subject = {$plugin.tx_login.settings.email.passwordUpdated.subject}
+      }
+
+      lockout {
+        subject = {$plugin.tx_login.settings.email.lockout.subject}
+      }
+
+      login {
+        disabled = {$plugin.tx_login.settings.email.login.disabled}
+        subject = {$plugin.tx_login.settings.email.login.subject}
+      }
+    }
+  }
+
+  persistence {
+    storagePid = {$plugin.tx_login.persistence.storagePid}
+  }
+
+}
+
+module.tx_login {
+
+  view {
+    templateRootPaths {
+      0 = EXT:login/Resources/Private/Backend/Templates/
+      1 = {$module.tx_login.view.templateRootPath}
+    }
+
+    partialRootPaths {
+      0 = EXT:login/Resources/Private/Backend/Partials/
+      1 = {$module.tx_login.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:login/Resources/Private/Backend/Layouts/
+      1 = {$module.tx_login.view.layoutRootPath}
+    }
+  }
+
+}

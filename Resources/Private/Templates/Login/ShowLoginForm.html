@@ -1,0 +1,22 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <f:security.ifAuthenticated>
+                    <f:then>
+                        <f:link.action id="logout-link" action="logout" class="btn btn-primary">
+                            <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:form_login.logout" />
+                        </f:link.action>
+                    </f:then>
+                    <f:else>
+                        <f:render partial="Form/Login/Body" arguments="{_all}"/>
+                    </f:else>
+                </f:security.ifAuthenticated>
+            </div>
+        </div>
+    </div>
+
+</f:section>

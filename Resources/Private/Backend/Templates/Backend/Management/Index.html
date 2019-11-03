@@ -1,0 +1,44 @@
+{namespace route = LMS\Routes\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+
+    <div class="panel panel-default">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Online</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <f:for each="{users}" as="user">
+                    <tr>
+                        <td class="nowrap">{user.username}</td>
+                        <td>{user.email}</td>
+                        <td>
+                            <f:if condition="{user.online}">
+                                <f:then>
+                                    +
+                                </f:then>
+                                <f:else>
+                                    -
+                                </f:else>
+                            </f:if>
+                        </td>
+                        <td class="nowrap">
+                            <a href="/api/user/simulate/sergey">
+                                <core:icon identifier="actions-system-backend-user-switch" />
+                            </a>
+                        </td>
+                    </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </div>
+
+</f:section>

@@ -1,0 +1,40 @@
+namespace: LMS\Login\Tests\Acceptance\Support
+suites:
+  acceptance:
+    actor: AcceptanceTester
+    path: .
+    modules:
+      enabled:
+        - Cli
+        - Asserts
+        #- PhpBrowser:
+            #url: https://lms.ddev.site
+        - WebDriver:
+            url: https://lms.ddev.site
+            browser: chrome
+            host: ddev-lms-chrome
+        - REST:
+            depends: PhpBrowser
+            url: https://lms.ddev.site/api/
+            part: Json
+        - MailHog
+      config:
+        MailHog:
+          url: http://lms.ddev.site
+          port: 8025
+
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
+    - Codeception\Extension\Recorder
+
+paths:
+  tests: Acceptance/Frontend
+  data: .
+  output: ../../../../../var/tests/AcceptanceReports
+  support: Acceptance/Support
+
+settings:
+  shuffle: false
+  lint: true
+  colors: true

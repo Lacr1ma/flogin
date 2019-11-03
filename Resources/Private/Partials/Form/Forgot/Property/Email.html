@@ -1,0 +1,26 @@
+<f:form.validationResults for="email">
+    <f:variable name="emailErrors" value="{validationResults.errors}" />
+</f:form.validationResults>
+
+<div class="form-group email-block">
+    <label for="email">
+        <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:email.label" />
+    </label>
+
+    <f:form.textfield
+        id="email"
+        class="form-control {f:if(then: 'is-invalid', condition: '{emailErrors}')}"
+        name="email"
+        value="{predefinedEmail}"
+        readonly="{predefinedEmail}"
+        placeholder="{f:translate(key: 'LLL:EXT:login/Resources/Private/Language/locallang.xlf:email.placeholder')}"
+        required="1"
+        autofocus="1" />
+
+    <f:for each="{emailErrors}" as="error">
+        <div class="email-is-invalid invalid-feedback">
+            {error}
+        </div>
+    </f:for>
+
+</div>

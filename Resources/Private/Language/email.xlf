@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="login">
+		<header/>
+		<body>
+			<trans-unit id="login.subject">
+				<source>Security Notice: Someone has logged in to your account.</source>
+			</trans-unit>
+			<trans-unit id="login.caption">
+				<source>New login attempt!</source>
+			</trans-unit>
+			<trans-unit id="login.caption_description">
+				<source>Someone has logged in to the system. Below you can see some information assosiated with login process.</source>
+			</trans-unit>
+			<trans-unit id="login.information_header">
+				<source>Login attempt information:</source>
+			</trans-unit>
+			<trans-unit id="login.button_change_password">
+				<source>Change password</source>
+			</trans-unit>
+			<trans-unit id="login.ip">
+				<source>IP</source>
+			</trans-unit>
+			<trans-unit id="login.agent">
+				<source>Agent</source>
+			</trans-unit>
+			<trans-unit id="login.time">
+				<source>Date</source>
+			</trans-unit>
+
+
+
+			<trans-unit id="reset_password.subject">
+				<source>Security Notice: Reset Password request</source>
+			</trans-unit>
+			<trans-unit id="reset_password.caption">
+				<source>Reset password</source>
+			</trans-unit>
+			<trans-unit id="reset_password.caption_description">
+				<source>Need to reset your password? No problem! Just click the button below and you'll be on your way:</source>
+			</trans-unit>
+			<trans-unit id="reset_password.button_reset">
+				<source>Reset my password</source>
+			</trans-unit>
+			<trans-unit id="reset_password.expire">
+				<source>If you haven't made this request, no further action required. It will be expired in %s minutes.</source>
+			</trans-unit>
+
+
+
+			<trans-unit id="update_password.subject">
+				<source>Security Notice: Password has been changed</source>
+			</trans-unit>
+			<trans-unit id="update_password.caption">
+				<source>Did you change your password ?</source>
+			</trans-unit>
+			<trans-unit id="update_password.caption_description">
+				<source>We noticed the password for your account was recently changed. If this wasn't you, please follow the link bellow.</source>
+			</trans-unit>
+			<trans-unit id="update_password.button_restore">
+				<source>Restore password</source>
+			</trans-unit>
+			<trans-unit id="update_password.other_case">
+				<source>In other case, you can safely disregard this email.</source>
+			</trans-unit>
+
+
+
+			<trans-unit id="lockout.subject">
+				<source>Security Notice: Account has been locked</source>
+			</trans-unit>
+			<trans-unit id="lockout.caption">
+				<source>Account has been locked.</source>
+			</trans-unit>
+			<trans-unit id="lockout.caption_description">
+				<source>Your account has been locked due to multiple invalid login attempts. Please wait for %s minutes before trying to access your account.</source>
+			</trans-unit>
+			<trans-unit id="lockout.button_unlock">
+				<source>Unlock now</source>
+			</trans-unit>
+			<trans-unit id="lockout.help">
+				<source>Feel free to contact us if you need any help.</source>
+			</trans-unit>
+
+
+
+			<trans-unit id="magic_link.subject">
+				<source>Sign in via magic link</source>
+			</trans-unit>
+			<trans-unit id="magic_link.caption">
+				<source>You asked us to send you a magic link for quickly signing in to your account. Here you go:</source>
+			</trans-unit>
+			<trans-unit id="magic_link.login_action">
+				<source>Sign in</source>
+			</trans-unit>
+			<trans-unit id="magic_link.expire">
+				<source>If you haven't requested the link, no further action required. It will be expired in %s minutes.</source>
+			</trans-unit>
+
+
+
+			<trans-unit id="common.signature">
+				<source><![CDATA[You are receiving this email because of your account on our <a href="%s">portal</a>]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

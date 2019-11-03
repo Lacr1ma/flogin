@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="login">
+		<header/>
+		<body>
+			<trans-unit id="username.label">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="username.placeholder">
+				<source>Input your username...</source>
+			</trans-unit>
+			<trans-unit id="password.label">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="password.placeholder">
+				<source>Input your password...</source>
+			</trans-unit>
+			<trans-unit id="email.label">
+				<source>Email address</source>
+			</trans-unit>
+			<trans-unit id="email.placeholder">
+				<source>Input your email address...</source>
+			</trans-unit>
+			<trans-unit id="remember.label">
+				<source>Remember me</source>
+			</trans-unit>
+			<trans-unit id="password.new.label">
+				<source>New password</source>
+			</trans-unit>
+			<trans-unit id="password.new_confirmation.label">
+				<source>Confirm new password</source>
+			</trans-unit>
+			<trans-unit id="forgot.link">
+				<source>Forgot password ?</source>
+			</trans-unit>
+			<trans-unit id="magic.link">
+				<source>Magic link auth ?</source>
+			</trans-unit>
+			<trans-unit id="form_login.submit">
+				<source>Login</source>
+			</trans-unit>
+			<trans-unit id="form_login.logout">
+				<source>Logout</source>
+			</trans-unit>
+			<trans-unit id="form_forgot.submit">
+				<source>Send the link</source>
+			</trans-unit>
+			<trans-unit id="form_magic.submit">
+				<source>Send magic link</source>
+			</trans-unit>
+			<trans-unit id="form_reset.submit">
+				<source>Change password</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

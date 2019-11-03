@@ -1,0 +1,39 @@
+<f:form.validationResults for="remember">
+    <f:variable name="requestErrors" value="{validationResults.errors}" />
+</f:form.validationResults>
+
+<f:form id="login_form" class="form-horizontal" action="login" method="POST" enctype="multipart/form-data">
+
+    <f:render partial="Form/Login/Property/Username" arguments="{_all}"/>
+    <f:render partial="Form/Login/Property/Password" arguments="{_all}"/>
+    <f:render partial="Form/Login/Property/Remember" arguments="{_all}"/>
+
+    <small id="passwordHelpBlock" class="form-text text-muted text-right">
+        <f:link.action id="forgot-link" class="btn-link" action="showForgotForm" controller="ForgotPassword">
+            <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:forgot.link" />
+        </f:link.action>
+    </small>
+
+    <f:if condition="{requestErrors}">
+        <f:then>
+            <f:for each="{requestErrors}" as="error">
+                <div class="alert alert-danger" role="alert">
+                    {error}
+                </div>
+            </f:for>
+        </f:then>
+        <f:else>
+            <f:form.submit
+                id="login-button"
+                class="btn btn-primary"
+                value="{f:translate(key: 'LLL:EXT:login/Resources/Private/Language/locallang.xlf:form_login.submit')}"
+            />
+
+            <f:link.action id="magic-link" class="btn btn-secondary" action="showMagicLinkForm" controller="MagicLink">
+                <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:magic.link" />
+            </f:link.action>
+        </f:else>
+    </f:if>
+
+</f:form>
+

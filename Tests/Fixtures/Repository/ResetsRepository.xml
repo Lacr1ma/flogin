@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tx_login_domain_model_resets>
+        <uid>1</uid>
+        <pid>0</pid>
+        <token>secret</token>
+        <email>dummy@example.com</email>
+    </tx_login_domain_model_resets>
+</dataset>

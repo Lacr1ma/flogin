@@ -1,0 +1,83 @@
+plugin.tx_login {
+
+  view {
+    # cat=plugin.tx_login/file; type=string; label=Path to template root (FE)
+    templateRootPath = EXT:login/Resources/Private/Templates/
+    # cat=plugin.tx_login/file; type=string; label=Path to template partials (FE)
+    partialRootPath = EXT:login/Resources/Private/Partials/
+    # cat=plugin.tx_login/file; type=string; label=Path to template layouts (FE)
+    layoutRootPath = EXT:login/Resources/Private/Layouts/
+  }
+
+  settings {
+    validation {
+      translationFilePrefix = LLL:EXT:login/Resources/Private/Language/validation.xlf
+    }
+
+    page {
+      login = 2
+    }
+
+    redirect {
+      alreadyAuthenticated = 425
+      afterLoginPage = 5
+      afterLogoutPage = 12
+      afterResetMailSentPage = 7
+      afterResetFormSubmittedPage = 11
+      afterMagicLinkSentPage = 14
+      afterUnlockedPage = 16
+
+      error {
+        whenTokenExpiredPage = 9
+        whenTokenNotFoundPage = 10
+        whenLockedPage = 15
+      }
+    }
+
+   throttling {
+    maxAttempts = 4
+    decayMinutes = 1
+    lockIntervalInMinutes = 10
+   }
+
+   email {
+      magicLink {
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject
+        linkLifetimeInMinutes = 6
+      }
+
+     passwordResetRequest {
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:reset_password.subject
+        linkLifetimeInMinutes = 5
+      }
+
+      passwordUpdated {
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.subject
+      }
+
+      lockout {
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:lockout.subject
+      }
+
+      login {
+        disabled = 0
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:login.subject
+      }
+   }
+  }
+
+  persistence {
+    # cat=plugin.tx_login//a; type=int; label=Default storage PID for Login Extension
+    storagePid = 4
+  }
+
+}
+
+module.tx_login.view {
+    # cat=plugin.tx_login/file; type=string; label=Path to template root (BE)
+    templateRootPath = EXT:login/Resources/Private/Backend/Templates/
+    # cat=plugin.tx_login/file; type=string; label=Path to template partials (BE)
+    partialRootPath = EXT:login/Resources/Private/Backend/Partials/
+    # cat=plugin.tx_login/file; type=string; label=Path to template layouts (BE)
+    layoutRootPath = EXT:login/Resources/Private/Backend/Layouts/
+}

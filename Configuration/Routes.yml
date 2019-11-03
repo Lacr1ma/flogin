@@ -1,0 +1,17 @@
+login_current-user:
+  path:         api/user/current
+  controller:   LMS\Login\Controller\UserApiController::current
+  methods:      [GET]
+
+
+login_authenticated:
+  path:         api/user/authenticated
+  controller:   LMS\Login\Controller\UserApiController::authenticated
+  methods:      [GET]
+
+login_simulate:
+  path:         api/user/simulate/{username}
+  controller:   LMS\Login\Controller\UserApiController::simulateLogin
+  methods:      [GET]
+  requirements:
+    username:   "[^/]+"

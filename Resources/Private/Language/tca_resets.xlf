@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="login">
+		<header/>
+		<body>
+			<trans-unit id="resets">
+				<source>Password Resets</source>
+			</trans-unit>
+			<trans-unit id="token">
+				<source>Token</source>
+			</trans-unit>
+			<trans-unit id="user">
+				<source>Receiver</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

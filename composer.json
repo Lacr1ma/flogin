@@ -1,0 +1,30 @@
+{
+	"name": "lms/login",
+	"type": "typo3-cms-extension",
+	"description": "Provides an authentication option for website users.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Serhii Borulko",
+			"email": "borulkosergey@icloud.com"
+		}
+	],
+	"require": {
+		"typo3/cms-core": "^9.5",
+		"lms3/support": "*"
+	},
+	"require-dev": {
+		"typo3/testing-framework": "^4",
+		"codeception/codeception": "^3"
+	},
+	"autoload": {
+		"psr-4": {
+			"LMS\\Login\\": "Classes"
+		},
+		"autoload-dev": {
+			"psr-4": {
+				"LMS\\Login\\Tests\\": "Tests"
+			}
+		}
+	}
+}
