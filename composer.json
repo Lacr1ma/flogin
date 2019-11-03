@@ -14,7 +14,7 @@
 		"lms3/support": "*"
 	},
 	"require-dev": {
-		"typo3/testing-framework": "^4",
+		"nimut/testing-framework": "^4",
 		"codeception/codeception": "^3"
 	},
 	"autoload": {
