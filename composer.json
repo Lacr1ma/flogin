@@ -9,6 +9,9 @@
 			"email": "borulkosergey@icloud.com"
 		}
 	],
+	"repositories": [
+		{"type": "git", "url": "https://gitlab.com/borulko.sergey/support.git"}
+	],
 	"require": {
 		"typo3/cms-core": "^9.5",
 		"lms3/support": "*"
