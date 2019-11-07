@@ -19,7 +19,7 @@
 	"require-dev": {
 		"nimut/testing-framework": "^4",
 		"typo3/testing-framework": "^4",
-		"codeception/codeception": "^4",
+		"codeception/codeception": "^3",
 		"ericmartel/codeception-email-mailhog": "^1.0"
 	},
 	"autoload": {
