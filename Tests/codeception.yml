@@ -5,9 +5,15 @@ suites:
     path: .
     modules:
       enabled:
-        - Db
+        - Db:
+            dsn: 'mysql:host=db;dbname=db_at'
+            user: 'db'
+            password: 'db'
+            populate: true
         - Cli
-        - MailHog
+        - MailHog:
+            url: http://lms.ddev.site
+            port: 8025
         - Asserts
         - Filesystem
         - WebDriver:
@@ -15,16 +21,6 @@ suites:
             browser: chrome
             host: ddev-lms-chrome
         - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
-      config:
-        MailHog:
-          url: http://lms.ddev.site
-          port: 8025
-        Db:
-          dsn: 'mysql:host=db;dbname=db_at'
-          user: 'db'
-          password: 'db'
-          populate: true
-          #dump: 'Acceptance/dump.sql'
 
 extensions:
   enabled:
