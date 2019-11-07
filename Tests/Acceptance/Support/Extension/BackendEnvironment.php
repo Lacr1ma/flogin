@@ -37,21 +37,28 @@ class BackendEnvironment extends \TYPO3\TestingFramework\Core\Acceptance\Extensi
     protected $localConfig = [
         'coreExtensionsToLoad' => [
             'core',
-            'extbase',
             'fluid',
+            'extbase',
             'backend',
-            'about',
             'install',
             'frontend',
             'recordlist',
+            'scheduler',
+            'fluid_styled_content'
         ],
         'testExtensionsToLoad' => [
-            'typo3conf/ext/login'
+            'typo3conf/ext/login',
+            'typo3conf/ext/theme',
+            'typo3conf/ext/routes',
+            'typo3conf/ext/support'
         ],
         'xmlDatabaseFixtures' => [
-//            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
-//            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml',
-//            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml',
-        ],
+            'typo3conf/ext/login/Tests/Fixtures/Acceptance/fe_users.xml',
+            'typo3conf/ext/login/Tests/Fixtures/Acceptance/fe_groups.xml',
+            'typo3conf/ext/login/Tests/Fixtures/Acceptance/fe_sessions.xml',
+            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
+            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml',
+            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml'
+        ]
     ];
 }

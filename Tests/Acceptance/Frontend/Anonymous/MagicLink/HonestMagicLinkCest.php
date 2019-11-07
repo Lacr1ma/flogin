@@ -64,7 +64,7 @@ class HonestMagicLinkCest
         $I->wantTo('I expect to receive the <magic link> after I submit <magic link form> with my email.');
 
         $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->fetchEmails();
@@ -81,7 +81,7 @@ class HonestMagicLinkCest
         $I->wantTo('When I open <magic link> notification, I expect to see the <sign in> link inside');
 
         $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->fetchEmails();
@@ -89,7 +89,7 @@ class HonestMagicLinkCest
 
         $I->seeInOpenedEmailSubject('Sign in via magic link');
 //        $I->seeInOpenedEmailBody('To reset your password please follow this link');
-        $I->seeInOpenedEmailRecipients('borulkosergey@icloud.com');
+        $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 
     /**
@@ -100,7 +100,7 @@ class HonestMagicLinkCest
         $I->wantTo('When I submit <magic link form>, I expect to be redirected to a proper page.');
 
         $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->see('Magic link has been sent to the user email address.');
@@ -114,7 +114,7 @@ class HonestMagicLinkCest
         $I->wantTo('When I follow <magic link> from notification, I expect to be logged in and be redirected to <afterLoginPage>.');
 
         $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->amOnUrl(

@@ -30,11 +30,14 @@ use LMS\Login\Support\Redirection\UserRouter;
 use LMS\Login\Domain\Repository\UserRepository;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class UserNotLockedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param string $username
      */
     protected function isValid($username): void

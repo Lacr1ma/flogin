@@ -31,7 +31,8 @@ use LMS\Login\Support\Controller\ResetPassword\ResetsPasswords;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -40,6 +41,8 @@ class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
     /**
      * By default mapping for <request> property is not activated,
      * so we activate it and allow creation process.
+     *
+     * @psalm-suppress InternalMethod
      */
     public function initializeShowResetFormAction(): void
     {

@@ -26,6 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Codeception\Util\HttpCode;
 use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
@@ -36,24 +37,24 @@ class ApiCest
     /**
      * @param AcceptanceTester $I
      */
-    public function authenticated_returns_false_when_user_is_not_logged_in(AcceptanceTester $I)
+    public function authenticated_returns_false_when_user_not_logged_in(AcceptanceTester $I)
     {
         $I->wantTo('I hit the api/user/authenticated endpoint and expect to see that I am not logged in.');
 
-        $I->sendGET('user/authenticated');
-        $I->seeResponseContainsJson(['authenticated' => false]);
+        $I->amOnPage('/api/user/authenticated');
+
+        $I->see('{"authenticated":false}');
     }
 
-//    /**
-//     * @param AcceptanceTester $I
-//     */
-//    public function authenticated_returns_true_when_user_is_not_logged_in(AcceptanceTester $I)
-//    {
-//        $I->amLoggedInAs('sergey', 'sergey');
-//        $I->sendGET('user/authenticated');
-//
-//        $I->seeResponseContainsJson(['authenticated' => true]);
-//    }
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function authenticated_returns_true_when_user_logged_in(AcceptanceTester $I)
+    {
+        $I->useSession('/api/user/authenticated');
+
+        $I->see('{"authenticated":true}');
+    }
 
     /**
      * @param AcceptanceTester $I
@@ -62,18 +63,42 @@ class ApiCest
     {
         $I->wantTo('I hit the api/user/current endpoint and expect to see my users data.');
 
-        $I->sendGET('user/current');
-        $I->canSeeResponseContains('Access denied');
+        $I->amOnPage('/api/user/current');
+
+        $I->see('Access denied');
     }
 
-//    /**
-//     * @param AcceptanceTester $I
-//     */
-//    public function user_info_present_when_user_authenticated(AcceptanceTester $I)
-//    {
-//        $I->amLoggedInAs('sergey', 'sergey');
-//        $I->sendGET('user/current');
-//
-//        $I->canSeeResponseCodeIsSuccessful();
-//    }
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function user_info_present_when_user_authenticated(AcceptanceTester $I)
+    {
+        $I->useSession('/api/user/current');
+
+        $I->see('user@example.com');
+    }
+
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function backend_user_session_required_for_simulate(AcceptanceTester $I)
+    {
+        $I->wantTo('When I want to simulate another FE user connection, I need to have an active BE session.');
+
+        $I->amOnPage('/api/user/simulate/user-name');
+
+        $I->see('Denied');
+    }
+
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function backend_user_session_required_for_terminate(AcceptanceTester $I)
+    {
+        $I->wantTo('When I want to delete another FE user active sessions, I need to have an active BE session.');
+
+        $I->amOnPage('/api/user/terminate/2');
+
+        $I->see('Denied');
+    }
 }

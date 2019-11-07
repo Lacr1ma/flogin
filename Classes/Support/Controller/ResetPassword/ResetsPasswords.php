@@ -69,6 +69,8 @@ trait ResetsPasswords
      */
     private function deleteAssociatedPasswordResetToken(string $token): void
     {
-        ResetsRepository::make()->find($token)->delete();
+        if ($token = ResetsRepository::make()->find($token)) {
+            $token->delete();
+        }
     }
 }

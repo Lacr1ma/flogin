@@ -30,11 +30,14 @@ use LMS3\Support\Extbase\User;
 use LMS\Login\Support\Redirection\UserRouter;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest
      */
     protected function isValid($loginRequest): void

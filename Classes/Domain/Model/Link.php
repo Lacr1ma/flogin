@@ -27,7 +27,8 @@ namespace LMS\Login\Domain\Model;
  * ************************************************************* */
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress MissingConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class Link extends Resets
 {

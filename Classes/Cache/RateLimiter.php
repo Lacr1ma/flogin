@@ -31,7 +31,8 @@ use LMS\Login\Support\InteractsWithTime;
 use LMS3\Support\{Extbase\ExtensionHelper, ObjectManageable, StaticCreator};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class RateLimiter
 {
@@ -42,7 +43,7 @@ class RateLimiter
      *
      * @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
      */
-    protected $cache;
+    private $cache;
 
     /**
      * RateLimiter constructor.

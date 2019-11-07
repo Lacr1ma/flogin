@@ -26,7 +26,8 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\ResetPasswordRequest;
+use LMS\Login\Domain\Model\User;
+use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -41,8 +42,8 @@ class ResetsTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestC
      */
     public function getResetLink(): void
     {
-        $request = new ResetPasswordRequest('example.com', 'secret');
+        $request = new ResetPasswordRequest(new User());
 
-        $this->assertNotEmpty($request->getResetLink());
+        $this->assertNotEmpty($request->getUrl());
     }
 }

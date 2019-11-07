@@ -1,44 +1,34 @@
-{namespace route = LMS\Routes\ViewHelpers}
+{namespace be = TYPO3\CMS\Backend\ViewHelpers}
 
 <f:layout name="Default" />
 
 <f:section name="Content">
 
-    <div class="panel panel-default">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Online</th>
-                    <th></th>
-                </tr>
-            </thead>
+    <f:render partial="Filters/User/Index" arguments="{demand: demand, groups: groups}" />
 
-            <tbody>
-                <f:for each="{users}" as="user">
+    <f:be.widget.paginate objects="{users}" as="paginatedUsers" configuration="{itemsPerPage: 50, insertBelow: 1}">
+        <div class="table-fit">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
-                        <td class="nowrap">{user.username}</td>
-                        <td>{user.email}</td>
-                        <td>
-                            <f:if condition="{user.online}">
-                                <f:then>
-                                    +
-                                </f:then>
-                                <f:else>
-                                    -
-                                </f:else>
-                            </f:if>
-                        </td>
-                        <td class="nowrap">
-                            <a href="/api/user/simulate/sergey">
-                                <core:icon identifier="actions-system-backend-user-switch" />
-                            </a>
-                        </td>
+                        <th></th>
+                        <th class="col-title">
+                            <f:translate key="userName" extensionName="beuser"/> / <f:translate key="realName" extensionName="beuser"/>
+                        </th>
+                        <th>
+                            <f:translate key="lastLogin" extensionName="beuser"/>
+                        </th>
+                        <th class="col-control"></th>
                     </tr>
-                </f:for>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+
+                <tbody>
+                    <f:for each="{paginatedUsers}" as="user">
+                        <f:render partial="User/PaginatedList" arguments="{_all}" />
+                    </f:for>
+                </tbody>
+            </table>
+        </div>
+    </f:be.widget.paginate>
 
 </f:section>

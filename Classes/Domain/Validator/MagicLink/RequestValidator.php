@@ -29,11 +29,14 @@ namespace LMS\Login\Domain\Validator\MagicLink;
 use LMS\Login\{Domain\Repository\LinkRepository, Support\Redirection\UserRouter};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class RequestValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest
      */
     protected function isValid($loginRequest): void

@@ -27,11 +27,14 @@ namespace LMS\Login\Domain\Validator\ResetPassword;
  * ************************************************************* */
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class AttemptValidator extends RequestValidator
 {
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $resetRequest
      */
     protected function isValid($resetRequest): void

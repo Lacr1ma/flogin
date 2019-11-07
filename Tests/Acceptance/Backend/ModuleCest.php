@@ -39,5 +39,35 @@ class ModuleCest
     public function _before(BackendTester $I)
     {
         $I->useExistingSession('admin');
+
+        $I->click('Login', '#web_LoginLogin');
+
+        $I->switchToContentFrame();
+    }
+
+    /**
+     * @param BackendTester $I
+     */
+    public function simulate_user_session(BackendTester $I)
+    {
+        $I->wantTo('I can be logged in as a selected user in the frontend area.');
+
+        $I->click('#simulate-user-1');
+
+        $I->amOnPage('/login');
+        $I->canSeeElement('#logout-link');
+    }
+
+    /**
+     * @param BackendTester $I
+     */
+    public function terminate_user_session(BackendTester $I)
+    {
+        $I->wantTo('I can erase all existing sessions associated with selected user.');
+
+        $I->click('#terminate-user-1');
+
+        $I->amOnPage('/login');
+        $I->canSeeElement('#login-button');
     }
 }

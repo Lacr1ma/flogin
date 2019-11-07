@@ -29,11 +29,14 @@ namespace LMS\Login\Domain\Validator;
 use LMS\Login\Domain\Repository\UserRepository;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class EmailValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param string $email
      */
     protected function isValid($email): void

@@ -36,31 +36,12 @@ class DeceiverMagicLinkCest
     /**
      * @param AcceptanceTester $I
      */
-    public function magic_link_associated_with_proper_token(AcceptanceTester $I)
-    {
-        $I->wantTo('I wanna see an error, when I try to open invalid <magic link>.');
-
-        $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
-        );
-
-        $url = $I->extractLinkFromLastMail();
-        $linkWithInvalidHash = substr($url, 0, strpos($url, '&cHash') - 1);
-
-        $I->amOnUrl($linkWithInvalidHash);
-
-        $I->see('Whoops, looks like something went wrong.');
-    }
-
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_cant_be_used_twice(AcceptanceTester $I)
     {
         $I->wantTo('I wanna be redirected to the <tokenDoesNotExist> page when token has been already used.');
 
         $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $loginMagicLinkUrl = $I->extractLinkFromLastMail();
@@ -80,12 +61,12 @@ class DeceiverMagicLinkCest
         $I->wantTo('I am already logged in and I use the valid magic link. I want to be redirected to <alreadyAuthenticated> page.');
 
         $I->amRequestingMagicLinkNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $loginMagicLinkUrl = $I->extractLinkFromLastMail();
 
-        $I->amLoggedInAs('sergey');
+        $I->amLoggedInAs('dummy');
 
         $I->amOnUrl($loginMagicLinkUrl);
         $I->canSeeInTitle('Already Authenticated');

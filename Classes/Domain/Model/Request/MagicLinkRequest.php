@@ -29,7 +29,8 @@ namespace LMS\Login\Domain\Model\Request;
 use LMS\Login\Domain\Model\Link;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class MagicLinkRequest extends \LMS\Login\Domain\Model\Request\AbstractRequest
 {

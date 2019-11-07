@@ -32,7 +32,7 @@ use LMS3\Support\Extbase\Redirect;
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-trait UserRouter
+class UserRouter
 {
     /**
      * Redirect user to <afterLoginPage>

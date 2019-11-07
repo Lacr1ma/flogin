@@ -122,7 +122,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param string $username
      * @param string $password
      */
-    public function amLoggedInAs(string $username = 'sergey', string $password = 'sergey'): void
+    public function amLoggedInAs(string $username = 'dummy', string $password = 'password'): void
     {
         $this->amOnPage('/login');
 

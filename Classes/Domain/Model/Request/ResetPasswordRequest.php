@@ -30,7 +30,8 @@ use LMS\Login\Domain\Model\Resets;
 use LMS\Login\Support\Domain\Property\PasswordConfirmation;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class ResetPasswordRequest extends \LMS\Login\Domain\Model\Request\AbstractRequest
 {

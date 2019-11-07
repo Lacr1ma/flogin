@@ -26,8 +26,7 @@ namespace LMS\Login\Support\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Guard\SessionGuard;
-use In2code\Femanager\Utility\BackendUserUtility;
+use LMS\Login\{Manager\SessionManager, Guard\SessionGuard};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -39,18 +38,33 @@ trait SimulatesFrontendLogin
      *
      * @param string $username
      *
-     * @return array
+     * @return string
      */
-    public function simulateLoginFor(string $username): array
+    public function simulateLoginFor(string $username): string
     {
         if ($this->isBackendUserAdmin()) {
             // We don't allow to perform the login request by simple editors,
             // or users that don't have an active backend session
             $this->login($username);
-            return [200, 'OK'];
+            return 'OK';
         }
 
-        return [403, 'Authentication Required!'];
+        return 'Denied';
+    }
+
+    /**
+     * @param int $user
+     *
+     * @return string
+     */
+    public function terminateSessionFor(int $user): string
+    {
+        if ($this->isBackendUserAdmin()) {
+            SessionManager::terminateFrontendSession($user);
+            return 'OK';
+        }
+
+        return 'Denied';
     }
 
     /*
@@ -70,7 +84,7 @@ trait SimulatesFrontendLogin
      */
     private function isBackendUserAdmin(): bool
     {
-        return (bool)$this->backendUser()['admin'] ?? false;
+        return (bool)$this->backendUser()['admin'] ?: false;
     }
 
     /**
@@ -80,6 +94,6 @@ trait SimulatesFrontendLogin
      */
     private function backendUser(): array
     {
-        return BackendUserUtility::getBackendUserAuthentication()->user ?? [];
+        return $GLOBALS['BE_USER']->user ?: [];
     }
 }

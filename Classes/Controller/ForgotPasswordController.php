@@ -29,7 +29,8 @@ namespace LMS\Login\Controller;
 use LMS\Login\Support\Controller\ForgotPassword\SendsPasswordResetEmails;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class ForgotPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {

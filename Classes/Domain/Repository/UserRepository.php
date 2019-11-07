@@ -28,15 +28,16 @@ namespace LMS\Login\Domain\Repository;
 
 use LMS\Login\Support\TypoScript;
 use Tightenco\Collect\Support\Collection;
-use LMS\Login\{Hash\Hash, Domain\Model\User};
+use LMS\Login\{Hash\Hash, Domain\Model\User, Support\Repository\Demandable};
 use LMS3\Support\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
 {
-    use ProvidesCRUDActions, StaticCreation;
+    use ProvidesCRUDActions, StaticCreation, Demandable;
 
     /**
      * {@inheritDoc}

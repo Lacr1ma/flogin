@@ -29,7 +29,8 @@ namespace LMS\Login\Controller;
 use LMS\Login\Support\Controller\Backend\SimulatesFrontendLogin;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class UserApiController extends Base\ApiController
 {
@@ -66,10 +67,14 @@ class UserApiController extends Base\ApiController
      */
     public function simulateLoginAction(string $username): void
     {
-        [$code, $message] = $this->simulateLoginFor($username);
+        $this->view->assign('value', [$this->simulateLoginFor($username)]);
+    }
 
-        http_response_code($code);
-
-        $this->view->assign('value', compact('message'));
+    /**
+     * @param int $user
+     */
+    public function terminateFrontendSessionAction(int $user): void
+    {
+        $this->view->assign('value', [$this->terminateSessionFor($user)]);
     }
 }

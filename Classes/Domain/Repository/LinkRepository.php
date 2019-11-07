@@ -29,13 +29,16 @@ namespace LMS\Login\Domain\Repository;
 use LMS\Login\Domain\Model\Link;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class LinkRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepository
 {
     /**
      *{@inheritDoc}
-     * @noinspection PhpIncompatibleReturnTypeInspection
+     * @noinspection   PhpIncompatibleReturnTypeInspection
+     * @psalm-suppress LessSpecificReturnStatement
+     * @psalm-suppress MoreSpecificReturnType
      */
     public function find(string $token): ?Link
     {

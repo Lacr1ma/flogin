@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <fe_sessions>
+        <ses_id>7da15ce42673367c6eef3b4706b13c29</ses_id>
+        <ses_iplock>[DISABLED]</ses_iplock>
+        <ses_userid>1</ses_userid>
+        <ses_tstamp>1573054916</ses_tstamp>
+        <ses_data></ses_data>
+        <ses_permanent>0</ses_permanent>
+        <ses_anonymous>0</ses_anonymous>
+    </fe_sessions>
+</dataset>

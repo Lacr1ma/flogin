@@ -35,8 +35,20 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
     ->registerImplementation(
+        \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup::class,
+        \LMS\Login\Domain\Model\UserGroup::class
+    );
+
+\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
+    ->registerImplementation(
         \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository::class,
         \LMS\Login\Domain\Repository\UserRepository::class
+    );
+
+\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
+    ->registerImplementation(
+        \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository::class,
+        \LMS\Login\Domain\Repository\UserGroupRepository::class
     );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(

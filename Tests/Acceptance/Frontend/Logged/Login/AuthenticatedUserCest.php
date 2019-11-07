@@ -38,7 +38,7 @@ class AuthenticatedUserCest
      */
     protected function login_and_go_to_logout_page(AcceptanceTester $I)
     {
-        $I->amLoggedInAs('sergey');
+        $I->amLoggedInAs('dummy');
         $I->moveBack();
     }
 
@@ -57,7 +57,7 @@ class AuthenticatedUserCest
      */
     public function logout_form_rendered(AcceptanceTester $I)
     {
-        $I->wantTo('When i am logged in, I want to be able to logout. So i want to see <Logout> button.');
+        $I->wantTo('When I am logged in, I want to be able to logout. I must see <Logout> button.');
 
         $I->seeElement('#logout-link');
     }

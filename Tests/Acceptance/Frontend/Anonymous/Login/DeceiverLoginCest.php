@@ -60,7 +60,7 @@ class DeceiverLoginCest
 
         $password = bin2hex(random_bytes(5));
 
-        $I->amLoggedInAs('sergey', $password);
+        $I->amLoggedInAs('dummy', $password);
 
         $I->dontSeeElement('.username-block > .is-invalid');
         $I->dontSeeElement('.username-is-invalid');
@@ -78,8 +78,8 @@ class DeceiverLoginCest
 
         $username = $password = bin2hex(random_bytes(5));
 
-        foreach (range(0, 4) as $index) {
-            $I->amLoggedInAs('sergey', $password);
+        foreach (range(0, 5) as $index) {
+            $I->amLoggedInAs('lockme', $password);
         }
 
         $I->seeElement('.alert-danger');
@@ -88,13 +88,11 @@ class DeceiverLoginCest
         $I->openNextUnreadEmail();
 
         $I->seeInOpenedEmailSubject('Security Notice: Account has been locked');
-        $I->seeInOpenedEmailRecipients('borulkosergey@icloud.com');
+        $I->seeInOpenedEmailRecipients('lockme@example.com');
     }
 
     /**
      * @param AcceptanceTester $I
-     *
-     * @depends throttling_check
      */
     public function user_can_be_unlocked(AcceptanceTester $I)
     {

@@ -29,11 +29,14 @@ namespace LMS\Login\Domain\Validator\ResetPassword;
 use LMS\Login\{Support\Redirection\UserRouter, Domain\Repository\ResetsRepository};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class RequestValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $resetRequest
      */
     protected function isValid($resetRequest): void

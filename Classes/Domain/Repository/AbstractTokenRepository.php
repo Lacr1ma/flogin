@@ -29,7 +29,8 @@ namespace LMS\Login\Domain\Repository;
 use Tightenco\Collect\Support\Collection;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 abstract class AbstractTokenRepository extends \LMS3\Support\Repository\AbstractRepository
 {

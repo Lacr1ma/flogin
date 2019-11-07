@@ -29,13 +29,16 @@ namespace LMS\Login\Domain\Validator\Login;
 use LMS\Login\{Event\SessionEvent, Support\ThrottlesLogins};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     use ThrottlesLogins, SessionEvent;
 
     /**
+     * @psalm-suppress MoreSpecificImplementedParamType
+     *
      * @param string $ip
      */
     protected function isValid($ip): void

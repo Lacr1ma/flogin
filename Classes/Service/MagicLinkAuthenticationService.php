@@ -68,6 +68,6 @@ class MagicLinkAuthenticationService extends \TYPO3\CMS\Core\Authentication\Abst
      */
     private function requestHasMagicToken(): string
     {
-        return $GLOBALS['TYPO3_REQUEST']->getQueryParams()['tx_login_login']['request']['token'] ?? '';
+        return $GLOBALS['TYPO3_REQUEST']->getQueryParams()['tx_login_login']['request']['token'] ?: '';
     }
 }

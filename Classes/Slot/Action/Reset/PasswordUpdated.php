@@ -26,8 +26,7 @@ namespace LMS\Login\Slot\Action\Reset;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\ObjectManageable;
-use TYPO3\CMS\Core\Session\SessionManager;
+use LMS\Login\Manager\SessionManager;
 use LMS\Login\Support\Redirection\UserRouter;
 use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
 use LMS\Login\Slot\Notification\PasswordChangedNotification;
@@ -42,19 +41,10 @@ class PasswordUpdated
      */
     public function execute(ResetPasswordRequest $request): void
     {
-        $this->invalidateUserSessions($request->getUser()->getUid());
+        SessionManager::terminateFrontendSession($request->getUser()->getUid());
 
         PasswordChangedNotification::make()->send($request->getUser());
 
         UserRouter::redirectToAfterResetFormSubmittedPage();
-    }
-
-    /**
-     * @param int $user
-     */
-    protected function invalidateUserSessions(int $user): void
-    {
-        $session = ObjectManageable::createObject(SessionManager::class);
-        $session->invalidateAllSessionsByUserId($session->getSessionBackend('FE'), $user);
     }
 }

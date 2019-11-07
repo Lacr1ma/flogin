@@ -40,10 +40,9 @@ trait LockUsers
      */
     public function unlock(string $email): void
     {
-        $user = UserRepository::make()->retrieveByEmail($email);
-
-        $user->unlock();
-
-        $this->fireLoginUnlockedEvent($user);
+        if ($user = UserRepository::make()->retrieveByEmail($email)) {
+            $user->unlock();
+            $this->fireLoginUnlockedEvent($user);
+        }
     }
 }

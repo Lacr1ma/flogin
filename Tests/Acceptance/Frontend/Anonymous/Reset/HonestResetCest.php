@@ -41,7 +41,7 @@ class HonestResetCest
         $I->wantTo('I follow <restore link> from my email and expect to see the <reset password form>.');
 
         $I->amOnResetPasswordPageRelatedTo(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->seeElement('#password');
@@ -56,8 +56,8 @@ class HonestResetCest
     {
         $I->wantTo('After I change the password, I expect to be redirected to proper page.');
 
-        $email = 'borulkosergey@icloud.com';
-        $password = 'sergey';
+        $email = 'dummy@example.com';
+        $password = 'password';
 
         $I->amChangingPassword($email, $password, $password);
         $I->see('The password has been updated!');
@@ -70,8 +70,8 @@ class HonestResetCest
     {
         $I->wantTo('After my password has been changed, I expect to be notified by email.');
 
-        $email = 'borulkosergey@icloud.com';
-        $password = $passwordConfirmation = 'sergey';
+        $email = 'dummy@example.com';
+        $password = $passwordConfirmation = 'password';
 
         $I->amChangingPassword($email, $password, $passwordConfirmation);
 
@@ -79,7 +79,7 @@ class HonestResetCest
         $I->openNextUnreadEmail();
 
         $I->seeInOpenedEmailSubject('Security Notice: Password has been changed');
-        $I->seeInOpenedEmailRecipients('borulkosergey@icloud.com');
+        $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 
     /**
@@ -89,8 +89,8 @@ class HonestResetCest
     {
         $I->wantTo('I got <password updated> notification. I wanna be able to <restore> it back.');
 
-        $email = 'borulkosergey@icloud.com';
-        $password = $passwordConfirmation = 'sergey';
+        $email = 'dummy@example.com';
+        $password = $passwordConfirmation = 'password';
 
         $I->amChangingPassword($email, $password, $passwordConfirmation);
 

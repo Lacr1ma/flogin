@@ -44,9 +44,9 @@ trait AuthenticatesUsers
     {
         [$username, $plainPassword] = $credentials;
 
-        $user = UserRepository::make()->retrieveByUsername($username);
-
-        $this->fireLoginAttemptEvent($user, $plainPassword, $remember);
+        if ($user = UserRepository::make()->retrieveByUsername($username)) {
+            $this->fireLoginAttemptEvent($user, $plainPassword, $remember);
+        }
     }
 
     /**

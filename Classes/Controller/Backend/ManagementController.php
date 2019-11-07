@@ -26,70 +26,24 @@ namespace LMS\Login\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
-use LMS\Login\Guard\SessionGuard;
-use LMS\Routes\Support\ObjectManageable;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use In2code\Femanager\Utility\BackendUserUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-use TYPO3\CMS\Frontend\Utility\EidUtility;
-use TYPO3\CMS\Styleguide\TcaDataGenerator\TableHandler\General;
-
+use LMS\Login\Domain\{Model\Demand, Repository\UserRepository};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    use ObjectManageable;
-
     /**
-     *
+     * @param \LMS\Login\Domain\Model\Demand|null $demand
      */
-    public function indexAction(): void
+    public function indexAction(Demand $demand = null): void
     {
-        $this->view->assign('users', UserRepository::make()->findAll());
-    }
+        $demand = $demand ?: new Demand();
 
-    /**
-     * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @param \Psr\Http\Message\ResponseInterface      $response
-     *
-     * @return \Psr\Http\Message\ResponseInterface      $response
-     */
-    public function forceLoginAction(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
-    {
-        $backendUser = BackendUserUtility::getBackendUserAuthentication()->user;
-
-        if ($backendUser['admin'] !== 1) {
-            return $response->withStatus(403);
-        }
-
-        $username = $request->getQueryParams()['username'];
-        $password = $backendUser['ses_id'];
-
-        $GLOBALS['TSFE'] = GeneralUtility::makeInstance(
-            TypoScriptFrontendController::class,
-            $GLOBALS['TYPO3_CONF_VARS'],
-            0,
-            1
-        );
-
-        $pid = (GeneralUtility::_GP('id') ? GeneralUtility::_GP('id') : 0);
-
-        $GLOBALS['TSFE']->connectToDB();
-        $GLOBALS['TSFE']->fe_user = EidUtility::initFeUser();
-        $GLOBALS['TSFE']->id = $pid;
-        $GLOBALS['TSFE']->determineId();
-        $GLOBALS['TSFE']->initTemplate();
-        $GLOBALS['TSFE']->getConfigArray();
-
-        $GLOBALS['BE_USER'] = $GLOBALS['TSFE']->initializeBackendUser();
-
-        SessionGuard::make()->startCoreLogin($username, $password, false);
-
-        return $response;
+        $this->view->assignMultiple([
+            'demand' => $demand,
+            'users' => UserRepository::make()->findDemanded($demand)
+        ]);
     }
 }

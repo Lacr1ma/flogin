@@ -35,7 +35,7 @@ plugin.tx_login {
     }
 
    throttling {
-    maxAttempts = 4
+    maxAttempts = 5
     decayMinutes = 1
     lockIntervalInMinutes = 10
    }
@@ -68,7 +68,7 @@ plugin.tx_login {
 
   persistence {
     # cat=plugin.tx_login//a; type=int; label=Default storage PID for Login Extension
-    storagePid = 4
+    storagePid = 0
   }
 
 }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Backend;
+namespace LMS\Login\Support\Repository;
 
 /* * *************************************************************
  *
@@ -26,46 +26,29 @@ namespace LMS\Login\Tests\Acceptance\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
+use LMS\Login\Domain\Model\Demand;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class SchedulerCest
+trait Demandable
 {
     /**
-     * @param AcceptanceTester $I
+     * @param \LMS\Login\Domain\Model\Demand $demand
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
      */
-    public function clear_expired_reset_password_links(AcceptanceTester $I)
+    public function findDemanded(Demand $demand): QueryResult
     {
-        $I->wantTo('I can run a scheduler task: <Clear all expired reset password links>.');
+        $query = $this->createQuery();
 
-        $I->runShellCommand('bin/typo3 scheduler:run --task=1 -f');
+        if ($username = $demand->getUsername()) {
+            $query->matching($query->logicalAnd(
+                $query->like('username', '%' . $username . '%')
+            ));
+        }
 
-        $I->seeResultCodeIs(0);
-    }
-
-    /**
-     * @param AcceptanceTester $I
-     */
-    public function clear_expired_magic_links(AcceptanceTester $I)
-    {
-        $I->wantTo('I can run a scheduler task: <Clear all expired magic links>.');
-
-        $I->runShellCommand('bin/typo3 scheduler:run --task=2 -f');
-
-        $I->seeResultCodeIs(0);
-    }
-
-    /**
-     * @param AcceptanceTester $I
-     */
-    public function unlock_users(AcceptanceTester $I)
-    {
-        $I->wantTo('I can run a scheduler task: <Unlock users>.');
-
-        $I->runShellCommand('bin/typo3 scheduler:run --task=3 -f');
-
-        $I->seeResultCodeIs(0);
+        return $query->execute();
     }
 }

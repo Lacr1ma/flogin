@@ -32,7 +32,9 @@ use LMS\Login\Event\SessionEvent;
 use LMS\Login\Support\Domain\{Property\Token, Action\User\UrlManagement};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ *
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {

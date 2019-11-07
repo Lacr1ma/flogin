@@ -31,7 +31,8 @@ use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use LMS\Login\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagicLinkEmails};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -40,6 +41,8 @@ class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     /**
      * By default mapping for <request> property is not activated,
      * so we activate it and allow creation process.
+     *
+     * @psalm-suppress InternalMethod
      */
     public function initializeLoginAction(): void
     {

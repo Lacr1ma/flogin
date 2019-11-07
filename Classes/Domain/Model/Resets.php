@@ -29,7 +29,8 @@ namespace LMS\Login\Domain\Model;
 use LMS\Login\Support\Domain\Property\{Expirable, User, Token};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress MissingConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class Resets extends \LMS3\Support\Model\AbstractModel
 {

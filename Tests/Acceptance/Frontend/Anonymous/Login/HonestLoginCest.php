@@ -75,6 +75,6 @@ class HonestLoginCest
         $I->openNextUnreadEmail();
 
         $I->seeInOpenedEmailSubject('Security Notice: Someone has logged in to your account.');
-        $I->seeInOpenedEmailRecipients('borulkosergey@icloud.com');
+        $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 }

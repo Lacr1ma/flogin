@@ -31,7 +31,8 @@ use LMS\Login\Domain\{Model\User, Repository\UserRepository};
 
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
@@ -67,7 +68,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
     {
         $file = $this->getTranslationFile();
 
-        return $this->translateErrorMessage("{$file}:{$key}", null, $arguments) ?: '';
+        return $this->translateErrorMessage("{$file}:{$key}", '', $arguments) ?: '';
     }
 
     /**

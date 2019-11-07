@@ -64,7 +64,7 @@ class HonestForgotCest
         $I->wantTo('I expect to receive the <forgot password link> after I submit <forgot password form> with my email.');
 
         $I->amRequestingPasswordResetNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->fetchEmails();
@@ -81,7 +81,7 @@ class HonestForgotCest
         $I->wantTo('When I open <forgot password link> notification, I expect to see the <restore> link inside');
 
         $I->amRequestingPasswordResetNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->fetchEmails();
@@ -89,7 +89,7 @@ class HonestForgotCest
 
         $I->seeInOpenedEmailSubject('Security Notice: Reset Password request');
 //        $I->seeInOpenedEmailBody('To reset your password please follow this link');
-        $I->seeInOpenedEmailRecipients('borulkosergey@icloud.com');
+        $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 
     /**
@@ -100,7 +100,7 @@ class HonestForgotCest
         $I->wantTo('When I submit <forgot password form>, I expect to be redirected to the proper page.');
 
         $I->amRequestingPasswordResetNotification(
-            'borulkosergey@icloud.com'
+            'dummy@example.com'
         );
 
         $I->see('Reset link has been sent to the user email address.');

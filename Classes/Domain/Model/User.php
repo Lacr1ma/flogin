@@ -31,7 +31,8 @@ use LMS\Login\Support\Domain\Property\IsOnline;
 use LMS\Login\Support\Domain\Action\User\{UrlManagement, Lockable};
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 {

@@ -29,7 +29,8 @@ namespace LMS\Login\Controller;
 use LMS\Login\Support\Controller\Locker\LockUsers;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class LockerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {

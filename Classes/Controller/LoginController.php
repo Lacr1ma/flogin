@@ -29,7 +29,8 @@ namespace LMS\Login\Controller;
 use LMS\Login\Support\Controller\Login\AuthenticatesUsers;
 
 /**
- * @author Sergey Borulko <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
 class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {

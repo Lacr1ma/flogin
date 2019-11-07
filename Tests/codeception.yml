@@ -6,26 +6,33 @@ suites:
     modules:
       enabled:
         - Cli
+        - MailHog
         - Asserts
-        #- PhpBrowser:
-            #url: https://lms.ddev.site
+        - Filesystem
+        - Db
         - WebDriver:
             url: https://lms.ddev.site
             browser: chrome
             host: ddev-lms-chrome
-        - REST:
-            depends: PhpBrowser
-            url: https://lms.ddev.site/api/
-            part: Json
-        - MailHog
+        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
+        - \LMS\Login\Tests\Acceptance\Support\Helper\FrontendLogin:
+            session: 7da15ce42673367c6eef3b4706b13c29
       config:
         MailHog:
           url: http://lms.ddev.site
           port: 8025
+        Db:
+          dsn: 'mysql:host=db;dbname=db_at'
+          user: 'db'
+          password: 'db'
+          populate: true # load dump before all tests
+          #cleanup: true # load dump for each test
+          dump: 'Acceptance/dump.sql'
+          #populator: 'mysql -u $user -h $host db_at < $dump'
 
 extensions:
   enabled:
-    - Codeception\Extension\RunFailed
+    #- LMS\Login\Tests\Acceptance\Support\Extension\BackendEnvironment
     - Codeception\Extension\Recorder
 
 paths:

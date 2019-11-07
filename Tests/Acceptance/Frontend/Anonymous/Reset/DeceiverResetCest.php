@@ -26,6 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Reset;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Codeception\Util\HttpCode;
 use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
@@ -36,33 +37,16 @@ class DeceiverResetCest
     /**
      * @param AcceptanceTester $I
      */
-    public function reset_link_associated_with_proper_token(AcceptanceTester $I)
-    {
-        $I->wantTo('I wanna see an error, when I try to open wrong <reset url>.');
-
-        $I->amRequestingPasswordResetNotification('borulkosergey@icloud.com');
-
-        $url = $I->extractLinkFromLastMail();
-        $linkWithInvalidHash = substr($url, 0, strpos($url, '&cHash') - 1);
-
-        $I->amOnUrl($linkWithInvalidHash);
-
-        $I->see('Whoops, looks like something went wrong.');
-    }
-
-    /**
-     * @param AcceptanceTester $I
-     */
     public function redirect_token_not_found(AcceptanceTester $I)
     {
         $I->wantTo('I wanna be redirect to a <tokenDoesNotExist> page when token already deleted.');
 
-        $I->amRequestingPasswordResetNotification('borulkosergey@icloud.com');
+        $I->amRequestingPasswordResetNotification('dummy@example.com');
 
         $resetPasswordUrl = $I->extractLinkFromLastMail();
 
         $I->amOnUrl($resetPasswordUrl);
-        $password = $confirmation = 'sergey';
+        $password = $confirmation = 'password';
 
         $I->fillField('tx_login_login[request][password]', $password);
         $I->fillField('tx_login_login[request][passwordConfirmation]', $confirmation);
@@ -80,8 +64,8 @@ class DeceiverResetCest
     {
         $I->wantTo('I wanna see an error, when my confirmation password invalid.');
 
-        $email = 'borulkosergey@icloud.com';
-        $password = 'sergey';
+        $email = 'dummy@example.com';
+        $password = 'password';
 
         $I->amChangingPassword($email, $password, 'bla');
 
