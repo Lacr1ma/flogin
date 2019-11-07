@@ -37,6 +37,8 @@ trait Expirable
     use CreationDate;
 
     /**
+     * TRUE when entity has been already expired
+     *
      * @return bool
      */
     public function isExpired(): bool
@@ -45,6 +47,8 @@ trait Expirable
     }
 
     /**
+     * Get the exact time when entity expires
+     *
      * @return \Carbon\Carbon
      */
     public function getExpirationTime(): Carbon
@@ -55,6 +59,8 @@ trait Expirable
     }
 
     /**
+     * Returns the number of minutes that token should be valid for
+     *
      * @return int
      */
     abstract public static function getLifetimeInMinutes(): int;

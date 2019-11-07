@@ -37,6 +37,10 @@ use LMS\Login\Slot\Notification\PasswordChangedNotification;
 class PasswordUpdated
 {
     /**
+     * Password has been update, any other actions could be provided here
+     *
+     * @psalm-suppress InternalMethod
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function execute(ResetPasswordRequest $request): void

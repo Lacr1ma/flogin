@@ -35,6 +35,8 @@ use LMS\Login\Domain\{Model\Demand, Repository\UserRepository};
 class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
+     * Render table with existing FE users
+     *
      * @param \LMS\Login\Domain\Model\Demand|null $demand
      */
     public function indexAction(Demand $demand = null): void

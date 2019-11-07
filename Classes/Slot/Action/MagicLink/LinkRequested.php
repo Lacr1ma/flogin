@@ -37,6 +37,11 @@ use LMS\Login\Slot\Notification\MagicLinkNotification;
 class LinkRequested
 {
     /**
+     * Magic link request detected.
+     * Provide any actions to send the link here
+     *
+     * @psalm-suppress InternalMethod
+     *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
      */
     public function execute(MagicLinkRequest $request): void

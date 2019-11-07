@@ -38,6 +38,8 @@ trait ResetsPasswords
     use SessionEvent;
 
     /**
+     * Attempt to reset the password and notify the listeners
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function reset(ResetPasswordRequest $request): void
@@ -58,13 +60,15 @@ trait ResetsPasswords
     private function resetPassword(User $user, string $newPlainPassword): void
     {
         $user->setPassword(
-            Hash::make()->encryptPassword($newPlainPassword)
+            Hash::encryptPassword($newPlainPassword)
         );
 
         $user->save();
     }
 
     /**
+     * Erase reset token by it's hash
+     *
      * @param string $token
      */
     private function deleteAssociatedPasswordResetToken(string $token): void

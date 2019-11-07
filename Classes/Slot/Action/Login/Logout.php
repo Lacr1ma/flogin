@@ -35,6 +35,8 @@ use LMS\Login\Support\Redirection\UserRouter;
 class Logout
 {
     /**
+     *  Logout detected, handle all actions inside
+     *
      * @param \LMS\Login\Domain\Model\User $user
      * @param bool                         $remember
      */

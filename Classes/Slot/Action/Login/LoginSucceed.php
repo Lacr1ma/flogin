@@ -38,6 +38,8 @@ class LoginSucceed
     use ThrottlesLogins;
 
     /**
+     * Successful login attempt detected, handle all actions inside
+     *
      * @param \LMS\Login\Domain\Model\User $user
      * @param bool                         $remember
      */

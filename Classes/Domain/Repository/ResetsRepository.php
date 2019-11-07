@@ -35,6 +35,8 @@ use LMS\Login\Domain\Model\Resets;
 class ResetsRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepository
 {
     /**
+     * Find reset link by it's token
+     *
      *{@inheritDoc}
      * @noinspection   PhpIncompatibleReturnTypeInspection
      * @psalm-suppress LessSpecificReturnStatement

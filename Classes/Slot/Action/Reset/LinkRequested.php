@@ -37,6 +37,11 @@ use LMS\Login\Slot\Notification\ResetPasswordNotification;
 class LinkRequested
 {
     /**
+     * Password Reset Notification has been requested by user.
+     * Work on actions associated with that here
+     *
+     * @psalm-suppress InternalMethod
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function execute(ResetPasswordRequest $request): void

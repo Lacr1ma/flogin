@@ -37,6 +37,8 @@ class UnlockedAction
     use ThrottlesLogins;
 
     /**
+     * User has been unlocked after lockout. Perform next actions here
+     *
      * @param \LMS\Login\Domain\Model\User $user
      */
     public function execute(User $user): void

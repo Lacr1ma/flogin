@@ -59,7 +59,7 @@ class HonestLoginCest
 
         $I->amLoggedInAs();
 
-        $I->see('You should see that after login process');
+        $I->seeInTitle('Catalog');
     }
 
     /**

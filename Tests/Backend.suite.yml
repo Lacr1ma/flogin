@@ -6,6 +6,10 @@ suites:
     path: .
     modules:
       enabled:
+        - Db
+        - Cli
+        - Asserts
+        - Filesystem
         - WebDriver:
             url: https://lms.ddev.site
             browser: chrome
@@ -15,19 +19,13 @@ suites:
             sessions:
               editor: ff83dfd81e20b34c27d3e97771a4525a
               admin: 886526ce72b86870739cc41991144ec1
-        - Asserts
-        - Filesystem
-        - Db
-        - Cli
       config:
         Db:
           dsn: 'mysql:host=db;dbname=db_at'
           user: 'db'
           password: 'db'
-          populate: true # load dump before all tests
-          #cleanup: true # load dump for each test
-          dump: 'Acceptance/dump.sql'
-          #populator: 'mysql -u $user -h $host db_at < $dump'
+          populate: true
+          #dump: 'Acceptance/dump.sql'
 
 extensions:
   enabled:

@@ -37,6 +37,8 @@ class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\Login\
     use ThrottlesLogins, SessionEvent;
 
     /**
+     * Valid if request IP is not locked
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param string $ip
@@ -52,7 +54,7 @@ class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\Login\
     }
 
     /**
-     *
+     * Fire the lockout event when brute force attack detected
      */
     protected function addLockoutError(): void
     {
@@ -67,7 +69,7 @@ class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\Login\
     }
 
     /**
-     *
+     * Builds the number of minutes of lock
      */
     protected function calculateWaitingTimeInMinutes(): float
     {

@@ -53,6 +53,8 @@ trait SimulatesFrontendLogin
     }
 
     /**
+     * Finish all active sessions associated to passed user
+     *
      * @param int $user
      *
      * @return string

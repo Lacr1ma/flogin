@@ -34,6 +34,8 @@ use LMS\Login\Domain\Model\Request\MagicLinkRequest;
 class MagicLinkNotification extends \LMS\Login\Notification\AbstractNotificationSender
 {
     /**
+     * Build the MagicLinkNotification Template and email the user
+     *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
      */
     public function send(MagicLinkRequest $request): void

@@ -57,6 +57,8 @@ abstract class AbstractNotificationSender
     }
 
     /**
+     * Retrieves the translation for the requested path
+     *
      * @param string $path
      * @param array  $arguments
      *
@@ -68,6 +70,8 @@ abstract class AbstractNotificationSender
     }
 
     /**
+     * Retrieves the TypoScript configuration related to email settings
+     *
      * @return array
      */
     protected function getSettings(): array
@@ -76,11 +80,15 @@ abstract class AbstractNotificationSender
     }
 
     /**
+     * The path starting from Template folder and ends with File folder
+     *
      * @return string
      */
     abstract protected function getTemplateSuffix(): string;
 
     /**
+     * Build email subject for the notification
+     *
      * @return string
      */
     abstract protected function getSubject(): string;

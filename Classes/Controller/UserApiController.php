@@ -63,6 +63,8 @@ class UserApiController extends Base\ApiController
     }
 
     /**
+     * Attempt to login the FE user by it's name
+     *
      * @param string $username
      */
     public function simulateLoginAction(string $username): void
@@ -71,6 +73,8 @@ class UserApiController extends Base\ApiController
     }
 
     /**
+     * Attempt to logout the FE user by it's uid
+     *
      * @param int $user
      */
     public function terminateFrontendSessionAction(int $user): void

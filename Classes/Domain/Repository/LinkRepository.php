@@ -35,6 +35,8 @@ use LMS\Login\Domain\Model\Link;
 class LinkRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepository
 {
     /**
+     * Find magic link by it's token
+     *
      *{@inheritDoc}
      * @noinspection   PhpIncompatibleReturnTypeInspection
      * @psalm-suppress LessSpecificReturnStatement
@@ -46,6 +48,8 @@ class LinkRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepositor
     }
 
     /**
+     * Find all not expired magic links related to requested user
+     *
      * @param int $user
      *
      * @return \LMS\Login\Domain\Model\Link[]

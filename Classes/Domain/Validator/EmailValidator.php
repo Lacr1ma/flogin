@@ -35,6 +35,8 @@ use LMS\Login\Domain\Repository\UserRepository;
 class EmailValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * Valid only when email does exist in the system
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param string $email

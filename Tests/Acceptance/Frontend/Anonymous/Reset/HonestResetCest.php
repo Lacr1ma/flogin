@@ -60,7 +60,7 @@ class HonestResetCest
         $password = 'password';
 
         $I->amChangingPassword($email, $password, $password);
-        $I->see('The password has been updated!');
+        $I->seeInTitle('Change password form submitted');
     }
 
     /**

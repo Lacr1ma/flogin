@@ -103,6 +103,6 @@ class HonestForgotCest
             'dummy@example.com'
         );
 
-        $I->see('Reset link has been sent to the user email address.');
+        $I->seeInTitle('Email sent');
     }
 }

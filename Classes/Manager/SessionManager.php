@@ -27,10 +27,7 @@ namespace LMS\Login\Manager;
  * ************************************************************* */
 
 use LMS3\Support\ObjectManageable;
-use TYPO3\CMS\Core\Session\{
-    Backend\SessionBackendInterface,
-    SessionManager as ExtbaseSessionManager
-};
+use TYPO3\CMS\Core\Session\{Backend\SessionBackendInterface, SessionManager as ExtbaseSessionManager};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -46,7 +43,7 @@ class SessionManager
     }
 
     /**
-     * Give the session storage related to FE area
+     * Give the session storage related to FE scope
      *
      * @return \TYPO3\CMS\Core\Session\Backend\SessionBackendInterface
      */
@@ -56,6 +53,12 @@ class SessionManager
     }
 
     /**
+     * Returns the TYPO3 Core Session Manager
+     *
+     * @psalm-suppress MoreSpecificReturnType
+     * @psalm-suppress LessSpecificReturnStatement
+     * @noinspection   PhpIncompatibleReturnTypeInspection
+     *
      * @return \TYPO3\CMS\Core\Session\SessionManager
      */
     public static function manager(): ExtbaseSessionManager

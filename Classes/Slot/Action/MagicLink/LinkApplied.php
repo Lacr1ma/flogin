@@ -32,6 +32,9 @@ namespace LMS\Login\Slot\Action\MagicLink;
 class LinkApplied
 {
     /**
+     * Magic Link has been used and user has been logged in.
+     * Any other actions could be provided here
+     *
      * @param string $token
      */
     public function execute(string $token): void

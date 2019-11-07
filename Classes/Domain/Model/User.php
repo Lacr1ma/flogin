@@ -39,7 +39,7 @@ class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     use Lockable, IsOnline, UrlManagement, StorageActions;
 
     /**
-     * {@inheritDoc}
+     * Create new Reset Password Request and process it
      */
     public function sendPasswordResetNotification(): void
     {
@@ -47,7 +47,7 @@ class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * {@inheritDoc}
+     * Create new Magic Link Request and process it
      */
     public function sendMagicLinkNotification(): void
     {

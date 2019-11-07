@@ -36,6 +36,9 @@ trait LockUsers
     use SessionEvent;
 
     /**
+     * Attempt to find associated to email user and unlock.
+     * Fires the unlock event
+     *
      * @param string $email
      */
     public function unlock(string $email): void

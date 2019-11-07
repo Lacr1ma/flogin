@@ -47,10 +47,10 @@ class DeceiverMagicLinkCest
         $loginMagicLinkUrl = $I->extractLinkFromLastMail();
 
         $I->amOnUrl($loginMagicLinkUrl);
-        $I->see('You should see that after login process');
+        $I->seeInTitle('Catalog');
 
         $I->amOnUrl($loginMagicLinkUrl);
-        $I->see('Reset token does not exist in the system!');
+        $I->seeInTitle('Token does not exist');
     }
 
     /**

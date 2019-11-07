@@ -64,6 +64,8 @@ trait ThrottlesLogins
     }
 
     /**
+     * Use request ip address as a throttle key
+     *
      * @return string
      */
     protected function throttleKey(): string
@@ -102,6 +104,8 @@ trait ThrottlesLogins
     }
 
     /**
+     * Retrieve TypoScript settings related to throttling area
+     *
      * @return array
      */
     private function settings(): array

@@ -36,6 +36,8 @@ trait IsOnline
     use QueryBuilder;
 
     /**
+     * @psalm-suppress PossiblyInvalidMethodCall
+     * @psalm-suppress InternalMethod
      * @return bool
      */
     public function getOnline(): bool

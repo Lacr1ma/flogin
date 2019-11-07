@@ -34,6 +34,8 @@ use LMS\Login\Domain\Model\User;
 class PasswordChangedNotification extends \LMS\Login\Notification\AbstractNotificationSender
 {
     /**
+     * Build the PasswordChanged Template and email the user
+     *
      * @param \LMS\Login\Domain\Model\User $user
      */
     public function send(User $user): void

@@ -36,6 +36,8 @@ use LMS\Login\Support\Redirection\UserRouter;
 class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * Valid when use is not logged in at the current moment
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest

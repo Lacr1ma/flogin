@@ -35,6 +35,8 @@ use LMS\Login\Slot\Notification\LockoutNotification;
 class LockoutAction
 {
     /**
+     * User has been locked out. Notify user if no notification had been sent.
+     *
      * @param \LMS\Login\Domain\Model\User $user
      */
     public function execute(User $user): void

@@ -43,6 +43,7 @@ class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * so we activate it and allow creation process.
      *
      * @psalm-suppress InternalMethod
+     * @psalm-suppress InvalidScalarArgument
      */
     public function initializeLoginAction(): void
     {

@@ -45,7 +45,7 @@ class JsonView extends \TYPO3\CMS\Extbase\Mvc\View\JsonView
     ];
 
     /**
-     * Always transforming ObjectStorages to Arrays for the JSON view
+     * Always transforming Object Storage to Arrays for the JSON view
      *
      * @param mixed $value
      * @param array $configuration

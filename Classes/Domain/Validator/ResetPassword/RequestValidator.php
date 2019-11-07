@@ -35,6 +35,8 @@ use LMS\Login\{Support\Redirection\UserRouter, Domain\Repository\ResetsRepositor
 class RequestValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * Valid when reset link does exist in the system and it's not expired
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $resetRequest
@@ -43,8 +45,9 @@ class RequestValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidato
     {
         $resetToken = ResetsRepository::make()->find($resetRequest->getToken());
 
-        if (is_null($resetToken)) {
+        if ($resetToken === null) {
             UserRouter::redirectToTokenNotFoundPage();
+            return;
         }
 
         if ($resetToken->isExpired()) {

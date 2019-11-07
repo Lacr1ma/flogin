@@ -26,7 +26,6 @@ namespace LMS\Login\Tests\Acceptance\Frontend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Codeception\Util\HttpCode;
 use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
@@ -51,7 +50,9 @@ class ApiCest
      */
     public function authenticated_returns_true_when_user_logged_in(AcceptanceTester $I)
     {
-        $I->useSession('/api/user/authenticated');
+        $I->amLoggedInAs('user');
+
+        $I->amOnPage('/api/user/authenticated');
 
         $I->see('{"authenticated":true}');
     }
@@ -73,7 +74,9 @@ class ApiCest
      */
     public function user_info_present_when_user_authenticated(AcceptanceTester $I)
     {
-        $I->useSession('/api/user/current');
+        $I->amLoggedInAs('user');
+
+        $I->amOnPage('/api/user/current');
 
         $I->see('user@example.com');
     }

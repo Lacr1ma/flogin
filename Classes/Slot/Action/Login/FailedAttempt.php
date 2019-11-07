@@ -36,6 +36,8 @@ class FailedAttempt
     use ThrottlesLogins;
 
     /**
+     * Wrong login attempt detected, handle all needed action inside
+     *
      * @param string $username
      */
     public function execute(string $username): void

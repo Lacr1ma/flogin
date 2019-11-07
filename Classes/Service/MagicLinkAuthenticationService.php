@@ -64,6 +64,8 @@ class MagicLinkAuthenticationService extends \TYPO3\CMS\Core\Authentication\Abst
     }
 
     /**
+     * Attempt to retrieve the magic token from current request
+     *
      * @return string
      */
     private function requestHasMagicToken(): string

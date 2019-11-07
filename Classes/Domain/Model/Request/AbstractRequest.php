@@ -33,6 +33,7 @@ use LMS\Login\Support\Domain\{Property\Token, Action\User\UrlManagement};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
+ * @psalm-suppress InternalClass
  *
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
@@ -51,7 +52,7 @@ abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractV
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->token = Hash::make()->randomString();
+        $this->token = Hash::randomString();
     }
 
     /**
@@ -63,16 +64,21 @@ abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractV
     }
 
     /**
+     * Build the URL that associated to current request action
+     *
      * @return string
      */
     abstract public function getUrl(): string;
 
     /**
-     *
+     * Fires the appropriate event message.
+     * After that we dispatch that message in a corresponding SLOT
      */
     abstract public function notify(): void;
 
     /**
+     * Every request link has a lifetime.
+     *
      * @return int
      */
     abstract public function getExpires(): int;

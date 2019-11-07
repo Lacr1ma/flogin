@@ -101,6 +101,6 @@ class DeceiverLoginCest
         $unlockPage = $I->extractLinkFromLastMail();
         $I->amOnUrl($unlockPage);
 
-        $I->see('User has been successfully unlocked!');
+        $I->seeInTitle('Unlocked');
     }
 }

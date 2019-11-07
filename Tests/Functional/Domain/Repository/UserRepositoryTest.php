@@ -98,7 +98,7 @@ class UserRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     public function validatePassword(): void
     {
         $plainPassword = 'secret';
-        $encryptedPassword = Hash::make()->encryptPassword($plainPassword);
+        $encryptedPassword = Hash::encryptPassword($plainPassword);
 
         $user = $this->repository->retrieveByEmail('dummy@example.com');
         $user->setPassword($encryptedPassword);

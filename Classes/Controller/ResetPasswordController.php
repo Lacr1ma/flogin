@@ -43,6 +43,7 @@ class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * so we activate it and allow creation process.
      *
      * @psalm-suppress InternalMethod
+     * @psalm-suppress InvalidScalarArgument
      */
     public function initializeShowResetFormAction(): void
     {

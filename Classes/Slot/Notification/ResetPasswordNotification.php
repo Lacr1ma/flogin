@@ -34,6 +34,8 @@ use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
 class ResetPasswordNotification extends \LMS\Login\Notification\AbstractNotificationSender
 {
     /**
+     * Build the ResetPassword Template and email the user
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function send(ResetPasswordRequest $request): void

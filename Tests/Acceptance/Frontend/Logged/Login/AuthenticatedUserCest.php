@@ -70,7 +70,7 @@ class AuthenticatedUserCest
     {
         $I->wantTo('I Click <Logout> and expect to be redirected to the proper page.');
 
-        $I->see('You have been successfully logged out.');
+        $I->seeInTitle('Logout');
     }
 
     /**

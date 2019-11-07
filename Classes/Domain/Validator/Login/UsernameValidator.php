@@ -33,6 +33,8 @@ namespace LMS\Login\Domain\Validator\Login;
 class UsernameValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * Valid when username from request does exist in the database
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param string $username

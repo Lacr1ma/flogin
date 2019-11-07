@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Repository;
  * ************************************************************* */
 
 use LMS\Login\Domain\Model\Demand;
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -35,11 +35,15 @@ use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 trait Demandable
 {
     /**
+     * Attempt to find all users by demand scope
+     *
+     * @psalm-suppress InvalidReturnType
+     *
      * @param \LMS\Login\Domain\Model\Demand $demand
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findDemanded(Demand $demand): QueryResult
+    public function findDemanded(Demand $demand): QueryResultInterface
     {
         $query = $this->createQuery();
 

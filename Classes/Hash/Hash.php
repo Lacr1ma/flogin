@@ -26,7 +26,7 @@ namespace LMS\Login\Hash;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\{ObjectManageable, StaticCreator};
+use LMS3\Support\ObjectManageable;
 use TYPO3\CMS\Core\Crypto\{Random, PasswordHashing\PasswordHashFactory, PasswordHashing\PasswordHashInterface};
 
 /**
@@ -34,17 +34,17 @@ use TYPO3\CMS\Core\Crypto\{Random, PasswordHashing\PasswordHashFactory, Password
  */
 class Hash
 {
-    use StaticCreator;
-
     /**
+     * Generates cryptographic secure pseudo-random bytes
+     *
      * @param int $length
      *
      * @return string
      */
-    public function randomString(int $length = 64): string
+    public static function randomString(int $length = 64): string
     {
         return md5(
-            $this->getRandom()->generateRandomBytes($length)
+            self::getRandom()->generateRandomBytes($length)
         );
     }
 
@@ -55,23 +55,31 @@ class Hash
      *
      * @return string
      */
-    public function encryptPassword(string $plain): string
+    public static function encryptPassword(string $plain): string
     {
-        return $this->getHashFactory()->getHashedPassword($plain);
+        return self::getHashFactory()->getHashedPassword($plain);
     }
 
     /**
+     * Determine configured default hash method and return an instance relate to FE scope
+     *
      * @return \TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface
      */
-    public function getHashFactory(): PasswordHashInterface
+    public static function getHashFactory(): PasswordHashInterface
     {
         return ObjectManageable::createObject(PasswordHashFactory::class)->getDefaultHashInstance('FE');
     }
 
     /**
+     * Returns TYPO3 Core pseudo-random generator
+     *
+     * @psalm-suppress LessSpecificReturnStatement
+     * @psalm-suppress MoreSpecificReturnType
+     * @noinspection   PhpIncompatibleReturnTypeInspection
+     *
      * @return \TYPO3\CMS\Core\Crypto\Random
      */
-    private function getRandom(): Random
+    private static function getRandom(): Random
     {
         return ObjectManageable::createObject(Random::class);
     }

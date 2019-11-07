@@ -33,6 +33,8 @@ namespace LMS\Login\Domain\Validator\ResetPassword;
 class AttemptValidator extends RequestValidator
 {
     /**
+     * Valid when reset password request contains proper password and it's confirmation
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $resetRequest

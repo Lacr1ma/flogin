@@ -33,7 +33,7 @@ namespace LMS\Login\Domain\Model;
 class Link extends Resets
 {
     /**
-     * @return int
+     * {@inheritDoc}
      */
     public static function getLifetimeInMinutes(): int
     {

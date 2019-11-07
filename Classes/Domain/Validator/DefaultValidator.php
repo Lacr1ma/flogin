@@ -83,6 +83,8 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
     }
 
     /**
+     * Attempt to find user that is related to current login request
+     *
      * @return \LMS\Login\Domain\Model\User|null
      */
     protected function findRequestAssociatedUser(): ?User

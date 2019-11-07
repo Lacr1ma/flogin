@@ -35,6 +35,8 @@ use LMS\Login\Domain\Repository\UserRepository;
 class PasswordValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * Valid when user password is correct
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param string $email

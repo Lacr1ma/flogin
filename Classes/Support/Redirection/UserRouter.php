@@ -135,6 +135,8 @@ class UserRouter
     }
 
     /**
+     * Retrieve TypoScript settings related to redirect area
+     *
      * @return array
      */
     private static function redirectSettings(): array

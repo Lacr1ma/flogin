@@ -35,6 +35,8 @@ use Tightenco\Collect\Support\Collection;
 abstract class AbstractTokenRepository extends \LMS3\Support\Repository\AbstractRepository
 {
     /**
+     * Find link related to requested token
+     *
      * @param string $token
      *
      * @return object|null
@@ -46,6 +48,8 @@ abstract class AbstractTokenRepository extends \LMS3\Support\Repository\Abstract
     }
 
     /**
+     * Find all expired tokens in the system
+     *
      * @return \Tightenco\Collect\Support\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
@@ -55,6 +59,8 @@ abstract class AbstractTokenRepository extends \LMS3\Support\Repository\Abstract
     }
 
     /**
+     * TRUE if entity with provided token does exist
+     *
      * @param string $token
      *
      * @return bool

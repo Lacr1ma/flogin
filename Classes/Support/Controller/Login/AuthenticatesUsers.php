@@ -37,6 +37,8 @@ trait AuthenticatesUsers
     use SessionEvent;
 
     /**
+     * Attempt to find the user by credentials and notify listeners
+     *
      * @param array $credentials
      * @param bool  $remember
      */

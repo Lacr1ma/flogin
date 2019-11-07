@@ -37,7 +37,7 @@ class Resets extends \LMS3\Support\Model\AbstractModel
     use Expirable, User, Token;
 
     /**
-     * @return int
+     * {@inheritDoc}
      */
     public static function getLifetimeInMinutes(): int
     {

@@ -54,7 +54,7 @@ class DeceiverResetCest
 
         $I->amOnUrl($resetPasswordUrl);
 
-        $I->see('Reset token does not exist in the system!');
+        $I->seeInTitle('Token does not exist');
     }
 
     /**

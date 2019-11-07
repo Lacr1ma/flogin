@@ -34,6 +34,8 @@ use LMS\Login\Domain\Model\User;
 class LoginNotification extends \LMS\Login\Notification\AbstractNotificationSender
 {
     /**
+     * Build the LoginNotification Template and email the user
+     *
      * @param \LMS\Login\Domain\Model\User $user
      */
     public function send(User $user): void
@@ -49,6 +51,8 @@ class LoginNotification extends \LMS\Login\Notification\AbstractNotificationSend
     }
 
     /**
+     * Check if user notification activated in the TypoScript area
+     *
      * @return bool
      */
     protected function isDisabled(): bool

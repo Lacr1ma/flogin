@@ -64,10 +64,12 @@ class SessionGuard
 
         $GLOBALS['TSFE']->fe_user->logoff();
 
-        $this->fireLogoutSucceededEvent($user);
+        $user && $this->fireLogoutSucceededEvent($user);
     }
 
     /**
+     * Initialize credentials and proxy the request to the TYPO3 Core
+     *
      * @param string $username
      * @param string $password
      * @param bool   $remember

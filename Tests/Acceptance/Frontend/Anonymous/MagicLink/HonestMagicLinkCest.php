@@ -103,7 +103,7 @@ class HonestMagicLinkCest
             'dummy@example.com'
         );
 
-        $I->see('Magic link has been sent to the user email address.');
+        $I->seeInTitle('Email sent');
     }
 
     /**
@@ -121,6 +121,6 @@ class HonestMagicLinkCest
             $I->extractLinkFromLastMail()
         );
 
-        $I->see('You should see that after login process');
+        $I->seeInTitle('Catalog');
     }
 }

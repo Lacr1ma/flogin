@@ -44,25 +44,17 @@ class HashTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
-    public function make(): void
-    {
-        $this->assertNotEmpty(Hash::make());
-    }
-
-    /**
-     * @test
-     */
-    public function getRandom(): void
-    {
-        $testMethod = new \ReflectionMethod(Hash::class, 'getRandom');
-        $testMethod->setAccessible(true);
-        $result = $testMethod->invoke(Hash::make());
-
-        $this->assertInstanceOf(Random::class, $result);
-    }
+//    /**
+//     * @test
+//     */
+//    public function getRandom(): void
+//    {
+//        $testMethod = new \ReflectionMethod(Hash::class, 'getRandom');
+//        $testMethod->setAccessible(true);
+//        $result = $testMethod->invoke(Hash::make());
+//
+//        $this->assertInstanceOf(Random::class, $result);
+//    }
 
     /**
      * @test
@@ -71,7 +63,7 @@ class HashTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     {
         $this->assertInstanceOf(
             PasswordHashInterface::class,
-            Hash::make()->getHashFactory()
+            Hash::getHashFactory()
         );
     }
 
@@ -81,10 +73,10 @@ class HashTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     public function generate(): void
     {
         $plainPassword = 'secret';
-        $encryptedPassword = Hash::make()->encryptPassword($plainPassword);
+        $encryptedPassword = Hash::encryptPassword($plainPassword);
 
         $this->assertTrue(
-            Hash::make()->getHashFactory()->checkPassword($plainPassword, $encryptedPassword)
+            Hash::getHashFactory()->checkPassword($plainPassword, $encryptedPassword)
         );
     }
 
@@ -93,8 +85,8 @@ class HashTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
      */
     public function randomString(): void
     {
-        $firstAttempt = Hash::make()->randomString();
-        $secondAttempt = Hash::make()->randomString();
+        $firstAttempt = Hash::randomString();
+        $secondAttempt = Hash::randomString();
 
         $this->assertNotEmpty($firstAttempt);
         $this->assertNotEmpty($secondAttempt);

@@ -36,6 +36,8 @@ use LMS\Login\Domain\Repository\UserRepository;
 class UserNotLockedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
 {
     /**
+     * Valid when user is real and it's not locked
+     *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param string $username
@@ -45,7 +47,7 @@ class UserNotLockedValidator extends \LMS\Login\Domain\Validator\Login\DefaultVa
         $user = UserRepository::make()->retrieveByUsername($username);
         $plainPassword = $this->getInputPassword();
 
-        if (is_null($user)) {
+        if (!$user) {
             return;
         }
 

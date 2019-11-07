@@ -54,8 +54,11 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     /**
      * Retrieve logged in user
      *
+     * @psalm-suppress MoreSpecificReturnType
+     * @psalm-suppress LessSpecificReturnStatement
+     * @noinspection   PhpIncompatibleReturnTypeInspection
+     *
      * @return \LMS\Login\Domain\Model\User|null
-     * @noinspection PhpIncompatibleReturnTypeInspection
      */
     public function current(): ?User
     {
@@ -112,6 +115,6 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      */
     public function validatePassword(User $user, string $password): bool
     {
-        return Hash::make()->getHashFactory()->checkPassword($password, $user->getPassword());
+        return Hash::getHashFactory()->checkPassword($password, $user->getPassword());
     }
 }
