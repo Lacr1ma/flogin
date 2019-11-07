@@ -31,11 +31,15 @@ extensions:
     - LMS\Login\Tests\Acceptance\Support\Extension\BackendEnvironment
     - Codeception\Extension\Recorder
 
+params:
+  - env
+
 paths:
   tests: Acceptance/Frontend
-  data: .
-  output: ../../../../../var/tests/AcceptanceReports
+  data: Acceptance/_data
+  output: Acceptance/_output
   support: Acceptance/Support
+  envs: Acceptance/_envs
 
 settings:
   shuffle: false

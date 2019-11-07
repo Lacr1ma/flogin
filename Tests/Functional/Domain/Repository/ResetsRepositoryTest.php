@@ -66,24 +66,10 @@ class ResetsRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\Funct
     /**
      * @test
      */
-    public function retrieveByUsername(): void
-    {
-        $generalTokensCount = $this->repository->countAll();
-
-        $resetToken = $this->repository->createFor('new@example.com');
-
-        $this->assertNotEmpty($resetToken);
-
-        $this->assertSame(++$generalTokensCount, $this->repository->countAll());
-    }
-
-    /**
-     * @test
-     */
     public function exists(): void
     {
         $this->assertTrue(
-            $this->repository->exists('dummy@example.com', 'secret')
+            $this->repository->exists('secret')
         );
     }
 
@@ -94,22 +80,12 @@ class ResetsRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\Funct
     {
         $this->assertInstanceOf(
             Resets::class,
-            $this->repository->find('dummy@example.com', 'secret')
+            $this->repository->find('secret')
         );
 
         $this->assertNull(
-            $this->repository->find('not-existing-email@example.com', 'bla')
+            $this->repository->find('bla')
         );
-    }
-
-    /**
-     * @test
-     */
-    public function eraseAllForEmail(): void
-    {
-        $this->repository->eraseAllFor('dummy@example.com');
-
-        $this->assertSame(0, $this->repository->countAll());
     }
 
     /**

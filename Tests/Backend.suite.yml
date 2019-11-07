@@ -33,11 +33,15 @@ extensions:
     - Codeception\Extension\RunFailed
     - Codeception\Extension\Recorder
 
+params:
+  - env
+
 paths:
   tests: Acceptance/Backend
-  data: .
-  output: ./../../../../var/tests/AcceptanceReports
+  data: Acceptance/_data
+  output: Acceptance/_output
   support: Acceptance/Support
+  envs: Acceptance/_envs
 
 settings:
   colors: true

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Model;
+namespace LMS\Login\Tests\Unit\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,13 +26,31 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
+use LMS\Login\Support\Domain\Property\IsOnline;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class IsOnlineTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var array */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login', 'typo3conf/ext/theme'];
+    /** @var IsOnline */
+    protected $trait;
+
+    /**
+     * Initialize Trait
+     */
+    public function setUp(): void
+    {
+        $this->trait = new class
+        {
+            use IsOnline;
+        };
+    }
+
+    /**
+     * @test
+     */
+    public function notImplementedYet(): void
+    {
+    }
 }

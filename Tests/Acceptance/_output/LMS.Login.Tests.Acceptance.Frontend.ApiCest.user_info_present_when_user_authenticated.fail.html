@@ -1,0 +1,622 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+        <meta charset="UTF-8" />
+        <title>TYPO3 Exception</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <style>            html {
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                -ms-overflow-style: scrollbar;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .exception-page {
+                background-color: #eaeaea;
+                color: #212121;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                font-weight: 400;
+                height: 100vh;
+                line-height: 1.5;
+                overflow-x: hidden;
+                overflow-y: scroll;
+                text-align: left;
+                top: 0;
+            }
+
+            .exception-page a {
+                color: #ff8700;
+                text-decoration: underline;
+            }
+
+            .exception-page a:hover {
+                text-decoration: none;
+            }
+
+            .exception-page abbr[title] {
+                border-bottom: none;
+                cursor: help;
+                text-decoration: none;
+            }
+
+            .exception-page code,
+            .exception-page kbd,
+            .exception-page pre,
+            .exception-page samp {
+                font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+                font-size: 1em;
+            }
+
+            .exception-page pre {
+                background-color: #ffffff;
+                overflow-x: auto;
+                border: 1px solid rgba(0,0,0,0.125);
+            }
+
+            .exception-page pre span {
+                display: block;
+                line-height: 1.3em;
+            }
+
+            .exception-page pre span:before {
+                display: inline-block;
+                content: attr(data-line);
+                border-right: 1px solid #b9b9b9;
+                margin-right: 0.5em;
+                padding-right: 0.5em;
+                background-color: #f4f4f4;
+                width: 4em;
+                text-align: right;
+                color: #515151;
+            }
+
+            .exception-page pre span.highlight {
+                background-color: #cce5ff;
+            }
+
+            .exception-page .break-long-words {
+                -ms-word-break: break-all;
+                word-break: break-all;
+                word-break: break-word;
+                -webkit-hyphens: auto;
+                -moz-hyphens: auto;
+                hyphens: auto;
+            }
+
+            .exception-page .callout {
+                padding: 1.5rem;
+                background-color: #fff;
+                margin-bottom: 2em;
+                box-shadow: 0 2px 1px rgba(0,0,0,.15);
+                border-left: 3px solid #8c8c8c;
+            }
+
+            .exception-page .callout-title {
+                margin: 0;
+            }
+
+            .exception-page .callout-body p:last-child {
+                margin-bottom: 0;
+            }
+
+            .exception-page .container {
+                max-width: 1140px;
+                margin: 0 auto;
+                padding: 0 30px;
+            }
+
+            .exception-page .exception-illustration {
+                width: 3em;
+                height: 3em;
+                float: left;
+                margin-right: 1rem;
+            }
+
+            .exception-page .exception-illustration svg {
+                width: 100%;
+            }
+
+            .exception-page .exception-illustration svg path {
+                fill: #ff8700;
+            }
+
+            .exception-page .exception-summary {
+                background: #000000;
+                color: #fff;
+                padding: 1.5rem 0;
+                margin-bottom: 2rem;
+            }
+
+            .exception-page .exception-summary h1 {
+                margin: 0;
+            }
+
+            .exception-page .text-muted {
+                opacity: 0.5;
+            }
+
+            .exception-page .trace {
+                background-color: #fff;
+                margin-bottom: 2rem;
+                box-shadow: 0 2px 1px rgba(0,0,0,.15);
+            }
+
+            .exception-page .trace-arguments {
+                color: #8c8c8c;
+            }
+
+            .exception-page .trace-body {
+            }
+
+            .exception-page .trace-call {
+                margin-bottom: 1rem;
+            }
+
+            .exception-page .trace-class {
+                margin: 0;
+            }
+
+            .exception-page .trace-file pre {
+                margin-top: 1.5rem;
+                margin-bottom: 0;
+            }
+
+            .exception-page .trace-head {
+                color: #721c24;
+                background-color: #f8d7da;
+                padding: 1.5rem;
+            }
+
+            .exception-page .trace-file-path {
+                word-break: break-all;
+            }
+
+            .exception-page .trace-message {
+                margin-bottom: 0;
+            }
+
+            .exception-page .trace-step {
+                padding: 1.5rem;
+                border-bottom: 1px solid #b9b9b9;
+            }
+
+            .exception-page .trace-step &gt; *:first-child {
+                margin-top: 0;
+            }
+
+            .exception-page .trace-step &gt; *:last-child {
+                margin-bottom: 0;
+            }
+
+            .exception-page .trace-step:nth-child(even)
+            {
+                background-color: #fafafa;
+            }
+
+            .exception-page .trace-step:last-child {
+                border-bottom: none;
+            }</style>
+    </head>
+    <body>
+                    <div class="exception-page">
+                <div class="exception-summary">
+                    <div class="container">
+                        <div class="exception-message-wrapper">
+                            <div class="exception-illustration hidden-xs-down"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.1 10.3c-.2 0-.3.1-.5.1C9 10.4 6.8 5 6.8 3.2c0-.7.2-.9.4-1.1-2 .2-4.2.9-4.9 1.8-.2.2-.3.6-.3 1 0 2.8 3 9.2 5.1 9.2 1 0 2.6-1.6 4-3.8m-1-8.4c1.9 0 3.9.3 3.9 1.4 0 2.2-1.4 4.9-2.1 4.9C10.6 8.3 9 4.7 9 2.9c0-.8.3-1 1.1-1"/></svg></div>
+                            <h1 class="exception-message break-long-words">Whoops, looks like something went wrong.</h1>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <div class="container">
+                                <div class="trace">
+                <div class="trace-head">
+                    <h3 class="trace-class">
+                        <span class="text-muted">(1/1)</span>
+                        <span class="exception-title">TypeError</span>
+                    </h3>
+                    <p class="trace-message break-long-words">Return value of LMS\Login\Domain\Model\User::getTstamp() must be of the type int, null returned</p>
+                </div>
+                <div class="trace-body">
+                    <div class="trace-step"><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/support/Classes/Model/Property/UpdateDate.php</strong> line 46</span></div><div class="trace-file-content"><pre><span class="" data-line="42">     * @return int
+</span><span class="" data-line="43">     */
+</span><span class="" data-line="44">    public function getTstamp(): int
+</span><span class="" data-line="45">    {
+</span><span class="highlight" data-line="46">        return $this-&gt;tstamp;
+</span><span class="" data-line="47">    }
+</span><span class="" data-line="48">
+</span><span class="" data-line="49">    /**
+</span><span class="" data-line="50">     * @param int $unix
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS\Login\Domain\Model\User</span><span class="trace-type">-&gt;</span><span class="trace-method">getTstamp</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Reflection/ObjectAccess.php</strong> line 112</span></div><div class="trace-file-content"><pre><span class="" data-line="108">            }
+</span><span class="" data-line="109">            $upperCasePropertyName = ucfirst($propertyName);
+</span><span class="" data-line="110">            $getterMethodName = 'get' . $upperCasePropertyName;
+</span><span class="" data-line="111">            if (is_callable([$subject, $getterMethodName])) {
+</span><span class="highlight" data-line="112">                return $subject-&gt;{$getterMethodName}();
+</span><span class="" data-line="113">            }
+</span><span class="" data-line="114">            $getterMethodName = 'is' . $upperCasePropertyName;
+</span><span class="" data-line="115">            if (is_callable([$subject, $getterMethodName])) {
+</span><span class="" data-line="116">                return $subject-&gt;{$getterMethodName}();
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Reflection\ObjectAccess</span><span class="trace-type">::</span><span class="trace-method">getPropertyInternal</span>(<span class="trace-arguments"><em>object</em>(LMS\Login\Domain\Model\User), 'tstamp', <em>false</em></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Reflection/ObjectAccess.php</strong> line 62</span></div><div class="trace-file-content"><pre><span class="" data-line="58">        }
+</span><span class="" data-line="59">        if (!is_string($propertyName) &amp;&amp; (!is_array($subject) &amp;&amp; !$subject instanceof \ArrayAccess)) {
+</span><span class="" data-line="60">            throw new \InvalidArgumentException('Given property name is not of type string.', 1231178303);
+</span><span class="" data-line="61">        }
+</span><span class="highlight" data-line="62">        return self::getPropertyInternal($subject, $propertyName, $forceDirectAccess);
+</span><span class="" data-line="63">    }
+</span><span class="" data-line="64">
+</span><span class="" data-line="65">    /**
+</span><span class="" data-line="66">     * Gets a property of a given object or array.
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Reflection\ObjectAccess</span><span class="trace-type">::</span><span class="trace-method">getProperty</span>(<span class="trace-arguments"><em>object</em>(LMS\Login\Domain\Model\User), 'tstamp'</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/View/JsonView.php</strong> line 317</span></div><div class="trace-file-content"><pre><span class="" data-line="313">            if (isset($configuration['_exclude']) &amp;&amp; is_array($configuration['_exclude']) &amp;&amp; in_array($propertyName, $configuration['_exclude'], true)) {
+</span><span class="" data-line="314">                continue;
+</span><span class="" data-line="315">            }
+</span><span class="" data-line="316">
+</span><span class="highlight" data-line="317">            $propertyValue = ObjectAccess::getProperty($object, $propertyName);
+</span><span class="" data-line="318">
+</span><span class="" data-line="319">            if (!is_array($propertyValue) &amp;&amp; !is_object($propertyValue)) {
+</span><span class="" data-line="320">                $propertiesToRender[$propertyName] = $propertyValue;
+</span><span class="" data-line="321">            } elseif (isset($configuration['_descend']) &amp;&amp; array_key_exists($propertyName, $configuration['_descend'])) {
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">transformObject</span>(<span class="trace-arguments"><em>object</em>(LMS\Login\Domain\Model\User), <em>array</em>('_exclude' =&gt; <em>array</em>('pid', 'lockToDomain', 'password'))</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/View/JsonView.php</strong> line 288</span></div><div class="trace-file-content"><pre><span class="" data-line="284">            }
+</span><span class="" data-line="285">            return $array;
+</span><span class="" data-line="286">        }
+</span><span class="" data-line="287">        if (is_object($value)) {
+</span><span class="highlight" data-line="288">            return $this-&gt;transformObject($value, $configuration);
+</span><span class="" data-line="289">        }
+</span><span class="" data-line="290">        return $value;
+</span><span class="" data-line="291">    }
+</span><span class="" data-line="292">
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">transformValue</span>(<span class="trace-arguments"><em>object</em>(LMS\Login\Domain\Model\User), <em>array</em>('_exclude' =&gt; <em>array</em>('pid', 'lockToDomain', 'password'))</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/login/Classes/Mvc/View/JsonView.php</strong> line 61</span></div><div class="trace-file-content"><pre><span class="" data-line="57">        if ($value instanceof ObjectStorage) {
+</span><span class="" data-line="58">            $value = $value-&gt;toArray();
+</span><span class="" data-line="59">        }
+</span><span class="" data-line="60">
+</span><span class="highlight" data-line="61">        return parent::transformValue($value, $configuration) ?? [];
+</span><span class="" data-line="62">    }
+</span><span class="" data-line="63">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS\Login\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">transformValue</span>(<span class="trace-arguments"><em>object</em>(LMS\Login\Domain\Model\User), <em>array</em>('_exclude' =&gt; <em>array</em>('pid', 'lockToDomain', 'password'))</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/View/JsonView.php</strong> line 274</span></div><div class="trace-file-content"><pre><span class="" data-line="270">        if (is_array($value) || $value instanceof \ArrayAccess) {
+</span><span class="" data-line="271">            $array = [];
+</span><span class="" data-line="272">            foreach ($value as $key =&gt; $element) {
+</span><span class="" data-line="273">                if (isset($configuration['_descendAll']) &amp;&amp; is_array($configuration['_descendAll'])) {
+</span><span class="highlight" data-line="274">                    $array[$key] = $this-&gt;transformValue($element, $configuration['_descendAll']);
+</span><span class="" data-line="275">                } else {
+</span><span class="" data-line="276">                    if (isset($configuration['_only']) &amp;&amp; is_array($configuration['_only']) &amp;&amp; !in_array($key, $configuration['_only'], true)) {
+</span><span class="" data-line="277">                        continue;
+</span><span class="" data-line="278">                    }
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">transformValue</span>(<span class="trace-arguments"><em>array</em>(<em>object</em>(LMS\Login\Domain\Model\User)), <em>array</em>('_descendAll' =&gt; <em>array</em>('_exclude' =&gt; <em>array</em>('pid', 'lockToDomain', 'password')))</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/login/Classes/Mvc/View/JsonView.php</strong> line 61</span></div><div class="trace-file-content"><pre><span class="" data-line="57">        if ($value instanceof ObjectStorage) {
+</span><span class="" data-line="58">            $value = $value-&gt;toArray();
+</span><span class="" data-line="59">        }
+</span><span class="" data-line="60">
+</span><span class="highlight" data-line="61">        return parent::transformValue($value, $configuration) ?? [];
+</span><span class="" data-line="62">    }
+</span><span class="" data-line="63">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS\Login\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">transformValue</span>(<span class="trace-arguments"><em>array</em>(<em>object</em>(LMS\Login\Domain\Model\User)), <em>array</em>('_descendAll' =&gt; <em>array</em>('_exclude' =&gt; <em>array</em>('pid', 'lockToDomain', 'password')))</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/View/JsonView.php</strong> line 257</span></div><div class="trace-file-content"><pre><span class="" data-line="253">                $valueToRender[$variableName] = $this-&gt;variables[$variableName] ?? null;
+</span><span class="" data-line="254">            }
+</span><span class="" data-line="255">            $configuration = $this-&gt;configuration;
+</span><span class="" data-line="256">        }
+</span><span class="highlight" data-line="257">        return $this-&gt;transformValue($valueToRender, $configuration);
+</span><span class="" data-line="258">    }
+</span><span class="" data-line="259">
+</span><span class="" data-line="260">    /**
+</span><span class="" data-line="261">     * Transforms a value depending on type recursively using the
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">renderArray</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/View/JsonView.php</strong> line 234</span></div><div class="trace-file-content"><pre><span class="" data-line="230">            } else {
+</span><span class="" data-line="231">                $response-&gt;setHeader('Content-Type', 'application/json');
+</span><span class="" data-line="232">            }
+</span><span class="" data-line="233">        }
+</span><span class="highlight" data-line="234">        $propertiesToRender = $this-&gt;renderArray();
+</span><span class="" data-line="235">        return json_encode($propertiesToRender, JSON_UNESCAPED_UNICODE);
+</span><span class="" data-line="236">    }
+</span><span class="" data-line="237">
+</span><span class="" data-line="238">    /**
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\View\JsonView</span><span class="trace-type">-&gt;</span><span class="trace-method">render</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/support/Classes/Extbase/Action/CouldReturnPsrResponse.php</strong> line 57</span></div><div class="trace-file-content"><pre><span class="" data-line="53">            $actionResult = $this-&gt;{$this-&gt;errorMethodName}();
+</span><span class="" data-line="54">        }
+</span><span class="" data-line="55">
+</span><span class="" data-line="56">        if ($actionResult === null &amp;&amp; $this-&gt;view instanceof ViewInterface) {
+</span><span class="highlight" data-line="57">            $this-&gt;response-&gt;appendContent($this-&gt;view-&gt;render());
+</span><span class="" data-line="58">        } elseif (is_string($actionResult) &amp;&amp; $actionResult !== '') {
+</span><span class="" data-line="59">            $this-&gt;response-&gt;appendContent($actionResult);
+</span><span class="" data-line="60">        } elseif (is_object($actionResult) &amp;&amp; method_exists($actionResult, '__toString')) {
+</span><span class="" data-line="61">            $this-&gt;response-&gt;appendContent((string)$actionResult);
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS3\Support\Controller\Base\ApiController</span><span class="trace-type">-&gt;</span><span class="trace-method">callActionMethod</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/Controller/ActionController.php</strong> line 167</span></div><div class="trace-file-content"><pre><span class="" data-line="163">        $this-&gt;view = $this-&gt;resolveView();
+</span><span class="" data-line="164">        if ($this-&gt;view !== null) {
+</span><span class="" data-line="165">            $this-&gt;initializeView($this-&gt;view);
+</span><span class="" data-line="166">        }
+</span><span class="highlight" data-line="167">        $this-&gt;callActionMethod();
+</span><span class="" data-line="168">        $this-&gt;renderAssetsForRequest($request);
+</span><span class="" data-line="169">    }
+</span><span class="" data-line="170">
+</span><span class="" data-line="171">    /**
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\Controller\ActionController</span><span class="trace-type">-&gt;</span><span class="trace-method">processRequest</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Extbase\Mvc\Web\Request), <em>object</em>(TYPO3\CMS\Extbase\Mvc\Web\Response)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/Dispatcher.php</strong> line 73</span></div><div class="trace-file-content"><pre><span class="" data-line="69">                throw new \TYPO3\CMS\Extbase\Mvc\Exception\InfiniteLoopException('Could not ultimately dispatch the request after ' . $dispatchLoopCount . ' iterations. Most probably, a @' . \TYPO3\CMS\Extbase\Annotation\IgnoreValidation::class . ' annotation is missing on re-displaying a form with validation errors.', 1217839467);
+</span><span class="" data-line="70">            }
+</span><span class="" data-line="71">            $controller = $this-&gt;resolveController($request);
+</span><span class="" data-line="72">            try {
+</span><span class="highlight" data-line="73">                $controller-&gt;processRequest($request, $response);
+</span><span class="" data-line="74">            } catch (\TYPO3\CMS\Extbase\Mvc\Exception\StopActionException $ignoredException) {
+</span><span class="" data-line="75">            }
+</span><span class="" data-line="76">        }
+</span><span class="" data-line="77">        $this-&gt;emitAfterRequestDispatchSignal($request, $response);
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\Dispatcher</span><span class="trace-type">-&gt;</span><span class="trace-method">dispatch</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Extbase\Mvc\Web\Request), <em>object</em>(TYPO3\CMS\Extbase\Mvc\Web\Response)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Mvc/Web/FrontendRequestHandler.php</strong> line 92</span></div><div class="trace-file-content"><pre><span class="" data-line="88">        }
+</span><span class="" data-line="89">
+</span><span class="" data-line="90">        /** @var \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response */
+</span><span class="" data-line="91">        $response = $this-&gt;objectManager-&gt;get(\TYPO3\CMS\Extbase\Mvc\Web\Response::class);
+</span><span class="highlight" data-line="92">        $this-&gt;dispatcher-&gt;dispatch($request, $response);
+</span><span class="" data-line="93">        return $response;
+</span><span class="" data-line="94">    }
+</span><span class="" data-line="95">
+</span><span class="" data-line="96">    /**
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Mvc\Web\FrontendRequestHandler</span><span class="trace-type">-&gt;</span><span class="trace-method">handleRequest</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Core/Bootstrap.php</strong> line 172</span></div><div class="trace-file-content"><pre><span class="" data-line="168">        /** @var \TYPO3\CMS\Extbase\Mvc\RequestHandlerResolver $requestHandlerResolver */
+</span><span class="" data-line="169">        $requestHandlerResolver = $this-&gt;objectManager-&gt;get(\TYPO3\CMS\Extbase\Mvc\RequestHandlerResolver::class);
+</span><span class="" data-line="170">        $requestHandler = $requestHandlerResolver-&gt;resolveRequestHandler();
+</span><span class="" data-line="171">
+</span><span class="highlight" data-line="172">        $response = $requestHandler-&gt;handleRequest();
+</span><span class="" data-line="173">        // If response is NULL after handling the request we need to stop
+</span><span class="" data-line="174">        // This happens for instance, when a USER object was converted to a USER_INT
+</span><span class="" data-line="175">        // @see TYPO3\CMS\Extbase\Mvc\Web\FrontendRequestHandler::handleRequest()
+</span><span class="" data-line="176">        if ($response === null) {
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Core\Bootstrap</span><span class="trace-type">-&gt;</span><span class="trace-method">handleRequest</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/extbase/Classes/Core/Bootstrap.php</strong> line 159</span></div><div class="trace-file-content"><pre><span class="" data-line="155">     */
+</span><span class="" data-line="156">    public function run($content, $configuration)
+</span><span class="" data-line="157">    {
+</span><span class="" data-line="158">        $this-&gt;initialize($configuration);
+</span><span class="highlight" data-line="159">        return $this-&gt;handleRequest();
+</span><span class="" data-line="160">    }
+</span><span class="" data-line="161">
+</span><span class="" data-line="162">    /**
+</span><span class="" data-line="163">     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\CommandException Is thrown if the response object defined an exit code &gt; 0
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Extbase\Core\Bootstrap</span><span class="trace-type">-&gt;</span><span class="trace-method">run</span>(<span class="trace-arguments">'', <em>array</em>('vendorName' =&gt; 'LMS', 'pluginName' =&gt; 'UserApi', 'extensionName' =&gt; 'Login')</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/routes/Classes/Extbase/RouteHandler.php</strong> line 115</span></div><div class="trace-file-content"><pre><span class="" data-line="111">    {
+</span><span class="" data-line="112">        /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $bootstrap */
+</span><span class="" data-line="113">        $bootstrap = ObjectManageable::createObject(Bootstrap::class);
+</span><span class="" data-line="114">
+</span><span class="highlight" data-line="115">        $this-&gt;output = $bootstrap-&gt;run('', $config);
+</span><span class="" data-line="116">    }
+</span><span class="" data-line="117">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS\Routes\Extbase\RouteHandler</span><span class="trace-type">-&gt;</span><span class="trace-method">run</span>(<span class="trace-arguments"><em>array</em>('vendorName' =&gt; 'LMS', 'pluginName' =&gt; 'UserApi', 'extensionName' =&gt; 'Login')</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/routes/Classes/Extbase/RouteHandler.php</strong> line 68</span></div><div class="trace-file-content"><pre><span class="" data-line="64">
+</span><span class="" data-line="65">        $this-&gt;run([
+</span><span class="" data-line="66">            'vendorName' =&gt; $route-&gt;getVendor(),
+</span><span class="" data-line="67">            'pluginName' =&gt; $route-&gt;getPlugin(),
+</span><span class="highlight" data-line="68">            'extensionName' =&gt; $route-&gt;getExtension()
+</span><span class="" data-line="69">        ]);
+</span><span class="" data-line="70">    }
+</span><span class="" data-line="71">
+</span><span class="" data-line="72">    /**
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS\Routes\Extbase\RouteHandler</span><span class="trace-type">-&gt;</span><span class="trace-method">__construct</span>(<span class="trace-arguments">'/api/user/current'</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3conf/ext/routes/Classes/Middleware/ExtbaseRouteResolver.php</strong> line 55</span></div><div class="trace-file-content"><pre><span class="" data-line="51">    {
+</span><span class="" data-line="52">        $slug = $request-&gt;getUri()-&gt;getPath();
+</span><span class="" data-line="53">
+</span><span class="" data-line="54">        try {
+</span><span class="highlight" data-line="55">            $extbaseRouteHandler = new RouteHandler($slug);
+</span><span class="" data-line="56">        } catch (\Exception $e) {
+</span><span class="" data-line="57">            return $handler-&gt;handle($request);
+</span><span class="" data-line="58">        }
+</span><span class="" data-line="59">
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">LMS\Routes\Middleware\ExtbaseRouteResolver</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/StaticRouteResolver.php</strong> line 66</span></div><div class="trace-file-content"><pre><span class="" data-line="62">
+</span><span class="" data-line="63">                return new HtmlResponse($content, 200, ['Content-Type' =&gt; $contentType]);
+</span><span class="" data-line="64">            }
+</span><span class="" data-line="65">        }
+</span><span class="highlight" data-line="66">        return $handler-&gt;handle($request);
+</span><span class="" data-line="67">    }
+</span><span class="" data-line="68">
+</span><span class="" data-line="69">    /**
+</span><span class="" data-line="70">     * @param File $file
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\StaticRouteResolver</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/SiteBaseRedirectResolver.php</strong> line 82</span></div><div class="trace-file-content"><pre><span class="" data-line="78">                $uri = $requestedUri-&gt;withPath(rtrim($requestedUri-&gt;getPath(), '/'));
+</span><span class="" data-line="79">                return new RedirectResponse($uri, 307);
+</span><span class="" data-line="80">            }
+</span><span class="" data-line="81">        }
+</span><span class="highlight" data-line="82">        return $handler-&gt;handle($request);
+</span><span class="" data-line="83">    }
+</span><span class="" data-line="84">    /**
+</span><span class="" data-line="85">     * Checks if the language is allowed in Frontend, if not, check if there is valid BE user
+</span><span class="" data-line="86">     *
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\SiteBaseRedirectResolver</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/SiteResolver.php</strong> line 68</span></div><div class="trace-file-content"><pre><span class="" data-line="64">        // At this point, we later get further route modifiers
+</span><span class="" data-line="65">        // for bw-compat we update $GLOBALS[TYPO3_REQUEST] to be used later in TSFE.
+</span><span class="" data-line="66">        $GLOBALS['TYPO3_REQUEST'] = $request;
+</span><span class="" data-line="67">
+</span><span class="highlight" data-line="68">        return $handler-&gt;handle($request);
+</span><span class="" data-line="69">    }
+</span><span class="" data-line="70">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\SiteResolver</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/BackendUserAuthenticator.php</strong> line 95</span></div><div class="trace-file-content"><pre><span class="" data-line="91">            Bootstrap::loadExtTables();
+</span><span class="" data-line="92">            $this-&gt;setBackendUserAspect(GeneralUtility::makeInstance(Context::class), $GLOBALS['BE_USER']);
+</span><span class="" data-line="93">        }
+</span><span class="" data-line="94">
+</span><span class="highlight" data-line="95">        return $handler-&gt;handle($request);
+</span><span class="" data-line="96">    }
+</span><span class="" data-line="97">
+</span><span class="" data-line="98">    /**
+</span><span class="" data-line="99">     * Creates the backend user object and returns it.
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\BackendUserAuthenticator</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/FrontendUserAuthenticator.php</strong> line 79</span></div><div class="trace-file-content"><pre><span class="" data-line="75">
+</span><span class="" data-line="76">        // Register the frontend user as aspect
+</span><span class="" data-line="77">        $this-&gt;setFrontendUserAspect(GeneralUtility::makeInstance(Context::class), $frontendUser);
+</span><span class="" data-line="78">
+</span><span class="highlight" data-line="79">        return $handler-&gt;handle($request);
+</span><span class="" data-line="80">    }
+</span><span class="" data-line="81">
+</span><span class="" data-line="82">    /**
+</span><span class="" data-line="83">     * It's possible to transfer a frontend user session via a GET/POST parameter 'FE_SESSION_KEY'.
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\FrontendUserAuthenticator</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/TypoScriptFrontendInitialization.php</strong> line 90</span></div><div class="trace-file-content"><pre><span class="" data-line="86">                GeneralUtility::callUserFunction($_funcRef, $_params, $GLOBALS['TSFE']);
+</span><span class="" data-line="87">            }
+</span><span class="" data-line="88">        }
+</span><span class="" data-line="89">
+</span><span class="highlight" data-line="90">        return $handler-&gt;handle($request);
+</span><span class="" data-line="91">    }
+</span><span class="" data-line="92">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\TypoScriptFrontendInitialization</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/EidHandler.php</strong> line 50</span></div><div class="trace-file-content"><pre><span class="" data-line="46">    {
+</span><span class="" data-line="47">        $eID = $request-&gt;getParsedBody()['eID'] ?? $request-&gt;getQueryParams()['eID'] ?? null;
+</span><span class="" data-line="48">
+</span><span class="" data-line="49">        if ($eID === null) {
+</span><span class="highlight" data-line="50">            return $handler-&gt;handle($request);
+</span><span class="" data-line="51">        }
+</span><span class="" data-line="52">
+</span><span class="" data-line="53">        // Remove any output produced until now
+</span><span class="" data-line="54">        ob_clean();
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\EidHandler</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/PreprocessRequestHook.php</strong> line 57</span></div><div class="trace-file-content"><pre><span class="" data-line="53">                $hookParameters = [];
+</span><span class="" data-line="54">                GeneralUtility::callUserFunction($hookFunction, $hookParameters, $hookParameters);
+</span><span class="" data-line="55">            }
+</span><span class="" data-line="56">        }
+</span><span class="highlight" data-line="57">        return $handler-&gt;handle($request);
+</span><span class="" data-line="58">    }
+</span><span class="" data-line="59">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\PreprocessRequestHook</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Middleware/NormalizedParamsAttribute.php</strong> line 58</span></div><div class="trace-file-content"><pre><span class="" data-line="54">        // refactored to have ServerRequest object available where it is needed. This global will be
+</span><span class="" data-line="55">        // deprecated then and removed.
+</span><span class="" data-line="56">        $GLOBALS['TYPO3_REQUEST'] = $request;
+</span><span class="" data-line="57">
+</span><span class="highlight" data-line="58">        return $handler-&gt;handle($request);
+</span><span class="" data-line="59">    }
+</span><span class="" data-line="60">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Core\Middleware\NormalizedParamsAttribute</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Middleware/TimeTrackerInitialization.php</strong> line 49</span></div><div class="trace-file-content"><pre><span class="" data-line="45">        );
+</span><span class="" data-line="46">        $timeTracker-&gt;start();
+</span><span class="" data-line="47">        $timeTracker-&gt;push('');
+</span><span class="" data-line="48">
+</span><span class="highlight" data-line="49">        return $handler-&gt;handle($request);
+</span><span class="" data-line="50">    }
+</span><span class="" data-line="51">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Middleware\TimeTrackerInitialization</span><span class="trace-type">-&gt;</span><span class="trace-method">process</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest), <em>object</em>(class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 138</span></div><div class="trace-file-content"><pre><span class="" data-line="134">
+</span><span class="" data-line="135">                if (!$middleware instanceof MiddlewareInterface) {
+</span><span class="" data-line="136">                    throw new \InvalidArgumentException(get_class($middleware) . ' does not implement ' . MiddlewareInterface::class, 1516821342);
+</span><span class="" data-line="137">                }
+</span><span class="highlight" data-line="138">                return $middleware-&gt;process($request, $this-&gt;next);
+</span><span class="" data-line="139">            }
+</span><span class="" data-line="140">        };
+</span><span class="" data-line="141">    }
+</span><span class="" data-line="142">}
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">class@anonymous/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php0x7f7e5a76f056</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/MiddlewareDispatcher.php</strong> line 67</span></div><div class="trace-file-content"><pre><span class="" data-line="63">     * @return ResponseInterface
+</span><span class="" data-line="64">     */
+</span><span class="" data-line="65">    public function handle(ServerRequestInterface $request): ResponseInterface
+</span><span class="" data-line="66">    {
+</span><span class="highlight" data-line="67">        return $this-&gt;tip-&gt;handle($request);
+</span><span class="" data-line="68">    }
+</span><span class="" data-line="69">
+</span><span class="" data-line="70">    /**
+</span><span class="" data-line="71">     * Seed the middleware stack with the inner request handler
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Core\Http\MiddlewareDispatcher</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/AbstractApplication.php</strong> line 108</span></div><div class="trace-file-content"><pre><span class="" data-line="104">    {
+</span><span class="" data-line="105">        $requestHandler = GeneralUtility::makeInstance($this-&gt;requestHandler);
+</span><span class="" data-line="106">        $dispatcher = $this-&gt;createMiddlewareDispatcher($requestHandler);
+</span><span class="" data-line="107">
+</span><span class="highlight" data-line="108">        return $dispatcher-&gt;handle($request);
+</span><span class="" data-line="109">    }
+</span><span class="" data-line="110">
+</span><span class="" data-line="111">    /**
+</span><span class="" data-line="112">     * Set up the application and shut it down afterwards
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Core\Http\AbstractApplication</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/frontend/Classes/Http/Application.php</strong> line 69</span></div><div class="trace-file-content"><pre><span class="" data-line="65">        if (!$this-&gt;checkIfEssentialConfigurationExists()) {
+</span><span class="" data-line="66">            return $this-&gt;installToolRedirect();
+</span><span class="" data-line="67">        }
+</span><span class="" data-line="68">        $this-&gt;initializeContext();
+</span><span class="highlight" data-line="69">        return parent::handle($request);
+</span><span class="" data-line="70">    }
+</span><span class="" data-line="71">
+</span><span class="" data-line="72">    /**
+</span><span class="" data-line="73">     * Check if LocalConfiguration.php and PackageStates.php exist
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Frontend\Http\Application</span><span class="trace-type">-&gt;</span><span class="trace-method">handle</span>(<span class="trace-arguments"><em>object</em>(TYPO3\CMS\Core\Http\ServerRequest)</span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/typo3/sysext/core/Classes/Http/AbstractApplication.php</strong> line 120</span></div><div class="trace-file-content"><pre><span class="" data-line="116">    final public function run(callable $execute = null)
+</span><span class="" data-line="117">    {
+</span><span class="" data-line="118">        try {
+</span><span class="" data-line="119">            $response = $this-&gt;handle(
+</span><span class="highlight" data-line="120">                \TYPO3\CMS\Core\Http\ServerRequestFactory::fromGlobals()
+</span><span class="" data-line="121">            );
+</span><span class="" data-line="122">            if ($execute !== null) {
+</span><span class="" data-line="123">                call_user_func($execute);
+</span><span class="" data-line="124">            }
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class">TYPO3\CMS\Core\Http\AbstractApplication</span><span class="trace-type">-&gt;</span><span class="trace-method">run</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/index.php</strong> line 24</span></div><div class="trace-file-content"><pre><span class="" data-line="20">// Set up the application for the frontend
+</span><span class="" data-line="21">call_user_func(function () {
+</span><span class="" data-line="22">    $classLoader = require dirname(__DIR__).'/vendor/autoload.php';
+</span><span class="" data-line="23">    \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::run(0, \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_FE);
+</span><span class="highlight" data-line="24">    \TYPO3\CMS\Core\Core\Bootstrap::init($classLoader)-&gt;get(\TYPO3\CMS\Frontend\Http\Application::class)-&gt;run();
+</span><span class="" data-line="25">});
+</span></pre></div></div></div><div class="trace-step"><div class="trace-call">at <span class="trace-class"></span><span class="trace-type"></span><span class="trace-method">{closure}</span>(<span class="trace-arguments"></span>)</div><div class="trace-file"><div class="trace-file-head"><span class="block trace-file-path">in <strong>/var/www/html/public/index.php</strong> line 25</span></div><div class="trace-file-content"><pre><span class="" data-line="21">call_user_func(function () {
+</span><span class="" data-line="22">    $classLoader = require dirname(__DIR__).'/vendor/autoload.php';
+</span><span class="" data-line="23">    \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::run(0, \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_FE);
+</span><span class="" data-line="24">    \TYPO3\CMS\Core\Core\Bootstrap::init($classLoader)-&gt;get(\TYPO3\CMS\Frontend\Http\Application::class)-&gt;run();
+</span><span class="highlight" data-line="25">});
+</span></pre></div></div></div>
+                </div>
+            </div>
+                </div>
+            </div>
+    
+</body></html>

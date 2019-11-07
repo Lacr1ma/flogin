@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Model;
+namespace LMS\Login\Tests\Unit\Support\Domain\Action\User;
 
 /* * *************************************************************
  *
@@ -26,13 +26,47 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
+use LMS\Login\Support\Domain\Action\User\Lockable;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class LockableTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var array */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login', 'typo3conf/ext/theme'];
+    /** @var Lockable */
+    protected $trait;
+
+    /**
+     * Initialize Trait
+     */
+    public function setUp(): void
+    {
+        $this->trait = new class {
+            use Lockable;
+
+            public function save(): void
+            {
+            }
+        };
+    }
+
+    /**
+     * @test
+     */
+    public function locked(): void
+    {
+        $this->trait->lock();
+
+        $this->assertTrue($this->trait->isLocked());
+    }
+
+    /**
+     * @test
+     */
+    public function unlock(): void
+    {
+        $this->trait->unlock();
+
+        $this->assertTrue($this->trait->isNotLocked());
+    }
 }

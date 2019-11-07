@@ -44,17 +44,17 @@ class HashTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
         parent::setUp();
     }
 
-//    /**
-//     * @test
-//     */
-//    public function getRandom(): void
-//    {
-//        $testMethod = new \ReflectionMethod(Hash::class, 'getRandom');
-//        $testMethod->setAccessible(true);
-//        $result = $testMethod->invoke(Hash::make());
-//
-//        $this->assertInstanceOf(Random::class, $result);
-//    }
+    /**
+     * @test
+     */
+    public function getRandom(): void
+    {
+        $testMethod = new \ReflectionMethod(Hash::class, 'getRandom');
+        $testMethod->setAccessible(true);
+        $result = $testMethod->invoke(new Hash());
+
+        $this->assertInstanceOf(Random::class, $result);
+    }
 
     /**
      * @test

@@ -36,14 +36,6 @@ trait Lockable
     use Locked;
 
     /**
-     * @return bool
-     */
-    public function isTimeToUnlock(): bool
-    {
-        return $this->getUnlockTime()->isPast();
-    }
-
-    /**
      * Lock the user
      */
     public function lock(): void

@@ -27,14 +27,14 @@ namespace LMS\Login\Tests\Unit\Support\Domain\Property;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Login\Support\Domain\Property\Locked;
+use LMS\Login\Support\Domain\Property\Expirable;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class LockedTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class ExpirableTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var Locked */
+    /** @var Expirable */
     protected $trait;
 
     /**
@@ -42,14 +42,10 @@ class LockedTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
      */
     public function setUp(): void
     {
-        $this->trait = new class
-        {
-            use Locked;
+        $this->trait = new class {
+            use Expirable;
 
-            /**
-             * @return int
-             */
-            public static function getLockMinutesInterval(): int
+            public static function getLifetimeInMinutes(): int
             {
                 return 2;
             }
@@ -59,50 +55,45 @@ class LockedTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     /**
      * @test
      */
-    public function mutatorWorksProperly(): void
+    public function lifeTimeIsCorrect(): void
     {
-        $this->trait->setLocked(false);
-
-        $this->trait->isLocked();
-
-        $this->assertFalse($this->trait->isLocked());
-        $this->assertTrue($this->trait->isNotLocked());
+        $this->assertSame(2, $this->trait->getLifetimeInMinutes());
     }
 
     /**
      * @test
      */
-    public function checkUnlockTime(): void
+    public function expirationTimeIsCorrect(): void
     {
         $time = time();
-        $this->trait->setTstamp($time);
+        $this->trait->setCrdate($time);
 
-        $unlockTime = Carbon::createFromTimestamp($time)->addMinutes(2);
+        $expirationTime = Carbon::createFromTimestamp($time)->addMinutes(2);
 
-        $this->assertSame($unlockTime->getTimestamp(), $this->trait->getUnlockTime()->getTimestamp());
+        $this->assertSame($expirationTime->getTimestamp(), $this->trait->getExpirationTime()->getTimestamp());
     }
 
     /**
      * @test
      */
-    public function lockIntervalTimeHasPassed(): void
+    public function expiredWhenLifeTimeHasPassed(): void
     {
         $threeMinutesAgo = Carbon::createFromTimestamp(time())->subMinutes(3)->getTimestamp();
 
-        $this->trait->setTstamp($threeMinutesAgo);
+        $this->trait->setCrdate($threeMinutesAgo);
 
-        $this->assertTrue($this->trait->isTimeToUnlock());
+        $this->assertTrue($this->trait->isExpired());
     }
 
     /**
      * @test
      */
-    public function lockIntervalTimeNotPassed(): void
+    public function expiredWhenLifeTimeHasNotPassed(): void
     {
         $oneMinutesAgo = Carbon::createFromTimestamp(time())->subMinutes(1)->getTimestamp();
 
-        $this->trait->setTstamp($oneMinutesAgo);
+        $this->trait->setCrdate($oneMinutesAgo);
 
-        $this->assertFalse($this->trait->isTimeToUnlock());
+        $this->assertFalse($this->trait->isExpired());
     }
 }

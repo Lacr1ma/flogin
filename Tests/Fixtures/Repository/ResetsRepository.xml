@@ -4,6 +4,6 @@
         <uid>1</uid>
         <pid>0</pid>
         <token>secret</token>
-        <email>dummy@example.com</email>
+        <user>1</user>
     </tx_login_domain_model_resets>
 </dataset>

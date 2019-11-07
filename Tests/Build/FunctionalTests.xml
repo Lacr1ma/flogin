@@ -4,6 +4,7 @@
         processIsolation="true"
         stopOnSkipped="false"
         stopOnError="true"
+        stopOnFailure="true"
 >
     <testsuites>
         <testsuite name="general">

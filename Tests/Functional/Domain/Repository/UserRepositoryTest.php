@@ -70,7 +70,7 @@ class UserRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     public function retrieveByUsername(): void
     {
         $this->assertInstanceOf(
-            User::class, $this->repository->retrieveByUsername('dummy')
+            User::class, $this->repository->retrieveByUsername('dummy2')
         );
 
         $this->assertNull(
@@ -84,7 +84,7 @@ class UserRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     public function retrieveByEmail(): void
     {
         $this->assertInstanceOf(
-            User::class, $this->repository->retrieveByEmail('dummy@example.com')
+            User::class, $this->repository->retrieveByEmail('dummy2@example.com')
         );
 
         $this->assertNull(
@@ -100,7 +100,7 @@ class UserRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\Functio
         $plainPassword = 'secret';
         $encryptedPassword = Hash::encryptPassword($plainPassword);
 
-        $user = $this->repository->retrieveByEmail('dummy@example.com');
+        $user = $this->repository->retrieveByEmail('dummy2@example.com');
         $user->setPassword($encryptedPassword);
 
         $this->assertTrue(
