@@ -43,5 +43,5 @@ test:acceptance:
     when: on_failure
     expire_in: 10 mins
     paths:
-      - tests/_output/
+      - Tests/Acceptance/_output/
       - php.log.txt
