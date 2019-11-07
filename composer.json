@@ -18,6 +18,7 @@
 	},
 	"require-dev": {
 		"nimut/testing-framework": "^4",
+		"typo3/testing-framework": "^4",
 		"codeception/codeception": "^4",
 		"ericmartel/codeception-email-mailhog": "^1.0"
 	},
