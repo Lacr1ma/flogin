@@ -38,7 +38,7 @@ test:acceptance:
     - export TYPO3_CONTEXT=Testing/Acceptance
     - php -S "$TESTING_DOMAIN" -t web &> php.log.txt &
   script:
-    - ./vendor/bin/codecept -c Tests/codeception.yml run --env=gitlab-ci
+    - ./vendor/bin/codecept -c Tests/codeception.yml run acceptance --env=gitlab-ci
   artifacts:
     when: on_failure
     expire_in: 10 mins
