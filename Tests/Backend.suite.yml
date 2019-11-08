@@ -21,7 +21,7 @@ suites:
               admin: 886526ce72b86870739cc41991144ec1
       config:
         Db:
-          dsn: 'mysql:host=mysql;dbname=dev'
+          dsn: 'mysql:host=mysql;dbname=db_at'
           user: 'dev'
           password: 'dev'
           populate: true
@@ -40,7 +40,7 @@ env:
           url: https://lms.ddev.site
           host: ddev-lms-chrome
         Db:
-          dsn: 'mysql:host=db;dbname=db_testing'
+          dsn: 'mysql:host=db;dbname=db_at'
           user: 'db'
           password: 'db'
         MailHog:
