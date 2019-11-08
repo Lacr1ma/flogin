@@ -22,7 +22,7 @@ suites:
       config:
         Db:
           dsn: 'mysql:host=mysql;dbname=db_at'
-          user: 'dev'
+          user: 'root'
           password: 'dev'
           populate: true
 
