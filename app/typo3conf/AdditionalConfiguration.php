@@ -19,7 +19,7 @@ if ((string) $appContext === 'Testing/Acceptance') {
             'DB' => [
                 'Connections' => [
                     'Default' => [
-                        'dbname' => 'own_workshopgitlabacceptance_testing',
+                        'dbname' => 'dev',
                     ],
                 ],
             ],
