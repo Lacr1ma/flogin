@@ -48,7 +48,6 @@ class BackendEnvironment extends \TYPO3\TestingFramework\Core\Acceptance\Extensi
         ],
         'testExtensionsToLoad' => [
             'typo3conf/ext/login',
-            'typo3conf/ext/theme',
             'typo3conf/ext/routes',
             'typo3conf/ext/support'
         ],

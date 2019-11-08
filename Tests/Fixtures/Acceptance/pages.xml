@@ -7,9 +7,9 @@
         <slug>/</slug>
         <doktype>1</doktype>
         <is_siteroot>1</is_siteroot>
-        <backend_layout>pagets__home_layout</backend_layout>
-        <backend_layout_next_level>pagets__home_layout</backend_layout_next_level>
-        <tsconfig_includes>EXT:theme/Configuration/PageTS/config.txt</tsconfig_includes>
+        <backend_layout>pagets__default</backend_layout>
+        <backend_layout_next_level>pagets__default</backend_layout_next_level>
+        <tsconfig_includes></tsconfig_includes>
     </pages>
 
     <pages>

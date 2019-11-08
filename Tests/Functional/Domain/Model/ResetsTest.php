@@ -34,5 +34,5 @@ use LMS\Login\Domain\Model\Resets;
 class ResetsTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
 {
     /** @var array */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login', 'typo3conf/ext/theme'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
 }
