@@ -4,6 +4,7 @@ stages:
 test:acceptance:
   stage: test
   variables:
-    TEST_EXTENSION: lms/login
+    EXTENSION: login
+    EXTENSION_COMPOSER_NAMESPACE: lms/login
   trigger:
     project: git@gitlab.com:borulko.sergey/acceptance.git
