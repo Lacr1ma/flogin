@@ -32,3 +32,4 @@ CREATE TABLE fe_users (
 
 	KEY locked (locked)
 );
+
