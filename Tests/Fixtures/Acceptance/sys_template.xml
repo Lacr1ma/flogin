@@ -6,6 +6,6 @@
         <title>Root</title>
         <root>1</root>
         <clear>3</clear>
-        <include_static_file>EXT:fluid_styled_content/Configuration/TypoScript/,EXT:lms3access/Configuration/TypoScript,EXT:login/Configuration/TypoScript,EXT:mask/Configuration/TypoScript,EXT:theme/Configuration/TypoScript</include_static_file>
+        <include_static_file>EXT:fluid_styled_content/Configuration/TypoScript/,EXT:login/Configuration/TypoScript,EXT:bootstrap_package/Configuration/TypoScript</include_static_file>
     </sys_template>
 </dataset>
