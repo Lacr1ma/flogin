@@ -31,19 +31,5 @@
 				"LMS\\Login\\Tests\\": "Tests"
 			}
 		}
-	},
-	"config": {
-		"platform": {
-			"php": "7.2"
-		}
-	},
-	"extra": {
-		"typo3/cms": {
-			"app-dir": "app",
-			"root-dir": "app",
-			"web-dir": "web"
-		}
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+	}
 }

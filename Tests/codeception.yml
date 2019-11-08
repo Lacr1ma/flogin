@@ -42,6 +42,20 @@ env:
           url: http://mailhog__mailhog
           port: 8025
 
+  dev:
+    modules:
+      config:
+        WebDriver:
+          url: https://lms.ddev.site
+          host: ddev-lms-chrome
+        Db:
+          dsn: 'mysql:host=localhost;dbname=typo3_test'
+          user: 'root'
+          password: 'root'
+        MailHog:
+          url: http://lms.ddev.site
+          port: 8025
+
 paths:
   tests: Acceptance/Frontend
   data: Acceptance/_data
