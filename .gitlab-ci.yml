@@ -3,5 +3,7 @@ stages:
 
 test:acceptance:
   stage: test
+  variables:
+    TEST_EXTENSION: lms/login
   trigger:
     project: git@gitlab.com:borulko.sergey/acceptance.git
