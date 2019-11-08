@@ -27,15 +27,26 @@ extensions:
     - LMS\Login\Tests\Acceptance\Support\Extension\BackendEnvironment
     - Codeception\Extension\Recorder
 
-params:
-  - env
+env:
+  gitlab-ci:
+    modules:
+      config:
+        WebDriver:
+          url: http://%TESTING_DOMAIN%/
+          host: selenium__standalone-chrome
+        Db:
+          dsn: 'mysql:host=mysql;dbname=dev'
+          user: 'dev'
+          password: 'dev'
+        MailHog:
+          url: http://mailhog__mailhog
+          port: 8025
 
 paths:
   tests: Acceptance/Frontend
   data: Acceptance/_data
   output: Acceptance/_output
   support: Acceptance/Support
-  envs: Acceptance/_envs
 
 settings:
   shuffle: false
