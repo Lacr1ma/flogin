@@ -1,7 +1,4 @@
-stages:
-  - test
-
-test:acceptance:
+staging:
   stage: test
   variables:
     EXTENSION: login
