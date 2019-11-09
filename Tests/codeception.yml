@@ -6,7 +6,8 @@ suites:
     modules:
       enabled:
         - Db:
-            dsn: 'mysql:host=mysql;dbname=db_at'
+            dump: Acceptance/dump.sql
+            dsn: 'mysql:host=mysql;dbname=db'
             user: 'root'
             password: 'dev'
             populate: true
