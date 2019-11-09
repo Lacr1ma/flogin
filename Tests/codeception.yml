@@ -27,6 +27,9 @@ extensions:
     - LMS\Login\Tests\Acceptance\Support\Extension\BackendEnvironment
     - Codeception\Extension\Recorder
 
+params:
+  - env
+
 env:
   ddev:
     modules:
