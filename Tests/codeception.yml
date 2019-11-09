@@ -44,6 +44,20 @@ env:
         MailHog:
           url: http://lms.ddev.site
 
+  local:
+    modules:
+      config:
+        WebDriver:
+          url: http://localhost:8080/
+          host: localhost
+          browser: chrome
+        Db:
+          dsn: 'mysql:host=localhost;dbname=typo3_test'
+          user: 'root'
+          password: 'root'
+        MailHog:
+          url: http://127.0.0.1
+
 paths:
   tests: Acceptance/Frontend
   data: Acceptance/_data
