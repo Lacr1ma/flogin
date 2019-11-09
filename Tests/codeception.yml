@@ -17,7 +17,7 @@ suites:
         - Asserts
         - Filesystem
         - WebDriver:
-            url: http://%TESTING_DOMAIN%/
+            url: http://localhost:8080/
             host: selenium__standalone-chrome
             browser: chrome
         - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
