@@ -48,7 +48,7 @@ env:
     modules:
       config:
         WebDriver:
-          url: https://login.ddev.site
+          url: http://login.ddev.site
           host: ddev-login-chrome
         Db:
           dsn: 'mysql:host=db;dbname=db'
