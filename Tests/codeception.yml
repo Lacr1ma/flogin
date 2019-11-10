@@ -44,6 +44,19 @@ env:
         MailHog:
           url: http://lms.ddev.site
 
+  github:
+    modules:
+      config:
+        WebDriver:
+          url: https://login.ddev.site
+          host: ddev-login-chrome
+        Db:
+          dsn: 'mysql:host=db;dbname=db'
+          user: 'db'
+          password: 'db'
+        MailHog:
+          url: http://login.ddev.site
+
   local:
     modules:
       config:
