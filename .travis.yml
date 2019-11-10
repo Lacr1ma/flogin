@@ -25,5 +25,6 @@ script:
     echo "Running acceptance tests";
     ddev start;
     ddev import-db --src=./dump.sql;
+    ddev import-files --src=./assets;
     ddev composer install;
     ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github
