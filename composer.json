@@ -1,0 +1,30 @@
+{
+    "repositories": [
+        {"type": "composer", "url": "https://composer.typo3.org/"},
+        {"type": "git", "url": "https://gitlab.com/borulko.sergey/login.git"},
+        {"type": "git", "url": "https://gitlab.com/borulko.sergey/support.git"},
+        {"type": "git", "url": "https://gitlab.com/borulko.sergey/routes.git"},
+        {"type": "git", "url": "https://github.com/benjaminkott/site-introduction.git"}
+    ],
+    "name": "test/login",
+    "description": "Testing sandbox for extensions",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "bk2k/introduction-website": "dev-master",
+
+        "lms/login": "dev-master",
+        "lms/routes": "dev-master",
+        "lms3/support": "dev-master"
+    },
+    "require-dev": {
+        "typo3/testing-framework": "^4",
+        "nimut/testing-framework": "^4",
+        "codeception/codeception": "^3.1.0",
+        "ericmartel/codeception-email-mailhog": "^1.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "bin-dir": "bin",
+        "vendor-dir": "vendor"
+    }
+}
