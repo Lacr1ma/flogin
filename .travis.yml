@@ -26,10 +26,4 @@ script:
     ddev start;
     ddev import-db --src=./dump.sql;
     ddev composer install;
-    ddev ssh -s db;
-    mysql;
-    GRANT ALL on *.*  to 'db'@'%';
-    exit;
-    exit;
-
     ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github
