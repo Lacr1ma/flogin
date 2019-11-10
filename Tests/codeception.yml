@@ -52,8 +52,8 @@ env:
           host: ddev-login-chrome
         Db:
           dsn: 'mysql:host=db;dbname=db'
-          user: 'db'
-          password: 'db'
+          user: 'root'
+          password: 'root'
         MailHog:
           url: http://login.ddev.site
 
