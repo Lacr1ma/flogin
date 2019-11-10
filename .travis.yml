@@ -28,8 +28,3 @@ script:
     ddev import-files --src=./assets;
     ddev composer install;
     ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github
-
-addons:
-  artifacts:
-    paths:
-      - public/typo3conf/ext/login/Tests/Acceptance/_output/

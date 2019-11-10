@@ -13,5 +13,3 @@ mariadb_version: "10.2"
 nfs_mount_enabled: false
 provider: default
 omit_containers: [dba, ddev-ssh-agent]
-use_dns_when_possible: true
-timezone: ""
