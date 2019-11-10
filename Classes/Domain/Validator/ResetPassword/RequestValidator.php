@@ -32,7 +32,7 @@ use LMS\Login\{Support\Redirection\UserRouter, Domain\Repository\ResetsRepositor
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class RequestValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
+class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when reset link does exist in the system and it's not expired

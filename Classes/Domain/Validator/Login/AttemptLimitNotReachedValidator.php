@@ -32,7 +32,7 @@ use LMS\Login\{Event\SessionEvent, Support\ThrottlesLogins};
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
+class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\DefaultValidator
 {
     use ThrottlesLogins, SessionEvent;
 

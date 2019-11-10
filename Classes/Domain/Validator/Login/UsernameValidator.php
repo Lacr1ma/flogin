@@ -30,7 +30,7 @@ namespace LMS\Login\Domain\Validator\Login;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UsernameValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
+class UsernameValidator extends \LMS\Login\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when username from request does exist in the database

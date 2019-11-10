@@ -32,7 +32,7 @@ use LMS\Login\{Domain\Repository\LinkRepository, Support\Redirection\UserRouter}
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class RequestValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
+class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when magic link does exist in the database and it's not expired yet

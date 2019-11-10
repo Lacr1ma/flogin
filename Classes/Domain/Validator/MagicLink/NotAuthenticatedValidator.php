@@ -33,7 +33,7 @@ use LMS\Login\Support\Redirection\UserRouter;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\Login\DefaultValidator
+class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when use is not logged in at the current moment
