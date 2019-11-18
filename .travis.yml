@@ -20,6 +20,11 @@ before_install:
   - curl -L https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh | sudo bash
   - ddev config global --instrumentation-opt-in=false
 
+install:
+  - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+  - cd $TRAVIS_REPO_SLUG
+  - git checkout tests
+
 script:
   - >
     echo "Running acceptance tests";
