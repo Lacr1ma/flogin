@@ -27,5 +27,5 @@ script:
     ddev import-db --src=./dump.sql;
     ddev import-files --src=./assets;
     ddev composer install;
-    ddev exec sudo chmod -R 777 /var/www/html/
+    ddev exec sudo chmod -R 777 /var/www/html/;
     ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github
