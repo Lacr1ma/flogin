@@ -19,7 +19,6 @@ before_install:
   # Install ddev
   - curl -L https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh | sudo bash
   - ddev config global --instrumentation-opt-in=false
-  - sudo mkdir -p /var/www/html/log/
 
 script:
   - >
@@ -28,4 +27,5 @@ script:
     ddev import-db --src=./dump.sql;
     ddev import-files --src=./assets;
     ddev composer install;
+    ddev exec sudo chmod -R 777 /var/www/html/
     ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github
