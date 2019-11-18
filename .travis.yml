@@ -19,7 +19,7 @@ before_install:
   # Install ddev
   - curl -L https://raw.githubusercontent.com/drud/ddev/master/scripts/install_ddev.sh | sudo bash
   - ddev config global --instrumentation-opt-in=false
-  - mkdir -p /var/www/html/log/
+  - sudo mkdir -p /var/www/html/log/
 
 script:
   - >
