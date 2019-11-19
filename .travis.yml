@@ -24,18 +24,22 @@ install:
   - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
   - cd $TRAVIS_REPO_SLUG
   - git checkout tests
+  - ddev start
+  - ddev import-db --src=./dump.sql
+  - ddev import-files --src=./assets
+  - ddev composer install
+  - ddev exec sudo chmod -R 777 /var/www/html/
 
 script:
-  - >
-    ddev start;
-    ddev import-db --src=./dump.sql;
-    ddev import-files --src=./assets;
-    ddev composer install;
-    ddev exec sudo chmod -R 777 /var/www/html/;
-    echo "Executing Unit Test Cases";
-    ddev exec bin/phpunit -c public/typo3conf/ext/login/Tests/Build/UnitTests.xml;
-    echo "Executing Functional Test Cases";
-    ddev exec bin/phpunit -c public/typo3conf/ext/login/Tests/Build/FunctionalTests.xml;
-    echo "Executing Acceptance Test Cases";
-    ddev exec bin/codecept run acceptance -d -f -c public/typo3conf/ext/login/Tests/codeception.yml --env github;
-    ddev exec bin/codecept run acceptance -d -f -c public/typo3conf/ext/login/Tests/Backend.suite.yml --env github;
+  # Check code style
+  - ddev exec bin/psalm
+
+  # Unit Tests
+  - ddev exec bin/phpunit -c public/typo3conf/ext/login/Tests/Build/UnitTests.xml
+
+  # Functional Tests
+  - ddev exec bin/phpunit -c public/typo3conf/ext/login/Tests/Build/FunctionalTests.xml
+
+  # Acceptance Tests
+  - ddev exec bin/codecept run acceptance -d -f -c public/typo3conf/ext/login/Tests/codeception.yml --env github
+  - ddev exec bin/codecept run acceptance -d -f -c public/typo3conf/ext/login/Tests/Backend.suite.yml --env github
