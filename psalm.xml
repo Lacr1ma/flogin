@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <psalm
     totallyTyped="false"
+    hideExternalErrors="true"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -10,7 +11,10 @@
         <directory name="public/typo3conf/ext/login/Classes" />
         <ignoreFiles>
             <directory name="vendor" />
-            <directory name="public/typo3/" />
+            <directory name="public/typo3" />
+            <directory name="public/typo3conf/ext/routes" />
+            <directory name="public/typo3conf/ext/support" />
+            <directory name="public/typo3conf/ext/bootstrap_package" />
         </ignoreFiles>
     </projectFiles>
 
@@ -52,5 +56,13 @@
         <RawObjectIteration errorLevel="info" />
 
         <InvalidStringClass errorLevel="info" />
+
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <referencedClass name="LMS3\Support\Extbase\User" />
+                <referencedClass name="LMS3\Support\Extbase\Redirect" />
+                <referencedClass name="LMS3\Support\ObjectManageable" />
+            </errorLevel>
+        </UndefinedClass>
     </issueHandlers>
 </psalm>
