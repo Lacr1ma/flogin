@@ -45,11 +45,11 @@ class UserRouter
     }
 
     /**
-     * Redirect user to <afterLoginPage>
+     * Redirect user to <alreadyAuthenticatedPage>
      */
     public static function redirectToAlreadyAuthenticatedPage(): void
     {
-        $pid = (int)self::redirectSettings()['alreadyAuthenticated'];
+        $pid = (int)self::redirectSettings()['alreadyAuthenticatedPage'];
 
         Redirect::toPage($pid);
     }
@@ -65,31 +65,31 @@ class UserRouter
     }
 
     /**
-     * Redirect user to <afterResetMailSentPage>
+     * Redirect user to <afterForgotPasswordNotificationSentPage>
      */
-    public static function redirectToAfterResetMailSentPage(): void
+    public static function redirectToAfterForgotPasswordNotificationSentPage(): void
     {
-        $pid = (int)self::redirectSettings()['afterResetMailSentPage'];
+        $pid = (int)self::redirectSettings()['afterForgotPasswordNotificationSentPage'];
 
         Redirect::toPage($pid);
     }
 
     /**
-     * Redirect user to <afterResetFormSubmittedPage>
+     * Redirect user to <afterResetPasswordFormSubmittedPage>
      */
-    public static function redirectToAfterResetFormSubmittedPage(): void
+    public static function redirectToAfterResetPasswordFormSubmittedPage(): void
     {
-        $pid = (int)self::redirectSettings()['afterResetFormSubmittedPage'];
+        $pid = (int)self::redirectSettings()['afterResetPasswordFormSubmittedPage'];
 
         Redirect::toPage($pid);
     }
 
     /**
-     * Redirect user to <afterMagicLinkSentPage>
+     * Redirect user to <afterMagicLinkNotificationSentPage>
      */
-    public static function redirectToAfterMagicLinkSentPage(): void
+    public static function redirectToAfterMagicLinkNotificationSentPage(): void
     {
-        $pid = (int)self::redirectSettings()['afterMagicLinkSentPage'];
+        $pid = (int)self::redirectSettings()['afterMagicLinkNotificationSentPage'];
 
         Redirect::toPage($pid);
     }

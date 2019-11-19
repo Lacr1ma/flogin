@@ -3,7 +3,6 @@ login_current-user:
   controller:   LMS\Login\Controller\UserApiController::current
   methods:      [GET]
 
-
 login_authenticated:
   path:         api/user/authenticated
   controller:   LMS\Login\Controller\UserApiController::authenticated

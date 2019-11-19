@@ -1,6 +1,7 @@
 plugin.tx_login_userapi.features.requireCHashArgumentForActionArguments = 0
 
 plugin.tx_login {
+
   features.requireCHashArgumentForActionArguments = 1
 
   view {
@@ -20,13 +21,13 @@ plugin.tx_login {
     }
 
     redirect {
-      alreadyAuthenticated = {$plugin.tx_login.settings.redirect.alreadyAuthenticated}
       afterLoginPage = {$plugin.tx_login.settings.redirect.afterLoginPage}
       afterLogoutPage = {$plugin.tx_login.settings.redirect.afterLogoutPage}
-      afterResetMailSentPage = {$plugin.tx_login.settings.redirect.afterResetMailSentPage}
-      afterResetFormSubmittedPage = {$plugin.tx_login.settings.redirect.afterResetFormSubmittedPage}
-      afterMagicLinkSentPage = {$plugin.tx_login.settings.redirect.afterMagicLinkSentPage}
       afterUnlockedPage = {$plugin.tx_login.settings.redirect.afterUnlockedPage}
+      alreadyAuthenticatedPage = {$plugin.tx_login.settings.redirect.alreadyAuthenticatedPage}
+      afterForgotPasswordNotificationSentPage = {$plugin.tx_login.settings.redirect.afterForgotPasswordNotificationSentPage}
+      afterResetPasswordFormSubmittedPage = {$plugin.tx_login.settings.redirect.afterResetPasswordFormSubmittedPage}
+      afterMagicLinkNotificationSentPage = {$plugin.tx_login.settings.redirect.afterMagicLinkNotificationSentPage}
 
       error {
         whenTokenExpiredPage = {$plugin.tx_login.settings.redirect.error.whenTokenExpiredPage}
@@ -65,6 +66,7 @@ plugin.tx_login {
         subject = {$plugin.tx_login.settings.email.login.subject}
       }
     }
+
   }
 
   persistence {

@@ -11,73 +11,96 @@ plugin.tx_login {
 
   settings {
     validation {
+      # cat=plugin.tx_login//a; type=string; label=Translation file path related to validation messages
       translationFilePrefix = LLL:EXT:login/Resources/Private/Language/validation.xlf
     }
 
     page {
-      login = 2
+      # cat=plugin.tx_login//a; type=int+; label=Login Page ID (Where login form plugin located).
+      login =
     }
 
     redirect {
-      alreadyAuthenticated = 425
-      afterLoginPage = 5
-      afterLogoutPage = 12
-      afterResetMailSentPage = 7
-      afterResetFormSubmittedPage = 11
-      afterMagicLinkSentPage = 14
-      afterUnlockedPage = 16
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt.
+      afterLoginPage =
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after logout process.
+      afterLogoutPage =
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after unlocking. The unlock link located inside lockout notification.
+      afterUnlockedPage =
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when attempts to login already being authenticated.
+      alreadyAuthenticatedPage =
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after <Forgot Password Notification> has been sent.
+      afterForgotPasswordNotificationSentPage =
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after <Forgot Password Form> has been submitted.
+      afterResetPasswordFormSubmittedPage =
+      # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after <Magic Link Notification> has been sent.
+      afterMagicLinkNotificationSentPage =
 
       error {
-        whenTokenExpiredPage = 9
-        whenTokenNotFoundPage = 10
-        whenLockedPage = 15
+        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when attempts to use already expired token from notification.
+        whenTokenExpiredPage =
+        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when attempts to use not existing token.
+        whenTokenNotFoundPage =
+        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt, when user has been already locked.
+        whenLockedPage =
       }
     }
 
-   throttling {
-    maxAttempts = 5
-    decayMinutes = 1
-    lockIntervalInMinutes = 10
-   }
+    throttling {
+      # cat=plugin.tx_login//a; type=int+; label=Number of allowed failed login attempts. When no more attempts allowed, user will be locked.
+      maxAttempts = 5
+      # cat=plugin.tx_login//a; type=int+; label=Block Timeout in minutes for IP after using all of request attempts.
+      decayMinutes = 1
+      # cat=plugin.tx_login//a; type=int+; label=After defined number of minutes, user will be automatically unlocked by scheduler.
+      lockIntervalInMinutes = 10
+    }
 
-   email {
+    email {
       magicLink {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for magic link notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject
+        # cat=plugin.tx_login//a; type=int+; label=When defined number of minute has passed, magic link is considered as expired.
         linkLifetimeInMinutes = 6
       }
 
-     passwordResetRequest {
+      passwordResetRequest {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for forgot password notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:reset_password.subject
+        # cat=plugin.tx_login//a; type=int+; label=When defined number of minute has passed, password reset link is considered as expired.
         linkLifetimeInMinutes = 5
       }
 
       passwordUpdated {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for successful password update notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.subject
       }
 
       lockout {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for lockout notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:lockout.subject
       }
 
       login {
+        # cat=plugin.tx_login//a; type=boolean; label=Do not send the successful login attempt notification when deactivated
         disabled = 0
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for successful login attempt notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:login.subject
       }
-   }
+    }
   }
 
   persistence {
     # cat=plugin.tx_login//a; type=int; label=Default storage PID for Login Extension
-    storagePid = 0
+    storagePid =
   }
 
 }
 
 module.tx_login.view {
-    # cat=plugin.tx_login/file; type=string; label=Path to template root (BE)
-    templateRootPath = EXT:login/Resources/Private/Backend/Templates/
-    # cat=plugin.tx_login/file; type=string; label=Path to template partials (BE)
-    partialRootPath = EXT:login/Resources/Private/Backend/Partials/
-    # cat=plugin.tx_login/file; type=string; label=Path to template layouts (BE)
-    layoutRootPath = EXT:login/Resources/Private/Backend/Layouts/
+  # cat=module.tx_login/file; type=string; label=Path to template root (BE)
+  templateRootPath = EXT:login/Resources/Private/Backend/Templates/
+  # cat=module.tx_login/file; type=string; label=Path to template partials (BE)
+  partialRootPath = EXT:login/Resources/Private/Backend/Partials/
+  # cat=module.tx_login/file; type=string; label=Path to template layouts (BE)
+  layoutRootPath = EXT:login/Resources/Private/Backend/Layouts/
 }

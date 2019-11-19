@@ -53,6 +53,6 @@ class LinkRequested
 
         MagicLinkNotification::make()->send($request);
 
-        UserRouter::redirectToAfterMagicLinkSentPage();
+        UserRouter::redirectToAfterMagicLinkNotificationSentPage();
     }
 }

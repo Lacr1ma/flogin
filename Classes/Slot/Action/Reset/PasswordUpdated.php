@@ -49,6 +49,6 @@ class PasswordUpdated
 
         PasswordChangedNotification::make()->send($request->getUser());
 
-        UserRouter::redirectToAfterResetFormSubmittedPage();
+        UserRouter::redirectToAfterResetPasswordFormSubmittedPage();
     }
 }

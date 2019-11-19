@@ -53,6 +53,6 @@ class LinkRequested
 
         ResetPasswordNotification::make()->send($request);
 
-        UserRouter::redirectToAfterResetMailSentPage();
+        UserRouter::redirectToAfterForgotPasswordNotificationSentPage();
     }
 }
