@@ -33,5 +33,5 @@ script:
     ddev import-files --src=./assets;
     ddev composer install;
     ddev exec sudo chmod -R 777 /var/www/html/;
-    ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github
-    ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/Backend.suite.yml --env github
+    ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/codeception.yml --env github;
+    ddev exec bin/codecept run acceptance -d -c public/typo3conf/ext/login/Tests/Backend.suite.yml --env github;
