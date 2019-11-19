@@ -17,6 +17,7 @@
 		"lms3/support": "dev-master"
 	},
 	"require-dev": {
+		"vimeo/psalm": "^3",
 		"nimut/testing-framework": "^4",
 		"typo3/testing-framework": "^4",
 		"codeception/codeception": "^3",
