@@ -44,7 +44,7 @@ trait SimulatesFrontendLogin
     {
         if ($this->isBackendUserAdmin()) {
             // We don't allow to perform the login request by simple editors,
-            // or users that don't have an active backend session
+            // or users who don't have an active backend session
             $this->login($username);
             return 'OK';
         }
