@@ -13245,6 +13245,10 @@ CREATE TABLE `tx_scheduler_task_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+INSERT INTO `be_sessions` (`ses_id`, `ses_iplock`, `ses_userid`, `ses_tstamp`, `ses_data`, `ses_backuserid`)
+VALUES
+	('886526ce72b86870739cc41991144ec1', '[DISABLED]', 1, 1777777777, X'', 0),
+	('ff83dfd81e20b34c27d3e97771a4525a', '[DISABLED]', 2, 1777777777, X'', 0);
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
