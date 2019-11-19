@@ -6,6 +6,11 @@
         stopOnError="true"
         stopOnFailure="true"
 >
+    <filter>
+        <whitelist>
+            <directory>../../Classes/</directory>
+        </whitelist>
+    </filter>
     <testsuites>
         <testsuite name="general">
             <directory>../Functional/</directory>

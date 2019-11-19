@@ -66,11 +66,7 @@ class RateLimiter
     public function tooManyAttempts(string $key, int $maxAttempts): bool
     {
         if ($this->attempts($key) >= $maxAttempts) {
-            if ($this->cache->has($key . '_timer')) {
-                return true;
-            }
-
-            $this->resetAttempts($key);
+            return $this->cache->has($key . '_timer');
         }
 
         return false;
@@ -82,9 +78,8 @@ class RateLimiter
      * @param string $key
      * @param int    $decayMinutes
      *
-     * @return int
      */
-    public function hit(string $key, int $decayMinutes = 1): int
+    public function hit(string $key, int $decayMinutes = 1): void
     {
         $this->cache->set(
             $key . '_timer', $this->availableAt($decayMinutes), [], $decayMinutes
@@ -93,8 +88,6 @@ class RateLimiter
         $hits = (int)$this->cache->get($key) + 1;
 
         $this->cache->set($key, $hits, [], $decayMinutes);
-
-        return $hits;
     }
 
     /**
@@ -142,6 +135,10 @@ class RateLimiter
      */
     public function availableIn(string $key): int
     {
-        return $this->cache->get($key . '_timer') - time();
+        if ($releaseTime = $this->cache->get($key . '_timer')) {
+            return $releaseTime - time();
+        }
+
+        return 0;
     }
 }
