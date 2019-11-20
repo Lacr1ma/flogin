@@ -26,7 +26,6 @@ namespace LMS\Login\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\TypoScript;
 use Tightenco\Collect\Support\Collection;
 use LMS\Login\{Hash\Hash, Domain\Model\User, Support\Repository\Demandable};
 use LMS3\Support\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
@@ -44,11 +43,9 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      */
     public function initializeObject(): void
     {
-        $settings = $this->createQuery()->getQuerySettings()->setStoragePageIds([
-            TypoScript::getStoragePid('')
-        ]);
-
-        $this->setDefaultQuerySettings($settings);
+        $this->setDefaultQuerySettings(
+            $this->createQuery()->getQuerySettings()->setRespectStoragePage(false)
+        );
     }
 
     /**
