@@ -27,12 +27,32 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  * ************************************************************* */
 
 use LMS\Login\Domain\Model\Resets;
-
-/**
- * @author Borulko Sergey <borulkosergey@icloud.com>
- */
-class ResetsTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
-{
-    /** @var array */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
-}
+use LMS3\Support\Extbase\{ExtensionHelper, TypoScriptConfiguration};
+use LMS3\Lms3access\Checker\PageAccessChecker;
+use LMS3\Support\Model\AbstractModel;
+use LMS3\Support\ObjectManageable;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface as Configuration;
+use TYPO3\CMS\Core\Core\Bootstrap;
+//
+///**
+// * @author Borulko Sergey <borulkosergey@icloud.com>
+// */
+//class ResetsTest extends \Nimut\TestingFramework\TestCase\FunctionalTestCase
+//{
+//    /**
+//     * @var array
+//     */
+//    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+//
+//    /**
+//     * @test
+//     */
+//    public function reset_link_life_time_defined(): void
+//    {
+//        $ts = TypoScriptConfiguration::getConfigurationManager()
+//            ->getConfiguration(Configuration::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+//        $this->assertSame([1], $ts);
+//    }
+//}

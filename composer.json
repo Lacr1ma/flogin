@@ -18,6 +18,7 @@
 	},
 	"require-dev": {
 		"vimeo/psalm": "^3",
+		"mockery/mockery": "^1",
 		"nimut/testing-framework": "^4",
 		"typo3/testing-framework": "^4",
 		"codeception/codeception": "^3",
