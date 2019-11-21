@@ -45,6 +45,8 @@ class ResetGarbageCollectorCommand extends \Symfony\Component\Console\Command\Co
     /**
      * System finds all expired <reset_links> and deletes them
      *
+     * @psalm-suppress ImplementedReturnTypeMismatch
+     *
      * @param \Symfony\Component\Console\Input\InputInterface   $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      */

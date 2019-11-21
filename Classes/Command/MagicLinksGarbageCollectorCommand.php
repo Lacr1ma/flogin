@@ -45,6 +45,8 @@ class MagicLinksGarbageCollectorCommand extends \Symfony\Component\Console\Comma
     /**
      * System finds all expired <magic_link> and deletes them
      *
+     * @psalm-suppress ImplementedReturnTypeMismatch
+     *
      * @param \Symfony\Component\Console\Input\InputInterface   $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      */
