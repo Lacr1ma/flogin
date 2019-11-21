@@ -27,11 +27,11 @@
 	"autoload": {
 		"psr-4": {
 			"LMS\\Login\\": "Classes"
-		},
-		"autoload-dev": {
-			"psr-4": {
-				"LMS\\Login\\Tests\\": "Tests"
-			}
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"LMS\\Login\\Tests\\": "Tests"
 		}
 	}
 }

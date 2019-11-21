@@ -27,7 +27,7 @@ namespace LMS\Login\Domain\Validator\Login;
  * ************************************************************* */
 
 use LMS\Login\Support\Redirection\UserRouter;
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Login\Domain\{Model\User, Repository\UserRepository};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -44,17 +44,27 @@ class UserNotLockedValidator extends \LMS\Login\Domain\Validator\DefaultValidato
      */
     protected function isValid($username): void
     {
-        $user = UserRepository::make()->retrieveByUsername($username);
-        $plainPassword = $this->getInputPassword();
+        $this->userFromRequest($username, function (User $user, string $plainPassword) {
+            if (!UserRepository::make()->validatePassword($user, $plainPassword) || $user->isNotLocked()) {
+                return;
+            }
 
-        if (!$user) {
-            return;
+            $this->addError($this->translate('username.locked'), 1574293893);
+
+            UserRouter::redirectToLockedPage();
+        });
+    }
+
+    /**
+     * Extract user from request and pass though callback back
+     *
+     * @param string $username
+     * @param callable $callback
+     */
+    private function userFromRequest(string $username, callable $callback): void
+    {
+        if ($user = UserRepository::make()->retrieveByUsername($username)) {
+            $callback($user, $this->getInputPassword());
         }
-
-        if (!UserRepository::make()->validatePassword($user, $plainPassword) || $user->isNotLocked()) {
-            return;
-        }
-
-        UserRouter::redirectToLockedPage();
     }
 }

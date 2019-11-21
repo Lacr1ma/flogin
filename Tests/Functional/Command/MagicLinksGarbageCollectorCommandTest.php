@@ -41,13 +41,25 @@ class MagicLinksGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core
 
     /**
      * @test
+     * @covers \LMS\Login\Command\MagicLinksGarbageCollectorCommand
      */
     public function execute(): void
     {
         $repository = LinkRepository::make();
 
-        Link::create(['token' => 1, 'user' => 1, 'crdate' => Carbon::now()->subHour()->timestamp]);
-        Link::create(['token' => 2, 'user' => 2, 'crdate' => Carbon::now()->addHour()->timestamp]);
+        Link::create([
+            'pid' => 0,
+            'token' => 1,
+            'user' => 1,
+            'crdate' => Carbon::now()->subHour()->timestamp
+        ]);
+
+        Link::create([
+            'pid' => 0,
+            'token' => 2,
+            'user' => 2,
+            'crdate' => Carbon::now()->addHour()->timestamp
+        ]);
 
         $this->assertSame(1, $repository->findExpired()->count());
 

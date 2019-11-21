@@ -37,6 +37,7 @@ class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
     /**
      * Valid when magic link does exist in the database and it's not expired yet
      *
+     * @psalm-suppress PossiblyNullReference
      * @psalm-suppress MoreSpecificImplementedParamType
      *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest
@@ -47,7 +48,6 @@ class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
 
         if ($magicLink === null) {
             UserRouter::redirectToTokenNotFoundPage();
-            return;
         }
 
         if ($magicLink->isExpired()) {

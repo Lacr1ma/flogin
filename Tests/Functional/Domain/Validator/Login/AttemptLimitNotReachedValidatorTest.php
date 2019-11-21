@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\MagicLink;
+namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,30 +26,29 @@ namespace LMS\Login\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Extbase\User;
-use LMS\Login\Support\Redirection\UserRouter;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use LMS\Login\Domain\Validator\Login\AttemptLimitNotReachedValidator;
 
 /**
- * @psalm-suppress PropertyNotSetInConstructor
- * @author         Sergey Borulko <borulkosergey@icloud.com>
+ * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\DefaultValidator
+class AttemptLimitNotReachedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
 {
     /**
-     * Valid when use is not logged in at the current moment
-     *
-     * @psalm-suppress MoreSpecificImplementedParamType
-     *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest
+     * @test
      */
-    protected function isValid($loginRequest): void
+    public function error_thrown_when_too_many_attempts(): void
     {
-        if (User::isNotLoggedIn()) {
-            return;
-        }
+        $GLOBALS['TYPO3_REQUEST'] = new ServerRequest(null, null, '', [], ['REMOTE_ADDR' => '127.0.0.1']);
 
-        $this->addError($this->translate('user.already_logged_in'), 1574293894);
+        $validator = new AttemptLimitNotReachedValidator();
 
-        UserRouter::redirectToAlreadyAuthenticatedPage();
+        $validator->validate('127.0.0.1');
+        $validator->validate('127.0.0.1');
+        $validator->validate('127.0.0.1');
+        $validator->validate('127.0.0.1');
+        $validator->validate('127.0.0.1');
+
+        $this->assertTrue($validator->validate('127.0.0.1')->hasErrors());
     }
 }

@@ -3,6 +3,9 @@
 	<file source-language="en" datatype="plaintext" original="messages" product-name="login">
 		<header/>
 		<body>
+			<trans-unit id="username.locked">
+				<source>User has been locked</source>
+			</trans-unit>
 			<trans-unit id="username.not_found">
 				<source>Provided username is not found.</source>
 			</trans-unit>
@@ -17,6 +20,9 @@
 			</trans-unit>
 			<trans-unit id="password_confirmation.not_match">
 				<source>Confirmation password does not match</source>
+			</trans-unit>
+			<trans-unit id="user.already_logged_in">
+				<source>User is already authenticated</source>
 			</trans-unit>
 		</body>
 	</file>

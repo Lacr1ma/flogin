@@ -39,10 +39,14 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
     protected $testExtensionsToLoad = ['typo3conf/ext/login'];
 
     /**
-     *
+     * @throws \Doctrine\DBAL\DBALException
+     * @throws \TYPO3\TestingFramework\Core\Exception
      */
     public function setUp(): void
     {
+        parent::setUp();
+
+        $this->loadFixtures();
         $this->mockTypoScript();
     }
 
@@ -110,5 +114,21 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
                 ]
             ]
         ];
+    }
+
+    /**
+     * @throws \TYPO3\TestingFramework\Core\Exception
+     */
+    protected function loadFixtures(): void
+    {
+        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml');
+        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml');
+        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml');
+
+        $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/pages.xml');
+        $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/fe_users.xml');
+        $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/fe_groups.xml');
+        $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/sys_template.xml');
+        $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/tt_content.xml');
     }
 }

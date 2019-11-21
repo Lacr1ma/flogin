@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator;
+namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
 
 /* * *************************************************************
  *
@@ -26,30 +26,42 @@ namespace LMS\Login\Tests\Functional\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Validator\EmailValidator;
+use LMS3\Support\Extbase\User;
+use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Login\Domain\Model\Request\MagicLinkRequest;
+use LMS\Login\Domain\Validator\MagicLink\NotAuthenticatedValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class EmailValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class NotAuthenticatedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
 {
     /**
      * @test
      */
-    public function error_thrown_when_email_does_not_exist(): void
+    public function error_thrown_when_user_already_authenticated(): void
     {
-        $validation = (new EmailValidator())->validate('invalid@example.com');
+        $double = \Mockery::mock('overload:' . User::class);
+        $double->shouldReceive('isNotLoggedIn')->andReturnUsing(function () {
+            return false;
+        });
 
-        $this->assertTrue($validation->hasErrors());
+        $user = UserRepository::make()->retrieveByUsername('user');
+
+        $validator = new NotAuthenticatedValidator();
+
+        $this->assertTrue($validator->validate(new MagicLinkRequest($user))->hasErrors());
     }
 
     /**
      * @test
      */
-    public function pass_when_email_exists(): void
+    public function pass_when_user_not_authenticated(): void
     {
-        $validation = (new EmailValidator())->validate('user@example.com');
+        $user = UserRepository::make()->retrieveByUsername('user');
 
-        $this->assertFalse($validation->hasErrors());
+        $validator = new NotAuthenticatedValidator();
+
+        $this->assertFalse($validator->validate(new MagicLinkRequest($user))->hasErrors());
     }
 }

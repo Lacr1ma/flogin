@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator;
+namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,30 +26,47 @@ namespace LMS\Login\Tests\Functional\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Validator\EmailValidator;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use LMS\Login\Domain\Validator\Login\UsernameValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class EmailValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class UsernameValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
 {
     /**
      * @test
      */
-    public function error_thrown_when_email_does_not_exist(): void
+    public function error_thrown_when_too_many_attempts(): void
     {
-        $validation = (new EmailValidator())->validate('invalid@example.com');
+        $username = 'invalid';
 
-        $this->assertTrue($validation->hasErrors());
+        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
+            'tx_login_login' => [
+                'username' => $username
+            ]
+        ]);
+
+        $validator = new UsernameValidator();
+
+        $this->assertTrue($validator->validate($username)->hasErrors());
     }
 
     /**
      * @test
      */
-    public function pass_when_email_exists(): void
+    public function pass_when_username_exists(): void
     {
-        $validation = (new EmailValidator())->validate('user@example.com');
+        $username = 'user';
 
-        $this->assertFalse($validation->hasErrors());
+        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
+            'tx_login_login' => [
+                'username' => $username
+            ]
+        ]);
+
+        $validator = new UsernameValidator();
+
+        $this->assertFalse($validator->validate($username)->hasErrors());
     }
 }

@@ -31,7 +31,7 @@ use LMS\Login\Domain\Repository\UserRepository;
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UnlockUserCommandTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class UnlockUserCommandTest extends \LMS\Login\Tests\Functional\BaseTest
 {
     /**
      * @var array
@@ -39,15 +39,14 @@ class UnlockUserCommandTest extends \TYPO3\TestingFramework\Core\Functional\Func
     protected $testExtensionsToLoad = ['typo3conf/ext/login'];
 
     /**
-     * @tbd
+     * @test
+     * @covers \LMS\Login\Command\UnlockUserCommand
      */
     public function execute(): void
     {
         $repository = UserRepository::make();
 
-        $repository->retrieveByUsername('user')->lock();
-
-        $this->assertGreaterThanOrEqual(1, $repository->findLocked()->count());
+        $this->assertSame(1, $repository->findLocked()->count());
 
         exec('/var/www/html/bin/typo3 login:unlock_users');
 

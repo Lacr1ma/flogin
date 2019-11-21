@@ -56,4 +56,23 @@
         <last_name>Borulko</last_name>
         <email>lockme@example.com</email>
     </fe_users>
+
+    <fe_users>
+        <uid>4</uid>
+        <pid>0</pid>
+        <tstamp>1573038777</tstamp>
+        <crdate>1571485756</crdate>
+        <username>locked</username>
+        <password>$argon2i$v=19$m=65536,t=16,p=2$eWxUOXZUeEdNQ0k0dDcvZQ$4/bwctiGftbhl8iazedInmnHGCSZGouldcpmqJDn4a8</password>
+        <disable>0</disable>
+        <deleted>0</deleted>
+        <starttime>0</starttime>
+        <endtime>0</endtime>
+        <cruser_id>1</cruser_id>
+        <locked>1</locked>
+        <usergroup>1</usergroup>
+        <first_name>Serhii</first_name>
+        <last_name>Borulko</last_name>
+        <email>locked@example.com</email>
+    </fe_users>
 </dataset>

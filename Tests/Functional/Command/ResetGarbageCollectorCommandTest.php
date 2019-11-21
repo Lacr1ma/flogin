@@ -41,13 +41,25 @@ class ResetGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Func
 
     /**
      * @test
+     * @covers \LMS\Login\Command\ResetGarbageCollectorCommand
      */
     public function execute(): void
     {
         $repository = ResetsRepository::make();
 
-        Resets::create(['token' => 1, 'user' => 1, 'crdate' => Carbon::now()->subHour()->timestamp]);
-        Resets::create(['token' => 2, 'user' => 2, 'crdate' => Carbon::now()->addHour()->timestamp]);
+        Resets::create([
+            'pid' => 0,
+            'user' => 1,
+            'token' => 1,
+            'crdate' => Carbon::now()->subHour()->timestamp
+        ]);
+
+        Resets::create([
+            'pid' => 0,
+            'user' => 2,
+            'token' => 2,
+            'crdate' => Carbon::now()->addHour()->timestamp
+        ]);
 
         $this->assertSame(1, $repository->findExpired()->count());
 
