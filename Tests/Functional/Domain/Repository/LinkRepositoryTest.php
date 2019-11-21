@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\ResetsRepository;
+use LMS\Login\Domain\Repository\LinkRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
+class LinkRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
 {
     /**
      * @throws \Doctrine\DBAL\DBALException
@@ -41,46 +41,66 @@ class ResetsRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         parent::setUp();
 
-        $this->importDataSet(__DIR__ . '/../../../Fixtures/Repository/ResetsRepository.xml');
+        $this->importDataSet(__DIR__ . '/../../../Fixtures/Repository/LinkRepository.xml');
     }
 
     /**
      * @test
      */
-    public function reset_password_link_can_be_found(): void
+    public function not_expired_link_for_user_can_be_found(): void
     {
         $this->assertNotNull(
-            ResetsRepository::make()->findExpired()
+            LinkRepository::make()->findActive(1)
         );
     }
 
     /**
      * @test
      */
-    public function exist_return_true_when_reset_password_link_persisted(): void
+    public function find_active_returns_an_empty_array_when_no_related_links_exist(): void
+    {
+        $this->assertEmpty(
+            LinkRepository::make()->findActive(999)
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function expired_magic_link_can_be_found(): void
+    {
+        $this->assertNotNull(
+            LinkRepository::make()->findExpired()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function exist_return_true_when_magic_link_persisted(): void
     {
         $this->assertTrue(
-            ResetsRepository::make()->exists('secret')
+            LinkRepository::make()->exists('secret')
         );
     }
 
     /**
      * @test
      */
-    public function exist_return_false_when_reset_password_link_does_not_exist(): void
+    public function exist_return_false_when_magic_link_does_not_exist(): void
     {
         $this->assertFalse(
-            ResetsRepository::make()->exists('invalid')
+            LinkRepository::make()->exists('invalid')
         );
     }
 
     /**
      * @test
      */
-    public function find_returns_null_when_reset_password_link_is_not_found(): void
+    public function find_returns_null_when_magic_link_is_not_found(): void
     {
         $this->assertNull(
-            ResetsRepository::make()->find('invalid')
+            LinkRepository::make()->find('invalid')
         );
     }
 
@@ -90,7 +110,7 @@ class ResetsRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
     public function magic_link_can_be_found(): void
     {
         $this->assertNotEmpty(
-            ResetsRepository::make()->find('secret')
+            LinkRepository::make()->find('secret')
         );
     }
 
@@ -99,9 +119,9 @@ class ResetsRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
      */
     public function extension_key_should_be_related_to_the_correct_scope(): void
     {
-        $testMethod = new \ReflectionMethod(ResetsRepository::class, 'getExtensionKey');
+        $testMethod = new \ReflectionMethod(LinkRepository::class, 'getExtensionKey');
         $testMethod->setAccessible(true);
 
-        $this->assertSame('tx_login', $testMethod->invoke(ResetsRepository::make()));
+        $this->assertSame('tx_login', $testMethod->invoke(LinkRepository::make()));
     }
 }

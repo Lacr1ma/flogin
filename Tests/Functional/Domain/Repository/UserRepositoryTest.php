@@ -26,85 +26,94 @@ namespace LMS\Login\Tests\Functional\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Hash\Hash;
-use LMS\Login\Domain\{Model\User, Repository\UserRepository};
+use LMS\Login\Domain\Repository\UserRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UserRepositoryTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class UserRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
 {
-    /** @var array */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
-
-    /** @var string */
-    protected $fixturePathPrefix = __DIR__ . '/../../../Fixtures/Repository/';
-
-    /** @var UserRepository */
-    protected $repository;
-
     /**
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \TYPO3\TestingFramework\Core\Exception
+     * @test
      */
-    public function setUp(): void
+    public function can_be_found_by_username(): void
     {
-        parent::setUp();
-
-        $this->repository = UserRepository::make();
-
-        $this->importDataSet($this->fixturePathPrefix . 'UserRepository.xml');
-    }
-
-    /**
-     * Cleanup the repository
-     */
-    public function tearDown(): void
-    {
-        unset($this->repository);
+        $this->assertNotNull(
+            UserRepository::make()->retrieveByUsername('user')
+        );
     }
 
     /**
      * @test
      */
-    public function retrieveByUsername(): void
+    public function find_by_username_returns_null_when_user_not_found(): void
     {
-        $this->assertInstanceOf(
-            User::class, $this->repository->retrieveByUsername('dummy2')
-        );
-
         $this->assertNull(
-            $this->repository->retrieveByUsername('not_exists')
+            UserRepository::make()->retrieveByUsername('invalid')
         );
     }
 
     /**
      * @test
      */
-    public function retrieveByEmail(): void
+    public function current_user_returns_null_when_user_is_not_logged_in(): void
     {
-        $this->assertInstanceOf(
-            User::class, $this->repository->retrieveByEmail('dummy2@example.com')
-        );
-
         $this->assertNull(
-            $this->repository->retrieveByEmail('not_exists@example.com')
+            UserRepository::make()->current()
         );
     }
 
     /**
      * @test
      */
-    public function validatePassword(): void
+    public function current_user_can_be_retrieved(): void
     {
-        $plainPassword = 'secret';
-        $encryptedPassword = Hash::encryptPassword($plainPassword);
+        $GLOBALS['TSFE']->fe_user->user['uid'] = 1;
 
-        $user = $this->repository->retrieveByEmail('dummy2@example.com');
-        $user->setPassword($encryptedPassword);
+        $this->assertNotNull(
+            UserRepository::make()->current()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function can_be_found_by_email(): void
+    {
+        $this->assertNotNull(
+            UserRepository::make()->retrieveByEmail('user@example.com')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function cant_be_found_by_email_when_invalid(): void
+    {
+        $this->assertNull(
+            UserRepository::make()->retrieveByEmail('invalid@example.com')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function locked_user_can_be_found(): void
+    {
+        $this->assertNotEmpty(
+            UserRepository::make()->findLocked()->all()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function plain_password_can_be_compared_with_its_hash(): void
+    {
+        $user = UserRepository::make()->retrieveByEmail('user@example.com');
 
         $this->assertTrue(
-            $this->repository->validatePassword($user, $plainPassword)
+            UserRepository::make()->validatePassword($user, 'password')
         );
     }
 }

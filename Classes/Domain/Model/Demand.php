@@ -26,29 +26,12 @@ namespace LMS\Login\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Login\Support\Domain\Property\Username;
+
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class Demand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $username = '';
-
-    /**
-     * @return string
-     */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername(string $username): void
-    {
-        $this->username = $username;
-    }
+    use Username;
 }

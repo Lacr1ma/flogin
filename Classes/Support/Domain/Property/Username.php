@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Model;
+namespace LMS\Login\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,18 +26,29 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
-
 /**
- * @author Borulko Sergey <borulkosergey@icloud.com>
+ * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetsTest extends \LMS\Login\Tests\Functional\BaseTest
+trait Username
 {
     /**
-     * @test
+     * @var string
      */
-    public function reset_link_life_time_defined(): void
+    protected $username = '';
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
     {
-        $this->assertSame(5, Resets::getLifetimeInMinutes());
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
     }
 }

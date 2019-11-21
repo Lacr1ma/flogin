@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Model;
+namespace LMS\Login\Tests\Unit\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,18 +26,38 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
+use LMS\Login\Support\Domain\Property\Username as ContainsUsername;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsTest extends \LMS\Login\Tests\Functional\BaseTest
+class UsernameTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
+    /**
+     * @var ContainsUsername
+     */
+    protected $trait;
+
+    /**
+     * Initialize Trait
+     */
+    public function setUp(): void
+    {
+        $this->trait = new class
+        {
+            use ContainsUsername;
+        };
+    }
+
     /**
      * @test
      */
-    public function reset_link_life_time_defined(): void
+    public function username_can_be_set(): void
     {
-        $this->assertSame(5, Resets::getLifetimeInMinutes());
+        $name = 'john';
+
+        $this->trait->setUsername($name);
+
+        $this->assertSame($name, $this->trait->getUsername());
     }
 }

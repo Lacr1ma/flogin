@@ -26,18 +26,18 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
+use LMS\Login\Domain\Model\Link;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsTest extends \LMS\Login\Tests\Functional\BaseTest
+class LinkTest extends \LMS\Login\Tests\Functional\BaseTest
 {
     /**
      * @test
      */
-    public function reset_link_life_time_defined(): void
+    public function magic_link_life_time_defined(): void
     {
-        $this->assertSame(5, Resets::getLifetimeInMinutes());
+        $this->assertSame(6, Link::getLifetimeInMinutes());
     }
 }
