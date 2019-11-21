@@ -1064,7 +1064,9 @@ INSERT INTO `fe_users` (`uid`, `pid`, `tstamp`, `crdate`, `cruser_id`, `deleted`
 VALUES
 	(1,0,1573038777,1571485756,1,0,0,0,0,NULL,'0','user','$2y$12$huvw0ryLHo4UI0Rq4c9/QustvGTwEFR0H4uNeXfKDK2w9Gmdox1Be','1','','Serhii','','Borulko','','','','user@example.com','',NULL,'','','','','','',NULL,NULL,1573402235,0,NULL,'',0),
 	(2,0,1573402225,1571485756,1,0,0,0,0,NULL,'0','dummy','$2y$12$6FzjlRnijhx.ODPMjI.nMO6yncUjwK1GJAKT5tsWoLKvJy.bCM3YS','1','','Serhii','','Borulko','','','','dummy@example.com','',NULL,'','','','','','',NULL,NULL,1573402252,0,NULL,'',0),
-	(3,0,1573402114,1571485756,1,0,0,0,0,NULL,'0','lockme','$2y$12$huvw0ryLHo4UI0Rq4c9/QustvGTwEFR0H4uNeXfKDK2w9Gmdox1Be','1','','Serhii','','Borulko','','','','lockme@example.com','',NULL,'','','','','','',NULL,NULL,0,0,NULL,'',0);
+	(3,0,1573402114,1571485756,1,0,0,0,0,NULL,'0','lockme','$2y$12$huvw0ryLHo4UI0Rq4c9/QustvGTwEFR0H4uNeXfKDK2w9Gmdox1Be','1','','Serhii','','Borulko','','','','lockme@example.com','',NULL,'','','','','','',NULL,NULL,0,0,NULL,'',0),
+	(4, 0, 1574205851, 1571485756, 1, 0, 0, 0, 0, NULL, '0', 'locked', '$2y$12$huvw0ryLHo4UI0Rq4c9/QustvGTwEFR0H4uNeXfKDK2w9Gmdox1Be', '1', '', 'Serhii', '', 'Borulko', '', '', '', 'locked@example.com', '', NULL, '', '', '', '', '', '', NULL, NULL, 1574213697, 0, NULL, '', 1);
+
 
 /*!40000 ALTER TABLE `fe_users` ENABLE KEYS */;
 UNLOCK TABLES;
