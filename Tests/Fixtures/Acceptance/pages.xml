@@ -124,4 +124,12 @@
         <doktype>1</doktype>
     </pages>
 
+    <pages>
+        <uid>426</uid>
+        <pid>8</pid>
+        <title>Account hash does not exist</title>
+        <slug>/login/token/account-hash-does-not-exist</slug>
+        <doktype>1</doktype>
+    </pages>
+
 </dataset>

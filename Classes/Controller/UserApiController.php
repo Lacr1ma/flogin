@@ -26,7 +26,7 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\Backend\SimulatesFrontendLogin;
+use LMS\Login\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -34,7 +34,7 @@ use LMS\Login\Support\Controller\Backend\SimulatesFrontendLogin;
  */
 class UserApiController extends Base\ApiController
 {
-    use SimulatesFrontendLogin;
+    use SimulatesFrontendLogin, CreatesOneTimeAccount;
 
     /**
      * {@inheritdoc}
@@ -80,5 +80,17 @@ class UserApiController extends Base\ApiController
     public function terminateFrontendSessionAction(int $user): void
     {
         $this->view->assign('value', [$this->terminateSessionFor($user)]);
+    }
+
+    /**
+     * Create one time user and log in
+     *
+     * @param string $hash
+     */
+    public function createOneTimeAccountAction(string $hash): void
+    {
+        if ($user = $this->createTemporaryFrontendAccount($hash)) {
+            $this->authorizeTemporaryUser($user, $hash);
+        }
     }
 }

@@ -51,6 +51,9 @@
 			<trans-unit id="form_reset.submit">
 				<source>Change password</source>
 			</trans-unit>
+			<trans-unit id="temporary_account.generate">
+				<source>Generate temporary account</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

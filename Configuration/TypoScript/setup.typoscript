@@ -33,6 +33,7 @@ plugin.tx_login {
         whenTokenExpiredPage = {$plugin.tx_login.settings.redirect.error.whenTokenExpiredPage}
         whenTokenNotFoundPage = {$plugin.tx_login.settings.redirect.error.whenTokenNotFoundPage}
         whenLockedPage = {$plugin.tx_login.settings.redirect.error.whenLockedPage}
+        whenOneTimeAccountHashNotFoundPage = {$plugin.tx_login.settings.redirect.error.whenOneTimeAccountHashNotFoundPage}
       }
     }
 
@@ -40,6 +41,14 @@ plugin.tx_login {
       maxAttempts = {$plugin.tx_login.settings.throttling.maxAttempts}
       decayMinutes = {$plugin.tx_login.settings.throttling.decayMinutes}
       lockIntervalInMinutes = {$plugin.tx_login.settings.throttling.lockIntervalInMinutes}
+    }
+
+    oneTimeAccount {
+      properties {
+        usergroup = {$plugin.tx_login.settings.oneTimeAccount.properties.usergroup}
+      }
+
+      lifetimeInMinutes = {$plugin.tx_login.settings.oneTimeAccount.lifetimeInMinutes}
     }
 
     email {

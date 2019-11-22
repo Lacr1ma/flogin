@@ -26,10 +26,10 @@ declare(strict_types = 1);
 
 use LMS\Login\Controller\Backend\ManagementController;
 
-return [
-    'login:force-login' => [
-        'path' => '/login/authenticate',
-        'access' => 'public',
-        'target' => ManagementController::class . '::forceLoginAction',
-    ]
-];
+//return [
+//    'login:force-login' => [
+//        'path' => '/login/authenticate',
+//        'access' => 'public',
+//        'target' => ManagementController::class . '::forceLoginAction',
+//    ]
+//];

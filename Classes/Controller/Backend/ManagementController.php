@@ -26,6 +26,7 @@ namespace LMS\Login\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Login\Support\Controller\Backend\CreatesOneTimeAccount;
 use LMS\Login\Domain\{Model\Demand, Repository\UserRepository};
 
 /**
@@ -34,6 +35,8 @@ use LMS\Login\Domain\{Model\Demand, Repository\UserRepository};
  */
 class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    use CreatesOneTimeAccount;
+
     /**
      * Render table with existing FE users
      *
@@ -47,5 +50,19 @@ class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
             'demand' => $demand,
             'users' => UserRepository::make()->findDemanded($demand)
         ]);
+    }
+
+    /**
+     * Render form that contains generated link for account creation.
+     *
+     * @psalm-suppress UndefinedMethod
+     */
+    public function createOneTimeAccountHashAction(): void
+    {
+        $hash = $this->createOneTimeHash();
+
+        $baseUrl = str_replace('typo3/', '', $this->request->getBaseUri());
+
+        $this->view->assign("url", "{$baseUrl}api/user/one-time-account/{$hash}");
     }
 }

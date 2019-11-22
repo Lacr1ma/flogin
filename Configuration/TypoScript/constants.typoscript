@@ -43,6 +43,8 @@ plugin.tx_login {
         whenTokenNotFoundPage =
         # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt, when user has been already locked.
         whenLockedPage =
+        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when one time account link is invalid
+        whenOneTimeAccountHashNotFoundPage =
       }
     }
 
@@ -53,6 +55,16 @@ plugin.tx_login {
       decayMinutes = 1
       # cat=plugin.tx_login//a; type=int+; label=After defined number of minutes, user will be automatically unlocked by scheduler.
       lockIntervalInMinutes = 10
+    }
+
+    oneTimeAccount {
+      properties {
+        # cat=plugin.tx_login//a; type=string; label=One Time user can be initialized with provided list of groups
+        usergroup =
+      }
+
+      # cat=plugin.tx_login//a; type=int+; label=After defined number of minutes, user will be deleted
+      lifetimeInMinutes = 60
     }
 
     email {

@@ -57,12 +57,12 @@ if (!defined('TYPO3_MODE')) {
     'login',
     'bottom',
     [
-        'Backend\Management' => 'index, forceLogin'
+        'Backend\Management' => 'index, createOneTimeAccountHash'
     ],
     [
         'icon' => 'EXT:login/ext_icon.svg',
         'access' => 'admin',
-        'labels' => 'LMS: Login'
+        'labels' => 'LLL:EXT:login/Resources/Private/Language/locallang_mod.xlf'
     ]
 );
 

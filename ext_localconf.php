@@ -84,10 +84,10 @@ if (!defined('TYPO3_MODE')) {
     'LMS.' . $_EXTKEY,
     'UserApi',
     [
-        'UserApi' => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession'
+        'UserApi' => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
     ],
     [
-        'UserApi' => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession'
+        'UserApi' => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
     ]
 );
 

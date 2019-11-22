@@ -1,0 +1,17 @@
+{namespace be = TYPO3\CMS\Backend\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+
+    <div class="input-group">
+        <input id="url" class="form-control" value="{url}">
+
+        <span class="input-group-btn">
+            <a class="btn btn-default btn-copy" data-clipboard-target="#url" data-clipboard-action="cut">
+                <core:icon identifier="actions-edit-copy"/>
+            </a>
+        </span>
+    </div>
+
+</f:section>

@@ -21,3 +21,10 @@ login_terminate:
   methods:      [GET]
   requirements:
     user:       \d+
+
+login_one-time-account:
+  path:         api/user/one-time-account/{hash}
+  controller:   LMS\Login\Controller\UserApiController::createOneTimeAccount
+  methods:      [GET]
+  requirements:
+    hash:       "[^/]+"

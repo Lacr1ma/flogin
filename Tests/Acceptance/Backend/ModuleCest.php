@@ -40,9 +40,23 @@ class ModuleCest
     {
         $I->useExistingSession('admin');
 
-        $I->click('Login', '#web_LoginLogin');
+        $I->click('LMS: Login', '#web_LoginLogin');
 
         $I->switchToContentFrame();
+    }
+
+    /**
+     * @param BackendTester $I
+     */
+    public function create_one_time_account_copy_to_clipboard(BackendTester $I)
+    {
+        $I->wantTo('I want to create a temporary frontend account using <copy_to_clipboard> button.');
+
+        $I->click('Generate temporary account');
+
+        $I->click('.btn-copy');
+
+        $I->waitForElement('#username', 5);
     }
 
     /**
@@ -56,6 +70,22 @@ class ModuleCest
 
         $I->amOnPage('/login');
         $I->canSeeElement('#logout-link');
+    }
+
+    /**
+     * @param BackendTester $I
+     */
+    public function create_one_time_account(BackendTester $I)
+    {
+        $I->wantTo('I want to create a temporary frontend account.');
+
+        $I->click('Generate temporary account');
+
+        $I->amOnUrl(
+            $I->grabValueFrom('#url')
+        );
+
+        $I->seeInTitle('Catalog');
     }
 
     /**

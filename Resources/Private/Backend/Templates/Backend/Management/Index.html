@@ -4,6 +4,12 @@
 
 <f:section name="Content">
 
+    <div class="form-group">
+        <f:link.action action="createOneTimeAccountHash" class="btn btn-default btn-sm">
+            <f:translate key="temporary_account.generate" extensionName="login"/>
+        </f:link.action>
+    </div>
+
     <f:render partial="Filters/User/Index" arguments="{demand: demand, groups: groups}" />
 
     <f:be.widget.paginate objects="{users}" as="paginatedUsers" configuration="{itemsPerPage: 50, insertBelow: 1}">

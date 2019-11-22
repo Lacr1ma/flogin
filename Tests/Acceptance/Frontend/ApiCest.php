@@ -36,6 +36,18 @@ class ApiCest
     /**
      * @param AcceptanceTester $I
      */
+    public function proper_hash_is_required_for_account_creation(AcceptanceTester $I)
+    {
+        $I->wantTo('When I want to be redirected to error page, when I try to create temporary using invalid link.');
+
+        $I->amOnPage('/api/user/one-time-account/invalid-hash');
+
+        $I->seeInTitle('Account hash does not exist');
+    }
+
+    /**
+     * @param AcceptanceTester $I
+     */
     public function authenticated_returns_false_when_user_not_logged_in(AcceptanceTester $I)
     {
         $I->wantTo('I hit the api/user/authenticated endpoint and expect to see that I am not logged in.');
