@@ -29,7 +29,7 @@ namespace LMS\Login\Support\Controller\Backend;
 use TYPO3\CMS\Core\Registry;
 use LMS3\Support\ObjectManageable;
 use LMS\Login\{Domain\Model\User, Guard\SessionGuard, Hash\Hash};
-use LMS\Login\Support\{Redirection\UserRouter, Controller\Helper\OneTimeAccount};
+use LMS\Login\Support\{Redirection\UserRouter, Helper\OneTimeAccount};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
