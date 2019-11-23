@@ -2,7 +2,10 @@ config.tx_extbase.persistence.classes {
 
   LMS\Login\Domain\Model\User.mapping {
     tableName = fe_users
-    columns.tstamp.mapOnProperty = tstamp
+    columns {
+      tstamp.mapOnProperty = tstamp
+      endtime.mapOnProperty = endtime
+    }
   }
 
   LMS\Login\Domain\Model\UserGroup.mapping {

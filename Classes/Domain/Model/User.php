@@ -27,7 +27,7 @@ namespace LMS\Login\Domain\Model;
  * ************************************************************* */
 
 use LMS3\Support\Model\StorageActions;
-use LMS\Login\Support\Domain\Property\IsOnline;
+use LMS\Login\Support\Domain\Property\{Endtime, IsOnline};
 use LMS\Login\Support\Domain\Action\User\{UrlManagement, Lockable};
 
 /**
@@ -36,7 +36,7 @@ use LMS\Login\Support\Domain\Action\User\{UrlManagement, Lockable};
  */
 class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 {
-    use Lockable, IsOnline, UrlManagement, StorageActions;
+    use Lockable, IsOnline, Endtime, UrlManagement, StorageActions;
 
     /**
      * Create new Reset Password Request and process it
