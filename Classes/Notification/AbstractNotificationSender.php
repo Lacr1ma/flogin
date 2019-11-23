@@ -27,9 +27,9 @@ namespace LMS\Login\Notification;
  * ************************************************************* */
 
 use LMS\Login\Support\TypoScript;
+use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use LMS3\Support\{StaticCreator, Extbase\View\HtmlView};
-use TYPO3\CMS\Core\{Mail\MailMessage, Utility\GeneralUtility};
+use LMS3\Support\{ObjectManageable, StaticCreator, Extbase\View\HtmlView};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -48,10 +48,9 @@ abstract class AbstractNotificationSender
     {
         $view = $this->getExtensionView($this->getTemplateSuffix(), $variables);
 
-        $mail = GeneralUtility::makeInstance(MailMessage::class);
-        $mail
-            ->setSubject($this->getSubject())
+        ObjectManageable::createObject(MailMessage::class)
             ->setTo($receiver)
+            ->setSubject($this->getSubject())
             ->setBody($view->render(), 'text/html')
             ->send();
     }
