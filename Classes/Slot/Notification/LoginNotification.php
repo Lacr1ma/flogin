@@ -27,6 +27,7 @@ namespace LMS\Login\Slot\Notification;
  * ************************************************************* */
 
 use LMS\Login\Domain\Model\User;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -44,7 +45,7 @@ class LoginNotification extends \LMS\Login\Notification\AbstractNotificationSend
             return;
         }
 
-        $request = $GLOBALS['TYPO3_REQUEST']->getServerParams();
+        $request = Request::createFromGlobals()->server->all();
         $receiver = [$user->getEmail() => $user->getUsername()];
 
         $this->sendViaMail($receiver, compact('user', 'request'));

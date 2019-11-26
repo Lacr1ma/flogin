@@ -27,6 +27,7 @@ namespace LMS\Login\Support;
  * ************************************************************* */
 
 use LMS\Login\Cache\RateLimiter;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -70,7 +71,7 @@ trait ThrottlesLogins
      */
     protected function throttleKey(): string
     {
-        return md5($GLOBALS['TYPO3_REQUEST']->getServerParams()['REMOTE_ADDR']);
+        return md5(Request::createFromGlobals()->getClientIp());
     }
 
     /**

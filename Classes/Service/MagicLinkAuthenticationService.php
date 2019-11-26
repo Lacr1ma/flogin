@@ -27,6 +27,7 @@ namespace LMS\Login\Service;
  * ************************************************************* */
 
 use LMS\Login\Event\SessionEvent;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -70,6 +71,6 @@ class MagicLinkAuthenticationService extends \TYPO3\CMS\Core\Authentication\Abst
      */
     private function requestHasMagicToken(): string
     {
-        return $GLOBALS['TYPO3_REQUEST']->getQueryParams()['tx_login_login']['request']['token'] ?: '';
+        return Request::createFromGlobals()->request->get('tx_login_login')['request']['token'] ?: '';
     }
 }

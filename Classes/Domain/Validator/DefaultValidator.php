@@ -27,6 +27,7 @@ namespace LMS\Login\Domain\Validator;
  * ************************************************************* */
 
 use LMS\Login\Support\TypoScript;
+use Symfony\Component\HttpFoundation\Request;
 use LMS\Login\Domain\{Model\User, Repository\UserRepository};
 
 
@@ -43,7 +44,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
      */
     protected function getInputUserName(): string
     {
-        return $GLOBALS['TYPO3_REQUEST']->getParsedBody()['tx_login_login']['username'] ?: '';
+        return Request::createFromGlobals()->request->get('tx_login_login')['username'] ?: '';
     }
 
     /**
@@ -53,7 +54,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
      */
     protected function getInputPassword(): string
     {
-        return $GLOBALS['TYPO3_REQUEST']->getParsedBody()['tx_login_login']['password'] ?: '';
+        return Request::createFromGlobals()->request->get('tx_login_login')['password'] ?: '';
     }
 
     /**
