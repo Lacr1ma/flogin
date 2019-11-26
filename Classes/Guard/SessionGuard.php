@@ -58,7 +58,7 @@ class SessionGuard
     /**
      * Logout current user from the application.
      */
-    public function logout(): void
+    public function logoff(): void
     {
         $user = UserRepository::make()->current();
 

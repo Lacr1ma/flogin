@@ -54,8 +54,8 @@ trait AuthenticatesUsers
     /**
      * Log the user out of the application.
      */
-    public function logout(): void
+    public function logoff(): void
     {
-        SessionGuard::make()->logout();
+        SessionGuard::make()->logoff();
     }
 }
