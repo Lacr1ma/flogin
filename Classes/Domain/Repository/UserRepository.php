@@ -27,7 +27,7 @@ namespace LMS\Login\Domain\Repository;
  * ************************************************************* */
 
 use Tightenco\Collect\Support\Collection;
-use LMS\Login\{Hash\Hash, Domain\Model\User, Support\Repository\Demandable};
+use LMS\Login\{Domain\Model\User, Support\Repository\Demandable};
 use LMS3\Support\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
 
 /**
@@ -99,19 +99,5 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     public function retrieveByEmail(string $email): ?User
     {
         return $this->findOneByEmail($email);
-    }
-
-    /**
-     * Check if the passed <plain password> matches the <encrypted password> for the
-     * requested user.
-     *
-     * @param \LMS\Login\Domain\Model\User $user
-     * @param string                       $password
-     *
-     * @return bool
-     */
-    public function validatePassword(User $user, string $password): bool
-    {
-        return Hash::getHashFactory()->checkPassword($password, $user->getPassword());
     }
 }
