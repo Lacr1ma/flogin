@@ -26,6 +26,7 @@ namespace LMS\Login\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Login\Hash\Hash;
 use LMS\Login\Support\Redirection\UserRouter;
 use LMS\Login\Domain\{Model\User, Repository\UserRepository};
 
@@ -45,7 +46,7 @@ class UserNotLockedValidator extends \LMS\Login\Domain\Validator\DefaultValidato
     protected function isValid($username): void
     {
         $this->userFromRequest($username, function (User $user, string $plainPassword) {
-            if (!UserRepository::make()->validatePassword($user, $plainPassword) || $user->isNotLocked()) {
+            if (!Hash::checkPassword($plainPassword, $user->getPassword()) || $user->isNotLocked()) {
                 return;
             }
 

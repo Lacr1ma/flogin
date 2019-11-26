@@ -62,6 +62,6 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function logoutAction(): void
     {
-        $this->logout();
+        $this->logoff();
     }
 }

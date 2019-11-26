@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Login\Hash\Hash;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -53,7 +53,7 @@ class PasswordValidator extends \LMS\Login\Domain\Validator\DefaultValidator
     {
         $user = $this->findRequestAssociatedUser();
 
-        if ($user && UserRepository::make()->validatePassword($user, $password)) {
+        if ($user && Hash::checkPassword($password, $user->getPassword())) {
             return;
         }
 

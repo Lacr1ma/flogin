@@ -61,6 +61,19 @@ class Hash
     }
 
     /**
+     * Check if the passed <plain password> matches the <encrypted password>
+     *
+     * @param string $plain
+     * @param string $encrypted
+     *
+     * @return bool
+     */
+    public static function checkPassword(string $plain, string $encrypted): bool
+    {
+        return self::getHashFactory()->checkPassword($plain, $encrypted);
+    }
+
+    /**
      * Determine configured default hash method and return an instance relate to FE scope
      *
      * @return \TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface
