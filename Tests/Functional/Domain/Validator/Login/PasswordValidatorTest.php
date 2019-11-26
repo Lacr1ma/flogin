@@ -26,7 +26,6 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use TYPO3\CMS\Core\Http\ServerRequest;
 use LMS\Login\Domain\Validator\Login\PasswordValidator;
 
 /**
@@ -41,11 +40,7 @@ class PasswordValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         $password = 'invalid';
 
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
-            'tx_login_login' => [
-                'username' => 'user'
-            ]
-        ]);
+        $_POST['tx_login_login'] = ['username' => 'user'];
 
         $validator = new PasswordValidator();
 
@@ -59,11 +54,7 @@ class PasswordValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         $password = 'password';
 
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
-            'tx_login_login' => [
-                'username' => 'user'
-            ]
-        ]);
+        $_POST['tx_login_login'] = ['username' => 'user'];
 
         $validator = new PasswordValidator();
 

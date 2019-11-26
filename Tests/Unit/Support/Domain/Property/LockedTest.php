@@ -34,7 +34,9 @@ use LMS\Login\Support\Domain\Property\Locked;
  */
 class LockedTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var Locked */
+    /**
+     * @var Locked
+     */
     protected $trait;
 
     /**

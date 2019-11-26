@@ -33,7 +33,9 @@ use LMS\Login\Support\Domain\Property\User as ContainsUser;
  */
 class UserTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var ContainsUser */
+    /**
+     * @var ContainsUser
+     */
     protected $trait;
 
     /**

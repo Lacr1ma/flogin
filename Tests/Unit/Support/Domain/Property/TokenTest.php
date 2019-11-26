@@ -33,7 +33,9 @@ use LMS\Login\Support\Domain\Property\Token as ContainsToken;
  */
 class TokenTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var ContainsToken */
+    /**
+     * @var ContainsToken
+     */
     protected $trait;
 
     /**

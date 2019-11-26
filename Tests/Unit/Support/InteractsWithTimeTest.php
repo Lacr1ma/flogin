@@ -34,7 +34,9 @@ use LMS\Login\Support\InteractsWithTime;
  */
 class InteractsWithTimeTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var InteractsWithTime */
+    /**
+     * @var InteractsWithTime
+     */
     protected $trait;
 
     /**

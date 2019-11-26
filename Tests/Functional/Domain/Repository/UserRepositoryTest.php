@@ -104,16 +104,4 @@ class UserRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
             UserRepository::make()->findLocked()->all()
         );
     }
-
-    /**
-     * @test
-     */
-    public function plain_password_can_be_compared_with_its_hash(): void
-    {
-        $user = UserRepository::make()->retrieveByEmail('user@example.com');
-
-        $this->assertTrue(
-            UserRepository::make()->validatePassword($user, 'password')
-        );
-    }
 }

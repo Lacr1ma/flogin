@@ -33,7 +33,9 @@ use LMS\Login\Support\Domain\Property\PasswordConfirmation as ContainsPasswordCo
  */
 class PasswordConfirmationTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var ContainsPasswordConfirmation */
+    /**
+     * @var ContainsPasswordConfirmation
+     */
     protected $trait;
 
     /**

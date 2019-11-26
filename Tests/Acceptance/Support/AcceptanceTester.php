@@ -130,6 +130,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField('tx_login_login[password]', $password);
         $this->uncheckOption('tx_login_login[remember]', 0);
 
-        $this->click('Login');
+        $this->click('#login-button');
     }
 }

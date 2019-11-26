@@ -26,7 +26,6 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use TYPO3\CMS\Core\Http\ServerRequest;
 use LMS\Login\Domain\Validator\Login\AttemptLimitNotReachedValidator;
 
 /**
@@ -39,7 +38,7 @@ class AttemptLimitNotReachedValidatorTest extends \LMS\Login\Tests\Functional\Ba
      */
     public function error_thrown_when_too_many_attempts(): void
     {
-        $GLOBALS['TYPO3_REQUEST'] = new ServerRequest(null, null, '', [], ['REMOTE_ADDR' => '127.0.0.1']);
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
         $validator = new AttemptLimitNotReachedValidator();
 

@@ -26,7 +26,6 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use TYPO3\CMS\Core\Http\ServerRequest;
 use LMS\Login\Domain\Validator\Login\UsernameValidator;
 
 /**
@@ -41,11 +40,7 @@ class UsernameValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         $username = 'invalid';
 
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
-            'tx_login_login' => [
-                'username' => $username
-            ]
-        ]);
+        $_POST['tx_login_login'] = ['username' => $username];
 
         $validator = new UsernameValidator();
 
@@ -59,11 +54,7 @@ class UsernameValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         $username = 'user';
 
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
-            'tx_login_login' => [
-                'username' => $username
-            ]
-        ]);
+        $_POST['tx_login_login'] = ['username' => $username];
 
         $validator = new UsernameValidator();
 

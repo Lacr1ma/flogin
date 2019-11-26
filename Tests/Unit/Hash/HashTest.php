@@ -76,7 +76,7 @@ class HashTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
         $encryptedPassword = Hash::encryptPassword($plainPassword);
 
         $this->assertTrue(
-            Hash::getHashFactory()->checkPassword($plainPassword, $encryptedPassword)
+            Hash::checkPassword($plainPassword, $encryptedPassword)
         );
     }
 

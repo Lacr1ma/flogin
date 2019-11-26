@@ -26,7 +26,6 @@ namespace LMS\Login\Tests\Functional\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use TYPO3\CMS\Core\Http\ServerRequest;
 use LMS\Login\Service\MagicLinkAuthenticationService as AuthService;
 
 /**
@@ -44,13 +43,11 @@ class MagicLinkAuthenticationServiceTest extends \TYPO3\TestingFramework\Core\Fu
      */
     public function simulation_allow(): void
     {
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withQueryParams([
-            'tx_login_login' => [
-                'request' => [
-                    'token' => 'valid'
-                ]
-            ]
-        ]);
+        $request = [
+            'token' => 'valid'
+        ];
+
+        $_POST['tx_login_login'] = compact('request');
 
         $this->assertSame(
             AuthService::STATUS_AUTHENTICATION_SUCCESS,
@@ -63,8 +60,6 @@ class MagicLinkAuthenticationServiceTest extends \TYPO3\TestingFramework\Core\Fu
      */
     public function simulation_continue(): void
     {
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest());
-
         $this->assertSame(
             AuthService::STATUS_AUTHENTICATION_CONTINUE,
             (new AuthService())->authUser([])

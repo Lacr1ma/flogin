@@ -48,14 +48,7 @@ class SessionManagerTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     {
         parent::setUp();
 
-//        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml');
-//        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml');
-//        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml');
         $this->importDataSet(__DIR__ . '/../../Fixtures/Acceptance/fe_users.xml');
-//        $this->importDataSet(__DIR__ . '/../../Fixtures/Acceptance/fe_groups.xml');
-//        $this->importDataSet(__DIR__ . '/../../Fixtures/Acceptance/pages.xml');
-//        $this->importDataSet(__DIR__ . '/../../Fixtures/Acceptance/sys_template.xml');
-//        $this->importDataSet(__DIR__ . '/../../Fixtures/Acceptance/tt_content.xml');
     }
 
     /**
@@ -75,6 +68,8 @@ class SessionManagerTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     }
 
     /**
+     * EidUtility is deprecated, but for now we can accept that
+     *
      * @test
      */
     public function fe_session_can_be_terminated(): void

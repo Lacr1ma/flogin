@@ -33,7 +33,9 @@ use LMS\Login\Support\Domain\Property\IsOnline;
  */
 class IsOnlineTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var IsOnline */
+    /**
+     * @var IsOnline
+     */
     protected $trait;
 
     /**

@@ -34,7 +34,9 @@ use LMS\Login\Support\Domain\Property\Expirable;
  */
 class ExpirableTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var Expirable */
+    /**
+     * @var Expirable
+     */
     protected $trait;
 
     /**

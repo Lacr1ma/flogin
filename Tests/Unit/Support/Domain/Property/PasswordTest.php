@@ -33,7 +33,9 @@ use LMS\Login\Support\Domain\Property\Password as ContainsPassword;
  */
 class PasswordTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var ContainsPassword */
+    /**
+     * @var ContainsPassword
+     */
     protected $trait;
 
     /**

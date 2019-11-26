@@ -26,7 +26,6 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use TYPO3\CMS\Core\Http\ServerRequest;
 use LMS\Login\Domain\Validator\Login\UserNotLockedValidator;
 
 /**
@@ -96,11 +95,6 @@ class UserNotLockedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
      */
     private function initRequest(string $username, string $password): void
     {
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withParsedBody([
-            'tx_login_login' => [
-                'username' => $username,
-                'password' => $password
-            ]
-        ]);
+        $_POST['tx_login_login'] = compact('username', 'password');
     }
 }

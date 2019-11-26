@@ -33,7 +33,9 @@ use LMS\Login\Support\Domain\Action\User\Lockable;
  */
 class LockableTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
 {
-    /** @var Lockable */
+    /**
+     * @var Lockable
+     */
     protected $trait;
 
     /**

@@ -38,7 +38,7 @@ class DeceiverLoginCest
      */
     public function login_and_password_required(AcceptanceTester $I)
     {
-        $I->wantTo('I see error messages when I am trying to sing in with invalid credentials.');
+        $I->wantTo('I see the error messages when I am trying to login with invalid credentials.');
 
         $username = $password = bin2hex(random_bytes(5));
 
