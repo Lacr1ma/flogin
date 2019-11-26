@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Service;
+namespace LMS\Login\Slot\Action\Reset\Requested;
 
 /* * *************************************************************
  *
@@ -26,43 +26,21 @@ namespace LMS\Login\Tests\Functional\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Service\MagicLinkAuthenticationService as AuthService;
+use LMS\Login\Domain\Model\{Resets, Request\ResetPasswordRequest};
 
 /**
- * @author Borulko Sergey <borulkosergey@icloud.com>
+ * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkAuthenticationServiceTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class CreateLink
 {
     /**
-     * @var array
+     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
-
-    /**
-     * @test
-     */
-    public function simulation_allow(): void
+    public function execute(ResetPasswordRequest $request): void
     {
-        $request = [
-            'token' => 'valid'
-        ];
-
-        $_GET['tx_login_login'] = compact('request');
-
-        $this->assertSame(
-            AuthService::STATUS_AUTHENTICATION_SUCCESS,
-            (new AuthService())->authUser([])
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function simulation_continue(): void
-    {
-        $this->assertSame(
-            AuthService::STATUS_AUTHENTICATION_CONTINUE,
-            (new AuthService())->authUser([])
-        );
+        Resets::create([
+            'token' => $request->getToken(),
+            'user' => $request->getUser()->getUid()
+        ]);
     }
 }

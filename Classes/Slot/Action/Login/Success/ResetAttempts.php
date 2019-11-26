@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\MagicLink;
+namespace LMS\Login\Slot\Action\Login\Success;
 
 /* * *************************************************************
  *
@@ -26,33 +26,20 @@ namespace LMS\Login\Slot\Action\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Link;
-use LMS\Login\Support\Redirection\UserRouter;
-use LMS\Login\Domain\Model\Request\MagicLinkRequest;
-use LMS\Login\Slot\Notification\MagicLinkNotification;
+use LMS\Login\Support\ThrottlesLogins;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class LinkRequested
+class ResetAttempts
 {
+    use ThrottlesLogins;
+
     /**
-     * Magic link request detected.
-     * Provide any actions to send the link here
-     *
-     * @psalm-suppress InternalMethod
-     *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
+     * Successful login attempt detected, clear all previous fails
      */
-    public function execute(MagicLinkRequest $request): void
+    public function execute(): void
     {
-        Link::create([
-            'token' => $request->getToken(),
-            'user' => $request->getUser()->getUid()
-        ]);
-
-        MagicLinkNotification::make()->send($request);
-
-        UserRouter::redirectToAfterMagicLinkNotificationSentPage();
+        $this->clearLoginAttempts();
     }
 }

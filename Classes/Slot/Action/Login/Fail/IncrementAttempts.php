@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login;
+namespace LMS\Login\Slot\Action\Login\Fail;
 
 /* * *************************************************************
  *
@@ -26,22 +26,20 @@ namespace LMS\Login\Slot\Action\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Support\Redirection\UserRouter;
+use LMS\Login\Support\ThrottlesLogins;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class Logout
+class IncrementAttempts
 {
+    use ThrottlesLogins;
+
     /**
-     *  Logout detected, handle all actions inside
-     *
-     * @param \LMS\Login\Domain\Model\User $user
-     * @param bool                         $remember
+     * Wrong login attempt detected, increment attempts
      */
-    public function execute(User $user, bool $remember): void
+    public function execute(): void
     {
-        UserRouter::redirectToAfterLogoutPage();
+        $this->incrementLoginAttempts();
     }
 }

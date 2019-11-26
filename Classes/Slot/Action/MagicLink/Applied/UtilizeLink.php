@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\MagicLink;
+namespace LMS\Login\Slot\Action\MagicLink\Applied;
 
 /* * *************************************************************
  *
@@ -29,12 +29,9 @@ namespace LMS\Login\Slot\Action\MagicLink;
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class LinkApplied
+class UtilizeLink
 {
     /**
-     * Magic Link has been used and user has been logged in.
-     * Any other actions could be provided here
-     *
      * @param string $token
      */
     public function execute(string $token): void

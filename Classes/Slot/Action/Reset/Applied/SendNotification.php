@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login;
+namespace LMS\Login\Slot\Action\Reset\Applied;
 
 /* * *************************************************************
  *
@@ -26,22 +26,23 @@ namespace LMS\Login\Slot\Action\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\ThrottlesLogins;
+use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Login\Slot\Notification\PasswordChangedNotification;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class FailedAttempt
+class SendNotification
 {
-    use ThrottlesLogins;
-
     /**
-     * Wrong login attempt detected, handle all needed action inside
+     * Password has been update, notify user
      *
-     * @param string $username
+     * @psalm-suppress InternalMethod
+     *
+     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
-    public function execute(string $username): void
+    public function execute(ResetPasswordRequest $request): void
     {
-        $this->incrementLoginAttempts();
+        PasswordChangedNotification::make()->send($request->getUser());
     }
 }

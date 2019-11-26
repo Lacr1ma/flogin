@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Reset;
+namespace LMS\Login\Slot\Action\MagicLink\Requested;
 
 /* * *************************************************************
  *
@@ -26,33 +26,18 @@ namespace LMS\Login\Slot\Action\Reset;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
 use LMS\Login\Support\Redirection\UserRouter;
-use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
-use LMS\Login\Slot\Notification\ResetPasswordNotification;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class LinkRequested
+class Redirect
 {
     /**
-     * Password Reset Notification has been requested by user.
-     * Work on actions associated with that here
-     *
-     * @psalm-suppress InternalMethod
-     *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
+     * Redirect user to a proper page after magic link has been sent
      */
-    public function execute(ResetPasswordRequest $request): void
+    public function execute(): void
     {
-        Resets::create([
-            'token' => $request->getToken(),
-            'user' => $request->getUser()->getUid()
-        ]);
-
-        ResetPasswordNotification::make()->send($request);
-
-        UserRouter::redirectToAfterForgotPasswordNotificationSentPage();
+        UserRouter::redirectToAfterMagicLinkNotificationSentPage();
     }
 }

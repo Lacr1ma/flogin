@@ -99,28 +99,70 @@ $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TY
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'sendResetLinkRequest',
-    \LMS\Login\Slot\Action\Reset\LinkRequested::class,
+    \LMS\Login\Slot\Action\Reset\Requested\CreateLink::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'sendResetLinkRequest',
+    \LMS\Login\Slot\Action\Reset\Requested\SendNotification::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'sendResetLinkRequest',
+    \LMS\Login\Slot\Action\Reset\Requested\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'passwordHasBeenReset',
-    \LMS\Login\Slot\Action\Reset\PasswordUpdated::class,
+    \LMS\Login\Slot\Action\Reset\Applied\Logoff::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'passwordHasBeenReset',
+    \LMS\Login\Slot\Action\Reset\Applied\SendNotification::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'passwordHasBeenReset',
+    \LMS\Login\Slot\Action\Reset\Applied\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'sendMagicLinkRequest',
-    \LMS\Login\Slot\Action\MagicLink\LinkRequested::class,
+    \LMS\Login\Slot\Action\MagicLink\Requested\CreateLink::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'sendMagicLinkRequest',
+    \LMS\Login\Slot\Action\MagicLink\Requested\SendNotification::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'sendMagicLinkRequest',
+    \LMS\Login\Slot\Action\MagicLink\Requested\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'MagicLinkApplied',
-    \LMS\Login\Slot\Action\MagicLink\LinkApplied::class,
+    \LMS\Login\Slot\Action\MagicLink\Applied\UtilizeLink::class,
     'execute'
 );
 
@@ -134,9 +176,17 @@ $signalSlotDispatcher->connect(
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'userUnlocked',
-    \LMS\Login\Slot\Action\UnlockedAction::class,
+    \LMS\Login\Slot\Action\Login\Success\ResetAttempts::class,
     'execute'
 );
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'userUnlocked',
+    \LMS\Login\Slot\Action\Unlock\Redirect::class,
+    'execute'
+);
+
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
@@ -148,20 +198,34 @@ $signalSlotDispatcher->connect(
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginAttemptFailed',
-    \LMS\Login\Slot\Action\Login\FailedAttempt::class,
+    \LMS\Login\Slot\Action\Login\Fail\IncrementAttempts::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginSuccess',
-    \LMS\Login\Slot\Action\Login\LoginSucceed::class,
+    \LMS\Login\Slot\Action\Login\Success\ResetAttempts::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'loginSuccess',
+    \LMS\Login\Slot\Action\Login\Success\SendNotification::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'loginSuccess',
+    \LMS\Login\Slot\Action\Login\Success\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'logoutSuccess',
-    \LMS\Login\Slot\Action\Login\Logout::class,
+    \LMS\Login\Slot\Action\Logout\Redirect::class,
     'execute'
 );

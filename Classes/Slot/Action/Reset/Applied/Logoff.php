@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action;
+namespace LMS\Login\Slot\Action\Reset\Applied;
 
 /* * *************************************************************
  *
@@ -26,25 +26,23 @@ namespace LMS\Login\Slot\Action;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Support\{ThrottlesLogins, Redirection\UserRouter};
+use LMS\Login\Manager\SessionManager;
+use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class UnlockedAction
+class Logoff
 {
-    use ThrottlesLogins;
-
     /**
-     * User has been unlocked after lockout. Perform next actions here
+     * Password has been update, clear all existing sessions
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @psalm-suppress InternalMethod
+     *
+     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
-    public function execute(User $user): void
+    public function execute(ResetPasswordRequest $request): void
     {
-        $this->clearLoginAttempts();
-
-        UserRouter::redirectToUnlockedPage();
+        SessionManager::terminateFrontendSession($request->getUser()->getUid());
     }
 }

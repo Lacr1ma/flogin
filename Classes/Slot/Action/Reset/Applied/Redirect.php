@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login;
+namespace LMS\Login\Slot\Action\Reset\Applied;
 
 /* * *************************************************************
  *
@@ -26,29 +26,18 @@ namespace LMS\Login\Slot\Action\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Slot\Notification\LoginNotification;
-use LMS\Login\Support\{ThrottlesLogins, Redirection\UserRouter};
+use LMS\Login\Support\Redirection\UserRouter;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class LoginSucceed
+class Redirect
 {
-    use ThrottlesLogins;
-
     /**
-     * Successful login attempt detected, handle all actions inside
-     *
-     * @param \LMS\Login\Domain\Model\User $user
-     * @param bool                         $remember
+     * Password has been update, redirect to proper page
      */
-    public function execute(User $user, bool $remember): void
+    public function execute(): void
     {
-        LoginNotification::make()->send($user);
-
-        $this->clearLoginAttempts();
-
-        UserRouter::redirectToAfterLoginPage();
+        UserRouter::redirectToAfterResetPasswordFormSubmittedPage();
     }
 }
