@@ -34,6 +34,8 @@ use LMS\Login\Domain\Model\{Resets, Request\ResetPasswordRequest};
 class CreateLink
 {
     /**
+     * @psalm-suppress InternalMethod
+     *
      * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function execute(ResetPasswordRequest $request): void

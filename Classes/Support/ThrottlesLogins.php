@@ -71,7 +71,7 @@ trait ThrottlesLogins
      */
     protected function throttleKey(): string
     {
-        return md5(Request::createFromGlobals()->getClientIp());
+        return md5(Request::createFromGlobals()->getClientIp() ?? '');
     }
 
     /**

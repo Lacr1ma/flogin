@@ -37,6 +37,8 @@ class CreateLink
     /**
      * Create a fresh magic link
      *
+     * @psalm-suppress InternalMethod
+     *
      * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
      */
     public function execute(MagicLinkRequest $request): void
