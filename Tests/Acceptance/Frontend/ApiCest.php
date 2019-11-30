@@ -51,7 +51,7 @@ class ApiCest
      */
     public function proper_hash_is_required_for_account_creation(AcceptanceTester $I)
     {
-        $I->wantTo('When I want to be redirected to error page, when I try to create temporary using invalid link.');
+        $I->wantTo('I want to be redirected to the error page, when I try to create temporary user using invalid link.');
 
         $I->amOnPage('/api/user/one-time-account/invalid-hash');
 
