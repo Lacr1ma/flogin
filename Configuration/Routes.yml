@@ -2,6 +2,9 @@ login_current-user:
   path:         api/user/current
   controller:   LMS\Login\Controller\UserApiController::current
   methods:      [GET]
+  options:
+    middleware:
+      - auth
 
 login_authenticated:
   path:         api/user/authenticated
@@ -14,6 +17,9 @@ login_simulate:
   methods:      [GET]
   requirements:
     username:   "[^/]+"
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\VerifyAdminBackendSession
 
 login_terminate:
   path:         api/user/terminate/{user}
@@ -21,6 +27,9 @@ login_terminate:
   methods:      [GET]
   requirements:
     user:       \d+
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\VerifyAdminBackendSession
 
 login_one-time-account:
   path:         api/user/one-time-account/{hash}
@@ -28,3 +37,6 @@ login_one-time-account:
   methods:      [GET]
   requirements:
     hash:       "[^/]+"
+  options:
+    middleware:
+      - LMS\Login\Middleware\Api\VerifyAccountCreationHash
