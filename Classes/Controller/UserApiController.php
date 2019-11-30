@@ -49,8 +49,6 @@ class UserApiController extends Base\ApiController
      */
     public function currentAction(): void
     {
-        $this->checkAccess();
-
         $this->showAction(self::currentUid());
     }
 
@@ -69,7 +67,7 @@ class UserApiController extends Base\ApiController
      */
     public function simulateLoginAction(string $username): void
     {
-        $this->view->assign('value', [$this->simulateLoginFor($username)]);
+        $this->simulateLoginFor($username);
     }
 
     /**
@@ -79,7 +77,7 @@ class UserApiController extends Base\ApiController
      */
     public function terminateFrontendSessionAction(int $user): void
     {
-        $this->view->assign('value', [$this->terminateSessionFor($user)]);
+        $this->terminateSessionFor($user);
     }
 
     /**
