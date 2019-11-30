@@ -26,10 +26,8 @@ namespace LMS\Login\Support\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use TYPO3\CMS\Core\Registry;
-use LMS3\Support\ObjectManageable;
-use LMS\Login\{Domain\Model\User, Guard\SessionGuard, Hash\Hash};
-use LMS\Login\Support\{Redirection\UserRouter, Helper\OneTimeAccount};
+use LMS3\Support\Extbase\Registry;
+use LMS\Login\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard, Hash\Hash};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -45,9 +43,7 @@ trait CreatesOneTimeAccount
      */
     public function createTemporaryFrontendAccount(string $hash): User
     {
-        if (!$this->isActionPermitted($hash)) {
-            UserRouter::redirectToOneTimeAccountInvalidHash();
-        }
+        Registry::remove('tx_login_hash', $hash);
 
         return User::create(
             OneTimeAccount::make()->getCombinedProperties($hash)
@@ -66,31 +62,13 @@ trait CreatesOneTimeAccount
     }
 
     /**
-     * Check if request can be handled
-     *
-     * @param string $hash
-     *
-     * @return bool
-     */
-    protected function isActionPermitted(string $hash): bool
-    {
-        $registry = ObjectManageable::createObject(Registry::class);
-
-        if ($status = $registry->get('tx_login_hash', $hash, false)) {
-            $registry->remove('tx_login_hash', $hash);
-        }
-
-        return $status;
-    }
-
-    /**
      * @return string
      */
     protected function createOneTimeHash(): string
     {
         $value = Hash::randomString();
 
-        ObjectManageable::createObject(Registry::class)->set('tx_login_hash', $value, true);
+        Registry::set('tx_login_hash', $value, true);
 
         return $value;
     }
