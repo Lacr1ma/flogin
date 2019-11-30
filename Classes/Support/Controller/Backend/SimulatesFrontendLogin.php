@@ -37,65 +37,21 @@ trait SimulatesFrontendLogin
      * Signs up the requested user and connects the session to the currently logged in BE User.
      *
      * @param string $username
-     *
-     * @return string
      */
-    public function simulateLoginFor(string $username): string
+    public function simulateLoginFor(string $username): void
     {
-        if ($this->isBackendUserAdmin()) {
-            // We don't allow to perform the login request by simple editors,
-            // or users who don't have an active backend session
-            $this->login($username);
-            return 'OK';
-        }
+        $_POST['be_user'] = $GLOBALS['BE_USER']->user;
 
-        return 'Denied';
+        SessionGuard::make()->startCoreLogin($username, $_POST['be_user']['ses_id'], false);
     }
 
     /**
      * Finish all active sessions associated to passed user
      *
      * @param int $user
-     *
-     * @return string
      */
-    public function terminateSessionFor(int $user): string
+    public function terminateSessionFor(int $user): void
     {
-        if ($this->isBackendUserAdmin()) {
-            SessionManager::terminateFrontendSession($user);
-            return 'OK';
-        }
-
-        return 'Denied';
-    }
-
-    /*
-     * Starts the login process for the passed user.
-     */
-    private function login(string $username): void
-    {
-        $_POST['be_user'] = $this->backendUser();
-
-        SessionGuard::make()->startCoreLogin($username, $_POST['be_user']['ses_id'], false);
-    }
-
-    /**
-     * Tells us weather the associated with the current request BE User is an admin
-     *
-     * @return bool
-     */
-    private function isBackendUserAdmin(): bool
-    {
-        return (bool)$this->backendUser()['admin'] ?: false;
-    }
-
-    /**
-     * Retrieve the currently logged in BE User who is associated with the request
-     *
-     * @return array
-     */
-    private function backendUser(): array
-    {
-        return $GLOBALS['BE_USER']->user ?: [];
+        SessionManager::terminateFrontendSession($user);
     }
 }
