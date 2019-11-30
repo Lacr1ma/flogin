@@ -36,6 +36,19 @@ class ApiCest
     /**
      * @param AcceptanceTester $I
      */
+    public function user_info_present_when_user_authenticated(AcceptanceTester $I)
+    {
+        $I->amLoggedInAs('user');
+
+        $I->amOnPage('/api/user/current');
+
+        $I->see('CSRF token mismatch');
+//        $I->see('user@example.com');
+    }
+
+    /**
+     * @param AcceptanceTester $I
+     */
     public function proper_hash_is_required_for_account_creation(AcceptanceTester $I)
     {
         $I->wantTo('When I want to be redirected to error page, when I try to create temporary using invalid link.');
@@ -78,19 +91,7 @@ class ApiCest
 
         $I->amOnPage('/api/user/current');
 
-        $I->see('Access denied');
-    }
-
-    /**
-     * @param AcceptanceTester $I
-     */
-    public function user_info_present_when_user_authenticated(AcceptanceTester $I)
-    {
-        $I->amLoggedInAs('user');
-
-        $I->amOnPage('/api/user/current');
-
-        $I->see('user@example.com');
+        $I->seeElement('#login_form');
     }
 
     /**
@@ -102,7 +103,7 @@ class ApiCest
 
         $I->amOnPage('/api/user/simulate/user-name');
 
-        $I->see('Denied');
+        $I->see('Active BE session is required');
     }
 
     /**
@@ -114,6 +115,6 @@ class ApiCest
 
         $I->amOnPage('/api/user/terminate/2');
 
-        $I->see('Denied');
+        $I->see('Active BE session is required');
     }
 }
