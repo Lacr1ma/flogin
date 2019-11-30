@@ -135,16 +135,6 @@ class UserRouter
     }
 
     /**
-     * Redirect user to <whenOneTimeAccountHashNotFoundPage>
-     */
-    public static function redirectToOneTimeAccountInvalidHash(): void
-    {
-        $pid = (int)self::redirectSettings()['error.']['whenOneTimeAccountHashNotFoundPage'];
-
-        Redirect::toPage($pid);
-    }
-
-    /**
      * Retrieve TypoScript settings related to redirect area
      *
      * @return array
