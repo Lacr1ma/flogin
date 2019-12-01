@@ -2,7 +2,7 @@
     "repositories": [
         {"type": "composer", "url": "https://composer.typo3.org/"},
         {"type": "git", "url": "https://github.com/Lacr1ma/login.git"},
-        {"type": "git", "url": "https://gitlab.com/borulko.sergey/support.git"},
+        {"type": "git", "url": "https://github.com/Lacr1ma/facade.git"},
         {"type": "git", "url": "https://gitlab.com/borulko.sergey/routes.git"},
         {"type": "git", "url": "https://github.com/benjaminkott/site-introduction.git"}
     ],
@@ -14,7 +14,7 @@
 
         "lms/login": "dev-master",
         "lms/routes": "dev-master",
-        "lms3/support": "dev-master"
+        "lms/facade": "dev-master"
     },
     "require-dev": {
 		"vimeo/psalm": "^3",
