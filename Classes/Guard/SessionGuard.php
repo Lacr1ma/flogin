@@ -26,7 +26,7 @@ namespace LMS\Login\Guard;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\StaticCreator;
+use LMS\Facade\StaticCreator;
 use LMS\Login\{Domain\Model\User, Domain\Repository\UserRepository, Event\SessionEvent};
 
 /**

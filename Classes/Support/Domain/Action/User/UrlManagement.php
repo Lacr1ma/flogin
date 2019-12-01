@@ -26,8 +26,8 @@ namespace LMS\Login\Support\Domain\Action\User;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
 use LMS\Login\Support\TypoScript;
-use LMS3\Support\Extbase\Redirect;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 /**

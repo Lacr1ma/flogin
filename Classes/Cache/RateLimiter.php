@@ -28,7 +28,7 @@ namespace LMS\Login\Cache;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
 use LMS\Login\Support\InteractsWithTime;
-use LMS3\Support\{Extbase\ExtensionHelper, ObjectManageable, StaticCreator};
+use LMS\Facade\{Extbase\ExtensionHelper, ObjectManageable, StaticCreator};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor

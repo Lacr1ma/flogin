@@ -27,7 +27,7 @@ namespace LMS\Login\Domain\Repository;
  * ************************************************************* */
 
 use LMS\Login\Support\TypoScript;
-use LMS3\Support\Repository\StaticCreation;
+use LMS\Facade\Repository\StaticCreation;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -43,7 +43,7 @@ class UserGroupRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendU
     public function initializeObject(): void
     {
         $settings = $this->createQuery()->getQuerySettings()->setStoragePageIds([
-            TypoScript::getStoragePid('')
+            TypoScript::getStoragePid()
         ]);
 
         $this->setDefaultQuerySettings($settings);

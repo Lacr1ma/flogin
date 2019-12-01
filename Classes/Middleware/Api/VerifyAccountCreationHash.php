@@ -26,8 +26,8 @@ namespace LMS\Login\Middleware\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Registry;
 use LMS\Login\Support\TypoScript;
-use LMS3\Support\Extbase\Registry;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 
 /**

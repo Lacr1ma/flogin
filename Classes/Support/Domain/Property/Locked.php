@@ -28,7 +28,7 @@ namespace LMS\Login\Support\Domain\Property;
 
 use Carbon\Carbon;
 use LMS\Login\Support\TypoScript;
-use LMS3\Support\Model\Property\UpdateDate;
+use LMS\Facade\Model\Property\UpdateDate;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

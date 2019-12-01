@@ -26,7 +26,7 @@ namespace LMS\Login\Support\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Extbase\Registry;
+use LMS\Facade\Extbase\Registry;
 use LMS\Login\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard, Hash\Hash};
 
 /**

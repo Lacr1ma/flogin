@@ -26,7 +26,7 @@ namespace LMS\Login\Hash;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\ObjectManageable;
+use LMS\Facade\ObjectManageable;
 use TYPO3\CMS\Core\Crypto\{Random, PasswordHashing\PasswordHashFactory, PasswordHashing\PasswordHashInterface};
 
 /**

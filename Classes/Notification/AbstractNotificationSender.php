@@ -29,7 +29,7 @@ namespace LMS\Login\Notification;
 use LMS\Login\Support\TypoScript;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use LMS3\Support\{ObjectManageable, StaticCreator, Extbase\View\HtmlView};
+use LMS\Facade\{ObjectManageable, StaticCreator, Extbase\View\HtmlView};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

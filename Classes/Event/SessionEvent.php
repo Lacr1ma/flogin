@@ -27,7 +27,7 @@ namespace LMS\Login\Event;
  * ************************************************************* */
 
 use LMS\Login\Domain\Model\User;
-use LMS3\Support\Extbase\Dispatcher;
+use LMS\Facade\Extbase\Dispatcher;
 use LMS\Login\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
 
 /**
@@ -35,8 +35,6 @@ use LMS\Login\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
  */
 trait SessionEvent
 {
-    use Dispatcher;
-
     /**
      * @param \LMS\Login\Domain\Model\User $user
      * @param string                       $plainPassword
@@ -46,7 +44,7 @@ trait SessionEvent
     {
         $args = [$user, $plainPassword, $remember];
 
-        $this->emit(SessionEvent::class, 'loginAttempt', $args);
+        Dispatcher::emit(SessionEvent::class, 'loginAttempt', $args);
     }
 
     /**
@@ -54,7 +52,7 @@ trait SessionEvent
      */
     public function fireLoginAttemptFailedEvent(string $username): void
     {
-        $this->emit(SessionEvent::class, 'loginAttemptFailed', [$username]);
+        Dispatcher::emit(SessionEvent::class, 'loginAttemptFailed', [$username]);
     }
 
     /**
@@ -62,7 +60,7 @@ trait SessionEvent
      */
     public function fireLoginFailedInCoreEvent(User $user): void
     {
-        $this->emit(SessionEvent::class, 'loginAttemptFailedInCore', [$user]);
+        Dispatcher::emit(SessionEvent::class, 'loginAttemptFailedInCore', [$user]);
     }
 
     /**
@@ -71,7 +69,7 @@ trait SessionEvent
      */
     public function fireLoginSucceededEvent(User $user, bool $remember): void
     {
-        $this->emit(SessionEvent::class, 'loginSuccess', [$user, $remember]);
+        Dispatcher::emit(SessionEvent::class, 'loginSuccess', [$user, $remember]);
     }
 
     /**
@@ -79,7 +77,7 @@ trait SessionEvent
      */
     public function fireLogoutSucceededEvent(User $user): void
     {
-        $this->emit(SessionEvent::class, 'logoutSuccess', [$user]);
+        Dispatcher::emit(SessionEvent::class, 'logoutSuccess', [$user]);
     }
 
     /**
@@ -87,7 +85,7 @@ trait SessionEvent
      */
     public function fireLoginLockoutEvent(User $user): void
     {
-        $this->emit(SessionEvent::class, 'lockout', [$user]);
+        Dispatcher::emit(SessionEvent::class, 'lockout', [$user]);
     }
 
     /**
@@ -95,7 +93,7 @@ trait SessionEvent
      */
     public function firePasswordResetEvent(ResetPasswordRequest $request): void
     {
-        $this->emit(SessionEvent::class, 'passwordHasBeenReset', [$request]);
+        Dispatcher::emit(SessionEvent::class, 'passwordHasBeenReset', [$request]);
     }
 
     /**
@@ -103,7 +101,7 @@ trait SessionEvent
      */
     public function fireLoginUnlockedEvent(User $user): void
     {
-        $this->emit(SessionEvent::class, 'userUnlocked', [$user]);
+        Dispatcher::emit(SessionEvent::class, 'userUnlocked', [$user]);
     }
 
     /**
@@ -111,7 +109,7 @@ trait SessionEvent
      */
     public function fireSendResetLinkRequestEvent(ResetPasswordRequest $request): void
     {
-        $this->emit(SessionEvent::class, 'sendResetLinkRequest', [$request]);
+        Dispatcher::emit(SessionEvent::class, 'sendResetLinkRequest', [$request]);
     }
 
     /**
@@ -119,7 +117,7 @@ trait SessionEvent
      */
     public function fireSendMagicLinkEvent(MagicLinkRequest $request): void
     {
-        $this->emit(SessionEvent::class, 'sendMagicLinkRequest', [$request]);
+        Dispatcher::emit(SessionEvent::class, 'sendMagicLinkRequest', [$request]);
     }
 
     /**
@@ -127,6 +125,6 @@ trait SessionEvent
      */
     public function fireMagicLinkAppliedEvent(string $token): void
     {
-        $this->emit(SessionEvent::class, 'MagicLinkApplied', [$token]);
+        Dispatcher::emit(SessionEvent::class, 'MagicLinkApplied', [$token]);
     }
 }

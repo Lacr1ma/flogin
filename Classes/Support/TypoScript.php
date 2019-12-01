@@ -26,14 +26,14 @@ namespace LMS\Login\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Extbase\{ExtensionHelper, TypoScriptConfiguration};
+use LMS\Facade\Extbase\{ExtensionHelper, TypoScriptConfiguration};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class TypoScript
 {
-    use TypoScriptConfiguration, ExtensionHelper;
+    use ExtensionHelper;
 
     /**
      * We know that we use this helper only inside <login> extension, so we just overwrite
@@ -44,6 +44,36 @@ class TypoScript
     public static function retrieveFullTypoScriptConfigurationFor(string $extensionKey): array
     {
         return TypoScriptConfiguration::retrieveFullTypoScriptConfigurationFor(
+            self::extensionTypoScriptKey()
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getStoragePid(): int
+    {
+        return TypoScriptConfiguration::getStoragePid(
+            self::extensionTypoScriptKey()
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getSettings(): array
+    {
+        return TypoScriptConfiguration::getSettings(
+            self::extensionTypoScriptKey()
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getView(): array
+    {
+        return TypoScriptConfiguration::getView(
             self::extensionTypoScriptKey()
         );
     }

@@ -26,15 +26,13 @@ namespace LMS\Login\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Extbase\QueryBuilder;
+use LMS\Facade\Extbase\QueryBuilder;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 trait IsOnline
 {
-    use QueryBuilder;
-
     /**
      * @psalm-suppress PossiblyInvalidMethodCall
      * @psalm-suppress InternalMethod
@@ -42,7 +40,7 @@ trait IsOnline
      */
     public function getOnline(): bool
     {
-        $builder = $this->getQueryBuilderFor('fe_sessions');
+        $builder = QueryBuilder::getQueryBuilderFor('fe_sessions');
 
         return (bool)$builder
             ->count('ses_userid')

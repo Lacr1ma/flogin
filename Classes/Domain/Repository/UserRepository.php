@@ -28,7 +28,7 @@ namespace LMS\Login\Domain\Repository;
 
 use Tightenco\Collect\Support\Collection;
 use LMS\Login\{Domain\Model\User, Support\Repository\Demandable};
-use LMS3\Support\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
+use LMS\Facade\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -59,7 +59,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      */
     public function current(): ?User
     {
-        return $this->findByUid(\LMS3\Support\Extbase\User::currentUid());
+        return $this->findByUid(\LMS\Facade\Extbase\User::currentUid());
     }
 
     /**

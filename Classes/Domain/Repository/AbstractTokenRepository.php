@@ -32,7 +32,7 @@ use Tightenco\Collect\Support\Collection;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class AbstractTokenRepository extends \LMS3\Support\Repository\AbstractRepository
+abstract class AbstractTokenRepository extends \LMS\Facade\Repository\AbstractRepository
 {
     /**
      * Find link related to requested token

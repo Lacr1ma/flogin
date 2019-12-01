@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Domain\Property;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS3\Support\Model\Property\CreationDate;
+use LMS\Facade\Model\Property\CreationDate;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

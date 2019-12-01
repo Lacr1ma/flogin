@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Extbase\User;
+use LMS\Facade\Extbase\User;
 use LMS\Login\Domain\Repository\UserRepository;
 use LMS\Login\Domain\Model\Request\MagicLinkRequest;
 use LMS\Login\Domain\Validator\MagicLink\NotAuthenticatedValidator;

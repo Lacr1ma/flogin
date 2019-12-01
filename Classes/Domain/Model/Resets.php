@@ -32,7 +32,7 @@ use LMS\Login\Support\Domain\Property\{Expirable, User, Token};
  * @psalm-suppress MissingConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class Resets extends \LMS3\Support\Model\AbstractModel
+class Resets extends \LMS\Facade\Model\AbstractModel
 {
     use Expirable, User, Token;
 

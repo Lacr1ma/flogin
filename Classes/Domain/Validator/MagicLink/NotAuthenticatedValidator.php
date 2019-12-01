@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Extbase\User;
+use LMS\Facade\Extbase\User\StateContext;
 use LMS\Login\Support\Redirection\UserRouter;
 
 /**
@@ -44,7 +44,7 @@ class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\DefaultValid
      */
     protected function isValid($loginRequest): void
     {
-        if (User::isNotLoggedIn()) {
+        if (StateContext::isNotLoggedIn()) {
             return;
         }
 

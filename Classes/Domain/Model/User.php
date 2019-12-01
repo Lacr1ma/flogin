@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS3\Support\Model\StorageActions;
+use LMS\Facade\Model\StorageActions;
 use LMS\Login\Support\Domain\Property\{Endtime, IsOnline};
 use LMS\Login\Support\Domain\Action\User\{UrlManagement, Lockable};
 

@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Persistence\RepositoryInterface;
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class ApiController extends \LMS3\Support\Controller\AbstractApiController
+abstract class ApiController extends \LMS\Facade\Controller\AbstractApiController
 {
     /**
      * @var string

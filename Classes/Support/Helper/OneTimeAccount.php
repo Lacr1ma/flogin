@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Helper;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS3\Support\StaticCreator;
+use LMS\Facade\StaticCreator;
 use LMS\Login\{Hash\Hash, Support\TypoScript};
 
 /**
