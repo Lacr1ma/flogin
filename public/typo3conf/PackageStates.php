@@ -119,12 +119,6 @@ return [
         'workspaces' => [
             'packagePath' => 'typo3/sysext/workspaces/',
         ],
-        'routes' => [
-            'packagePath' => 'typo3conf/ext/routes/',
-        ],
-        'support' => [
-            'packagePath' => 'typo3conf/ext/support/',
-        ],
         'bootstrap_package' => [
             'packagePath' => 'typo3conf/ext/bootstrap_package/',
         ],
@@ -133,6 +127,9 @@ return [
         ],
         'login' => [
             'packagePath' => 'typo3conf/ext/login/',
+        ],
+        'routes' => [
+            'packagePath' => 'typo3conf/ext/routes/',
         ],
     ],
     'version' => 5,

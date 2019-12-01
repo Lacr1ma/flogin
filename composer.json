@@ -7,12 +7,12 @@
     "name": "test/login",
     "description": "Testing sandbox for extensions",
     "license": "GPL-2.0-or-later",
-	"minimum-stability": "dev",
     "require": {
         "bk2k/introduction-website": "dev-master",
 
-        "lms/login": "dev-master",
-        "lms/routes": "dev-master"
+        "lms/routes": "dev-master",
+        "lms/facade": "dev-master",
+        "lms/login": "dev-master"
     },
     "require-dev": {
 		"vimeo/psalm": "^3",
