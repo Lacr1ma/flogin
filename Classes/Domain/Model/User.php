@@ -26,17 +26,15 @@ namespace LMS\Login\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Model\StorageActions;
-use LMS\Login\Support\Domain\Property\{Endtime, IsOnline};
 use LMS\Login\Support\Domain\Action\User\{UrlManagement, Lockable};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+class User extends \LMS\Facade\Model\AbstractUser
 {
-    use Lockable, IsOnline, Endtime, UrlManagement, StorageActions;
+    use Lockable, UrlManagement;
 
     /**
      * Create new Reset Password Request and process it

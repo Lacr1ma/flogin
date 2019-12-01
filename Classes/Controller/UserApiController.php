@@ -26,6 +26,7 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Login\Domain\Model\User;
 use LMS\Login\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
 
 /**
@@ -49,7 +50,7 @@ class UserApiController extends Base\ApiController
      */
     public function currentAction(): void
     {
-        $this->showAction(self::currentUid());
+        $this->showAction(User::currentUid());
     }
 
     /**
@@ -57,7 +58,7 @@ class UserApiController extends Base\ApiController
      */
     public function authenticatedAction(): void
     {
-        $this->view->assign('value', ['authenticated' => self::isLoggedIn()]);
+        $this->view->assign('value', ['authenticated' => User::isLoggedIn()]);
     }
 
     /**

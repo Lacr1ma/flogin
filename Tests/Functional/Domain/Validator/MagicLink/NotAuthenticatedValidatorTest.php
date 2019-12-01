@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\User;
+use LMS\Facade\Extbase\User\StateContext;
 use LMS\Login\Domain\Repository\UserRepository;
 use LMS\Login\Domain\Model\Request\MagicLinkRequest;
 use LMS\Login\Domain\Validator\MagicLink\NotAuthenticatedValidator;
@@ -41,7 +41,7 @@ class NotAuthenticatedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
      */
     public function error_thrown_when_user_already_authenticated(): void
     {
-        $double = \Mockery::mock('overload:' . User::class);
+        $double = \Mockery::mock('overload:' . StateContext::class);
         $double->shouldReceive('isNotLoggedIn')->andReturnUsing(function () {
             return false;
         });

@@ -37,6 +37,8 @@ trait CreatesOneTimeAccount
     /**
      * Create one time account based on TypoScript settings
      *
+     * @psalm-suppress MoreSpecificReturnType
+     *
      * @param string $hash
      *
      * @return \LMS\Login\Domain\Model\User
