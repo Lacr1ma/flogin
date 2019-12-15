@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Tightenco\Collect\Support\Collection;
+use LMS\Facade\Assist\Collection;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -50,7 +50,7 @@ abstract class AbstractTokenRepository extends \LMS\Facade\Repository\AbstractRe
     /**
      * Find all expired tokens in the system
      *
-     * @return \Tightenco\Collect\Support\Collection
+     * @return \LMS\Facade\Assist\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
     public function findExpired(): Collection

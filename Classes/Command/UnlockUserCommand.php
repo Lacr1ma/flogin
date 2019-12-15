@@ -26,7 +26,7 @@ namespace LMS\Login\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Tightenco\Collect\Support\Collection;
+use LMS\Facade\Assist\Collection;
 use LMS\Login\Domain\Repository\UserRepository;
 use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
 
@@ -58,7 +58,7 @@ class UnlockUserCommand extends \Symfony\Component\Console\Command\Command
     }
 
     /**
-     * @return \Tightenco\Collect\Support\Collection
+     * @return \LMS\Facade\Assist\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
     protected function getUsersForUnlocking(): Collection

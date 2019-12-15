@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Tightenco\Collect\Support\Collection;
+use LMS\Facade\Assist\Collection;
 use LMS\Login\{Domain\Model\User, Support\Repository\Demandable};
 use LMS\Facade\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
 
@@ -78,7 +78,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     /**
      * Retrieve all locked users
      *
-     * @return \Tightenco\Collect\Support\Collection
+     * @return \LMS\Facade\Assist\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
     public function findLocked(): Collection
