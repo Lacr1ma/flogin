@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\TypoScript;
+use LMS\Login\Support\{TypoScript, Redirection\UserRouter};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -48,6 +48,7 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
 
         $this->loadFixtures();
         $this->mockTypoScript();
+        $this->mockRedirect();
     }
 
     /**
@@ -60,6 +61,17 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
         $double->shouldReceive('getSettings')->andReturnUsing(function () {
             return $this->getTypoScriptArray();
         });
+    }
+
+    /**
+     *
+     */
+    protected function mockRedirect(): void
+    {
+        $double = \Mockery::mock('overload:' . UserRouter::class);
+
+        $double->shouldReceive('redirectToLockedPage')->andReturnNull();
+        $double->shouldReceive('redirectToAlreadyAuthenticatedPage')->andReturnNull();
     }
 
     /**

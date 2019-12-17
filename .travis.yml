@@ -5,6 +5,9 @@ php:
 
 sudo: true
 
+directories:
+  - $HOME/.composer/cache/files
+
 before_install:
   # Update docker
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -27,7 +30,7 @@ install:
   - ddev start
   - ddev import-db --src=./dump.sql
   - ddev import-files --src=./assets
-  - ddev composer install
+  - ddev composer install --prefer-dist
   - ddev exec sudo chmod -R 777 /var/www/html/var/
 
 script:
