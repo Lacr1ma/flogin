@@ -26,10 +26,10 @@ namespace LMS\Login\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Response;
 use LMS\Login\Support\TypoScript;
 use Symfony\Component\HttpFoundation\Request;
 use LMS\Login\Domain\{Model\User, Repository\UserRepository};
-
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -38,13 +38,29 @@ use LMS\Login\Domain\{Model\User, Repository\UserRepository};
 abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
     /**
+     * Mostly used for extracting username and password from the request.
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    protected function getRequestValue(string $name): string
+    {
+        if (Response::isJson() && $json = Request::createFromGlobals()->getContent()) {
+            return json_decode($json, true)[$name] ?: '';
+        }
+
+        return $this->requestProps()['tx_login_login'][$name] ?: '';
+    }
+
+    /**
      * Attempt to retrieve the <username> that has been sent thought the current HTTP Request
      *
      * @return string
      */
     protected function getInputUserName(): string
     {
-        return Request::createFromGlobals()->request->get('tx_login_login')['username'] ?: '';
+        return $this->getRequestValue('username');
     }
 
     /**
@@ -54,7 +70,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
      */
     protected function getInputPassword(): string
     {
-        return Request::createFromGlobals()->request->get('tx_login_login')['password'] ?: '';
+        return $this->getRequestValue('password');
     }
 
     /**
@@ -91,5 +107,15 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
     protected function findRequestAssociatedUser(): ?User
     {
         return UserRepository::make()->retrieveByUsername($this->getInputUserName());
+    }
+
+    /**
+     * Retrieve passed properties
+     *
+     * @return array
+     */
+    protected function requestProps(): array
+    {
+        return Request::createFromGlobals()->request->all();
     }
 }
