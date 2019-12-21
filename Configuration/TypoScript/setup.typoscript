@@ -1,81 +1,11 @@
-plugin.tx_login_userapi.features.requireCHashArgumentForActionArguments = 0
+@import 'EXT:login/Configuration/TypoScript/Setup/'
 
 plugin.tx_login {
-
-  features.requireCHashArgumentForActionArguments = 1
 
   view {
     templateRootPaths.0 = {$plugin.tx_login.view.templateRootPath}
     partialRootPaths.0 = {$plugin.tx_login.view.partialRootPath}
     layoutRootPaths.0 = {$plugin.tx_login.view.layoutRootPath}
-  }
-
-  settings {
-
-    validation {
-      translationFilePrefix = {$plugin.tx_login.settings.validation.translationFilePrefix}
-    }
-
-    page {
-      login = {$plugin.tx_login.settings.page.login}
-    }
-
-    redirect {
-      afterLoginPage = {$plugin.tx_login.settings.redirect.afterLoginPage}
-      afterLogoutPage = {$plugin.tx_login.settings.redirect.afterLogoutPage}
-      afterUnlockedPage = {$plugin.tx_login.settings.redirect.afterUnlockedPage}
-      alreadyAuthenticatedPage = {$plugin.tx_login.settings.redirect.alreadyAuthenticatedPage}
-      afterForgotPasswordNotificationSentPage = {$plugin.tx_login.settings.redirect.afterForgotPasswordNotificationSentPage}
-      afterResetPasswordFormSubmittedPage = {$plugin.tx_login.settings.redirect.afterResetPasswordFormSubmittedPage}
-      afterMagicLinkNotificationSentPage = {$plugin.tx_login.settings.redirect.afterMagicLinkNotificationSentPage}
-
-      error {
-        whenTokenExpiredPage = {$plugin.tx_login.settings.redirect.error.whenTokenExpiredPage}
-        whenTokenNotFoundPage = {$plugin.tx_login.settings.redirect.error.whenTokenNotFoundPage}
-        whenLockedPage = {$plugin.tx_login.settings.redirect.error.whenLockedPage}
-        whenOneTimeAccountHashNotFoundPage = {$plugin.tx_login.settings.redirect.error.whenOneTimeAccountHashNotFoundPage}
-      }
-    }
-
-    throttling {
-      maxAttempts = {$plugin.tx_login.settings.throttling.maxAttempts}
-      decayMinutes = {$plugin.tx_login.settings.throttling.decayMinutes}
-      lockIntervalInMinutes = {$plugin.tx_login.settings.throttling.lockIntervalInMinutes}
-    }
-
-    oneTimeAccount {
-      properties {
-        usergroup = {$plugin.tx_login.settings.oneTimeAccount.properties.usergroup}
-      }
-
-      lifetimeInMinutes = {$plugin.tx_login.settings.oneTimeAccount.lifetimeInMinutes}
-    }
-
-    email {
-      magicLink {
-        subject = {$plugin.tx_login.settings.email.magicLink.subject}
-        linkLifetimeInMinutes = {$plugin.tx_login.settings.email.magicLink.linkLifetimeInMinutes}
-      }
-
-      passwordResetRequest {
-        subject = {$plugin.tx_login.settings.email.passwordResetRequest.subject}
-        linkLifetimeInMinutes = {$plugin.tx_login.settings.email.passwordResetRequest.linkLifetimeInMinutes}
-      }
-
-      passwordUpdated {
-        subject = {$plugin.tx_login.settings.email.passwordUpdated.subject}
-      }
-
-      lockout {
-        subject = {$plugin.tx_login.settings.email.lockout.subject}
-      }
-
-      login {
-        disabled = {$plugin.tx_login.settings.email.login.disabled}
-        subject = {$plugin.tx_login.settings.email.login.subject}
-      }
-    }
-
   }
 
   persistence {
