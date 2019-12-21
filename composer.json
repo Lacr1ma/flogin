@@ -10,7 +10,7 @@
     "require": {
         "bk2k/introduction-website": "dev-master",
 
-        "lms/routes": "dev-master",
+        "lms/routes": "~1.6",
         "lms/facade": "dev-master",
         "lms/login": "dev-master"
     },
