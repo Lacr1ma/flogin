@@ -1,0 +1,11 @@
+plugin.tx_login {
+    features.requireCHashArgumentForActionArguments = 1
+}
+
+plugin.tx_login_userapi {
+    features.requireCHashArgumentForActionArguments = 0
+}
+
+plugin.tx_login_loginapi {
+    features.requireCHashArgumentForActionArguments = 0
+}

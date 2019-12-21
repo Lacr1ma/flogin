@@ -1,0 +1,7 @@
+page.includeJSFooterlibs {
+    login_auth = EXT:login/Resources/Public/JavaScript/Auth.js
+}
+
+page.inlineLanguageLabelFiles {
+    login = EXT:login/Resources/Private/Language/locallang.xlf
+}

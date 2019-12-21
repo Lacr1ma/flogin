@@ -1,0 +1,37 @@
+plugin.tx_login.settings.email {
+
+    magicLink {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for magic link notification.
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject
+
+        # cat=plugin.tx_login//a; type=int+; label=When defined number of minute has passed, magic link is considered as expired.
+        linkLifetimeInMinutes = 6
+    }
+
+    passwordResetRequest {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for forgot password notification.
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:reset_password.subject
+
+        # cat=plugin.tx_login//a; type=int+; label=When defined number of minute has passed, password reset link is considered as expired.
+        linkLifetimeInMinutes = 5
+    }
+
+    passwordUpdated {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for successful password update notification.
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.subject
+    }
+
+    lockout {
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for lockout notification.
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:lockout.subject
+    }
+
+    login {
+        # cat=plugin.tx_login//a; type=boolean; label=Do not send the successful login attempt notification when deactivated
+        disabled = 0
+
+        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for successful login attempt notification.
+        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:login.subject
+    }
+
+}

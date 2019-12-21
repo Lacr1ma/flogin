@@ -1,0 +1,6 @@
+plugin.tx_login.settings.page {
+
+    # cat=plugin.tx_login//a; type=int+; label=Login Page ID (Where login form plugin located).
+    login =
+
+}
