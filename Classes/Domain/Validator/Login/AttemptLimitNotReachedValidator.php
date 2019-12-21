@@ -45,7 +45,7 @@ class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\Defaul
      */
     protected function isValid($ip): void
     {
-        if ($this->hasTooManyLoginAttempts()) {
+        if ($this->hasTooManyAttempts()) {
             $this->addLockoutError();
             return;
         }

@@ -26,68 +26,17 @@ namespace LMS\Login\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Cache\RateLimiter;
-use Symfony\Component\HttpFoundation\Request;
+use LMS\Facade\Traits\Throttler;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 trait ThrottlesLogins
 {
-    /**
-     * Determine if the user has too many failed login attempts.
-     *
-     * @return bool
-     */
-    protected function hasTooManyLoginAttempts(): bool
-    {
-        return $this->limiter()->tooManyAttempts(
-            $this->throttleKey(), $this->maxAttempts()
-        );
-    }
+    use Throttler;
 
     /**
-     * Increment the login attempts for the user.
-     */
-    protected function incrementLoginAttempts(): void
-    {
-        $this->limiter()->hit(
-            $this->throttleKey(), $this->decayMinutes() * 60
-        );
-    }
-
-    /**
-     * Clear the login locks associated with REQUEST IP
-     */
-    protected function clearLoginAttempts(): void
-    {
-        $this->limiter()->clear($this->throttleKey());
-    }
-
-    /**
-     * Use request ip address as a throttle key
-     *
-     * @return string
-     */
-    protected function throttleKey(): string
-    {
-        return md5(Request::createFromGlobals()->getClientIp() ?? '');
-    }
-
-    /**
-     * Get the rate limiter instance.
-     *
-     * @return \LMS\Login\Cache\RateLimiter
-     */
-    protected function limiter(): RateLimiter
-    {
-        return RateLimiter::make();
-    }
-
-    /**
-     * Get the maximum number of attempts to allow.
-     *
-     * @return int
+     * {@inheritDoc}
      */
     public function maxAttempts(): int
     {
@@ -95,9 +44,7 @@ trait ThrottlesLogins
     }
 
     /**
-     * Get the number of minutes to throttle for.
-     *
-     * @return int
+     * {@inheritDoc}
      */
     public function decayMinutes(): int
     {

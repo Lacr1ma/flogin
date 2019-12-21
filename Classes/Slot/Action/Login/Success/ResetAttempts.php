@@ -40,6 +40,6 @@ class ResetAttempts
      */
     public function execute(): void
     {
-        $this->clearLoginAttempts();
+        $this->clearAttempts();
     }
 }

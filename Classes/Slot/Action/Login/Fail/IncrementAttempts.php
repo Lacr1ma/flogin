@@ -40,6 +40,6 @@ class IncrementAttempts
      */
     public function execute(): void
     {
-        $this->incrementLoginAttempts();
+        $this->incrementAttempts();
     }
 }

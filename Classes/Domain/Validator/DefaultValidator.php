@@ -47,7 +47,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
     protected function getRequestValue(string $name): string
     {
         if (Response::isJson() && $json = Request::createFromGlobals()->getContent()) {
-            return json_decode($json, true)[$name] ?: '';
+            return json_decode((string)$json, true)[$name] ?: '';
         }
 
         return $this->requestProps()['tx_login_login'][$name] ?: '';

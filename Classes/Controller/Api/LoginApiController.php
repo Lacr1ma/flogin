@@ -67,7 +67,9 @@ class LoginApiController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
 
     /**
+     * Build proper error messages for outside use
      *
+     * @psalm-suppress ImplementedReturnTypeMismatch
      */
     public function errorAction(): void
     {
