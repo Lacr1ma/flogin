@@ -54,6 +54,12 @@
 			<trans-unit id="temporary_account.generate">
 				<source>Generate temporary account</source>
 			</trans-unit>
+			<trans-unit id="ajax.loading">
+				<source>Loading...</source>
+			</trans-unit>
+			<trans-unit id="ajax.redirect">
+				<source>Redirecting...</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
