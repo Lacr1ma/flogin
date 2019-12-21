@@ -33,14 +33,16 @@ use TYPO3\CMS\Core\Utility\HttpUtility;
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class VerifyAccountCreationHash
+class VerifyAccountCreationHash extends \LMS\Routes\Middleware\Api\AbstractRouteMiddleware
 {
     /**
-     * @param array $arguments
+     * Ensure valid hash is passed
+     *
+     * {@inheritDoc}
      */
-    public function process(array $arguments): void
+    public function process(): void
     {
-        $hash = (string)$arguments['hash'];
+        $hash = $this->getRequest()->getQueryParams()['hash'];
 
         if (Registry::contains('tx_login_hash', $hash)) {
             return;
