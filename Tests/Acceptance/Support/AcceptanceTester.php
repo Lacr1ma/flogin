@@ -132,4 +132,19 @@ class AcceptanceTester extends \Codeception\Actor
 
         $this->click('#login-button');
     }
+
+    /**
+     * @param string $username
+     * @param string $password
+     */
+    public function amLoggedByAjaxFormAs(string $username = 'dummy', string $password = 'password'): void
+    {
+        $this->amOnPage('/loginajax');
+
+        $this->fillField('username', $username);
+        $this->fillField('password', $password);
+        $this->uncheckOption('remember', 0);
+
+        $this->click('#login-button');
+    }
 }
