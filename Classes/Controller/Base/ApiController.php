@@ -42,14 +42,6 @@ abstract class ApiController extends \LMS\Facade\Controller\AbstractApiControlle
     /**
      * {@inheritdoc}
      */
-    protected function isAllowed(array $requestArguments = []): bool
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function getResourceRepository(): RepositoryInterface
     {
         return UserRepository::make();
