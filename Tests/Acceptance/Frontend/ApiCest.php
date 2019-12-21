@@ -103,7 +103,7 @@ class ApiCest
 
         $I->amOnPage('/api/user/simulate/user-name');
 
-        $I->see('Active BE session is required');
+        $I->see('Admin user is required.');
     }
 
     /**
@@ -115,6 +115,6 @@ class ApiCest
 
         $I->amOnPage('/api/user/terminate/2');
 
-        $I->see('Active BE session is required');
+        $I->see('Admin user is required.');
     }
 }
