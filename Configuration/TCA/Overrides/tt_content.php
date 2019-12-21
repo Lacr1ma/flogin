@@ -31,3 +31,9 @@ ExtensionUtility::registerPlugin(
     'Login',
     'LMS: Login Form'
 );
+
+ExtensionUtility::registerPlugin(
+    'LMS.login',
+    'LoginApi',
+    'LMS: Login Form (AJAX)'
+);

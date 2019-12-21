@@ -91,6 +91,25 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'LMS.' . $_EXTKEY,
+    'LoginApi',
+    [
+        'Api\LoginApi' => 'showLoginForm, auth, logout',
+        'ForgotPassword' => 'showForgotForm, sendResetLinkEmail',
+        'MagicLink' => 'showMagicLinkForm, sendMagicLinkEmail, login',
+        'ResetPassword' => 'showResetForm, reset',
+        'Locker' => 'unlock'
+    ],
+    [
+        'Api\LoginApi' => 'showLoginForm, auth, logout',
+        'ForgotPassword' => 'showForgotForm, sendResetLinkEmail',
+        'MagicLink' => 'showMagicLinkForm, sendMagicLinkEmail, login',
+        'ResetPassword' => 'showResetForm, reset',
+        'Locker' => 'unlock'
+    ]
+);
+
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_login'])) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_login'] = [];
 }
@@ -202,6 +221,8 @@ $signalSlotDispatcher->connect(
     'execute'
 );
 
+
+
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginSuccess',
@@ -213,6 +234,13 @@ $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginSuccess',
     \LMS\Login\Slot\Action\Login\Success\SendNotification::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'loginSuccess',
+    \LMS\Login\Slot\Action\Login\Ajax\Success::class,
     'execute'
 );
 
