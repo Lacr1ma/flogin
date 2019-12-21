@@ -40,3 +40,27 @@ login_one-time-account:
   options:
     middleware:
       - LMS\Login\Middleware\Api\VerifyAccountCreationHash
+
+login_user-authentication:
+  path:         api/user/auth
+  controller:   LMS\Login\Controller\Api\LoginApiController::auth
+  methods:      POST
+  format:       json
+  requirements:
+    username:   "[^/]+"
+    password:   "[^/]+"
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\Throttle:50,10
+  defaults:
+    username:
+    password:
+    remember:   false
+
+login_user-logout:
+  path:         api/user/logout
+  controller:   LMS\Login\Controller\Api\LoginApiController::logout
+  methods:      GET
+  options:
+    middleware:
+      - auth
