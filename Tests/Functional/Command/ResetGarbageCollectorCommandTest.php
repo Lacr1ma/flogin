@@ -48,14 +48,12 @@ class ResetGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Func
         $repository = ResetsRepository::make();
 
         Resets::create([
-            'pid' => 0,
             'user' => 1,
             'token' => 1,
             'crdate' => Carbon::now()->subHour()->timestamp
         ]);
 
         Resets::create([
-            'pid' => 0,
             'user' => 2,
             'token' => 2,
             'crdate' => Carbon::now()->addHour()->timestamp

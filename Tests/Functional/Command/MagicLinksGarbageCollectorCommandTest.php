@@ -48,16 +48,14 @@ class MagicLinksGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core
         $repository = LinkRepository::make();
 
         Link::create([
-            'pid' => 0,
-            'token' => 1,
             'user' => 1,
+            'token' => 1,
             'crdate' => Carbon::now()->subHour()->timestamp
         ]);
 
         Link::create([
-            'pid' => 0,
-            'token' => 2,
             'user' => 2,
+            'token' => 2,
             'crdate' => Carbon::now()->addHour()->timestamp
         ]);
 
