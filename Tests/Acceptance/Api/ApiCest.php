@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Frontend;
+namespace LMS\Login\Tests\Acceptance\Api;
 
 /* * *************************************************************
  *
@@ -38,12 +38,13 @@ class ApiCest
      */
     public function user_info_present_when_user_authenticated(AcceptanceTester $I)
     {
-        $I->amLoggedInAs('user');
+        $I->haveHttpHeader('Accept', 'application/json');
+        $I->haveHttpHeader('Cookie', 'fe_typo_user=53574eb0bafe1c0a4d8a2cfc0cf726da');
+        $I->haveHttpHeader('X-CSRF-TOKEN', '53574eb0bafe1c0a4d8a2cfc0cf726da');
 
-        $I->amOnPage('/api/user/current');
+        $I->sendGET('user/current');
 
-        $I->see('CSRF token mismatch');
-//        $I->see('user@example.com');
+        $I->seeResponseContainsJson(['email' => 'user@example.com']);
     }
 
     /**
@@ -53,9 +54,9 @@ class ApiCest
     {
         $I->wantTo('I want to be redirected to the error page, when I try to create temporary user using invalid link.');
 
-        $I->amOnPage('/api/user/one-time-account/invalid-hash');
+        $I->sendGET('user/one-time-account/invalid-hash');
 
-        $I->seeInTitle('Account hash does not exist');
+        $I->seeResponseContains('Account hash does not exist');
     }
 
     /**
@@ -63,11 +64,11 @@ class ApiCest
      */
     public function authenticated_returns_false_when_user_not_logged_in(AcceptanceTester $I)
     {
-        $I->wantTo('I hit the api/user/authenticated endpoint and expect to see that I am not logged in.');
+        $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->amOnPage('/api/user/authenticated');
+        $I->sendGET('user/authenticated');
 
-        $I->see('{"authenticated":false}');
+        $I->seeResponseContainsJson(['authenticated' => false]);
     }
 
     /**
@@ -75,24 +76,15 @@ class ApiCest
      */
     public function authenticated_returns_true_when_user_logged_in(AcceptanceTester $I)
     {
-        $I->amLoggedInAs('user');
+        $I->haveHttpHeader('Cookie', 'fe_typo_user=53574eb0bafe1c0a4d8a2cfc0cf726da');
+        $I->haveHttpHeader('X-CSRF-TOKEN', '53574eb0bafe1c0a4d8a2cfc0cf726da');
+        $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->amOnPage('/api/user/authenticated');
+        $I->sendGET('user/authenticated');
 
-        $I->see('{"authenticated":true}');
+        $I->seeResponseContainsJson(['authenticated' => true]);
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
-    public function user_info_denied_when_user_not_logged_in(AcceptanceTester $I)
-    {
-        $I->wantTo('I hit the api/user/current endpoint and expect to see my users data.');
-
-        $I->amOnPage('/api/user/current');
-
-        $I->seeElement('#login_form');
-    }
 
     /**
      * @param AcceptanceTester $I
@@ -101,9 +93,11 @@ class ApiCest
     {
         $I->wantTo('When I want to simulate another FE user connection, I need to have an active BE session.');
 
-        $I->amOnPage('/api/user/simulate/user-name');
+        $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->see('Admin user is required.');
+        $I->sendGET('user/simulate/user-name');
+
+        $I->seeResponseCodeIs(403);
     }
 
     /**
@@ -113,8 +107,10 @@ class ApiCest
     {
         $I->wantTo('When I want to delete another FE user active sessions, I need to have an active BE session.');
 
-        $I->amOnPage('/api/user/terminate/2');
+        $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->see('Admin user is required.');
+        $I->sendGET('user/terminate/2');
+
+        $I->seeResponseCodeIs(403);
     }
 }
