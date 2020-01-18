@@ -13,7 +13,7 @@ $(function () {
         const username = $(this).find('#username-field').val();
         const password = $(this).find('#password-field').val();
 
-        loginAttempt('/api/user/auth', username, password, true).then(function (data) {
+        loginAttempt('/api/login/logins/auth', username, password, true).then(function (data) {
             if (data.redirect) {
                 performLoginRedirect(data.redirect);
                 return;
@@ -151,5 +151,5 @@ const loginAttempt = async (url, username, password, remember) => {
 const logout = async () => {
     initializeRequestHeaders();
 
-    await axios.get('/api/user/logout');
+    await axios.get('/api/login/logins/logout');
 };

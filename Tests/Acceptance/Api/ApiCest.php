@@ -42,7 +42,7 @@ class ApiCest
         $I->haveHttpHeader('Cookie', 'fe_typo_user=53574eb0bafe1c0a4d8a2cfc0cf726da');
         $I->haveHttpHeader('X-CSRF-TOKEN', '53574eb0bafe1c0a4d8a2cfc0cf726da');
 
-        $I->sendGET('user/current');
+        $I->sendGET('login/users/current');
 
         $I->seeResponseContainsJson(['email' => 'user@example.com']);
     }
@@ -54,7 +54,7 @@ class ApiCest
     {
         $I->wantTo('I want to be redirected to the error page, when I try to create temporary user using invalid link.');
 
-        $I->sendGET('user/one-time-account/invalid-hash');
+        $I->sendGET('login/users/one-time-account/invalid-hash');
 
         $I->seeResponseContains('Account hash does not exist');
     }
@@ -66,7 +66,7 @@ class ApiCest
     {
         $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->sendGET('user/authenticated');
+        $I->sendGET('login/users/authenticated');
 
         $I->seeResponseContainsJson(['authenticated' => false]);
     }
@@ -80,7 +80,7 @@ class ApiCest
         $I->haveHttpHeader('X-CSRF-TOKEN', '53574eb0bafe1c0a4d8a2cfc0cf726da');
         $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->sendGET('user/authenticated');
+        $I->sendGET('login/users/authenticated');
 
         $I->seeResponseContainsJson(['authenticated' => true]);
     }
@@ -95,7 +95,7 @@ class ApiCest
 
         $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->sendGET('user/simulate/user-name');
+        $I->sendGET('login/users/simulate/user-name');
 
         $I->seeResponseCodeIs(403);
     }
@@ -109,7 +109,7 @@ class ApiCest
 
         $I->haveHttpHeader('Accept', 'application/json');
 
-        $I->sendGET('user/terminate/2');
+        $I->sendGET('login/users/terminate/2');
 
         $I->seeResponseCodeIs(403);
     }

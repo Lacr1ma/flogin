@@ -41,12 +41,12 @@
     <td class="nowrap">
         <div class="btn-group" role="group">
             <f:if condition="!{user.locked}">
-                <a id="simulate-user-{user.uid}" href="/api/user/simulate/{user.username}" class="btn btn-default">
+                <a id="simulate-user-{user.uid}" href="/api/login/users/simulate/{user.username}" class="btn btn-default">
                     <core:icon identifier="actions-system-backend-user-switch" />
                 </a>
 
                 <f:if condition="{user.online}">
-                    <a id="terminate-user-{user.uid}" href="/api/user/terminate/{user.uid}" class="btn btn-default">
+                    <a id="terminate-user-{user.uid}" href="/api/login/users/terminate/{user.uid}" class="btn btn-default">
                         <core:icon identifier="actions-ban"/>
                     </a>
                 </f:if>

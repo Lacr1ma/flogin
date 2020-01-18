@@ -1,48 +1,48 @@
-login_current-user:
-  path:         api/user/current
+login_users-current:
+  path:         api/login/users/current
   controller:   LMS\Login\Controller\UserApiController::current
-  methods:      [GET]
+  methods:      GET
   options:
     middleware:
       - auth
 
-login_authenticated:
-  path:         api/user/authenticated
+login_users-authenticated:
+  path:         api/login/users/authenticated
   controller:   LMS\Login\Controller\UserApiController::authenticated
-  methods:      [GET]
+  methods:      GET
 
-login_simulate:
-  path:         api/user/simulate/{username}
+login_users-simulate:
+  path:         api/login/users/simulate/{username}
   controller:   LMS\Login\Controller\UserApiController::simulateLogin
-  methods:      [GET]
+  methods:      GET
   requirements:
     username:   "[^/]+"
   options:
     middleware:
       - LMS\Routes\Middleware\Api\VerifyAdminBackendSession
 
-login_terminate:
-  path:         api/user/terminate/{user}
+login_users-terminate:
+  path:         api/login/users/terminate/{user}
   controller:   LMS\Login\Controller\UserApiController::terminateFrontendSession
-  methods:      [GET]
+  methods:      GET
   requirements:
     user:       \d+
   options:
     middleware:
       - LMS\Routes\Middleware\Api\VerifyAdminBackendSession
 
-login_one-time-account:
-  path:         api/user/one-time-account/{hash}
+login_users-one_time_account:
+  path:         api/login/users/one-time-account/{hash}
   controller:   LMS\Login\Controller\UserApiController::createOneTimeAccount
-  methods:      [GET]
+  methods:      GET
   requirements:
     hash:       "[^/]+"
   options:
     middleware:
       - LMS\Login\Middleware\Api\VerifyAccountCreationHash
 
-login_user-authentication:
-  path:         api/user/auth
+login_logins-auth:
+  path:         api/login/logins/auth
   controller:   LMS\Login\Controller\Api\LoginApiController::auth
   methods:      POST
   format:       json
@@ -57,8 +57,8 @@ login_user-authentication:
     password:
     remember:   false
 
-login_user-logout:
-  path:         api/user/logout
+login_logins-logout:
+  path:         api/login/logins/logout
   controller:   LMS\Login\Controller\Api\LoginApiController::logout
   methods:      GET
   options:

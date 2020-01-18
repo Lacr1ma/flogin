@@ -60,11 +60,10 @@ class OneTimeAccount
     public function getProperties(string $hash): array
     {
         return [
-            'pid' => 0,
             'username' => $hash,
-            'endtime' => $this->calculateTerminationTime(),
             'email' => "{$hash}@example.com",
-            'password' => Hash::encryptPassword($hash)
+            'password' => Hash::encryptPassword($hash),
+            'endtime' => $this->calculateTerminationTime()
         ];
     }
 
