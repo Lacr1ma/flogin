@@ -41,7 +41,7 @@ trait Token
      */
     public function getToken(): string
     {
-        return $this->token;
+        return (string)$this->token;
     }
 
     /**
