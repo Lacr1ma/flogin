@@ -55,7 +55,7 @@ abstract class AbstractTokenRepository extends \LMS\Facade\Repository\AbstractRe
      */
     public function findExpired(): Collection
     {
-        return $this->all()->filter->isExpired();
+        return collect($this->findAll())->filter->isExpired();
     }
 
     /**
