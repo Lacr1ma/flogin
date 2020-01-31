@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
 
+namespace LMS\Login\Tests\Functional\Command;
+
 /* * *************************************************************
  *
  *  Copyright notice
@@ -24,17 +26,36 @@ declare(strict_types = 1);
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-return [
-    'login:unlock_users' => [
-        'class' => \LMS\Login\Command\UnlockUserCommand::class
-    ],
-    'login:password-link_garbage' => [
-        'class' => \LMS\Login\Command\ResetGarbageCollectorCommand::class
-    ],
-    'login:magic-link_garbage' => [
-        'class' => \LMS\Login\Command\MagicLinksGarbageCollectorCommand::class
-    ],
-    'login:onetime-user_garbage' => [
-        'class' => \LMS\Login\Command\OnetimeAccountGarbageCollectorCommand::class
-    ]
-];
+use Carbon\Carbon;
+use LMS\Login\Domain\{Model\User, Repository\UserRepository};
+
+/**
+ * @author Borulko Sergey <borulkosergey@icloud.com>
+ */
+class OnetimeAccountGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+{
+    /**
+     * @var array
+     */
+    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+
+    /**
+     * @test
+     * @covers \LMS\Login\Command\OnetimeAccountGarbageCollectorCommand
+     */
+    public function execute(): void
+    {
+        $repository = UserRepository::make();
+
+        User::create([
+            'username' => 'temp',
+            'endtime' => Carbon::now()->subSecond()->timestamp
+        ]);
+
+        $beforeCount = $repository->countAll();
+
+        exec('/var/www/html/bin/typo3 login:onetime-user_garbage');
+
+        $this->assertNotEquals($beforeCount, $repository->countAll());
+    }
+}

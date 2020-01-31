@@ -28,7 +28,8 @@ namespace LMS\Login\Domain\Repository;
 
 use LMS\Facade\Assist\Collection;
 use LMS\Login\{Domain\Model\User, Support\Repository\Demandable};
-use LMS\Facade\{Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
+use \TYPO3\CMS\Core\Database\Query\QueryBuilder as CoreQueryBuilder;
+use LMS\Facade\{Extbase\QueryBuilder, Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -99,5 +100,21 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     public function retrieveByEmail(string $email): ?User
     {
         return $this->findOneByEmail($email);
+    }
+
+    /**
+     * Predefined query that contains expired *where* clause.
+     *
+     * @return \TYPO3\CMS\Core\Database\Query\QueryBuilder
+     * @noinspection PhpUndefinedMethodInspection
+     */
+    public function expiredQuery(): CoreQueryBuilder
+    {
+        $query = QueryBuilder::getQueryBuilderFor('fe_users');
+
+        return $query->where(
+            $query->expr()->gt('endtime', 0),
+            $query->expr()->lt('endtime', time())
+        );
     }
 }
