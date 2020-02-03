@@ -13,7 +13,7 @@
 		{"type": "git", "url": "https://github.com/Lacr1ma/facade.git"}
 	],
 	"require": {
-		"typo3/cms-core": "^9.5",
+		"typo3/cms-core": "^9.5 || ^10",
 		"lms/facade": "dev-master"
 	},
 	"require-dev": {
