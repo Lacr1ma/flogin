@@ -28,7 +28,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    $_EXTKEY,
+    'login',
     'auth',
     LMS\Login\Service\MagicLinkAuthenticationService::class,
     [
@@ -45,7 +45,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    $_EXTKEY,
+    'login',
     'auth',
     LMS\Login\Service\BackendSimulationAuthenticationService::class,
     [
@@ -62,7 +62,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.' . $_EXTKEY,
+    'LMS.login',
     'Login',
     [
         'Login' => 'showLoginForm, login, logout',
@@ -81,7 +81,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.' . $_EXTKEY,
+    'LMS.login',
     'UserApi',
     [
         'UserApi' => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
@@ -92,7 +92,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.' . $_EXTKEY,
+    'LMS.login',
     'LoginApi',
     [
         'Api\LoginApi' => 'showLoginForm, auth, logout',
@@ -220,7 +220,6 @@ $signalSlotDispatcher->connect(
     \LMS\Login\Slot\Action\Login\Fail\IncrementAttempts::class,
     'execute'
 );
-
 
 
 $signalSlotDispatcher->connect(

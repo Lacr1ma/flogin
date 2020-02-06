@@ -2,6 +2,8 @@ login_users-current:
   path:         api/login/users/current
   controller:   LMS\Login\Controller\UserApiController::current
   methods:      GET
+  defaults:
+    plugin:     UserApi
   options:
     middleware:
       - auth
@@ -10,11 +12,15 @@ login_users-authenticated:
   path:         api/login/users/authenticated
   controller:   LMS\Login\Controller\UserApiController::authenticated
   methods:      GET
+  defaults:
+    plugin:     UserApi
 
 login_users-simulate:
   path:         api/login/users/simulate/{username}
   controller:   LMS\Login\Controller\UserApiController::simulateLogin
   methods:      GET
+  defaults:
+    plugin:     UserApi
   requirements:
     username:   "[^/]+"
   options:
@@ -25,6 +31,8 @@ login_users-terminate:
   path:         api/login/users/terminate/{user}
   controller:   LMS\Login\Controller\UserApiController::terminateFrontendSession
   methods:      GET
+  defaults:
+    plugin:     UserApi
   requirements:
     user:       \d+
   options:
@@ -35,6 +43,8 @@ login_users-one_time_account:
   path:         api/login/users/one-time-account/{hash}
   controller:   LMS\Login\Controller\UserApiController::createOneTimeAccount
   methods:      GET
+  defaults:
+    plugin:     UserApi
   requirements:
     hash:       "[^/]+"
   options:
@@ -53,6 +63,7 @@ login_logins-auth:
     middleware:
       - LMS\Routes\Middleware\Api\Throttle:50,10
   defaults:
+    plugin:     LoginApi
     username:
     password:
     remember:   false
@@ -61,6 +72,8 @@ login_logins-logout:
   path:         api/login/logins/logout
   controller:   LMS\Login\Controller\Api\LoginApiController::logout
   methods:      GET
+  defaults:
+    plugin:     LoginApi
   options:
     middleware:
       - auth
