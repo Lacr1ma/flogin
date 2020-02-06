@@ -10,11 +10,11 @@
 		}
 	],
 	"repositories": [
-		{"type": "git", "url": "https://github.com/Lacr1ma/facade.git"}
+		{"type": "git", "url": "https://github.com/Lacr1ma/routes.git"}
 	],
 	"require": {
 		"typo3/cms-core": "^9.5 || ^10",
-		"lms/facade": "dev-master"
+		"lms/routes": "*"
 	},
 	"require-dev": {
 		"vimeo/psalm": "^3",
