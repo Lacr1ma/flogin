@@ -54,7 +54,7 @@ trait UrlManagement
      */
     private static function urlBuilder(): UriBuilder
     {
-        $loginPage = TypoScript::getSettings()['page.']['login'];
+        $loginPage = (int)TypoScript::getSettings()['page.']['login'];
 
         return Redirect::uriBuilder()
             ->setCreateAbsoluteUri(true)
