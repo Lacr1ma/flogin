@@ -48,11 +48,36 @@ abstract class AbstractNotificationSender
     {
         $view = $this->getExtensionView($this->getTemplateSuffix(), $variables);
 
-        ObjectManageable::createObject(MailMessage::class)
-            ->setTo($receiver)
-            ->setSubject($this->getSubject())
-            ->setBody($view->render(), 'text/html')
-            ->send();
+        $message = $this->getMessage()->setTo($receiver);
+
+        $this->attachBody($message, $view->render())->send();
+    }
+
+    /**
+     * Initialize Message Content
+     *
+     * @param \TYPO3\CMS\Core\Mail\MailMessage
+     * @param string $html
+     *
+     * @return \TYPO3\CMS\Core\Mail\MailMessage
+     */
+    protected function attachBody(MailMessage $msg, string $html): MailMessage
+    {
+        if (method_exists($msg, 'html')) {
+            return $msg->html($html);
+        }
+
+        return $msg->setBody($html, 'text/html');
+    }
+
+    /**
+     * Create Mail Message
+     *
+     * @return \TYPO3\CMS\Core\Mail\MailMessage
+     */
+    protected function getMessage(): MailMessage
+    {
+        return ObjectManageable::createObject(MailMessage::class)->setSubject($this->getSubject());
     }
 
     /**
