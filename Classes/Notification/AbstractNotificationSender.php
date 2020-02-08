@@ -56,8 +56,8 @@ abstract class AbstractNotificationSender
     /**
      * Initialize Message Content
      *
-     * @param \TYPO3\CMS\Core\Mail\MailMessage
-     * @param string $html
+     * @param \TYPO3\CMS\Core\Mail\MailMessage $msg
+     * @param string                           $html
      *
      * @return \TYPO3\CMS\Core\Mail\MailMessage
      */
