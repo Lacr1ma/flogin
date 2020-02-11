@@ -255,8 +255,8 @@
                                                             <td align="center"
                                                                 style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px;">
                                                                 <img
-                                                                    src="https://typo3.org/typo3conf/ext/t3olayout/Resources/Public/Images/Template/typo3_nomargins.svg"
-                                                                    alt
+                                                                    src="{f:uri.image(src: '{email.logoPath}', absolute: 1)}"
+                                                                    alt=""
                                                                     style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
                                                                     width="154"></td>
                                                         </tr>
@@ -378,7 +378,7 @@
                                                                 <span style="font-size:14px;line-height:21px;">
                                                                     <f:format.raw>
                                                                         <f:translate
-                                                                            arguments="{0: 'https://typo3.org'}"
+                                                                            arguments="{0: '{email.site}'}"
                                                                             key="LLL:EXT:login/Resources/Private/Language/email.xlf:common.signature"
                                                                         />
                                                                     </f:format.raw>
