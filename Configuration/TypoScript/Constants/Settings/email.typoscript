@@ -1,5 +1,11 @@
 plugin.tx_login.settings.email {
 
+    # cat=plugin.tx_login//a; type=string; label=Used inside the bottom area of the mail. Basically link to owner website.
+    site = https://typo3.org
+
+    # cat=plugin.tx_login//a; type=string; label=Full path to the logo image.
+    logoPath = EXT:login/Resources/Public/Icons/Logo.svg
+
     magicLink {
         # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for magic link notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject
