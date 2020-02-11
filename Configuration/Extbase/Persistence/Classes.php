@@ -37,8 +37,8 @@ return [
         ]
     ],
     \LMS\Login\Domain\Model\Resets::class => [
-        'crdate' => [
-            'tstamp' => [
+        'properties' => [
+            'crdate' => [
                 'fieldName' => 'crdate'
             ]
         ]

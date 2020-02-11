@@ -28,7 +28,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility as Utility;
 
 $ll = 'LLL:EXT:login/Resources/Private/Language/tca_user.xlf:';
 
-$lockedProperty = [
+$properties = [
     'locked' => [
         'exclude' => true,
         'label' => $ll . 'throttling',
@@ -45,10 +45,20 @@ $lockedProperty = [
                 ]
             ]
         ]
+    ],
+    'tstamp' => [
+        'config' => [
+            'type' => 'passthrough'
+        ]
+    ],
+    'endtime' => [
+        'config' => [
+            'type' => 'passthrough'
+        ]
     ]
 ];
 
-Utility::addTCAcolumns('fe_users', $lockedProperty);
+Utility::addTCAcolumns('fe_users', $properties);
 Utility::addToAllTCAtypes(
     'fe_users',
     'locked',
