@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF[$_EXTKEY] = [
+$EM_CONF['login'] = [
     'title' => 'Frontend Authentication',
     'description' => 'Provides an authentication option for website users.',
     'category' => 'fe',
