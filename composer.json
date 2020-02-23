@@ -9,9 +9,6 @@
 			"email": "borulkosergey@icloud.com"
 		}
 	],
-	"repositories": [
-		{"type": "git", "url": "https://github.com/Lacr1ma/routes.git"}
-	],
 	"require": {
 		"typo3/cms-core": "^9.5 || ^10",
 		"lms/routes": "*"
