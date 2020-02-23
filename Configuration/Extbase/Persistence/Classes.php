@@ -24,8 +24,10 @@ declare(strict_types = 1);
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Login\Domain\Model\{User, Resets, UserGroup};
+
 return [
-    \LMS\Login\Domain\Model\User::class => [
+   User::class => [
         'tableName' => 'fe_users',
         'properties' => [
             'tstamp' => [
@@ -36,14 +38,14 @@ return [
             ]
         ]
     ],
-    \LMS\Login\Domain\Model\Resets::class => [
+    Resets::class => [
         'properties' => [
             'crdate' => [
                 'fieldName' => 'crdate'
             ]
         ]
     ],
-    \LMS\Login\Domain\Model\UserGroup::class => [
+    UserGroup::class => [
         'tableName' => 'fe_groups'
     ]
 ];
