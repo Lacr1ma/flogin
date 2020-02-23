@@ -28,7 +28,9 @@ CREATE TABLE tx_login_domain_model_link (
 # Table structure for table 'fe_users'
 #
 CREATE TABLE fe_users (
-	locked tinyint(3) unsigned DEFAULT '0' NOT NULL,
+	locked tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
-	KEY locked (locked)
+	KEY email (email),
+	KEY locked (locked),
+	UNIQUE KEY email_unique (email, pid)
 );
