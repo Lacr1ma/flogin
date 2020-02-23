@@ -33,11 +33,10 @@ return [
         'crdate' => 'crdate',
         'delete' => 'deleted',
         'hideTable' => true,
-        'iconfile' => 'EXT:login/Resources/Public/Icons/TCA/Resets.svg',
-        'searchFields' => 'user, token, crdate'
+        'iconfile' => 'EXT:login/Resources/Public/Icons/TCA/Resets.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'user, token, crdate'
+        'showRecordFieldList' => 'user, token'
     ],
     'types' => [
         '1' => [
@@ -46,8 +45,6 @@ return [
             '
         ]
     ],
-    'palettes' => [
-    ],
     'columns' => [
         'user' => [
             'exclude' => true,
@@ -55,10 +52,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'foreign_table' => 'fe_users',
-                'size' => 1,
-                'min' => 1,
-                'max' => 1
+                'foreign_table' => 'fe_users'
             ]
         ],
         'token' => [
