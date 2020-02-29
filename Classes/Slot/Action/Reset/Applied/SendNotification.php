@@ -35,7 +35,7 @@ use LMS\Login\Slot\Notification\PasswordChangedNotification;
 class SendNotification
 {
     /**
-     * Password has been update, notify user
+     * Password has been updated, notify user
      *
      * @psalm-suppress InternalMethod
      *

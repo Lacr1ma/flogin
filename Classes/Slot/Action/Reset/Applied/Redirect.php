@@ -34,7 +34,7 @@ use LMS\Login\Support\Redirection\UserRouter;
 class Redirect
 {
     /**
-     * Password has been update, redirect to proper page
+     * Password has been updated, redirect to proper page
      */
     public function execute(): void
     {
