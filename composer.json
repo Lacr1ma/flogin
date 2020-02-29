@@ -1,7 +1,6 @@
 {
     "repositories": [
         {"type": "composer", "url": "https://composer.typo3.org/"},
-        {"type": "git", "url": "https://gitlab.com/borulko.sergey/routes.git"},
         {"type": "git", "url": "https://github.com/benjaminkott/site-introduction.git"}
     ],
     "name": "test/login",
@@ -10,8 +9,6 @@
     "require": {
         "bk2k/introduction-website": "dev-master",
 
-        "lms/routes": "~1.8",
-        "lms/facade": "dev-master",
         "lms/login": "dev-master"
     },
     "require-dev": {
