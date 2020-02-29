@@ -8,12 +8,6 @@
     <f:render partial="Form/Login/Property/Password" arguments="{_all}"/>
     <f:render partial="Form/Login/Property/Remember" arguments="{_all}"/>
 
-    <small id="passwordHelpBlock" class="form-text text-muted text-right">
-        <f:link.action id="forgot-link" class="btn-link" action="showForgotForm" controller="ForgotPassword">
-            <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:forgot.link" />
-        </f:link.action>
-    </small>
-
     <f:if condition="{requestErrors}">
         <f:then>
             <f:for each="{requestErrors}" as="error">
