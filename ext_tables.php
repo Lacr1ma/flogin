@@ -65,4 +65,3 @@ if (!defined('TYPO3_MODE')) {
         'labels' => 'LLL:EXT:login/Resources/Private/Language/locallang_mod.xlf'
     ]
 );
-
