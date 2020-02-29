@@ -34,7 +34,7 @@
 				<source>Forgot password ?</source>
 			</trans-unit>
 			<trans-unit id="magic.link">
-				<source>Magic link auth ?</source>
+				<source>Magic link?</source>
 			</trans-unit>
 			<trans-unit id="form_login.submit">
 				<source>Login</source>
