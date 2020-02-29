@@ -180,7 +180,7 @@ $signalSlotDispatcher->connect(
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
-    'MagicLinkApplied',
+    'magicLinkApplied',
     \LMS\Login\Slot\Action\MagicLink\Applied\UtilizeLink::class,
     'execute'
 );
@@ -206,7 +206,6 @@ $signalSlotDispatcher->connect(
     'execute'
 );
 
-
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginAttempt',
@@ -220,7 +219,6 @@ $signalSlotDispatcher->connect(
     \LMS\Login\Slot\Action\Login\Fail\IncrementAttempts::class,
     'execute'
 );
-
 
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,

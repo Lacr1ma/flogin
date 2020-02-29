@@ -125,6 +125,6 @@ trait SessionEvent
      */
     public function fireMagicLinkAppliedEvent(string $token): void
     {
-        Dispatcher::emit(SessionEvent::class, 'MagicLinkApplied', [$token]);
+        Dispatcher::emit(SessionEvent::class, 'magicLinkApplied', [$token]);
     }
 }
