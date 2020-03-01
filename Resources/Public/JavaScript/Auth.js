@@ -41,11 +41,9 @@ const performLogoutRedirect = async () => {
     $('#logout-link').remove();
     $('#login_success_block').removeClass('d-none');
 
-    logout();
+    const redirectUrl = await logout();
 
-    setTimeout(function () {
-        window.location.replace('/');
-    }, 500);
+    window.location.replace(redirectUrl);
 };
 
 /**
@@ -61,7 +59,7 @@ const performLoginRedirect = async (url) => {
 
     setTimeout(function () {
         window.location.replace(url);
-    }, 700);
+    }, 300);
 };
 
 /**
@@ -144,12 +142,14 @@ const loginAttempt = async (url, username, password, remember) => {
 };
 
 /**
- * Log off the current user
+ * Log off the current user and give back the redirect url...
  *
- * @return {void}
+ * @return {string}
  */
 const logout = async () => {
     initializeRequestHeaders();
 
-    await axios.get('/api/login/logins/logout');
+    const result = await axios.get('/api/login/logins/logout');
+
+    return result.data.redirect;
 };
