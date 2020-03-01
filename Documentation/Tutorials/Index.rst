@@ -23,4 +23,5 @@ Tutorials
 	Management/Index
 	Common/ErrorRedirects
 	Signals/Index
+	Rest/Index
 	Advice/Index
