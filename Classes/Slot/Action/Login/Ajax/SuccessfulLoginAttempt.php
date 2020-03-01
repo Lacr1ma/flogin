@@ -32,7 +32,7 @@ use LMS\Facade\Extbase\{Redirect, Response};
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class Success
+class SuccessfulLoginAttempt
 {
     /**
      * Successful login attempt via ajax detected, process it...
