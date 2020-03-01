@@ -76,4 +76,4 @@ login_logins-logout:
     plugin:     LoginApi
   options:
     middleware:
-      - auth
+      - LMS\Routes\Middleware\Api\Authenticate
