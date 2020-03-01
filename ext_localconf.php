@@ -237,7 +237,7 @@ $signalSlotDispatcher->connect(
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginSuccess',
-    \LMS\Login\Slot\Action\Login\Ajax\Success::class,
+    \LMS\Login\Slot\Action\Login\Ajax\SuccessfulLoginAttempt::class,
     'execute'
 );
 
@@ -245,6 +245,13 @@ $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'loginSuccess',
     \LMS\Login\Slot\Action\Login\Success\Redirect::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'logoutSuccess',
+    \LMS\Login\Slot\Action\Login\Ajax\Logout::class,
     'execute'
 );
 
