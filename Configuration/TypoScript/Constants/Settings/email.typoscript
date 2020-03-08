@@ -6,6 +6,9 @@ plugin.tx_login.settings.email {
     # cat=plugin.tx_login//a; type=string; label=Full path to the logo image.
     logoPath = EXT:login/Resources/Public/Icons/Logo.svg
 
+    # cat=plugin.tx_login//a; type=string; label=Full path to the css file that should be connected in email
+    stylesPath = typo3conf/ext/login/Resources/Public/Css/Email.css
+
     magicLink {
         # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for magic link notification.
         subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject

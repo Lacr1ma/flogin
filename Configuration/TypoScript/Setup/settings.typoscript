@@ -42,6 +42,7 @@ plugin.tx_login.settings {
     email {
         site = {$plugin.tx_login.settings.email.site}
         logoPath = {$plugin.tx_login.settings.email.logoPath}
+        stylesPath = {$plugin.tx_login.settings.email.stylesPath}
 
         magicLink {
             subject = {$plugin.tx_login.settings.email.magicLink.subject}
