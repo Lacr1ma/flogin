@@ -42,4 +42,7 @@ Settings
 	email.lockout.subject                                    Translation file path with key, that contains subject for lockout notification.               Email          string
 	email.login.disabled                                     Do not send the successful login attempt notification when deactivated.                       Email          boolean
 	email.login.subject                                      Translation file path with key, that contains subject for login attempt notification.         Email          string
+	email.site                                               Used inside the bottom area of the mail. Basically link to owner website.                     Email          string
+	email.logoPath                                           Full path to the logo image.                                                                  Email          string
+	email.stylesPath                                         Full path to the css file that should be connected in email.                                  Email          string
 	======================================================== ============================================================================================= ============== ===============
