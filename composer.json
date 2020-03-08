@@ -11,7 +11,8 @@
 	],
 	"require": {
 		"typo3/cms-core": "^9.5 || ^10",
-		"lms/routes": "*"
+		"lms/routes": "*",
+		"tijsverkoyen/css-to-inline-styles": "^2.2.1"
 	},
 	"require-dev": {
 		"vimeo/psalm": "^3",

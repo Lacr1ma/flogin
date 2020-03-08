@@ -27,8 +27,10 @@ namespace LMS\Login\Notification;
  * ************************************************************* */
 
 use LMS\Login\Support\TypoScript;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 use LMS\Facade\{ObjectManageable, StaticCreator, Extbase\View\HtmlView};
 
 /**
@@ -49,8 +51,20 @@ abstract class AbstractNotificationSender
         $view = $this->getExtensionView($this->getTemplateSuffix(), $variables);
 
         $message = $this->getMessage()->setTo($receiver);
+        $html = $this->applyStyles($view->render());
 
-        $this->attachBody($message, $view->render())->send();
+        $this->attachBody($message, $html)->send();
+    }
+
+    /**
+     * @param string $html
+     * @return string
+     */
+    protected function applyStyles(string $html): string
+    {
+        $cssPath = Environment::getPublicPath() . '/' . $this->getSettings()['stylesPath'];
+
+        return (new CssToInlineStyles)->convert($html, file_get_contents($cssPath));
     }
 
     /**
