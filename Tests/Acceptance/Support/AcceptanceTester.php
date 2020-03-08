@@ -95,7 +95,7 @@ class AcceptanceTester extends \Codeception\Actor
 
         preg_match('/<a(.*?)href="([^"]+)"(.*?)>/i', $this->grabBodyFromEmail(), $match);
 
-        return $match[2] ?: '';
+        return htmlspecialchars_decode($match[2]) ?: '';
     }
 
     /**
