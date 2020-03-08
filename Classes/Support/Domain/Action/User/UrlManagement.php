@@ -46,7 +46,9 @@ trait UrlManagement
     {
         $extension = $plugin = 'Login';
 
-        return self::urlBuilder()->uriFor($action, $arguments, $controller, $extension, $plugin);
+        return htmlspecialchars_decode(
+            self::urlBuilder()->uriFor($action, $arguments, $controller, $extension, $plugin)
+        );
     }
 
     /**
