@@ -88,6 +88,9 @@
 				<source>Sign in via magic link</source>
 			</trans-unit>
 			<trans-unit id="magic_link.caption">
+				<source>Hello, %s!</source>
+			</trans-unit>
+			<trans-unit id="magic_link.caption_description">
 				<source>You asked us to send you a magic link for quickly signing in to your account. Here you go:</source>
 			</trans-unit>
 			<trans-unit id="magic_link.login_action">
