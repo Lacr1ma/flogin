@@ -28,9 +28,11 @@
         <tr>
             <td align="center" class="es-m-txt-c">
                 <span class="es-button-border">
-                     <a href="{user.forgotPasswordFormUrl -> f:format.raw()}" class="es-button" target="_blank" >
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.button_restore"/>
-                    </a>
+                    <f:cache.disable>
+                         <a href="{user.forgotPasswordFormUrl}" class="es-button" target="_blank" >
+                            <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.button_restore"/>
+                        </a>
+                    </f:cache.disable>
                 </span>
             </td>
         </tr>

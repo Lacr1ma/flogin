@@ -73,9 +73,11 @@
         <tr>
             <td class="es-m-txt-c" align="center">
                 <span class="es-button-border">
-                    <a href="{user.forgotPasswordFormUrl -> f:format.raw()}" class="es-button" target="_blank">
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.button_change_password"/>
-                    </a>
+                    <f:cache.disable>
+                        <a href="{user.forgotPasswordFormUrl}" class="es-button" target="_blank">
+                            <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.button_change_password"/>
+                        </a>
+                    </f:cache.disable>
                 </span>
             </td>
         </tr>
