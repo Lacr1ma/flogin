@@ -26,42 +26,25 @@ namespace LMS\Login\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\Login\AuthenticatesUsers;
+use LMS\Facade\Extbase\Validation;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LoginApiController extends \LMS\Login\Controller\Api\AbstractApiController
+abstract class AbstractApiController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    use AuthenticatesUsers;
-
     /**
-     * Show the application's login form.
-     */
-    public function showLoginFormAction(): void
-    {
-    }
-
-    /**
-     * @param string $username
-     * @param string $password
-     * @param bool   $remember
+     * Build proper error messages for outside use
      *
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\UsernameValidator", param="username")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\PasswordValidator", param="password")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\UserNotLockedValidator", param="username")
+     * @psalm-suppress ImplementedReturnTypeMismatch
      */
-    public function authAction(string $username, string $password, bool $remember): void
+    public function errorAction(): string
     {
-        $this->login([$username, $password], $remember);
-    }
+        $errors = Validation::parseErorrs(
+            $this->getControllerContext()->getArguments()
+        );
 
-    /**
-     * Log the user out of the application.
-     */
-    public function logoutAction(): void
-    {
-        $this->logoff();
+        return json_encode(compact('errors'));
     }
 }
