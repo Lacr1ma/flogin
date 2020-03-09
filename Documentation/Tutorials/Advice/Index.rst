@@ -164,6 +164,27 @@ Handle translations
 
 
             ########################
+            ###### VALIDATION ######
+            ########################
+
+            # Login Form
+            default.username.locked                 = User has been locked
+            default.username.not_found              = Provided username is not found.
+            default.password.not_match              = Password is invalid
+            default.login.limit_reached             = Too much request! Please wait for %s minutes
+
+            # Magic link | Forgot password
+            default.email.not_found                 = This email address is not connected to any user in our system.
+
+            # Magic link
+            default.user.already_logged_in          = User is already authenticated
+
+            # Reset Password
+            default.password_confirmation.not_match = Confirmation password does not match
+
+
+
+            ########################
             ######## COMMON ########
             ########################
 

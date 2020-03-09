@@ -16,7 +16,6 @@ Settings
 	======================================================== ============================================================================================= ============== ===============
 	Property                                                 Title                                                                                         Sheet          Type
 	======================================================== ============================================================================================= ============== ===============
-	validation.translationFilePrefix                         Translation file path                                                                         Validation     string
 	page.login                                               Page where login form plugin located.                                                         Page           int
 	redirect.afterLoginPage                                  PID, that user is redirected to after successful logic attempt.                               Redirect       int
 	redirect.afterLogoutPage                                 PID, that user is redirected to after logout process.                                         Redirect       int

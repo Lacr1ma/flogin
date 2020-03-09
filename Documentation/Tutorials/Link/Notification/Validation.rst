@@ -20,10 +20,4 @@ Tweak a validation message
 
         .. tip::
 
-            :ts:`LLL:EXT:theme/Resources/Private/Language/validation.xlf:email.not_found`
-
-    * You can even overwrite all the validation messages by updating that variable
-
-        .. tip::
-
-            :ts:`plugin.tx_login.settings.validation = LLL:EXT:theme/Resources/Private/Language/LoginValidation.xlf`
+            :ts:`LLL:EXT:theme/Resources/Private/Language/locallang.xlf:email.not_found`

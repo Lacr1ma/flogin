@@ -20,10 +20,4 @@ Tweak a validation message
 
         .. tip::
 
-            :ts:`LLL:EXT:theme/Resources/Private/Language/validation.xlf:password_confirmation.not_match`
-
-    * You can even overwrite all the validation messages by updating that variable
-
-        .. tip::
-
-            :ts:`plugin.tx_login.settings.validation = LLL:EXT:theme/Resources/Private/Language/LoginValidation.xlf`
+            :ts:`LLL:EXT:theme/Resources/Private/Language/locallang.xlf:password_confirmation.not_match`
