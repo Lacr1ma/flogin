@@ -17,6 +17,13 @@ Installation
 
     Currently, extension works *only* in a composer mode!
 
+.. note::
+
+    The html output is based on **Bootstrap** css framework.
+    This extension does not include the framework out of the box!
+
+    Please, do not forget to include it on top.
+
 Latest version from git
 -----------------------
 
