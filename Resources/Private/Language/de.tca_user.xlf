@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de">
+        <body>
+            <trans-unit id="throttling">
+                <target>Drosselstatus</target>
+            </trans-unit>
+            <trans-unit id="throttling.active">
+                <target>Gesperrt</target>
+            </trans-unit>
+            <trans-unit id="throttling.inactive">
+                <target>Entsperrt</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de">
+        <body>
+            <trans-unit id="username.label">
+                <target>Benutzername</target>
+            </trans-unit>
+            <trans-unit id="username.placeholder">
+                <target>Geben Sie Ihren Benutzernamen ein...</target>
+            </trans-unit>
+            <trans-unit id="password.label">
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="password.placeholder">
+                <target>Geben Sie Ihr Passwort ein...</target>
+            </trans-unit>
+            <trans-unit id="email.label">
+                <target>E-Mail-Addresse</target>
+            </trans-unit>
+            <trans-unit id="email.placeholder">
+                <target>Geben Sie Ihre E-Mail-Adresse ein...</target>
+            </trans-unit>
+            <trans-unit id="remember.label">
+                <target>Erinnern</target>
+            </trans-unit>
+            <trans-unit id="password.new.label">
+                <target>Neues Kennwort</target>
+            </trans-unit>
+            <trans-unit id="password.new_confirmation.label">
+                <target>Bestätige neues Passwort</target>
+            </trans-unit>
+            <trans-unit id="forgot.link">
+                <target>Passwort vergessen ?</target>
+            </trans-unit>
+            <trans-unit id="magic.link">
+                <target>Magischer Link?</target>
+            </trans-unit>
+            <trans-unit id="form_login.submit">
+                <target>Einloggen</target>
+            </trans-unit>
+            <trans-unit id="form_login.logout">
+                <target>Ausloggen</target>
+            </trans-unit>
+            <trans-unit id="form_forgot.submit">
+                <target>Senden</target>
+            </trans-unit>
+            <trans-unit id="form_magic.submit">
+                <target>Senden</target>
+            </trans-unit>
+            <trans-unit id="form_reset.submit">
+                <target>Passwort ändern</target>
+            </trans-unit>
+            <trans-unit id="temporary_account.generate">
+                <target>Temporäres Konto erstellen</target>
+            </trans-unit>
+            <trans-unit id="ajax.loading">
+                <target>Laden...</target>
+            </trans-unit>
+            <trans-unit id="ajax.redirect">
+                <target>Umleiten...</target>
+            </trans-unit>
+            <trans-unit id="ajax.notification_sent">
+                <target>Die Benachrichtigung wurde erfolgreich gesendet.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
