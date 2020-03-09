@@ -158,3 +158,33 @@ Magic link request
         {
             "redirect": "http:example.com/after_magic_link/sent"
         }
+
+Forgot password request
+=======================
+
+    .. code-block:: console
+
+        curl --location --request POST 'http://login.ddev.site/api/login/reset-password-link' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --data-raw '{"email":"dummy@example.com"}'
+
+    Error response
+
+    .. code-block:: json
+
+        {
+            "errors": {
+                "email": [
+                    "This email address is not connected to any user in our system."
+                ]
+            }
+        }
+
+    Success response
+
+    .. code-block:: json
+
+        {
+            "redirect": "http:example.com/after_forgot_password/sent"
+        }
