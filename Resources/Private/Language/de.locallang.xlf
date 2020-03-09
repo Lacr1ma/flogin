@@ -62,6 +62,27 @@
             <trans-unit id="ajax.notification_sent">
                 <target>Die Benachrichtigung wurde erfolgreich gesendet.</target>
             </trans-unit>
+            <trans-unit id="username.locked">
+                <target>Benutzer wurde gesperrt</target>
+            </trans-unit>
+            <trans-unit id="username.not_found">
+                <target>Der angegebene Benutzername wurde nicht gefunden.</target>
+            </trans-unit>
+            <trans-unit id="password.not_match">
+                <target>Passwort ist ungültig</target>
+            </trans-unit>
+            <trans-unit id="email.not_found">
+                <target>Diese E-Mail-Adresse ist mit keinem Benutzer in unserem System verbunden.</target>
+            </trans-unit>
+            <trans-unit id="login.limit_reached">
+                <target>Zu viel Anfrage! Bitte warten Sie %s Minuten</target>
+            </trans-unit>
+            <trans-unit id="password_confirmation.not_match">
+                <target>Bestätigungskennwort stimmt nicht überein</target>
+            </trans-unit>
+            <trans-unit id="user.already_logged_in">
+                <target>Benutzer ist bereits authentifiziert</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

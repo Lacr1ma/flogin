@@ -27,7 +27,6 @@ namespace LMS\Login\Domain\Validator;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Response;
-use LMS\Login\Support\TypoScript;
 use Symfony\Component\HttpFoundation\Request;
 use LMS\Login\Domain\{Model\User, Repository\UserRepository};
 
@@ -83,20 +82,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
      */
     protected function translate(string $key, array $arguments = []): string
     {
-        $file = $this->getTranslationFile();
-
-        return $this->translateErrorMessage("{$file}:{$key}", '', $arguments) ?: '';
-    }
-
-    /**
-     * Retrieve the translation file path for validation
-     * By default it's <LLL:EXT:login/Resources/Private/Language/validation.xlf>
-     *
-     * @return string
-     */
-    private function getTranslationFile(): string
-    {
-        return (string)TypoScript::getSettings()['validation.']['translationFilePrefix'];
+        return $this->translateErrorMessage($key, 'login', $arguments) ?: '';
     }
 
     /**

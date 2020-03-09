@@ -80,9 +80,6 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
     protected function getTypoScriptArray(): array
     {
         return [
-            'validation.' => [
-                'translationFilePrefix' => 'LLL:EXT:login/Resources/Private/Language/validation.xlf'
-            ],
             'page.' => [
                 'login' => '2'
             ],

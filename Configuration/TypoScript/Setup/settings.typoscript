@@ -1,9 +1,5 @@
 plugin.tx_login.settings {
 
-    validation {
-        translationFilePrefix = {$plugin.tx_login.settings.validation.translationFilePrefix}
-    }
-
     page {
         login = {$plugin.tx_login.settings.page.login}
     }

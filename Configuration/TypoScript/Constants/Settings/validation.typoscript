@@ -1,6 +1,0 @@
-plugin.tx_login.settings.validation {
-
-    # cat=plugin.tx_login//a; type=string; label=Translation file path related to validation messages
-    translationFilePrefix = LLL:EXT:login/Resources/Private/Language/validation.xlf
-
-}
