@@ -147,4 +147,17 @@ class AcceptanceTester extends \Codeception\Actor
 
         $this->click('#login-button');
     }
+
+    /**
+     * @param string $email
+     */
+    public function amRequestingMagicLinkAjax(string $email): void
+    {
+        $this->amOnPage('/loginajax');
+
+        $this->click('#magic-link');
+        $this->fillField('email', $email);
+
+        $this->click('#send-magic-link');
+    }
 }

@@ -68,4 +68,16 @@ class DeceiverAjaxLoginCest
         $I->waitForElement('.password-block > .is-invalid');
         $I->see('Password is invalid', '.password-is-invalid');
     }
+
+    /**
+     * @param AcceptanceTester $I
+     */
+    public function user_can_be_logged_in(AcceptanceTester $I)
+    {
+        $I->wantTo('I can login using ajax form.');
+
+        $I->amLoggedByAjaxFormAs('dummy');
+
+        $I->waitForElement('#login_success_block');
+    }
 }
