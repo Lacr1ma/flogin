@@ -160,4 +160,17 @@ class AcceptanceTester extends \Codeception\Actor
 
         $this->click('#send-magic-link');
     }
+
+    /**
+     * @param string $email
+     */
+    public function amRequestingForgotLinkAjax(string $email): void
+    {
+        $this->amOnPage('/loginajax');
+
+        $this->click('#forgot-link');
+        $this->fillField('#forgot-email-field', $email);
+
+        $this->click('#send-forgot-link');
+    }
 }
