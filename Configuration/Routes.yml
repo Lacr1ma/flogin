@@ -77,3 +77,14 @@ login_logins-logout:
   options:
     middleware:
       - LMS\Routes\Middleware\Api\Authenticate
+
+login_magiclink-send_magic_link_email:
+  path:         api/login/magic-link
+  controller:   LMS\Login\Controller\Api\MagicLinkApiController::sendMagicLinkEmail
+  methods:      POST
+  format:       json
+  requirements:
+    email:      "[^/]+"
+  defaults:
+    plugin:     MagicLinkApi
+    email:
