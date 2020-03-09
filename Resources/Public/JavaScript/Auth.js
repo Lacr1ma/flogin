@@ -4,7 +4,15 @@
  * @return {void}
  */
 $(function () {
+    initializeLoginForm();
+    initializeMagicLinkForm();
+    initializeResetPasswordForm();
+});
 
+/**
+ * @return {void}
+ */
+const initializeLoginForm = async () => {
     $("#login_form_ajax").submit(function (event) {
         event.preventDefault();
 
@@ -28,7 +36,12 @@ $(function () {
             }, 200);
         });
     });
+};
 
+/**
+ * @return {void}
+ */
+const initializeMagicLinkForm = async () => {
     $("#magic_form_ajax").submit(function (event) {
         event.preventDefault();
 
@@ -45,7 +58,11 @@ $(function () {
                 return;
             }
 
-            validateEmail(data.errors['email'] || '');
+            placeError(
+                $('#email-field'),
+                $('.email-is-invalid'),
+                data.errors['email'] || ''
+            );
 
             setTimeout(function () {
                 $('#magic_form_ajax fieldset').removeAttr('disabled');
@@ -53,13 +70,18 @@ $(function () {
             }, 200);
         });
     });
+};
 
+/**
+ * @return {void}
+ */
+const initializeResetPasswordForm = async () => {
     $("#forgot_form_ajax").submit(function (event) {
         event.preventDefault();
 
         forgotPasswordFormIsLoading();
 
-        const email = $(this).find('#email-field').val();
+        const email = $(this).find('#forgot-email-field').val();
 
         requestMagicLinkAttempt('/api/login/reset-password-link', email).then(function (data) {
             if (data.redirect) {
@@ -70,7 +92,7 @@ $(function () {
                 return;
             }
 
-            validateEmail(data.errors['email'] || '');
+            placeError($('#forgot-email-field'), $('.forgot-email-is-invalid'), data.errors['email'] || '');
 
             setTimeout(function () {
                 $('#forgot-request-form fieldset').removeAttr('disabled');
@@ -78,9 +100,7 @@ $(function () {
             }, 200);
         });
     });
-
-});
-
+};
 
 /**
  * Show the user that we are currently going to redirect him to after logout page
@@ -170,20 +190,6 @@ const validateUsername = async (errorMessage) => {
     let field = $('#username-field');
 
     let notice = $('.username-block > .validation');
-
-    placeError(field, notice, errorMessage);
-};
-
-/**
- * Set validation errors for email
- *
- * @param {string}   errorMessage
- * @return {void}
- */
-const validateEmail = async (errorMessage) => {
-    let field = $('#email-field');
-
-    let notice = $('.email-block > .validation');
 
     placeError(field, notice, errorMessage);
 };
