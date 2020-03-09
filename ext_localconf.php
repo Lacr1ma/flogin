@@ -146,6 +146,13 @@ $signalSlotDispatcher->connect(
 $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'sendResetLinkRequest',
+    \LMS\Login\Slot\Action\Reset\Ajax\Requested::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'sendResetLinkRequest',
     \LMS\Login\Slot\Action\Reset\Requested\Redirect::class,
     'execute'
 );
