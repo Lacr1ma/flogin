@@ -13,10 +13,12 @@
             <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:form_login.submit"/>
         </button>
 
-        <f:link.action id="magic-link" class="btn btn-secondary" action="showMagicLinkForm" controller="MagicLink">
+        <a id="magic-link" class="btn btn-secondary" data-toggle="collapse" href="#magic-request-form" role="button" aria-expanded="false">
             <f:translate key="LLL:EXT:login/Resources/Private/Language/locallang.xlf:magic.link"/>
-        </f:link.action>
+        </a>
 
     </fieldset>
 
 </form>
+
+<f:render partial="Api/Form/MagicLink/Form" arguments="{_all}"/>
