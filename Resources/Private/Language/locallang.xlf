@@ -60,6 +60,9 @@
 			<trans-unit id="ajax.redirect">
 				<source>Redirecting...</source>
 			</trans-unit>
+			<trans-unit id="ajax.notification_sent">
+				<source>Notification has been sent successfully.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
