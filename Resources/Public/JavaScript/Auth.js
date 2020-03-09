@@ -40,6 +40,7 @@ $(function () {
             if (data.redirect) {
                 $('#login_form_ajax').remove();
                 $('#magic-request-form').remove();
+                $('#forgot-request-form').remove();
                 $('#notification-sent').removeClass('d-none');
                 return;
             }
@@ -49,6 +50,31 @@ $(function () {
             setTimeout(function () {
                 $('#magic_form_ajax fieldset').removeAttr('disabled');
                 $('#send-magic-link').html(TYPO3.lang['form_magic.submit']);
+            }, 200);
+        });
+    });
+
+    $("#forgot_form_ajax").submit(function (event) {
+        event.preventDefault();
+
+        forgotPasswordFormIsLoading();
+
+        const email = $(this).find('#email-field').val();
+
+        requestMagicLinkAttempt('/api/login/reset-password-link', email).then(function (data) {
+            if (data.redirect) {
+                $('#login_form_ajax').remove();
+                $('#magic-request-form').remove();
+                $('#forgot-request-form').remove();
+                $('#notification-sent').removeClass('d-none');
+                return;
+            }
+
+            validateEmail(data.errors['email'] || '');
+
+            setTimeout(function () {
+                $('#forgot-request-form fieldset').removeAttr('disabled');
+                $('#send-forgot-link').html(TYPO3.lang['form_forgot.submit']);
             }, 200);
         });
     });
@@ -113,6 +139,22 @@ const magicLinkFormIsLoading = async () => {
     $('#magic_form_ajax fieldset').attr('disabled', 'disabled');
 
     $('#send-magic-link').html(`
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        <span>${label}</span>
+    `);
+};
+
+/**
+ * Basically add loading indicator to forgot password form and block it while preforming the request
+ *
+ * @return {void}
+ */
+const forgotPasswordFormIsLoading = async () => {
+    const label = TYPO3.lang['ajax.loading'];
+
+    $('#forgot_form_ajax fieldset').attr('disabled', 'disabled');
+
+    $('#send-forgot-link').html(`
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
         <span>${label}</span>
     `);
