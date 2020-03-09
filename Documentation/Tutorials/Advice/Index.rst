@@ -88,3 +88,96 @@ Clean up
         :class: with-shadow
 
         Scheduler tasks related to `EXT:login`.
+
+
+Handle translations
+===================
+
+    In situations when you need to overwrite the default language labels,
+    you can use this TypoScript snippets in your theme extension.
+
+    .. code-block:: ts
+
+        plugin.tx_login._LOCAL_LANG {
+
+            ########################
+            ###### LOGIN FORM ######
+            ########################
+
+            # Username
+            default.username.label       = Username
+            default.username.placeholder = Input your username...
+
+            # Password
+            default.password.label       = Password
+            default.password.placeholder = Input your password...
+
+            # Remember me checkbox
+            default.remember.label = Remember me
+
+            # Forgot link
+            default.forgot.link = Forgot password ?
+
+            # Magic link
+            default.magic.link = Magic link?
+
+            # Submit button
+            default.form_login.submit = Login
+
+            # Logout button
+            default.form_login.logout = Logout
+
+
+
+            ########################
+            #### CHANGE PASSWORD ###
+            ########################
+
+            # New password input
+            default.password.new.label              = New password
+
+            # Confirm new password input
+            default.password.new_confirmation.label = Confirm new password
+
+            # Submit button
+            default.form_reset.submit = Change password
+
+
+
+            #########################
+            ## FORGOT PASS REQUEST ##
+            #########################
+
+            # Submit button
+            default.form_forgot.submit = Send the link
+
+
+
+
+            ########################
+            ## MAGIC LINK REQUEST ##
+            ########################
+
+            # Submit button
+            default.form_magic.submit = Send magic link
+
+
+
+            ########################
+            ######## COMMON ########
+            ########################
+
+            # Email (request magic link, forgot password request)
+            default.email.label                = Email address
+            default.email.placeholder          = Input your email address...
+
+            # Async login form
+            default.ajax.loading               = Loading...
+            default.ajax.redirect              = Redirecting...
+            default.ajax.notification_sent     = Notification has been sent successfully.
+
+            # Backend module
+            default.temporary_account.generate = Generate temporary account
+        }
+
+    For other languages just replace the :file:`default` with actual key. ( Like :file:`de` ).

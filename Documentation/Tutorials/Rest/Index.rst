@@ -105,3 +105,56 @@ Plain authentication attempt
     .. note::
 
         Guarded by :file:`Throttle` middleware with limited to 50 failed attempts.
+
+    Error response
+
+    .. code-block:: json
+
+        {
+            "errors": {
+                "username": [
+                    "Provided username is not found."
+                ],
+                "password": [
+                    "Password is invalid"
+                ]
+            }
+        }
+
+    Success response
+
+    .. code-block:: json
+
+        {
+            "redirect": "http:example.com/after_login/sent"
+        }
+
+Magic link request
+====================
+
+    .. code-block:: console
+
+        curl --location --request POST 'http://login.ddev.site/api/login/magic-link' \
+            --header 'Content-Type: application/json' \
+            --header 'Accept: application/json' \
+            --data-raw '{"email":"dummy@example.com"}'
+
+    Error response
+
+    .. code-block:: json
+
+        {
+            "errors": {
+                "email": [
+                    "This email address is not connected to any user in our system."
+                ]
+            }
+        }
+
+    Success response
+
+    .. code-block:: json
+
+        {
+            "redirect": "http:example.com/after_magic_link/sent"
+        }
