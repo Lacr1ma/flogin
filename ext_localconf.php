@@ -95,18 +95,21 @@ if (!defined('TYPO3_MODE')) {
     'LMS.login',
     'LoginApi',
     [
-        'Api\LoginApi' => 'showLoginForm, auth, logout',
-        'ForgotPassword' => 'showForgotForm, sendResetLinkEmail',
-        'MagicLink' => 'showMagicLinkForm, sendMagicLinkEmail, login',
-        'ResetPassword' => 'showResetForm, reset',
-        'Locker' => 'unlock'
+        'Api\LoginApi' => 'showLoginForm, auth, logout'
     ],
     [
-        'Api\LoginApi' => 'showLoginForm, auth, logout',
-        'ForgotPassword' => 'showForgotForm, sendResetLinkEmail',
-        'MagicLink' => 'showMagicLinkForm, sendMagicLinkEmail, login',
-        'ResetPassword' => 'showResetForm, reset',
-        'Locker' => 'unlock'
+        'Api\LoginApi' => 'showLoginForm, auth, logout'
+    ]
+);
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'LMS.login',
+    'MagicLinkApi',
+    [
+        'Api\MagicLinkApi' => 'sendMagicLinkEmail'
+    ],
+    [
+        'Api\MagicLinkApi' => 'sendMagicLinkEmail'
     ]
 );
 
@@ -168,6 +171,13 @@ $signalSlotDispatcher->connect(
     \LMS\Login\Event\SessionEvent::class,
     'sendMagicLinkRequest',
     \LMS\Login\Slot\Action\MagicLink\Requested\SendNotification::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Login\Event\SessionEvent::class,
+    'sendMagicLinkRequest',
+    \LMS\Login\Slot\Action\MagicLink\Ajax\Requested::class,
     'execute'
 );
 
