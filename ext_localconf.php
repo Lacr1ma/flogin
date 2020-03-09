@@ -113,6 +113,17 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'LMS.login',
+    'ForgotPasswordApi',
+    [
+        'Api\ForgotPasswordApi' => 'sendResetLinkEmail'
+    ],
+    [
+        'Api\ForgotPasswordApi' => 'sendResetLinkEmail'
+    ]
+);
+
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_login'])) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_login'] = [];
 }
