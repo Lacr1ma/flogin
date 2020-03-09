@@ -13,3 +13,7 @@ plugin.tx_login_loginapi {
 plugin.tx_login_magiclinkapi {
     features.requireCHashArgumentForActionArguments = 0
 }
+
+plugin.tx_login_forgotpasswordapi {
+    features.requireCHashArgumentForActionArguments = 0
+}
