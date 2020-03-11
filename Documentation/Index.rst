@@ -13,7 +13,8 @@ Login
 .. only:: html
 
 	:Classification:
-		login, frontend-login, extbase, fluid, throttle
+		login, frontend-login, extbase, fluid, throttle, felogin, bruteforce,
+		password, auth, credentials, magic-link, temporary-account
 
 	:Version:
 		|release|
