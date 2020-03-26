@@ -83,9 +83,6 @@ return [
         'feedit' => [
             'packagePath' => 'typo3/sysext/feedit/',
         ],
-        'felogin' => [
-            'packagePath' => 'typo3/sysext/felogin/',
-        ],
         'filemetadata' => [
             'packagePath' => 'typo3/sysext/filemetadata/',
         ],
@@ -119,17 +116,17 @@ return [
         'workspaces' => [
             'packagePath' => 'typo3/sysext/workspaces/',
         ],
+        'routes' => [
+            'packagePath' => 'typo3conf/ext/routes/',
+        ],
+        'flogin' => [
+            'packagePath' => 'typo3conf/ext/flogin/',
+        ],
         'bootstrap_package' => [
             'packagePath' => 'typo3conf/ext/bootstrap_package/',
         ],
         'ddev_utilities' => [
             'packagePath' => 'typo3conf/ext/ddev_utilities/',
-        ],
-        'login' => [
-            'packagePath' => 'typo3conf/ext/login/',
-        ],
-        'routes' => [
-            'packagePath' => 'typo3conf/ext/routes/',
         ],
     ],
     'version' => 5,

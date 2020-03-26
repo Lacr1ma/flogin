@@ -8,7 +8,7 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="public/typo3conf/ext/login/Classes" />
+        <directory name="public/typo3conf/ext/flogin/Classes" />
         <ignoreFiles>
             <directory name="vendor" />
             <directory name="public/typo3" />
