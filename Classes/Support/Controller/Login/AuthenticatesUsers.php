@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Controller\Login;
+namespace LMS\Flogin\Support\Controller\Login;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Support\Controller\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
-use LMS\Login\{Event\SessionEvent, Guard\SessionGuard};
+use LMS\Flogin\Domain\Repository\UserRepository;
+use LMS\Flogin\{Event\SessionEvent, Guard\SessionGuard};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

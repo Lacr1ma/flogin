@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Forgot;
+namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Forgot;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Forgot;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
+use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -41,7 +41,7 @@ class DeceiverForgotCest
         $I->wantTo('When I submit <forgot password form> with invalid email, I see an error.');
 
         $I->amOnForgotPage();
-        $I->fillField('tx_login_login[email]', 'dummy@domain.ltd');
+        $I->fillField('tx_flogin_flogin[email]', 'dummy@domain.ltd');
         $I->click('#send-reset-link');
 
         $I->seeElement('.email-block > .is-invalid');

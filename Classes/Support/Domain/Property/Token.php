@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Domain\Property;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *

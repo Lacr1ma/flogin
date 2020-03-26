@@ -1,6 +1,6 @@
 config.tx_extbase.persistence.classes {
 
-  LMS\Login\Domain\Model\User.mapping {
+  LMS\Flogin\Domain\Model\User.mapping {
     tableName = fe_users
     columns {
       tstamp.mapOnProperty = tstamp
@@ -8,11 +8,11 @@ config.tx_extbase.persistence.classes {
     }
   }
 
-  LMS\Login\Domain\Model\UserGroup.mapping {
+  LMS\Flogin\Domain\Model\UserGroup.mapping {
     tableName = fe_groups
   }
 
-  LMS\Login\Domain\Model\Resets.mapping {
+  LMS\Flogin\Domain\Model\Resets.mapping {
     columns.crdate.mapOnProperty = crdate
   }
 

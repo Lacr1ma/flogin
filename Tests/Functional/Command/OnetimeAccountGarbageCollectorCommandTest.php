@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Command;
+namespace LMS\Flogin\Tests\Functional\Command;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Tests\Functional\Command;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Login\Domain\{Model\User, Repository\UserRepository};
+use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -37,11 +37,11 @@ class OnetimeAccountGarbageCollectorCommandTest extends \TYPO3\TestingFramework\
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
 
     /**
      * @test
-     * @covers \LMS\Login\Command\OnetimeAccountGarbageCollectorCommand
+     * @covers \LMS\Flogin\Command\OnetimeAccountGarbageCollectorCommand
      */
     public function execute(): void
     {

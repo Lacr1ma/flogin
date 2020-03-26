@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Unlock;
+namespace LMS\Flogin\Slot\Action\Unlock;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Slot\Action\Unlock;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Redirection\UserRouter;
+use LMS\Flogin\Support\Redirection\UserRouter;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

@@ -1,35 +1,35 @@
-@import 'EXT:login/Configuration/TypoScript/Setup/'
+@import 'EXT:flogin/Configuration/TypoScript/Setup/'
 
-plugin.tx_login {
+plugin.tx_flogin {
 
   view {
-    templateRootPaths.0 = {$plugin.tx_login.view.templateRootPath}
-    partialRootPaths.0 = {$plugin.tx_login.view.partialRootPath}
-    layoutRootPaths.0 = {$plugin.tx_login.view.layoutRootPath}
+    templateRootPaths.0 = {$plugin.tx_flogin.view.templateRootPath}
+    partialRootPaths.0 = {$plugin.tx_flogin.view.partialRootPath}
+    layoutRootPaths.0 = {$plugin.tx_flogin.view.layoutRootPath}
   }
 
   persistence {
-    storagePid = {$plugin.tx_login.persistence.storagePid}
+    storagePid = {$plugin.tx_flogin.persistence.storagePid}
   }
 
 }
 
-module.tx_login {
+module.tx_flogin {
 
   view {
     templateRootPaths {
-      0 = EXT:login/Resources/Private/Backend/Templates/
-      1 = {$module.tx_login.view.templateRootPath}
+      0 = EXT:flogin/Resources/Private/Backend/Templates/
+      1 = {$module.tx_flogin.view.templateRootPath}
     }
 
     partialRootPaths {
-      0 = EXT:login/Resources/Private/Backend/Partials/
-      1 = {$module.tx_login.view.partialRootPath}
+      0 = EXT:flogin/Resources/Private/Backend/Partials/
+      1 = {$module.tx_flogin.view.partialRootPath}
     }
 
     layoutRootPaths {
-      0 = EXT:login/Resources/Private/Backend/Layouts/
-      1 = {$module.tx_login.view.layoutRootPath}
+      0 = EXT:flogin/Resources/Private/Backend/Layouts/
+      1 = {$module.tx_flogin.view.layoutRootPath}
     }
   }
 

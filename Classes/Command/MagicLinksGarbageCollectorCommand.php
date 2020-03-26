@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Command;
+namespace LMS\Flogin\Command;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Link;
+use LMS\Flogin\Domain\Model\Link;
 use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
 
 /**

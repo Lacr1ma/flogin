@@ -1,11 +1,11 @@
-plugin.tx_login.settings.oneTimeAccount {
+plugin.tx_flogin.settings.oneTimeAccount {
 
     properties {
-        # cat=plugin.tx_login//a; type=string; label=One Time user can be initialized with provided list of groups
+        # cat=plugin.tx_flogin//a; type=string; label=One Time user can be initialized with provided list of groups
         usergroup =
     }
 
-    # cat=plugin.tx_login//a; type=int+; label=After defined number of minutes, user will be deleted
+    # cat=plugin.tx_flogin//a; type=int+; label=After defined number of minutes, user will be deleted
     lifetimeInMinutes = 60
 
 }

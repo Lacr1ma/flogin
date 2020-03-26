@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\MagicLink;
+namespace LMS\Flogin\Domain\Validator\MagicLink;
 
 /* * *************************************************************
  *
@@ -27,20 +27,20 @@ namespace LMS\Login\Domain\Validator\MagicLink;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\User\StateContext;
-use LMS\Login\Support\Redirection\UserRouter;
+use LMS\Flogin\Support\Redirection\UserRouter;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class NotAuthenticatedValidator extends \LMS\Login\Domain\Validator\DefaultValidator
+class NotAuthenticatedValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when use is not logged in at the current moment
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $loginRequest
      */
     protected function isValid($loginRequest): void
     {

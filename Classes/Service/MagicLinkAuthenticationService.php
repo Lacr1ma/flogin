@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Service;
+namespace LMS\Flogin\Service;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Event\SessionEvent;
+use LMS\Flogin\Event\SessionEvent;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -71,6 +71,6 @@ class MagicLinkAuthenticationService extends \TYPO3\CMS\Core\Authentication\Abst
      */
     private function requestHasMagicToken(): string
     {
-        return Request::createFromGlobals()->query->get('tx_login_login')['request']['token'] ?: '';
+        return Request::createFromGlobals()->query->get('tx_flogin_flogin')['request']['token'] ?: '';
     }
 }

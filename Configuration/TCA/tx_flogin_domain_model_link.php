@@ -24,7 +24,7 @@ declare(strict_types = 1);
 *  This copyright notice MUST APPEAR in all copies of the script!
 * ************************************************************* */
 
-$ll = 'LLL:EXT:login/Resources/Private/Language/tca_resets.xlf:';
+$ll = 'LLL:EXT:flogin/Resources/Private/Language/tca_resets.xlf:';
 
 return [
     'ctrl' => [
@@ -33,7 +33,7 @@ return [
         'crdate' => 'crdate',
         'delete' => 'deleted',
         'hideTable' => true,
-        'iconfile' => 'EXT:login/Resources/Public/Icons/TCA/Resets.svg'
+        'iconfile' => 'EXT:flogin/Resources/Public/Icons/TCA/Link.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'user, token'

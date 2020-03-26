@@ -39,4 +39,4 @@ Tweak a validation message
 
         .. tip::
 
-            :ts:`LLL:EXT:theme/Resources/Private/Language/locallang.xlf:username.not_found`
+            :ts:`LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:username.not_found`

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Repository;
+namespace LMS\Flogin\Tests\Functional\Domain\Repository;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Repository\UserRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UserRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
+class UserRepositoryTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

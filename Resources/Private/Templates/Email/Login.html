@@ -11,7 +11,7 @@
             <td class="es-m-txt-c" align="center">
                 <h2>
                     <strong>
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.caption"/>
+                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.caption"/>
                     </strong>
                 </h2>
             </td>
@@ -20,7 +20,7 @@
         <tr>
             <td class="es-m-txt-l" bgcolor="transparent" align="left">
                 <span>
-                    <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.caption_description" arguments="{0: user.username}"/>
+                    <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.caption_description" arguments="{0: user.username}"/>
                 </span>
             </td>
         </tr>
@@ -40,7 +40,7 @@
         <tr>
             <td align="center">
                 <h3 class="request-header">
-                    <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.information_header"/>
+                    <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.information_header"/>
                 </h3>
             </td>
         </tr>
@@ -49,19 +49,19 @@
             <td align="left">
                 <p>
                     <strong>
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.agent"/>:
+                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.agent"/>:
                     </strong>
                     {request.HTTP_USER_AGENT}
                 </p>
                 <p>
                     <strong>
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.ip"/>:
+                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.ip"/>:
                     </strong>
                     {request.REMOTE_ADDR}
                 </p>
                 <p>
                     <strong>
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.time"/>:
+                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.time"/>:
                     </strong>
                     <f:format.date format="d.m.Y - H:i:s">
                         {request.REQUEST_TIME}
@@ -75,7 +75,7 @@
                 <span class="es-button-border">
                     <f:cache.disable>
                         <a href="{user.forgotPasswordFormUrl}" class="es-button" target="_blank">
-                            <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:login.button_change_password"/>
+                            <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.button_change_password"/>
                         </a>
                     </f:cache.disable>
                 </span>
@@ -87,6 +87,6 @@
 
 <f:section name="Footer">
     <f:format.raw>
-        <f:translate arguments="{0: '{email.site}'}" key="LLL:EXT:login/Resources/Private/Language/email.xlf:common.signature"/>
+        <f:translate arguments="{0: '{email.site}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:common.signature"/>
     </f:format.raw>
 </f:section>

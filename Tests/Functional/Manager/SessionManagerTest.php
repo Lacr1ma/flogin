@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Manager;
+namespace LMS\Flogin\Tests\Functional\Manager;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional\Manager;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Manager\SessionManager;
+use LMS\Flogin\Manager\SessionManager;
 use TYPO3\CMS\Frontend\Utility\EidUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 
@@ -38,7 +38,7 @@ class SessionManagerTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
 
     /**
      * @throws \Doctrine\DBAL\DBALException

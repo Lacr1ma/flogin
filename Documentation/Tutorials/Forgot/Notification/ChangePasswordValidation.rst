@@ -20,4 +20,4 @@ Tweak a validation message
 
         .. tip::
 
-            :ts:`LLL:EXT:theme/Resources/Private/Language/locallang.xlf:password_confirmation.not_match`
+            :ts:`LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:password_confirmation.not_match`

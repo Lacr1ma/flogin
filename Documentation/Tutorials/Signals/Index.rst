@@ -17,7 +17,7 @@ Password reset link requested.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'sendResetLinkRequest',
             \MY\ExtKey\Slots\ResetLinkRequested::class,
             'handle'
@@ -25,7 +25,7 @@ Password reset link requested.
 
     The method is called with the following argument:
 
-    * :php:`\LMS\Login\Domain\Model\Request\ResetPasswordRequest $request`
+    * :php:`\LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request`
 
 Password has been reset.
 ==============================
@@ -34,7 +34,7 @@ Password has been reset.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'passwordHasBeenReset',
             \MY\ExtKey\Slots\PasswordUpdated::class,
             'handle'
@@ -42,7 +42,7 @@ Password has been reset.
 
     The method is called with the following argument:
 
-    * :php:`\LMS\Login\Domain\Model\Request\ResetPasswordRequest $request`
+    * :php:`\LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request`
 
 Magic link requested.
 ==============================
@@ -51,7 +51,7 @@ Magic link requested.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'sendMagicLinkRequest',
             \MY\ExtKey\Slots\MagicLinkRequested::class,
             'handle'
@@ -59,7 +59,7 @@ Magic link requested.
 
     The method is called with the following argument:
 
-    * :php:`\LMS\Login\Domain\Model\Request\MagicLinkRequest $request`
+    * :php:`\LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request`
 
 Magic link applied.
 ==============================
@@ -68,7 +68,7 @@ Magic link applied.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'magicLinkApplied',
             \MY\ExtKey\Slots\MagicLinkApplied::class,
             'handle'
@@ -85,7 +85,7 @@ Account has been locked out.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'lockout',
             \MY\ExtKey\Slots\LockoutHappened::class,
             'handle'
@@ -93,7 +93,7 @@ Account has been locked out.
 
     The method is called with the following argument:
 
-    * :php:`\LMS\Login\Domain\Model\User $user`
+    * :php:`\LMS\Flogin\Domain\Model\User $user`
 
 Account has been unlocked.
 ==============================
@@ -102,7 +102,7 @@ Account has been unlocked.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'userUnlocked',
             \MY\ExtKey\Slots\AccountUnlocked::class,
             'handle'
@@ -110,7 +110,7 @@ Account has been unlocked.
 
     The method is called with the following argument:
 
-    * :php:`\LMS\Login\Domain\Model\User $user`
+    * :php:`\LMS\Flogin\Domain\Model\User $user`
 
 Login attempt detected.
 ==============================
@@ -119,7 +119,7 @@ Login attempt detected.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'loginAttempt',
             \MY\ExtKey\Slots\NewLoginAttempt::class,
             'handle'
@@ -127,7 +127,7 @@ Login attempt detected.
 
     The method is called with the following arguments:
 
-    * :php:`\LMS\Login\Domain\Model\User $user`
+    * :php:`\LMS\Flogin\Domain\Model\User $user`
     * :php:`string                       $plainPassword`
     * :php:`bool                         $remember`
 
@@ -138,7 +138,7 @@ Failed login attempt detected.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'loginAttemptFailed',
             \MY\ExtKey\Slots\NewFailedLoginAttempt::class,
             'handle'
@@ -155,7 +155,7 @@ Successful login attempt detected.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'loginSuccess',
             \MY\ExtKey\Slots\NewSuccessfulLoginAttempt::class,
             'handle'
@@ -163,7 +163,7 @@ Successful login attempt detected.
 
     The method is called with the following arguments:
 
-    * :php:`\LMS\Login\Domain\Model\User $user`
+    * :php:`\LMS\Flogin\Domain\Model\User $user`
     * :php:`bool                         $remember`
 
 Logout detected.
@@ -173,7 +173,7 @@ Logout detected.
 
         $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
         $dispatcher->connect(
-            \LMS\Login\Event\SessionEvent::class,
+            \LMS\Flogin\Event\SessionEvent::class,
             'logoutSuccess',
             \MY\ExtKey\Slots\UserLoggedOut::class,
             'handle'
@@ -181,4 +181,4 @@ Logout detected.
 
     The method is called with the following argument:
 
-    * :php:`\LMS\Login\Domain\Model\User $user`
+    * :php:`\LMS\Flogin\Domain\Model\User $user`

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Unit\Hash;
+namespace LMS\Flogin\Tests\Unit\Hash;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Unit\Hash;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Hash\Hash;
+use LMS\Flogin\Hash\Hash;
 use TYPO3\CMS\Core\Crypto\{Random, PasswordHashing\PasswordHashInterface};
 
 /**

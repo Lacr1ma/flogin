@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login\Fail;
+namespace LMS\Flogin\Slot\Action\Login\Fail;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Slot\Action\Login\Fail;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\ThrottlesLogins;
+use LMS\Flogin\Support\ThrottlesLogins;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

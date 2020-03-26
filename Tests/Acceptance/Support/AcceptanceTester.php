@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Support;
+namespace LMS\Flogin\Tests\Acceptance\Support;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\_generated\AcceptanceTesterActions;
+use LMS\Flogin\Tests\Acceptance\Support\_generated\AcceptanceTesterActions;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -56,7 +56,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fetchEmails();
 
         $this->amOnForgotPage();
-        $this->fillField('tx_login_login[email]', $toEmail);
+        $this->fillField('tx_flogin_flogin[email]', $toEmail);
         $this->click('#send-reset-link');
     }
 
@@ -69,7 +69,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fetchEmails();
 
         $this->amOnMagicLinkPage();
-        $this->fillField('tx_login_login[email]', $toEmail);
+        $this->fillField('tx_flogin_flogin[email]', $toEmail);
         $this->click('#send-magic-link');
     }
 
@@ -113,8 +113,8 @@ class AcceptanceTester extends \Codeception\Actor
             $this->fetchEmails();
         }
 
-        $this->fillField('tx_login_login[request][password]', $password);
-        $this->fillField('tx_login_login[request][passwordConfirmation]', $confirmation);
+        $this->fillField('tx_flogin_flogin[request][password]', $password);
+        $this->fillField('tx_flogin_flogin[request][passwordConfirmation]', $confirmation);
         $this->click('#change-password-link');
     }
 
@@ -126,9 +126,9 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('/login');
 
-        $this->fillField('tx_login_login[username]', $username);
-        $this->fillField('tx_login_login[password]', $password);
-        $this->uncheckOption('tx_login_login[remember]', 0);
+        $this->fillField('tx_flogin_flogin[username]', $username);
+        $this->fillField('tx_flogin_flogin[password]', $password);
+        $this->uncheckOption('tx_flogin_flogin[remember]', 0);
 
         $this->click('#login-button');
     }

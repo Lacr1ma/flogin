@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF['login'] = [
+$EM_CONF['flogin'] = [
     'title' => 'Frontend Authentication',
     'description' => 'Provides an authentication option for website users.',
     'category' => 'fe',

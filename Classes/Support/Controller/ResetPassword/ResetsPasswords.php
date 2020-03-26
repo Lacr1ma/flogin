@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Controller\ResetPassword;
+namespace LMS\Flogin\Support\Controller\ResetPassword;
 
 /* * *************************************************************
  *
@@ -26,9 +26,9 @@ namespace LMS\Login\Support\Controller\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Hash\Hash;
-use LMS\Login\Event\SessionEvent;
-use LMS\Login\Domain\{Model\User, Model\Request\ResetPasswordRequest, Repository\ResetsRepository};
+use LMS\Flogin\Hash\Hash;
+use LMS\Flogin\Event\SessionEvent;
+use LMS\Flogin\Domain\{Model\User, Model\Request\ResetPasswordRequest, Repository\ResetsRepository};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -40,7 +40,7 @@ trait ResetsPasswords
     /**
      * Attempt to reset the password and notify the listeners
      *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function reset(ResetPasswordRequest $request): void
     {
@@ -54,7 +54,7 @@ trait ResetsPasswords
     /**
      * Reset the given user's password.
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      * @param string                       $newPlainPassword
      */
     private function resetPassword(User $user, string $newPlainPassword): void

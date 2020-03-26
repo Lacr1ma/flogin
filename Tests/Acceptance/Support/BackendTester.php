@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Support;
+namespace LMS\Flogin\Tests\Acceptance\Support;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Tests\Acceptance\Support;
  * ************************************************************* */
 
 use TYPO3\TestingFramework\Core\Acceptance\Step\FrameSteps;
-use LMS\Login\Tests\Acceptance\Support\_generated\BackendTesterActions;
+use LMS\Flogin\Tests\Acceptance\Support\_generated\BackendTesterActions;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

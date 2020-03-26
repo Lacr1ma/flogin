@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Guard;
+namespace LMS\Flogin\Guard;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Guard;
  * ************************************************************* */
 
 use LMS\Facade\StaticCreator;
-use LMS\Login\{Domain\Model\User, Domain\Repository\UserRepository, Event\SessionEvent};
+use LMS\Flogin\{Domain\Model\User, Domain\Repository\UserRepository, Event\SessionEvent};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -39,7 +39,7 @@ class SessionGuard
     /**
      * Log a user into the application.
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      * @param bool                         $remember
      * @param string                       $plainPassword
      */

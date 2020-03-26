@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\MagicLink;
+namespace LMS\Flogin\Domain\Validator\MagicLink;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\{Domain\Repository\LinkRepository, Support\Redirection\UserRouter};
+use LMS\Flogin\{Domain\Repository\LinkRepository, Support\Redirection\UserRouter};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
+class RequestValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when magic link does exist in the database and it's not expired yet
@@ -40,7 +40,7 @@ class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
      * @psalm-suppress PossiblyNullReference
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $loginRequest
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $loginRequest
      */
     protected function isValid($loginRequest): void
     {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Reset\Applied;
+namespace LMS\Flogin\Slot\Action\Reset\Applied;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action\Reset\Applied;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Manager\SessionManager;
-use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Manager\SessionManager;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -39,7 +39,7 @@ class Logoff
      *
      * @psalm-suppress InternalMethod
      *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function execute(ResetPasswordRequest $request): void
     {

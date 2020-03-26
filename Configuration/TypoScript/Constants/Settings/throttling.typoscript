@@ -1,12 +1,12 @@
-plugin.tx_login.settings.throttling {
+plugin.tx_flogin.settings.throttling {
 
-    # cat=plugin.tx_login//a; type=int+; label=Number of allowed failed login attempts. When no more attempts allowed, user will be locked.
+    # cat=plugin.tx_flogin//a; type=int+; label=Number of allowed failed login attempts. When no more attempts allowed, user will be locked.
     maxAttempts = 5
 
-    # cat=plugin.tx_login//a; type=int+; label=Block Timeout in minutes for IP after using all of request attempts.
+    # cat=plugin.tx_flogin//a; type=int+; label=Block Timeout in minutes for IP after using all of request attempts.
     decayMinutes = 1
 
-    # cat=plugin.tx_login//a; type=int+; label=After defined number of minutes, user will be automatically unlocked by scheduler.
+    # cat=plugin.tx_flogin//a; type=int+; label=After defined number of minutes, user will be automatically unlocked by scheduler.
     lockIntervalInMinutes = 10
 
 }

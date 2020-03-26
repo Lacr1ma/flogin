@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller\Api;
+namespace LMS\Flogin\Controller\Api;
 
 /* * *************************************************************
  *

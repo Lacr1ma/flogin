@@ -27,7 +27,7 @@ Expired token
 
     .. note::
 
-        :ts:`plugin.tx_login.settings.redirect.error.whenTokenExpiredPage = X`
+        :ts:`plugin.tx_flogin.settings.redirect.error.whenTokenExpiredPage = X`
 
     .. figure:: ../../Images/Error/token_expired.png
         :class: with-shadow
@@ -50,7 +50,7 @@ Missing token
 
     .. note::
 
-        :ts:`plugin.tx_login.settings.redirect.error.whenTokenNotFoundPage = X`
+        :ts:`plugin.tx_flogin.settings.redirect.error.whenTokenNotFoundPage = X`
 
     .. figure:: ../../Images/Error/token_not_found.png
         :class: with-shadow
@@ -69,7 +69,7 @@ Already authenticated
 
     .. note::
 
-        :ts:`plugin.tx_login.settings.redirect.alreadyAuthenticatedPage = X`
+        :ts:`plugin.tx_flogin.settings.redirect.alreadyAuthenticatedPage = X`
 
     .. figure:: ../../Images/Error/already_authenticated.png
         :class: with-shadow
@@ -89,7 +89,7 @@ User is locked
 
     .. note::
 
-        :ts:`plugin.tx_login.settings.redirect.error.whenLockedPage = X`
+        :ts:`plugin.tx_flogin.settings.redirect.error.whenLockedPage = X`
 
     .. figure:: ../../Images/Error/locked.png
         :class: with-shadow

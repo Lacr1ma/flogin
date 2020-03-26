@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Controller\Backend;
+namespace LMS\Flogin\Support\Controller\Backend;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Support\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\{Manager\SessionManager, Guard\SessionGuard};
+use LMS\Flogin\{Manager\SessionManager, Guard\SessionGuard};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

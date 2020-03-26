@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Event;
+namespace LMS\Flogin\Event;
 
 /* * *************************************************************
  *
@@ -26,9 +26,9 @@ namespace LMS\Login\Event;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
+use LMS\Flogin\Domain\Model\User;
 use LMS\Facade\Extbase\Dispatcher;
-use LMS\Login\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
+use LMS\Flogin\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -36,7 +36,7 @@ use LMS\Login\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
 trait SessionEvent
 {
     /**
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      * @param string                       $plainPassword
      * @param bool                         $remember
      */
@@ -56,7 +56,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function fireLoginFailedInCoreEvent(User $user): void
     {
@@ -64,7 +64,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      * @param bool                         $remember
      */
     public function fireLoginSucceededEvent(User $user, bool $remember): void
@@ -73,7 +73,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function fireLogoutSucceededEvent(User $user): void
     {
@@ -81,7 +81,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function fireLoginLockoutEvent(User $user): void
     {
@@ -89,7 +89,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function firePasswordResetEvent(ResetPasswordRequest $request): void
     {
@@ -97,7 +97,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\User $user $user
+     * @param \LMS\Flogin\Domain\Model\User $user $user
      */
     public function fireLoginUnlockedEvent(User $user): void
     {
@@ -105,7 +105,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function fireSendResetLinkRequestEvent(ResetPasswordRequest $request): void
     {
@@ -113,7 +113,7 @@ trait SessionEvent
     }
 
     /**
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
     public function fireSendMagicLinkEvent(MagicLinkRequest $request): void
     {

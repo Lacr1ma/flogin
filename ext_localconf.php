@@ -28,9 +28,9 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    'login',
+    'flogin',
     'auth',
-    LMS\Login\Service\MagicLinkAuthenticationService::class,
+    LMS\Flogin\Service\MagicLinkAuthenticationService::class,
     [
         'title' => 'Magic Link Authentication Service',
         'description' => 'authentication for users based on Magic Link',
@@ -40,14 +40,14 @@ if (!defined('TYPO3_MODE')) {
         'quality' => 80,
         'os' => '',
         'exec' => '',
-        'className' => LMS\Login\Service\MagicLinkAuthenticationService::class,
+        'className' => LMS\Flogin\Service\MagicLinkAuthenticationService::class,
     ]
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    'login',
+    'flogin',
     'auth',
-    LMS\Login\Service\BackendSimulationAuthenticationService::class,
+    LMS\Flogin\Service\BackendSimulationAuthenticationService::class,
     [
         'title' => 'Backend Simulation for the FE users.',
         'description' => 'allows site administrator to sign up using selected FE user.',
@@ -57,13 +57,13 @@ if (!defined('TYPO3_MODE')) {
         'quality' => 82,
         'os' => '',
         'exec' => '',
-        'className' => LMS\Login\Service\BackendSimulationAuthenticationService::class,
+        'className' => LMS\Flogin\Service\BackendSimulationAuthenticationService::class,
     ]
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.login',
-    'Login',
+    'LMS.Flogin',
+    'Flogin',
     [
         'Login' => 'showLoginForm, login, logout',
         'ForgotPassword' => 'showForgotForm, sendResetLinkEmail',
@@ -81,7 +81,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.login',
+    'LMS.Flogin',
     'UserApi',
     [
         'UserApi' => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
@@ -92,7 +92,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.login',
+    'LMS.Flogin',
     'LoginApi',
     [
         'Api\LoginApi' => 'showLoginForm, auth, logout'
@@ -103,7 +103,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.login',
+    'LMS.Flogin',
     'MagicLinkApi',
     [
         'Api\MagicLinkApi' => 'sendMagicLinkEmail'
@@ -114,7 +114,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'LMS.login',
+    'LMS.Flogin',
     'ForgotPasswordApi',
     [
         'Api\ForgotPasswordApi' => 'sendResetLinkEmail'
@@ -124,168 +124,168 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
-if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_login'])) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_login'] = [];
+if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_flogin'])) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_flogin'] = [];
 }
 
 $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendResetLinkRequest',
-    \LMS\Login\Slot\Action\Reset\Requested\CreateLink::class,
+    \LMS\Flogin\Slot\Action\Reset\Requested\CreateLink::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendResetLinkRequest',
-    \LMS\Login\Slot\Action\Reset\Requested\SendNotification::class,
+    \LMS\Flogin\Slot\Action\Reset\Requested\SendNotification::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendResetLinkRequest',
-    \LMS\Login\Slot\Action\Reset\Ajax\Requested::class,
+    \LMS\Flogin\Slot\Action\Reset\Ajax\Requested::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendResetLinkRequest',
-    \LMS\Login\Slot\Action\Reset\Requested\Redirect::class,
+    \LMS\Flogin\Slot\Action\Reset\Requested\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'passwordHasBeenReset',
-    \LMS\Login\Slot\Action\Reset\Applied\Logoff::class,
+    \LMS\Flogin\Slot\Action\Reset\Applied\Logoff::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'passwordHasBeenReset',
-    \LMS\Login\Slot\Action\Reset\Applied\SendNotification::class,
+    \LMS\Flogin\Slot\Action\Reset\Applied\SendNotification::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'passwordHasBeenReset',
-    \LMS\Login\Slot\Action\Reset\Applied\Redirect::class,
+    \LMS\Flogin\Slot\Action\Reset\Applied\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendMagicLinkRequest',
-    \LMS\Login\Slot\Action\MagicLink\Requested\CreateLink::class,
+    \LMS\Flogin\Slot\Action\MagicLink\Requested\CreateLink::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendMagicLinkRequest',
-    \LMS\Login\Slot\Action\MagicLink\Requested\SendNotification::class,
+    \LMS\Flogin\Slot\Action\MagicLink\Requested\SendNotification::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendMagicLinkRequest',
-    \LMS\Login\Slot\Action\MagicLink\Ajax\Requested::class,
+    \LMS\Flogin\Slot\Action\MagicLink\Ajax\Requested::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'sendMagicLinkRequest',
-    \LMS\Login\Slot\Action\MagicLink\Requested\Redirect::class,
+    \LMS\Flogin\Slot\Action\MagicLink\Requested\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'magicLinkApplied',
-    \LMS\Login\Slot\Action\MagicLink\Applied\UtilizeLink::class,
+    \LMS\Flogin\Slot\Action\MagicLink\Applied\UtilizeLink::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'lockout',
-    \LMS\Login\Slot\Action\LockoutAction::class,
+    \LMS\Flogin\Slot\Action\LockoutAction::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'userUnlocked',
-    \LMS\Login\Slot\Action\Login\Success\ResetAttempts::class,
+    \LMS\Flogin\Slot\Action\Login\Success\ResetAttempts::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'userUnlocked',
-    \LMS\Login\Slot\Action\Unlock\Redirect::class,
+    \LMS\Flogin\Slot\Action\Unlock\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'loginAttempt',
-    \LMS\Login\Slot\Action\Login\Attempt::class,
+    \LMS\Flogin\Slot\Action\Login\Attempt::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'loginAttemptFailed',
-    \LMS\Login\Slot\Action\Login\Fail\IncrementAttempts::class,
+    \LMS\Flogin\Slot\Action\Login\Fail\IncrementAttempts::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'loginSuccess',
-    \LMS\Login\Slot\Action\Login\Success\ResetAttempts::class,
+    \LMS\Flogin\Slot\Action\Login\Success\ResetAttempts::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'loginSuccess',
-    \LMS\Login\Slot\Action\Login\Success\SendNotification::class,
+    \LMS\Flogin\Slot\Action\Login\Success\SendNotification::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'loginSuccess',
-    \LMS\Login\Slot\Action\Login\Ajax\SuccessfulLoginAttempt::class,
+    \LMS\Flogin\Slot\Action\Login\Ajax\SuccessfulLoginAttempt::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'loginSuccess',
-    \LMS\Login\Slot\Action\Login\Success\Redirect::class,
+    \LMS\Flogin\Slot\Action\Login\Success\Redirect::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'logoutSuccess',
-    \LMS\Login\Slot\Action\Login\Ajax\Logout::class,
+    \LMS\Flogin\Slot\Action\Login\Ajax\Logout::class,
     'execute'
 );
 
 $signalSlotDispatcher->connect(
-    \LMS\Login\Event\SessionEvent::class,
+    \LMS\Flogin\Event\SessionEvent::class,
     'logoutSuccess',
-    \LMS\Login\Slot\Action\Logout\Redirect::class,
+    \LMS\Flogin\Slot\Action\Logout\Redirect::class,
     'execute'
 );

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Reset;
+namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Reset;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Reset;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
+use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -100,7 +100,7 @@ class HonestResetCest
 
         $I->seeElement('#email');
 
-        $defaultEmail = $I->grabValueFrom('tx_login_login[email]');
+        $defaultEmail = $I->grabValueFrom('tx_flogin_flogin[email]');
 
         $I->assertSame($defaultEmail, $email);
     }

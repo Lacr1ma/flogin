@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator\MagicLink;
 
 /* * *************************************************************
  *
@@ -27,14 +27,14 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\User\StateContext;
-use LMS\Login\Domain\Repository\UserRepository;
-use LMS\Login\Domain\Model\Request\MagicLinkRequest;
-use LMS\Login\Domain\Validator\MagicLink\NotAuthenticatedValidator;
+use LMS\Flogin\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Domain\Validator\MagicLink\NotAuthenticatedValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class NotAuthenticatedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class NotAuthenticatedValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

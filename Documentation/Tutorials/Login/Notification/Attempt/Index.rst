@@ -35,7 +35,7 @@ Notification Subject
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.login.subject = LLL:EXT:login/Resources/Private/Language/email.xlf:login.subject`
+        :ts:`plugin.tx_flogin.settings.email.login.subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.subject`
 
 Disable the notification
 -------------------------
@@ -45,14 +45,14 @@ Disable the notification
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.login.disabled = 1`
+        :ts:`plugin.tx_flogin.settings.email.login.disabled = 1`
 
 View & Variables
 --------------------
 
     * The notification view can be found under:
 
-        :file:`EXT:login/Resources/Private/Templates/Email/Login.html`
+        :file:`EXT:flogin/Resources/Private/Templates/Email/Login.html`
 
     * Out of the box you developer has access to these variables:
 

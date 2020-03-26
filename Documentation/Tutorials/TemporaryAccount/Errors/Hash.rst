@@ -13,7 +13,7 @@ Invalid Hash
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.redirect.error.whenOneTimeAccountHashNotFoundPage = 77`
+        :ts:`plugin.tx_flogin.settings.redirect.error.whenOneTimeAccountHashNotFoundPage = 77`
 
     It's always a good choice to set the :file:`whenOneTimeAccountHashNotFoundPage`,
     even if you are positive about the situation will never happen.

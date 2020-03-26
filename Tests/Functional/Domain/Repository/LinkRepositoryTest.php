@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Repository;
+namespace LMS\Flogin\Tests\Functional\Domain\Repository;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\LinkRepository;
+use LMS\Flogin\Domain\Repository\LinkRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class LinkRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
+class LinkRepositoryTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @throws \Doctrine\DBAL\DBALException
@@ -122,6 +122,6 @@ class LinkRepositoryTest extends \LMS\Login\Tests\Functional\BaseTest
         $testMethod = new \ReflectionMethod(LinkRepository::class, 'getExtensionKey');
         $testMethod->setAccessible(true);
 
-        $this->assertSame('tx_login', $testMethod->invoke(LinkRepository::make()));
+        $this->assertSame('tx_flogin', $testMethod->invoke(LinkRepository::make()));
     }
 }

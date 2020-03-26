@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Repository;
+namespace LMS\Flogin\Domain\Repository;
 
 /* * *************************************************************
  *

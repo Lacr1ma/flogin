@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Notification;
+namespace LMS\Flogin\Slot\Notification;
 
 /* * *************************************************************
  *
@@ -26,17 +26,17 @@ namespace LMS\Login\Slot\Notification;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkNotification extends \LMS\Login\Notification\AbstractNotificationSender
+class MagicLinkNotification extends \LMS\Flogin\Notification\AbstractNotificationSender
 {
     /**
      * Build the MagicLinkNotification Template and email the user
      *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
     public function send(MagicLinkRequest $request): void
     {

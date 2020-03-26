@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Reset\Requested;
+namespace LMS\Flogin\Slot\Action\Reset\Requested;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action\Reset\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
-use LMS\Login\Slot\Notification\ResetPasswordNotification;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Slot\Notification\ResetPasswordNotification;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -35,7 +35,7 @@ use LMS\Login\Slot\Notification\ResetPasswordNotification;
 class SendNotification
 {
     /**
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function execute(ResetPasswordRequest $request): void
     {

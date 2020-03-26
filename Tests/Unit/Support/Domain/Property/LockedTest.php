@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Unit\Support\Domain\Property;
+namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Tests\Unit\Support\Domain\Property;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Login\Support\Domain\Property\Locked;
+use LMS\Flogin\Support\Domain\Property\Locked;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Controller\Backend;
+namespace LMS\Flogin\Support\Controller\Backend;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Controller\Backend;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Registry;
-use LMS\Login\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard, Hash\Hash};
+use LMS\Flogin\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard, Hash\Hash};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -41,11 +41,11 @@ trait CreatesOneTimeAccount
      *
      * @param string $hash
      *
-     * @return \LMS\Login\Domain\Model\User
+     * @return \LMS\Flogin\Domain\Model\User
      */
     public function createTemporaryFrontendAccount(string $hash): User
     {
-        Registry::remove('tx_login_hash', $hash);
+        Registry::remove('tx_flogin_hash', $hash);
 
         return User::create(
             OneTimeAccount::make()->getCombinedProperties($hash)
@@ -55,7 +55,7 @@ trait CreatesOneTimeAccount
     /**
      * Login user
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      * @param string                       $plainPassword
      */
     public function authorizeTemporaryUser(User $user, string $plainPassword): void
@@ -70,7 +70,7 @@ trait CreatesOneTimeAccount
     {
         $value = Hash::randomString();
 
-        Registry::set('tx_login_hash', $value, true);
+        Registry::set('tx_flogin_hash', $value, true);
 
         return $value;
     }

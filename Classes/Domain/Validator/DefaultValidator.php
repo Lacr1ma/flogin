@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator;
+namespace LMS\Flogin\Domain\Validator;
 
 /* * *************************************************************
  *
@@ -28,7 +28,7 @@ namespace LMS\Login\Domain\Validator;
 
 use LMS\Facade\Extbase\Response;
 use Symfony\Component\HttpFoundation\Request;
-use LMS\Login\Domain\{Model\User, Repository\UserRepository};
+use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -49,7 +49,7 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
             return json_decode((string)$json, true)[$name] ?: '';
         }
 
-        return $this->requestProps()['tx_login_login'][$name] ?: '';
+        return $this->requestProps()['tx_flogin_flogin'][$name] ?: '';
     }
 
     /**
@@ -82,13 +82,13 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
      */
     protected function translate(string $key, array $arguments = []): string
     {
-        return $this->translateErrorMessage($key, 'login', $arguments) ?: '';
+        return $this->translateErrorMessage($key, 'flogin', $arguments) ?: '';
     }
 
     /**
      * Attempt to find user that is related to current login request
      *
-     * @return \LMS\Login\Domain\Model\User|null
+     * @return \LMS\Flogin\Domain\Model\User|null
      */
     protected function findRequestAssociatedUser(): ?User
     {

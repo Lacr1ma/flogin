@@ -37,7 +37,7 @@ Magic Link Workflow
     * Redirect page
 
         .. tip::
-            :ts:`plugin.tx_login.settings.redirect.afterMagicLinkNotificationSentPage = 3`
+            :ts:`plugin.tx_flogin.settings.redirect.afterMagicLinkNotificationSentPage = 3`
 
 #. Check the email :ref:`notification <magic-link-notification>`.
 
@@ -48,7 +48,7 @@ Magic Link Workflow
         By default magic link expires after 6 minutes.
 
         .. tip::
-            :ts:`plugin.tx_login.settings.email.magicLink.linkLifetimeInMinutes = 30`
+            :ts:`plugin.tx_flogin.settings.email.magicLink.linkLifetimeInMinutes = 30`
 
 #. Here we go.
 
@@ -63,7 +63,7 @@ Magic Link Workflow
     * After successful login redirect
 
         .. tip::
-            :ts:`plugin.tx_login.settings.redirect.afterLoginPage = 15`
+            :ts:`plugin.tx_flogin.settings.redirect.afterLoginPage = 15`
 
 .. toctree::
     :hidden:

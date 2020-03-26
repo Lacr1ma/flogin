@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\ResetPassword;
+namespace LMS\Flogin\Domain\Validator\ResetPassword;
 
 /* * *************************************************************
  *
@@ -37,7 +37,7 @@ class AttemptValidator extends RequestValidator
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $resetRequest
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $resetRequest
      */
     protected function isValid($resetRequest): void
     {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Model\Request;
+namespace LMS\Flogin\Domain\Model\Request;
 
 /* * *************************************************************
  *
@@ -26,14 +26,14 @@ namespace LMS\Login\Domain\Model\Request;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
-use LMS\Login\Support\Domain\Property\PasswordConfirmation;
+use LMS\Flogin\Domain\Model\Resets;
+use LMS\Flogin\Support\Domain\Property\PasswordConfirmation;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetPasswordRequest extends \LMS\Login\Domain\Model\Request\AbstractRequest
+class ResetPasswordRequest extends \LMS\Flogin\Domain\Model\Request\AbstractRequest
 {
     use PasswordConfirmation;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Controller\ForgotPassword;
+namespace LMS\Flogin\Support\Controller\ForgotPassword;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Support\Controller\ForgotPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Repository\UserRepository;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

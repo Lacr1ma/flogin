@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Support\Extension;
+namespace LMS\Flogin\Tests\Acceptance\Support\Extension;
 
 /* * *************************************************************
  *
@@ -47,15 +47,15 @@ class BackendEnvironment extends \TYPO3\TestingFramework\Core\Acceptance\Extensi
             'fluid_styled_content'
         ],
         'testExtensionsToLoad' => [
-            'typo3conf/ext/login',
+            'typo3conf/ext/flogin',
             'typo3conf/ext/routes'
         ],
         'xmlDatabaseFixtures' => [
-            'typo3conf/ext/login/Tests/Fixtures/Acceptance/pages.xml',
-            'typo3conf/ext/login/Tests/Fixtures/Acceptance/fe_users.xml',
-            'typo3conf/ext/login/Tests/Fixtures/Acceptance/fe_groups.xml',
-            'typo3conf/ext/login/Tests/Fixtures/Acceptance/tt_content.xml',
-            'typo3conf/ext/login/Tests/Fixtures/Acceptance/sys_template.xml',
+            'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/pages.xml',
+            'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/fe_users.xml',
+            'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/fe_groups.xml',
+            'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/tt_content.xml',
+            'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/sys_template.xml',
             'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
             'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml',
             'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml'

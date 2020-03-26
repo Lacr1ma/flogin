@@ -38,12 +38,12 @@ script:
   - ddev exec bin/psalm
 
   # Unit Tests
-  - ddev exec bin/phpunit -c public/typo3conf/ext/login/Tests/Build/UnitTests.xml
+  - ddev exec bin/phpunit -c public/typo3conf/ext/flogin/Tests/Build/UnitTests.xml
 
   # Functional Tests
-  - ddev exec bin/phpunit -c public/typo3conf/ext/login/Tests/Build/FunctionalTests.xml
+  - ddev exec bin/phpunit -c public/typo3conf/ext/flogin/Tests/Build/FunctionalTests.xml
 
   # Acceptance Tests
-  - ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/login/Tests/api.suite.yml --env github
-  - ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/login/Tests/codeception.yml --env github
-  - ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/login/Tests/Backend.suite.yml --env github
+  - ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/flogin/Tests/api.suite.yml --env github
+  - ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/flogin/Tests/codeception.yml --env github
+  - ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/flogin/Tests/Backend.suite.yml --env github

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\MagicLink;
+namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\MagicLink;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
+use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -80,7 +80,7 @@ class DeceiverMagicLinkCest
         $I->wantTo('I wanna see an error, when I try to submit <magic link form> with invalid email address.');
 
         $I->amOnMagicLinkPage();
-        $I->fillField('tx_login_login[email]', 'dummy@domain.ltd');
+        $I->fillField('tx_flogin_flogin[email]', 'dummy@domain.ltd');
         $I->click('#send-magic-link');
 
         $I->seeElement('.email-block > .is-invalid');

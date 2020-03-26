@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\ResetPassword;
+namespace LMS\Flogin\Domain\Validator\ResetPassword;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\{Support\Redirection\UserRouter, Domain\Repository\ResetsRepository};
+use LMS\Flogin\{Support\Redirection\UserRouter, Domain\Repository\ResetsRepository};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
+class RequestValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when reset link does exist in the system and it's not expired
@@ -40,7 +40,7 @@ class RequestValidator extends \LMS\Login\Domain\Validator\DefaultValidator
      * @psalm-suppress PossiblyNullReference
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $resetRequest
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $resetRequest
      */
     protected function isValid($resetRequest): void
     {

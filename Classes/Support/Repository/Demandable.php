@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Repository;
+namespace LMS\Flogin\Support\Repository;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Support\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Demand;
+use LMS\Flogin\Domain\Model\Demand;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
@@ -39,7 +39,7 @@ trait Demandable
      *
      * @psalm-suppress InvalidReturnType
      *
-     * @param \LMS\Login\Domain\Model\Demand $demand
+     * @param \LMS\Flogin\Domain\Model\Demand $demand
      *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */

@@ -37,7 +37,7 @@ Forgot Workflow
     * Redirect page
 
         .. tip::
-            :ts:`plugin.tx_login.settings.redirect.afterForgotPasswordNotificationSentPage = 3`
+            :ts:`plugin.tx_flogin.settings.redirect.afterForgotPasswordNotificationSentPage = 3`
 
 #. Check the email :ref:`notification <forgot-password-notification>`.
 
@@ -61,7 +61,7 @@ Forgot Workflow
 
         .. tip::
 
-            :ts:`plugin.tx_login.settings.redirect.afterResetPasswordFormSubmittedPage = 15`
+            :ts:`plugin.tx_flogin.settings.redirect.afterResetPasswordFormSubmittedPage = 15`
 
 .. toctree::
     :hidden:

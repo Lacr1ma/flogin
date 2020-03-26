@@ -7,7 +7,7 @@
 
 Updating
 --------
-If you update EXT:login to a newer version, please read this section carefully!
+If you update EXT:flogin to a newer version, please read this section carefully!
 
 Versioning
 ^^^^^^^^^^

@@ -8,7 +8,7 @@
 REST API
 -------------------
 
-    :file:`EXT:login` depends on a :file:`EXT:routes` which is a yaml routes provider.
+    :file:`EXT:flogin` depends on a :file:`EXT:routes` which is a yaml routes provider.
 
     That way we ship a couple of useful routes out of the box.
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller;
+namespace LMS\Flogin\Controller;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
-use LMS\Login\Support\Controller\ResetPassword\ResetsPasswords;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Support\Controller\ResetPassword\ResetsPasswords;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 
 /**
@@ -63,8 +63,8 @@ class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * <whenTokenExpiredPage> when token still exists in system but has been expired
      * <whenTokenNotFoundPage> when token has been already cleared out by scheduler.
      *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\ResetPassword\RequestValidator", param="request")
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\ResetPassword\RequestValidator", param="request")
      */
     public function showResetFormAction(ResetPasswordRequest $request): void
     {
@@ -75,8 +75,8 @@ class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * User has been submitted the new password and it's confirmation.
      * We check as before if request is still valid and also if password match
      *
-     * @param \LMS\Login\Domain\Model\Request\ResetPasswordRequest $request
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\ResetPassword\AttemptValidator", param="request")
+     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\ResetPassword\AttemptValidator", param="request")
      */
     public function resetAction(ResetPasswordRequest $request): void
     {

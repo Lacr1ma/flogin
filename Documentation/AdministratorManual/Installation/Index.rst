@@ -11,7 +11,7 @@ Installation
 
 #. Get the extension
 
-`composer require lms/login`.
+`composer require lms/flogin`.
 
 .. warning::
 
@@ -31,7 +31,7 @@ You can get the latest version from git by using the git command:
 
 .. code-block:: bash
 
-   git clone https://github.com/Lacr1ma/login.git
+   git clone https://github.com/Lacr1ma/flogin.git
 
 Preparation: Include static TypoScript
 --------------------------------------
@@ -44,4 +44,4 @@ The extension ships some TypoScript code which needs to be included.
 
 #. Press the link **Edit the whole template record** and switch to the tab *Includes*.
 
-#. Select **LMS: Login (login)** at the field *Include static (from extensions):*
+#. Select **LMS: Flogin (flogin)** at the field *Include static (from extensions):*

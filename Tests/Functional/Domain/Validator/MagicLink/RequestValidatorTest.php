@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator\MagicLink;
 
 /* * *************************************************************
  *
@@ -27,15 +27,15 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\MagicLink;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Login\Support\Redirection\UserRouter;
-use LMS\Login\Domain\Validator\MagicLink\RequestValidator;
-use LMS\Login\Domain\Model\{Link, Request\MagicLinkRequest};
-use LMS\Login\Domain\Repository\{LinkRepository, UserRepository};
+use LMS\Flogin\Support\Redirection\UserRouter;
+use LMS\Flogin\Domain\Validator\MagicLink\RequestValidator;
+use LMS\Flogin\Domain\Model\{Link, Request\MagicLinkRequest};
+use LMS\Flogin\Domain\Repository\{LinkRepository, UserRepository};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class RequestValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

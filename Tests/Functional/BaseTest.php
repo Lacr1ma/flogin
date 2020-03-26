@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional;
+namespace LMS\Flogin\Tests\Functional;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\{TypoScript, Redirection\UserRouter};
+use LMS\Flogin\Support\{TypoScript, Redirection\UserRouter};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -36,7 +36,7 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
 
     /**
      * @throws \Doctrine\DBAL\DBALException
@@ -104,22 +104,22 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
             ],
             'email.' => [
                 'magicLink.' => [
-                    'subject' => 'LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject',
+                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:magic_link.subject',
                     'linkLifetimeInMinutes' => '6'
                 ],
                 'passwordResetRequest.' => [
-                    'subject' => 'LLL:EXT:login/Resources/Private/Language/email.xlf:reset_password.subject',
+                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.subject',
                     'linkLifetimeInMinutes' => '5'
                 ],
                 'passwordUpdated.' => [
-                    'subject' => 'LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.subject'
+                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.subject'
                 ],
                 'lockout.' => [
-                    'subject' => 'LLL:EXT:login/Resources/Private/Language/email.xlf:lockout.subject'
+                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.subject'
                 ],
                 'login.' => [
                     'disabled' => '0',
-                    'subject' => 'LLL:EXT:login/Resources/Private/Language/email.xlf:login.subject'
+                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.subject'
                 ]
             ]
         ];

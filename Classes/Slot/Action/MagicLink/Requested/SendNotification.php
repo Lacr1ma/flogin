@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\MagicLink\Requested;
+namespace LMS\Flogin\Slot\Action\MagicLink\Requested;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action\MagicLink\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Request\MagicLinkRequest;
-use LMS\Login\Slot\Notification\MagicLinkNotification;
+use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Slot\Notification\MagicLinkNotification;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -37,7 +37,7 @@ class SendNotification
     /**
      * Mail user with magic link
      *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
     public function execute(MagicLinkRequest $request): void
     {

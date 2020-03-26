@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login;
+namespace LMS\Flogin\Slot\Action\Login;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Guard\SessionGuard;
+use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Guard\SessionGuard;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -37,7 +37,7 @@ class Attempt
     /**
      * Attempt to authenticate a user using password
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      * @param string                       $plainPassword
      * @param bool                         $remember
      */

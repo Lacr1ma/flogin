@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login\Ajax;
+namespace LMS\Flogin\Slot\Action\Login\Ajax;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Slot\Action\Login\Ajax;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 use LMS\Facade\Extbase\{Redirect, Response};
 
 /**

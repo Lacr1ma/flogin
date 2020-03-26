@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Login\Success;
+namespace LMS\Flogin\Slot\Action\Login\Success;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action\Login\Success;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Slot\Notification\LoginNotification;
+use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Slot\Notification\LoginNotification;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -37,7 +37,7 @@ class SendNotification
     /**
      * Successful login attempt detected, send user notification
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function execute(User $user): void
     {

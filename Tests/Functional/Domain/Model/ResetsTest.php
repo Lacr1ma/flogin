@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Model;
+namespace LMS\Flogin\Tests\Functional\Domain\Model;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
+use LMS\Flogin\Domain\Model\Resets;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsTest extends \LMS\Login\Tests\Functional\BaseTest
+class ResetsTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

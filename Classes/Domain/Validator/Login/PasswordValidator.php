@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\Login;
+namespace LMS\Flogin\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Hash\Hash;
+use LMS\Flogin\Hash\Hash;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class PasswordValidator extends \LMS\Login\Domain\Validator\DefaultValidator
+class PasswordValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
 {
     /**
      * Valid when user password is correct

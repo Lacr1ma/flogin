@@ -28,7 +28,7 @@ Unlock from notification
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.redirect.afterUnlockedPage = X`
+        :ts:`plugin.tx_flogin.settings.redirect.afterUnlockedPage = X`
 
 Notification Subject
 ---------------------
@@ -37,7 +37,7 @@ Notification Subject
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.lockout.subject = LLL:EXT:login/Resources/Private/Language/email.xlf:lockout.subject`
+        :ts:`plugin.tx_flogin.settings.email.lockout.subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.subject`
 
 Number of wrong attempts
 -------------------------
@@ -50,7 +50,7 @@ Number of wrong attempts
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.throttling.maxAttempts = 5`
+        :ts:`plugin.tx_flogin.settings.throttling.maxAttempts = 5`
 
 Auto unlocking (scheduler)
 ---------------------------
@@ -62,14 +62,14 @@ Auto unlocking (scheduler)
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.throttling.lockIntervalInMinutes = 10`
+        :ts:`plugin.tx_flogin.settings.throttling.lockIntervalInMinutes = 10`
 
 View & Variables
 --------------------
 
     * The notification view can be found under:
 
-        :file:`EXT:login/Resources/Private/Templates/Email/Lockout.html`
+        :file:`EXT:flogin/Resources/Private/Templates/Email/Lockout.html`
 
     * Out of the box you developer has access to these variables:
 

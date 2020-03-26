@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller;
+namespace LMS\Flogin\Controller;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
+use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor

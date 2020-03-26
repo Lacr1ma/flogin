@@ -11,7 +11,7 @@
             <td class="es-m-txt-c" align="center">
                 <h2>
                     <strong>
-                        <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.caption"/>
+                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.caption"/>
                     </strong>
                 </h2>
             </td>
@@ -20,7 +20,7 @@
         <tr>
             <td class="es-m-txt-l" bgcolor="transparent" align="left">
                 <span>
-                    <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.caption_description"/>
+                    <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.caption_description"/>
                 </span>
             </td>
         </tr>
@@ -30,7 +30,7 @@
                 <span class="es-button-border">
                     <f:cache.disable>
                          <a href="{user.forgotPasswordFormUrl}" class="es-button" target="_blank" >
-                            <f:translate key="LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.button_restore"/>
+                            <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.button_restore"/>
                         </a>
                     </f:cache.disable>
                 </span>
@@ -40,7 +40,7 @@
         <tr>
             <td class="es-m-txt-l" bgcolor="transparent" align="left">
                 <span>
-                    <f:translate arguments="{0: '{request.expires}'}" key="LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.other_case"/>
+                    <f:translate arguments="{0: '{request.expires}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.other_case"/>
                 </span>
             </td>
         </tr>
@@ -50,6 +50,6 @@
 
 <f:section name="Footer">
     <f:format.raw>
-        <f:translate arguments="{0: '{email.site}'}" key="LLL:EXT:login/Resources/Private/Language/email.xlf:common.signature" />
+        <f:translate arguments="{0: '{email.site}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:common.signature" />
     </f:format.raw>
 </f:section>

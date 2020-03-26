@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Repository;
+namespace LMS\Flogin\Domain\Repository;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Resets;
+use LMS\Flogin\Domain\Model\Resets;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetsRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepository
+class ResetsRepository extends \LMS\Flogin\Domain\Repository\AbstractTokenRepository
 {
     /**
      * Find reset link by it's token

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Backend;
+namespace LMS\Flogin\Tests\Acceptance\Backend;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\BackendTester;
+use LMS\Flogin\Tests\Acceptance\Support\BackendTester;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -40,7 +40,7 @@ class ModuleCest
     {
         $I->useExistingSession('admin');
 
-        $I->click('LMS: Login', '#web_LoginLogin');
+        $I->click('LMS: Login', '#web_FloginLogin');
 
         $I->switchToContentFrame();
     }

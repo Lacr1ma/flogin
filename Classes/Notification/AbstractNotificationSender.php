@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Notification;
+namespace LMS\Flogin\Notification;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Notification;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;

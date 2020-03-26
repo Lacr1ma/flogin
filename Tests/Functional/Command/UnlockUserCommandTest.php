@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Command;
+namespace LMS\Flogin\Tests\Functional\Command;
 
 /* * *************************************************************
  *
@@ -26,21 +26,21 @@ namespace LMS\Login\Tests\Functional\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Repository\UserRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UnlockUserCommandTest extends \LMS\Login\Tests\Functional\BaseTest
+class UnlockUserCommandTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
 
     /**
      * @test
-     * @covers \LMS\Login\Command\UnlockUserCommand
+     * @covers \LMS\Flogin\Command\UnlockUserCommand
      */
     public function execute(): void
     {

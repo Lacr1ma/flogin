@@ -26,7 +26,7 @@ declare(strict_types = 1);
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility as Utility;
 
-$ll = 'LLL:EXT:login/Resources/Private/Language/tca_user.xlf:';
+$ll = 'LLL:EXT:flogin/Resources/Private/Language/tca_user.xlf:';
 
 $properties = [
     'locked' => [

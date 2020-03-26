@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\MagicLink\Requested;
+namespace LMS\Flogin\Slot\Action\MagicLink\Requested;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action\MagicLink\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Link;
-use LMS\Login\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Domain\Model\Link;
+use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -39,7 +39,7 @@ class CreateLink
      *
      * @psalm-suppress InternalMethod
      *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
     public function execute(MagicLinkRequest $request): void
     {

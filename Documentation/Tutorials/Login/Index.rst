@@ -17,7 +17,7 @@ Login Workflow
 
 #. Don't forget setup the login page TypoScript variable.
 
-    :ts:`plugin.tx_login.settings.page.login = X`
+    :ts:`plugin.tx_flogin.settings.page.login = X`
 
    .. tip::
 
@@ -29,14 +29,14 @@ Login Workflow
     .. image:: ../../Images/authenticated.png
         :class: with-shadow
 
-    :ts:`plugin.tx_login.settings.redirect.afterLoginPage = X`
+    :ts:`plugin.tx_flogin.settings.redirect.afterLoginPage = X`
 
 #. Set the page that user will be redirected to after logoff.
 
     .. image:: ../../Images/logoff.png
         :class: with-shadow
 
-    :ts:`plugin.tx_login.settings.redirect.afterLogoutPage = X`
+    :ts:`plugin.tx_flogin.settings.redirect.afterLogoutPage = X`
 
 .. toctree::
     :maxdepth: 5

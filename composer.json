@@ -1,5 +1,5 @@
 {
-	"name": "lms/login",
+	"name": "lms/flogin",
 	"type": "typo3-cms-extension",
 	"description": "Provides an authentication option for website users.",
 	"license": "MIT",
@@ -24,12 +24,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"LMS\\Login\\": "Classes"
+			"LMS\\Flogin\\": "Classes"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"LMS\\Login\\Tests\\": "Tests"
+			"LMS\\Flogin\\Tests\\": "Tests"
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Middleware\Api;
+namespace LMS\Flogin\Middleware\Api;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Middleware\Api;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Registry;
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 
 /**
@@ -45,7 +45,7 @@ class VerifyAccountCreationHash extends \LMS\Routes\Middleware\Api\AbstractRoute
     {
         $hash = $this->getRequest()->getQueryParams()['hash'];
 
-        if (Registry::contains('tx_login_hash', $hash)) {
+        if (Registry::contains('tx_flogin_hash', $hash)) {
             return;
         }
 

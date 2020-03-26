@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Login;
+namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Login;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
+use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

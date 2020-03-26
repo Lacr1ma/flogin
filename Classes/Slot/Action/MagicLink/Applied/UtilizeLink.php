@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\MagicLink\Applied;
+namespace LMS\Flogin\Slot\Action\MagicLink\Applied;
 
 /* * *************************************************************
  *

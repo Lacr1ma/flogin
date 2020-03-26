@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller;
+namespace LMS\Flogin\Controller;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\ForgotPassword\SendsPasswordResetEmails;
+use LMS\Flogin\Support\Controller\ForgotPassword\SendsPasswordResetEmails;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -43,7 +43,7 @@ class ForgotPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
      * set the passed $predefinedEmail inside a form.
      *
      * @param string $predefinedEmail
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\EmailValidator", param="predefinedEmail")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="predefinedEmail")
      */
     public function showForgotFormAction(string $predefinedEmail = ''): void
     {
@@ -57,7 +57,7 @@ class ForgotPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
      * and send the email or redirect back with an error notification.
      *
      * @param string $email
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\EmailValidator", param="email")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
      */
     public function sendResetLinkEmailAction(string $email): void
     {

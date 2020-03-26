@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Validator\Login\PasswordValidator;
+use LMS\Flogin\Domain\Validator\Login\PasswordValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class PasswordValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class PasswordValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test
@@ -40,7 +40,7 @@ class PasswordValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         $password = 'invalid';
 
-        $_POST['tx_login_login'] = ['username' => 'user'];
+        $_POST['tx_flogin_flogin'] = ['username' => 'user'];
 
         $validator = new PasswordValidator();
 
@@ -54,7 +54,7 @@ class PasswordValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
     {
         $password = 'password';
 
-        $_POST['tx_login_login'] = ['username' => 'user'];
+        $_POST['tx_flogin_flogin'] = ['username' => 'user'];
 
         $validator = new PasswordValidator();
 

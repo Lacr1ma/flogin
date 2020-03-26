@@ -33,7 +33,7 @@ Attempts Count
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.throttling.maxAttempts = 5`
+        :ts:`plugin.tx_flogin.settings.throttling.maxAttempts = 5`
 
 Block interval
 ---------------
@@ -45,7 +45,7 @@ Block interval
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.throttling.decayMinutes = 1`
+        :ts:`plugin.tx_flogin.settings.throttling.decayMinutes = 1`
 
 Notification
 ---------------
@@ -61,4 +61,4 @@ Tweak a validation message
 
         .. tip::
 
-            :ts:`LLL:EXT:theme/Resources/Private/Language/locallang.xlf:login.limit_reached`
+            :ts:`LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:login.limit_reached`

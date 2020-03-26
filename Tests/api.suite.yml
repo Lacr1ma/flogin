@@ -1,4 +1,4 @@
-namespace: LMS\Login\Tests\Acceptance\Support
+namespace: LMS\Flogin\Tests\Acceptance\Support
 suites:
   acceptance:
     actor: AcceptanceTester

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller\Base;
+namespace LMS\Flogin\Controller\Base;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Controller\Base;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Repository\UserRepository;
 use TYPO3\CMS\Extbase\Persistence\RepositoryInterface;
 
 /**
@@ -37,7 +37,7 @@ abstract class ApiController extends \LMS\Facade\Controller\AbstractApiControlle
     /**
      * @var string
      */
-    public $defaultViewObjectName = \LMS\Login\Mvc\View\JsonView::class;
+    public $defaultViewObjectName = \LMS\Flogin\Mvc\View\JsonView::class;
 
     /**
      * {@inheritdoc}

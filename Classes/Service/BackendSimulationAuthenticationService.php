@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Service;
+namespace LMS\Flogin\Service;
 
 /* * *************************************************************
  *

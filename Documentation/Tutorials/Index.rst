@@ -10,7 +10,7 @@ Tutorials
 
 .. only:: html
 
-	This section will show you how you actually use EXT:login
+	This section will show you how you actually use EXT:flogin
 
 .. toctree::
 	:maxdepth: 5

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Validator\Login;
+namespace LMS\Flogin\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\{Event\SessionEvent, Support\ThrottlesLogins};
+use LMS\Flogin\{Event\SessionEvent, Support\ThrottlesLogins};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class AttemptLimitNotReachedValidator extends \LMS\Login\Domain\Validator\DefaultValidator
+class AttemptLimitNotReachedValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
 {
     use ThrottlesLogins, SessionEvent;
 

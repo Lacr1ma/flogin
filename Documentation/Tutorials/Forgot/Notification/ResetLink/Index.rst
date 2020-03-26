@@ -25,7 +25,7 @@ Lifetime
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.passwordResetRequest.linkLifetimeInMinutes = 5`
+        :ts:`plugin.tx_flogin.settings.email.passwordResetRequest.linkLifetimeInMinutes = 5`
 
 Notification Subject
 ---------------------
@@ -34,14 +34,14 @@ Notification Subject
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.passwordResetRequest.subject = LLL:EXT:login/Resources/Private/Language/email.xlf:reset_password.subject`
+        :ts:`plugin.tx_flogin.settings.email.passwordResetRequest.subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.subject`
 
 View & Variables
 --------------------
 
     * The notification view can be found under:
 
-        :file:`EXT:login/Resources/Private/Templates/Email/Password/ResetRequest.html`
+        :file:`EXT:flogin/Resources/Private/Templates/Email/Password/ResetRequest.html`
 
     * Out of the box you developer has access to these variables:
 

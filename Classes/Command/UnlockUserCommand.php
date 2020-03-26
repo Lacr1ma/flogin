@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Command;
+namespace LMS\Flogin\Command;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Command;
  * ************************************************************* */
 
 use LMS\Facade\Assist\Collection;
-use LMS\Login\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Repository\UserRepository;
 use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
 
 /**

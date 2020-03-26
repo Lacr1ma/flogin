@@ -8,7 +8,7 @@
 Global Notification Settings
 ----------------------------
 
-    There are a list of settings applied to every notification that **EXT:login** sends.
+    There are a list of settings applied to every notification that **EXT:flogin** sends.
     This section shows this settings.
 
 Logo
@@ -18,7 +18,7 @@ Logo
 
     .. note::
 
-        :ts:`plugin.tx_login.settings.email.logoPath = EXT:theme/Resources/Public/Icons/Logo.svg`
+        :ts:`plugin.tx_flogin.settings.email.logoPath = EXT:flogin/Resources/Public/Icons/Logo.svg`
 
 Portal Link
 ===============
@@ -27,7 +27,7 @@ Portal Link
 
     .. note::
 
-        :ts:`plugin.tx_login.settings.email.site = https://example.com`
+        :ts:`plugin.tx_flogin.settings.email.site = https://example.com`
 
 Sender
 =========

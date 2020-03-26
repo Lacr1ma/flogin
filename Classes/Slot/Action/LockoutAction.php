@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action;
+namespace LMS\Flogin\Slot\Action;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Slot\Action;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Slot\Notification\LockoutNotification;
+use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Slot\Notification\LockoutNotification;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -37,7 +37,7 @@ class LockoutAction
     /**
      * User has been locked out. Notify user if no notification had been sent.
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function execute(User $user): void
     {

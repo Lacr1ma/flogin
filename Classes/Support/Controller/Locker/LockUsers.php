@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Controller\Locker;
+namespace LMS\Flogin\Support\Controller\Locker;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Support\Controller\Locker;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\{Event\SessionEvent, Domain\Repository\UserRepository};
+use LMS\Flogin\{Event\SessionEvent, Domain\Repository\UserRepository};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

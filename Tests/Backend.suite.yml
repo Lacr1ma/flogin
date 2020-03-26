@@ -1,4 +1,4 @@
-namespace: LMS\Login\Tests\Acceptance\Support
+namespace: LMS\Flogin\Tests\Acceptance\Support
 
 suites:
   acceptance:
@@ -27,7 +27,7 @@ suites:
 
 extensions:
   enabled:
-    - LMS\Login\Tests\Acceptance\Support\Extension\BackendEnvironment
+    - LMS\Flogin\Tests\Acceptance\Support\Extension\BackendEnvironment
     - Codeception\Extension\RunFailed
     - Codeception\Extension\Recorder
 

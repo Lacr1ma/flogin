@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Notification;
+namespace LMS\Flogin\Slot\Notification;
 
 /* * *************************************************************
  *
@@ -26,17 +26,17 @@ namespace LMS\Login\Slot\Notification;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\User;
+use LMS\Flogin\Domain\Model\User;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class LockoutNotification extends \LMS\Login\Notification\AbstractNotificationSender
+class LockoutNotification extends \LMS\Flogin\Notification\AbstractNotificationSender
 {
     /**
      * Build the LockoutNotification Template and email the user
      *
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function send(User $user): void
     {

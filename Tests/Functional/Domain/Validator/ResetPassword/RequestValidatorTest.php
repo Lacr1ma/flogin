@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator\ResetPassword;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator\ResetPassword;
 
 /* * *************************************************************
  *
@@ -27,15 +27,15 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\ResetPassword;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Login\Support\Redirection\UserRouter;
-use LMS\Login\Domain\Repository\UserRepository;
-use LMS\Login\Domain\Validator\ResetPassword\RequestValidator;
-use LMS\Login\Domain\Model\{Resets, Request\ResetPasswordRequest};
+use LMS\Flogin\Support\Redirection\UserRouter;
+use LMS\Flogin\Domain\Repository\UserRepository;
+use LMS\Flogin\Domain\Validator\ResetPassword\RequestValidator;
+use LMS\Flogin\Domain\Model\{Resets, Request\ResetPasswordRequest};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class RequestValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

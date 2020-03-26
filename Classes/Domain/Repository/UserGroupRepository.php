@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Repository;
+namespace LMS\Flogin\Domain\Repository;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 use LMS\Facade\Repository\StaticCreation;
 
 /**

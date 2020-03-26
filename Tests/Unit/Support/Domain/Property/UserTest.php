@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Unit\Support\Domain\Property;
+namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Unit\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Domain\Property\User as ContainsUser;
+use LMS\Flogin\Support\Domain\Property\User as ContainsUser;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>

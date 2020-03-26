@@ -8,21 +8,21 @@
 Common practise
 ----------------
 
-    From project to project you probably use the same settings related to `EXT:login`.
+    From project to project you probably use the same settings related to `EXT:flogin`.
     This page collects all the common settings and practices that will simplify
     some things.
 
 Page Tree
 =============
 
-    For every project that uses authentication based on `EXT:login` we usually
+    For every project that uses authentication based on `EXT:flogin` we usually
     create a page tree that contains mostly all of the pages which build a
     nice user experience.
 
     .. figure:: ../../Images/page_tree.png
         :class: with-shadow
 
-        Page Tree of the `EXT:login` related pages.
+        Page Tree of the `EXT:flogin` related pages.
 
 TypoScript Setup
 =================
@@ -36,7 +36,7 @@ TypoScript Setup
 
         plugin.tx_routes.settings.redirect.loginPage = 2
 
-        plugin.tx_login.settings {
+        plugin.tx_flogin.settings {
             page.login = 2
 
             oneTimeAccount {
@@ -87,7 +87,7 @@ Clean up
     .. figure:: ../../Images/scheduler.png
         :class: with-shadow
 
-        Scheduler tasks related to `EXT:login`.
+        Scheduler tasks related to `EXT:flogin`.
 
 
 Handle translations
@@ -98,7 +98,7 @@ Handle translations
 
     .. code-block:: ts
 
-        plugin.tx_login._LOCAL_LANG {
+        plugin.tx_flogin._LOCAL_LANG {
 
             ########################
             ###### LOGIN FORM ######

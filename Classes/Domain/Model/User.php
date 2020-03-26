@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Model;
+namespace LMS\Flogin\Domain\Model;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Domain\Action\User\{UrlManagement, Lockable};
+use LMS\Flogin\Support\Domain\Action\User\{UrlManagement, Lockable};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor

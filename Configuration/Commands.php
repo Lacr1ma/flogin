@@ -26,15 +26,15 @@ declare(strict_types = 1);
 
 return [
     'login:unlock_users' => [
-        'class' => \LMS\Login\Command\UnlockUserCommand::class
+        'class' => \LMS\Flogin\Command\UnlockUserCommand::class
     ],
     'login:password-link_garbage' => [
-        'class' => \LMS\Login\Command\ResetGarbageCollectorCommand::class
+        'class' => \LMS\Flogin\Command\ResetGarbageCollectorCommand::class
     ],
     'login:magic-link_garbage' => [
-        'class' => \LMS\Login\Command\MagicLinksGarbageCollectorCommand::class
+        'class' => \LMS\Flogin\Command\MagicLinksGarbageCollectorCommand::class
     ],
     'login:onetime-user_garbage' => [
-        'class' => \LMS\Login\Command\OnetimeAccountGarbageCollectorCommand::class
+        'class' => \LMS\Flogin\Command\OnetimeAccountGarbageCollectorCommand::class
     ]
 ];

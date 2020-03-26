@@ -26,4 +26,4 @@ declare(strict_types = 1);
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-ExtensionManagementUtility::addStaticFile('login', 'Configuration/TypoScript', 'LMS: Login');
+ExtensionManagementUtility::addStaticFile('flogin', 'Configuration/TypoScript', 'LMS: Login');

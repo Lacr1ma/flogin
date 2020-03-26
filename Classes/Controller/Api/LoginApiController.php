@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller\Api;
+namespace LMS\Flogin\Controller\Api;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\Login\AuthenticatesUsers;
+use LMS\Flogin\Support\Controller\Login\AuthenticatesUsers;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LoginApiController extends \LMS\Login\Controller\Api\AbstractApiController
+class LoginApiController extends \LMS\Flogin\Controller\Api\AbstractApiController
 {
     use AuthenticatesUsers;
 
@@ -48,9 +48,9 @@ class LoginApiController extends \LMS\Login\Controller\Api\AbstractApiController
      * @param string $password
      * @param bool   $remember
      *
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\UsernameValidator", param="username")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\PasswordValidator", param="password")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\UserNotLockedValidator", param="username")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UsernameValidator", param="username")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\PasswordValidator", param="password")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UserNotLockedValidator", param="username")
      */
     public function authAction(string $username, string $password, bool $remember): void
     {

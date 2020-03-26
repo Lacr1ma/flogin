@@ -33,4 +33,4 @@ Tweak a validation message
 
         .. tip::
 
-            :ts:`LLL:EXT:theme/Resources/Private/Language/locallang.xlf:password.not_match`
+            :ts:`LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:password.not_match`

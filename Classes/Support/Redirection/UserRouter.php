@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Redirection;
+namespace LMS\Flogin\Support\Redirection;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Redirection;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Redirect;
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

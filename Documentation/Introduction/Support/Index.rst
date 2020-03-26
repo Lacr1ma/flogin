@@ -8,7 +8,7 @@
 
 Need Support?
 =============
-There are various ways to get support for EXT:login!
+There are various ways to get support for EXT:flogin!
 
 Slack
 -----

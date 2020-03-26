@@ -18,9 +18,9 @@ Contributions are essential for the success of open-source projects but certainl
 Contribution workflow
 ^^^^^^^^^^^^^^^^^^^^^
 
-Please create always an issue at https://github.com/Lacr1ma/login/issues before starting with a change.
+Please create always an issue at https://github.com/Lacr1ma/flogin/issues before starting with a change.
 
 Get the latest version from git
 """""""""""""""""""""""""""""""
 
-Fork the repository https://github.com/Lacr1ma/login.git and provide a pull request with your change
+Fork the repository https://github.com/Lacr1ma/flogin.git and provide a pull request with your change

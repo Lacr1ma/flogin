@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller;
+namespace LMS\Flogin\Controller;
 
 /* * *************************************************************
  *
@@ -26,9 +26,9 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
-use LMS\Login\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagicLinkEmails};
+use LMS\Flogin\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagicLinkEmails};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -69,8 +69,8 @@ class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * and send the email or redirect back with an error notification.
      *
      * @param string $email
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\EmailValidator", param="email")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\MagicLink\NotAuthenticatedValidator", param="email")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\MagicLink\NotAuthenticatedValidator", param="email")
      */
     public function sendMagicLinkEmailAction(string $email): void
     {
@@ -84,9 +84,9 @@ class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * <whenTokenExpiredPage> when token still exists in system but has been expired
      * <whenTokenNotFoundPage> when token has been already cleared out by scheduler.
      *
-     * @param \LMS\Login\Domain\Model\Request\MagicLinkRequest $request
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\MagicLink\RequestValidator", param="request")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\MagicLink\NotAuthenticatedValidator", param="request")
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\MagicLink\RequestValidator", param="request")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\MagicLink\NotAuthenticatedValidator", param="request")
      */
     public function loginAction(MagicLinkRequest $request): void
     {

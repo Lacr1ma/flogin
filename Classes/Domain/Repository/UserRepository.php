@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Repository;
+namespace LMS\Flogin\Domain\Repository;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Domain\Repository;
  * ************************************************************* */
 
 use LMS\Facade\Assist\Collection;
-use LMS\Login\{Domain\Model\User, Support\Repository\Demandable};
+use LMS\Flogin\{Domain\Model\User, Support\Repository\Demandable};
 use \TYPO3\CMS\Core\Database\Query\QueryBuilder as CoreQueryBuilder;
 use LMS\Facade\{Extbase\QueryBuilder, Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
 
@@ -56,7 +56,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      * @psalm-suppress LessSpecificReturnStatement
      * @noinspection   PhpIncompatibleReturnTypeInspection
      *
-     * @return \LMS\Login\Domain\Model\User|null
+     * @return \LMS\Flogin\Domain\Model\User|null
      */
     public function current(): ?User
     {
@@ -68,7 +68,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      *
      * @param string $name
      *
-     * @return \LMS\Login\Domain\Model\User|null
+     * @return \LMS\Flogin\Domain\Model\User|null
      * @noinspection PhpUndefinedMethodInspection
      */
     public function retrieveByUsername(string $name): ?User
@@ -94,7 +94,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      *
      * @param string $email
      *
-     * @return \LMS\Login\Domain\Model\User|null
+     * @return \LMS\Flogin\Domain\Model\User|null
      * @noinspection PhpUndefinedMethodInspection
      */
     public function retrieveByEmail(string $email): ?User

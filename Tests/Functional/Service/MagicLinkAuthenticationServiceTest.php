@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Service;
+namespace LMS\Flogin\Tests\Functional\Service;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Service\MagicLinkAuthenticationService as AuthService;
+use LMS\Flogin\Service\MagicLinkAuthenticationService as AuthService;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -36,7 +36,7 @@ class MagicLinkAuthenticationServiceTest extends \TYPO3\TestingFramework\Core\Fu
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
 
     /**
      * @test
@@ -47,7 +47,7 @@ class MagicLinkAuthenticationServiceTest extends \TYPO3\TestingFramework\Core\Fu
             'token' => 'valid'
         ];
 
-        $_GET['tx_login_login'] = compact('request');
+        $_GET['tx_flogin_flogin'] = compact('request');
 
         $this->assertSame(
             AuthService::STATUS_AUTHENTICATION_SUCCESS,

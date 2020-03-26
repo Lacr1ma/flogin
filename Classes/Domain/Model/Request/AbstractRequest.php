@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Model\Request;
+namespace LMS\Flogin\Domain\Model\Request;
 
 /* * *************************************************************
  *
@@ -26,10 +26,10 @@ namespace LMS\Login\Domain\Model\Request;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Hash\Hash;
-use LMS\Login\Domain\Model\User;
-use LMS\Login\Event\SessionEvent;
-use LMS\Login\Support\Domain\{Property\Token, Action\User\UrlManagement};
+use LMS\Flogin\Hash\Hash;
+use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Event\SessionEvent;
+use LMS\Flogin\Support\Domain\{Property\Token, Action\User\UrlManagement};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -42,12 +42,12 @@ abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractV
     use Token, SessionEvent, UrlManagement;
 
     /**
-     * @var \LMS\Login\Domain\Model\User
+     * @var \LMS\Flogin\Domain\Model\User
      */
     protected $user;
 
     /**
-     * @param \LMS\Login\Domain\Model\User $user
+     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function __construct(User $user)
     {
@@ -56,7 +56,7 @@ abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractV
     }
 
     /**
-     * @return \LMS\Login\Domain\Model\User
+     * @return \LMS\Flogin\Domain\Model\User
      */
     public function getUser(): User
     {

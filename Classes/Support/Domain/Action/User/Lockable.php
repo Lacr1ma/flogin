@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Domain\Action\User;
+namespace LMS\Flogin\Support\Domain\Action\User;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Support\Domain\Action\User;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Domain\Property\Locked;
+use LMS\Flogin\Support\Domain\Property\Locked;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

@@ -1,46 +1,46 @@
-plugin.tx_login.settings.email {
+plugin.tx_flogin.settings.email {
 
-    # cat=plugin.tx_login//a; type=string; label=Used inside the bottom area of the mail. Basically link to owner website.
+    # cat=plugin.tx_flogin//a; type=string; label=Used inside the bottom area of the mail. Basically link to owner website.
     site = https://typo3.org
 
-    # cat=plugin.tx_login//a; type=string; label=Full path to the logo image.
-    logoPath = EXT:login/Resources/Public/Icons/Logo.svg
+    # cat=plugin.tx_flogin//a; type=string; label=Full path to the logo image.
+    logoPath = EXT:flogin/Resources/Public/Icons/Logo.svg
 
-    # cat=plugin.tx_login//a; type=string; label=Full path to the css file that should be connected in email
-    stylesPath = typo3conf/ext/login/Resources/Public/Css/Email.css
+    # cat=plugin.tx_flogin//a; type=string; label=Full path to the css file that should be connected in email
+    stylesPath = typo3conf/ext/flogin/Resources/Public/Css/Email.css
 
     magicLink {
-        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for magic link notification.
-        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject
+        # cat=plugin.tx_flogin//a; type=string; label=Translation file path with key, that contains subject for magic link notification.
+        subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:magic_link.subject
 
-        # cat=plugin.tx_login//a; type=int+; label=When defined number of minute has passed, magic link is considered as expired.
+        # cat=plugin.tx_flogin//a; type=int+; label=When defined number of minute has passed, magic link is considered as expired.
         linkLifetimeInMinutes = 6
     }
 
     passwordResetRequest {
-        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for forgot password notification.
-        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:reset_password.subject
+        # cat=plugin.tx_flogin//a; type=string; label=Translation file path with key, that contains subject for forgot password notification.
+        subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.subject
 
-        # cat=plugin.tx_login//a; type=int+; label=When defined number of minute has passed, password reset link is considered as expired.
+        # cat=plugin.tx_flogin//a; type=int+; label=When defined number of minute has passed, password reset link is considered as expired.
         linkLifetimeInMinutes = 5
     }
 
     passwordUpdated {
-        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for successful password update notification.
-        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.subject
+        # cat=plugin.tx_flogin//a; type=string; label=Translation file path with key, that contains subject for successful password update notification.
+        subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.subject
     }
 
     lockout {
-        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for lockout notification.
-        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:lockout.subject
+        # cat=plugin.tx_flogin//a; type=string; label=Translation file path with key, that contains subject for lockout notification.
+        subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.subject
     }
 
     login {
-        # cat=plugin.tx_login//a; type=boolean; label=Do not send the successful login attempt notification when deactivated
+        # cat=plugin.tx_flogin//a; type=boolean; label=Do not send the successful login attempt notification when deactivated
         disabled = 0
 
-        # cat=plugin.tx_login//a; type=string; label=Translation file path with key, that contains subject for successful login attempt notification.
-        subject = LLL:EXT:login/Resources/Private/Language/email.xlf:login.subject
+        # cat=plugin.tx_flogin//a; type=string; label=Translation file path with key, that contains subject for successful login attempt notification.
+        subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.subject
     }
 
 }

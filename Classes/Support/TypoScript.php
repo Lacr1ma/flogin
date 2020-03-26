@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support;
+namespace LMS\Flogin\Support;
 
 /* * *************************************************************
  *
@@ -37,7 +37,7 @@ class TypoScript
 
     /**
      * We know that we use this helper only inside <login> extension, so we just overwrite
-     * the extension key to *tx_login*
+     * the extension key to *tx_flogin*
      *
      * {@inheritDoc}
      */

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Validator\Login\UserNotLockedValidator;
+use LMS\Flogin\Domain\Validator\Login\UserNotLockedValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UserNotLockedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class UserNotLockedValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test
@@ -95,6 +95,6 @@ class UserNotLockedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
      */
     private function initRequest(string $username, string $password): void
     {
-        $_POST['tx_login_login'] = compact('username', 'password');
+        $_POST['tx_flogin_flogin'] = compact('username', 'password');
     }
 }

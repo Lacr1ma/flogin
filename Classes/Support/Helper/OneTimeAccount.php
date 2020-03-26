@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Helper;
+namespace LMS\Flogin\Support\Helper;
 
 /* * *************************************************************
  *
@@ -28,7 +28,7 @@ namespace LMS\Login\Support\Helper;
 
 use Carbon\Carbon;
 use LMS\Facade\StaticCreator;
-use LMS\Login\{Hash\Hash, Support\TypoScript};
+use LMS\Flogin\{Hash\Hash, Support\TypoScript};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

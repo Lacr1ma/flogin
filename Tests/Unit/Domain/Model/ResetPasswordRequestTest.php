@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Unit\Domain\Model;
+namespace LMS\Flogin\Tests\Unit\Domain\Model;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Tests\Unit\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Request\ResetPasswordRequest;
-use LMS\Login\Domain\Model\User;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Domain\Model\User;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>

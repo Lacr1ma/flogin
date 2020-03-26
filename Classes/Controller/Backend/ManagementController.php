@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller\Backend;
+namespace LMS\Flogin\Controller\Backend;
 
 /* * *************************************************************
  *
@@ -26,8 +26,8 @@ namespace LMS\Login\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\Backend\CreatesOneTimeAccount;
-use LMS\Login\Domain\{Model\Demand, Repository\UserRepository};
+use LMS\Flogin\Support\Controller\Backend\CreatesOneTimeAccount;
+use LMS\Flogin\Domain\{Model\Demand, Repository\UserRepository};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -40,7 +40,7 @@ class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
     /**
      * Render table with existing FE users
      *
-     * @param \LMS\Login\Domain\Model\Demand|null $demand
+     * @param \LMS\Flogin\Domain\Model\Demand|null $demand
      */
     public function indexAction(Demand $demand = null): void
     {

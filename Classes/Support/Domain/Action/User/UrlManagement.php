@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Domain\Action\User;
+namespace LMS\Flogin\Support\Domain\Action\User;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Domain\Action\User;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Redirect;
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 /**
@@ -44,7 +44,7 @@ trait UrlManagement
      */
     public function buildUrl(string $action, string $controller, array $arguments = []): string
     {
-        $extension = $plugin = 'Login';
+        $extension = $plugin = 'Flogin';
 
         return htmlspecialchars_decode(
             self::urlBuilder()->uriFor($action, $arguments, $controller, $extension, $plugin)

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Domain\Repository;
+namespace LMS\Flogin\Domain\Repository;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Model\Link;
+use LMS\Flogin\Domain\Model\Link;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LinkRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepository
+class LinkRepository extends \LMS\Flogin\Domain\Repository\AbstractTokenRepository
 {
     /**
      * Find magic link by it's token
@@ -52,7 +52,7 @@ class LinkRepository extends \LMS\Login\Domain\Repository\AbstractTokenRepositor
      *
      * @param int $user
      *
-     * @return \LMS\Login\Domain\Model\Link[]
+     * @return \LMS\Flogin\Domain\Model\Link[]
      * @noinspection PhpUndefinedMethodInspection
      */
     public function findActive(int $user): array

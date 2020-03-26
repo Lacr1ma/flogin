@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Validator\EmailValidator;
+use LMS\Flogin\Domain\Validator\EmailValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class EmailValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class EmailValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

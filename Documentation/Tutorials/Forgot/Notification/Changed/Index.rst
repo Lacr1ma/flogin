@@ -32,14 +32,14 @@ Notification Subject
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.passwordUpdated.subject = LLL:EXT:login/Resources/Private/Language/email.xlf:update_password.subject`
+        :ts:`plugin.tx_flogin.settings.email.passwordUpdated.subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.subject`
 
 View & Variables
 --------------------
 
     * The notification view can be found under:
 
-        :file:`EXT:login/Resources/Private/Templates/Email/Password/Changed.html`
+        :file:`EXT:flogin/Resources/Private/Templates/Email/Password/Changed.html`
 
     * Out of the box you developer has access to these variables:
 

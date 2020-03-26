@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Service;
+namespace LMS\Flogin\Tests\Functional\Service;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Tests\Functional\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Service\BackendSimulationAuthenticationService as Simulator;
+use LMS\Flogin\Service\BackendSimulationAuthenticationService as Simulator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -36,7 +36,7 @@ class BackendSimulationAuthenticationServiceTest extends \TYPO3\TestingFramework
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/login'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
 
     /**
      * @test

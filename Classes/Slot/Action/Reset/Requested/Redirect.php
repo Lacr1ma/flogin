@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Slot\Action\Reset\Requested;
+namespace LMS\Flogin\Slot\Action\Reset\Requested;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Slot\Action\Reset\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Redirection\UserRouter;
+use LMS\Flogin\Support\Redirection\UserRouter;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

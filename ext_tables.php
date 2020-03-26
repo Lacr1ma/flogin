@@ -30,29 +30,29 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
     ->registerImplementation(
         \TYPO3\CMS\Extbase\Domain\Model\FrontendUser::class,
-        \LMS\Login\Domain\Model\User::class
+        \LMS\Flogin\Domain\Model\User::class
     );
 
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
     ->registerImplementation(
         \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup::class,
-        \LMS\Login\Domain\Model\UserGroup::class
+        \LMS\Flogin\Domain\Model\UserGroup::class
     );
 
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
     ->registerImplementation(
         \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository::class,
-        \LMS\Login\Domain\Repository\UserRepository::class
+        \LMS\Flogin\Domain\Repository\UserRepository::class
     );
 
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
     ->registerImplementation(
         \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository::class,
-        \LMS\Login\Domain\Repository\UserGroupRepository::class
+        \LMS\Flogin\Domain\Repository\UserGroupRepository::class
     );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-    'LMS.Login',
+    'LMS.Flogin',
     'web',
     'login',
     'bottom',
@@ -60,8 +60,8 @@ if (!defined('TYPO3_MODE')) {
         'Backend\Management' => 'index, createOneTimeAccountHash'
     ],
     [
-        'icon' => 'EXT:login/ext_icon.svg',
+        'icon' => 'EXT:flogin/ext_icon.svg',
         'access' => 'admin',
-        'labels' => 'LLL:EXT:login/Resources/Private/Language/locallang_mod.xlf'
+        'labels' => 'LLL:EXT:flogin/Resources/Private/Language/locallang_mod.xlf'
     ]
 );

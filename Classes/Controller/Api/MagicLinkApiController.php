@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller\Api;
+namespace LMS\Flogin\Controller\Api;
 
 /* * *************************************************************
  *
@@ -26,13 +26,13 @@ namespace LMS\Login\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\MagicLink\SendsMagicLinkEmails;
+use LMS\Flogin\Support\Controller\MagicLink\SendsMagicLinkEmails;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkApiController extends \LMS\Login\Controller\Api\AbstractApiController
+class MagicLinkApiController extends \LMS\Flogin\Controller\Api\AbstractApiController
 {
     use SendsMagicLinkEmails;
 
@@ -41,7 +41,7 @@ class MagicLinkApiController extends \LMS\Login\Controller\Api\AbstractApiContro
      * and send the email or redirect back with an error notification.
      *
      * @param string $email
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\EmailValidator", param="email")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
      */
     public function sendMagicLinkEmailAction(string $email): void
     {

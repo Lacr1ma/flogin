@@ -1,6 +1,6 @@
 login_users-current:
   path:         api/login/users/current
-  controller:   LMS\Login\Controller\UserApiController::current
+  controller:   LMS\Flogin\Controller\UserApiController::current
   methods:      GET
   defaults:
     plugin:     UserApi
@@ -10,14 +10,14 @@ login_users-current:
 
 login_users-authenticated:
   path:         api/login/users/authenticated
-  controller:   LMS\Login\Controller\UserApiController::authenticated
+  controller:   LMS\Flogin\Controller\UserApiController::authenticated
   methods:      GET
   defaults:
     plugin:     UserApi
 
 login_users-simulate:
   path:         api/login/users/simulate/{username}
-  controller:   LMS\Login\Controller\UserApiController::simulateLogin
+  controller:   LMS\Flogin\Controller\UserApiController::simulateLogin
   methods:      GET
   defaults:
     plugin:     UserApi
@@ -29,7 +29,7 @@ login_users-simulate:
 
 login_users-terminate:
   path:         api/login/users/terminate/{user}
-  controller:   LMS\Login\Controller\UserApiController::terminateFrontendSession
+  controller:   LMS\Flogin\Controller\UserApiController::terminateFrontendSession
   methods:      GET
   defaults:
     plugin:     UserApi
@@ -41,7 +41,7 @@ login_users-terminate:
 
 login_users-one_time_account:
   path:         api/login/users/one-time-account/{hash}
-  controller:   LMS\Login\Controller\UserApiController::createOneTimeAccount
+  controller:   LMS\Flogin\Controller\UserApiController::createOneTimeAccount
   methods:      GET
   defaults:
     plugin:     UserApi
@@ -49,11 +49,11 @@ login_users-one_time_account:
     hash:       "[^/]+"
   options:
     middleware:
-      - LMS\Login\Middleware\Api\VerifyAccountCreationHash
+      - LMS\Flogin\Middleware\Api\VerifyAccountCreationHash
 
 login_logins-auth:
   path:         api/login/logins/auth
-  controller:   LMS\Login\Controller\Api\LoginApiController::auth
+  controller:   LMS\Flogin\Controller\Api\LoginApiController::auth
   methods:      POST
   format:       json
   requirements:
@@ -70,7 +70,7 @@ login_logins-auth:
 
 login_logins-logout:
   path:         api/login/logins/logout
-  controller:   LMS\Login\Controller\Api\LoginApiController::logout
+  controller:   LMS\Flogin\Controller\Api\LoginApiController::logout
   methods:      GET
   defaults:
     plugin:     LoginApi
@@ -80,7 +80,7 @@ login_logins-logout:
 
 login_magiclink-send_magic_link_email:
   path:         api/login/magic-link
-  controller:   LMS\Login\Controller\Api\MagicLinkApiController::sendMagicLinkEmail
+  controller:   LMS\Flogin\Controller\Api\MagicLinkApiController::sendMagicLinkEmail
   methods:      POST
   format:       json
   requirements:
@@ -91,7 +91,7 @@ login_magiclink-send_magic_link_email:
 
 login_forgotpassword-send_reset_link_email:
   path:         api/login/reset-password-link
-  controller:   LMS\Login\Controller\Api\ForgotPasswordApiController::sendResetLinkEmail
+  controller:   LMS\Flogin\Controller\Api\ForgotPasswordApiController::sendResetLinkEmail
   methods:      POST
   format:       json
   requirements:

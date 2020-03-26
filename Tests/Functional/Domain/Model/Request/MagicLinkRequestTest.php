@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Model\Request;
+namespace LMS\Flogin\Tests\Functional\Domain\Model\Request;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Model\Request;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\{Repository\UserRepository, Model\Request\MagicLinkRequest};
+use LMS\Flogin\Domain\{Repository\UserRepository, Model\Request\MagicLinkRequest};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class MagicLinkRequestTest extends \LMS\Login\Tests\Functional\BaseTest
+class MagicLinkRequestTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

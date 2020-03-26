@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
+namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
 
 /* * *************************************************************
  *
@@ -26,12 +26,12 @@ namespace LMS\Login\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Domain\Validator\Login\AttemptLimitNotReachedValidator;
+use LMS\Flogin\Domain\Validator\Login\AttemptLimitNotReachedValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class AttemptLimitNotReachedValidatorTest extends \LMS\Login\Tests\Functional\BaseTest
+class AttemptLimitNotReachedValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
 {
     /**
      * @test

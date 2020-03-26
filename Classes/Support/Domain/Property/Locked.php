@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Support\Domain\Property;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Support\Domain\Property;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Login\Support\TypoScript;
+use LMS\Flogin\Support\TypoScript;
 use LMS\Facade\Model\Property\UpdateDate;
 
 /**

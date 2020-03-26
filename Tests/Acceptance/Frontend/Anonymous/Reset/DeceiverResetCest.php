@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Reset;
+namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Reset;
 
 /* * *************************************************************
  *
@@ -27,7 +27,7 @@ namespace LMS\Login\Tests\Acceptance\Frontend\Anonymous\Reset;
  * ************************************************************* */
 
 use Codeception\Util\HttpCode;
-use LMS\Login\Tests\Acceptance\Support\AcceptanceTester;
+use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -48,8 +48,8 @@ class DeceiverResetCest
         $I->amOnUrl($resetPasswordUrl);
         $password = $confirmation = 'password';
 
-        $I->fillField('tx_login_login[request][password]', $password);
-        $I->fillField('tx_login_login[request][passwordConfirmation]', $confirmation);
+        $I->fillField('tx_flogin_flogin[request][password]', $password);
+        $I->fillField('tx_flogin_flogin[request][passwordConfirmation]', $confirmation);
         $I->click('#change-password-link');
 
         $I->amOnUrl($resetPasswordUrl);

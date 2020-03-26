@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Login\Controller;
+namespace LMS\Flogin\Controller;
 
 /* * *************************************************************
  *
@@ -26,7 +26,7 @@ namespace LMS\Login\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Login\Support\Controller\Login\AuthenticatesUsers;
+use LMS\Flogin\Support\Controller\Login\AuthenticatesUsers;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -47,10 +47,10 @@ class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param string $username
      * @param string $password
      * @param bool   $remember
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\AttemptLimitNotReachedValidator", param="remember")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\UserNotLockedValidator", param="username")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\UsernameValidator", param="username")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Login\Domain\Validator\Login\PasswordValidator", param="password")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\AttemptLimitNotReachedValidator", param="remember")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UserNotLockedValidator", param="username")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UsernameValidator", param="username")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\PasswordValidator", param="password")
      */
     public function loginAction(string $username, string $password, bool $remember): void
     {

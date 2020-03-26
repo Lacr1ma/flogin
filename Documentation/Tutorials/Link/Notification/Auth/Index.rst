@@ -28,14 +28,14 @@ Notification Subject
 
     .. tip::
 
-        :ts:`plugin.tx_login.settings.email.magicLink.subject = LLL:EXT:login/Resources/Private/Language/email.xlf:magic_link.subject`
+        :ts:`plugin.tx_flogin.settings.email.magicLink.subject = LLL:EXT:flogin/Resources/Private/Language/email.xlf:magic_link.subject`
 
 View & Variables
 --------------------
 
     * The notification view can be found under:
 
-        :file:`EXT:login/Resources/Private/Templates/Email/MagicLink.html`
+        :file:`EXT:flogin/Resources/Private/Templates/Email/MagicLink.html`
 
     * Out of the box you developer has access to these variables:
 

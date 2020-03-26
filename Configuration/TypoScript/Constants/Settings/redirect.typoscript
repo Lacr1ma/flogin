@@ -1,37 +1,37 @@
-plugin.tx_login.settings.redirect {
+plugin.tx_flogin.settings.redirect {
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt.
     afterLoginPage =
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after logout process.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after logout process.
     afterLogoutPage =
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after unlocking. The unlock link located inside lockout notification.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after unlocking. The unlock link located inside lockout notification.
     afterUnlockedPage =
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when attempts to login already being authenticated.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to when attempts to login already being authenticated.
     alreadyAuthenticatedPage =
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after <Forgot Password Notification> has been sent.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after <Forgot Password Notification> has been sent.
     afterForgotPasswordNotificationSentPage =
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after <Forgot Password Form> has been submitted.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after <Forgot Password Form> has been submitted.
     afterResetPasswordFormSubmittedPage =
 
-    # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after <Magic Link Notification> has been sent.
+    # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after <Magic Link Notification> has been sent.
     afterMagicLinkNotificationSentPage =
 
     error {
-        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when attempts to use already expired token from notification.
+        # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to when attempts to use already expired token from notification.
         whenTokenExpiredPage =
 
-        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when attempts to use not existing token.
+        # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to when attempts to use not existing token.
         whenTokenNotFoundPage =
 
-        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt, when user has been already locked.
+        # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to after successful logic attempt, when user has been already locked.
         whenLockedPage =
 
-        # cat=plugin.tx_login//a; type=int+; label=Page ID, that user is redirected to when one time account link is invalid
+        # cat=plugin.tx_flogin//a; type=int+; label=Page ID, that user is redirected to when one time account link is invalid
         whenOneTimeAccountHashNotFoundPage =
     }
 

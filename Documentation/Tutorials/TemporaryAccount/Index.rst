@@ -31,14 +31,14 @@ Create Temporary Account
     .. tip::
         You can change the lifetime of temporary accounts by changing
 
-        :ts:`plugin.tx_login.settings.oneTimeAccount.lifetimeInMinutes = 60`
+        :ts:`plugin.tx_flogin.settings.oneTimeAccount.lifetimeInMinutes = 60`
 
         By default it's 1 hour.
 
     .. tip::
         Also you can set default user groups that will be assigned after creation
 
-        :ts:`plugin.tx_login.settings.oneTimeAccount.properties.usergroup = 1,2,3`
+        :ts:`plugin.tx_flogin.settings.oneTimeAccount.properties.usergroup = 1,2,3`
 
         By default no groups will be assigned.
 
