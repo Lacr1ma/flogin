@@ -1,4 +1,4 @@
-APIVersion: v1.13.0
+APIVersion: v1.13.1
 name: login
 type: typo3
 docroot: public
