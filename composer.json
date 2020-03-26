@@ -22,6 +22,9 @@
     "config": {
         "sort-packages": true,
         "bin-dir": "bin",
-        "vendor-dir": "vendor"
+        "vendor-dir": "vendor",
+        "optimize-autoloader": true,
+        "classmap-authoritative": true,
+        "apcu-autoloader": true
     }
 }
