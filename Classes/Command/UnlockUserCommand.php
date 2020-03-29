@@ -46,15 +46,13 @@ class UnlockUserCommand extends \Symfony\Component\Console\Command\Command
     /**
      * Unlock all the users that should be released
      *
-     * @param \Symfony\Component\Console\Input\InputInterface   $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
-     * @psalm-suppress ImplementedReturnTypeMismatch
-     * @noinspection   PhpUndefinedMethodInspection
+     * {@inheritDoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->getUsersForUnlocking()->map->unlock();
+
+        return 0;
     }
 
     /**
