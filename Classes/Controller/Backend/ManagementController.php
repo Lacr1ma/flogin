@@ -63,6 +63,6 @@ class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 
         $baseUrl = str_replace('typo3/', '', $this->request->getBaseUri());
 
-        $this->view->assign("url", "{$baseUrl}api/login/users/one-time-account/{$hash}");
+        $this->view->assign("url", "{$baseUrl}api/login/users/one-time-account/{$hash}?no_cache=1");
     }
 }
