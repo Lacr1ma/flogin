@@ -279,6 +279,13 @@ $signalSlotDispatcher->connect(
 $signalSlotDispatcher->connect(
     \LMS\Flogin\Event\SessionEvent::class,
     'logoutSuccess',
+    \LMS\Flogin\Slot\Action\Logout\MarkInactive::class,
+    'execute'
+);
+
+$signalSlotDispatcher->connect(
+    \LMS\Flogin\Event\SessionEvent::class,
+    'logoutSuccess',
     \LMS\Flogin\Slot\Action\Login\Ajax\Logout::class,
     'execute'
 );
