@@ -55,6 +55,11 @@ $properties = [
         'config' => [
             'type' => 'passthrough'
         ]
+    ],
+    'is_online' => [
+        'config' => [
+            'type' => 'passthrough'
+        ]
     ]
 ];
 
