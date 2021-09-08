@@ -1,0 +1,34 @@
+@import 'EXT:flogin/Configuration/TypoScript/Constants/Settings/'
+
+plugin.tx_flogin {
+
+    view {
+        # cat=plugin.tx_flogin/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:flogin/Resources/Private/Templates/
+
+        # cat=plugin.tx_flogin/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:flogin/Resources/Private/Partials/
+
+        # cat=plugin.tx_flogin/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:flogin/Resources/Private/Layouts/
+    }
+
+    persistence {
+        # cat=plugin.tx_flogin//a; type=int; label=Default storage PID for Login Extension
+        storagePid =
+    }
+
+}
+
+module.tx_flogin.view {
+
+    # cat=module.tx_flogin/file; type=string; label=Path to template root (BE)
+    templateRootPath = EXT:flogin/Resources/Private/Backend/Templates/
+
+    # cat=module.tx_flogin/file; type=string; label=Path to template partials (BE)
+    partialRootPath = EXT:flogin/Resources/Private/Backend/Partials/
+
+    # cat=module.tx_flogin/file; type=string; label=Path to template layouts (BE)
+    layoutRootPath = EXT:flogin/Resources/Private/Backend/Layouts/
+
+}

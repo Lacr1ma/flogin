@@ -1,0 +1,47 @@
+@import 'EXT:flogin/Configuration/TypoScript/Setup/'
+
+plugin.tx_flogin {
+
+    view {
+        templateRootPaths {
+            0 = EXT:flogin/Resources/Private/Templates/
+            1 = {$plugin.tx_flogin.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            0 = EXT:flogin/Resources/Private/Partials/
+            1 = {$plugin.tx_flogin.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            0 = EXT:flogin/Resources/Private/Layouts/
+            1 = {$plugin.tx_flogin.view.layoutRootPath}
+        }
+    }
+
+    persistence {
+        storagePid = {$plugin.tx_flogin.persistence.storagePid}
+    }
+
+}
+
+module.tx_flogin {
+
+    view {
+        templateRootPaths {
+            0 = EXT:flogin/Resources/Private/Backend/Templates/
+            1 = {$module.tx_flogin.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            0 = EXT:flogin/Resources/Private/Backend/Partials/
+            1 = {$module.tx_flogin.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            0 = EXT:flogin/Resources/Private/Backend/Layouts/
+            1 = {$module.tx_flogin.view.layoutRootPath}
+        }
+    }
+
+}

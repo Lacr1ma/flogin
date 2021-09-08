@@ -1,0 +1,67 @@
+plugin.tx_flogin.settings {
+
+    page {
+        login = {$plugin.tx_flogin.settings.page.login}
+    }
+
+    redirect {
+        afterLoginPage = {$plugin.tx_flogin.settings.redirect.afterLoginPage}
+        afterLogoutPage = {$plugin.tx_flogin.settings.redirect.afterLogoutPage}
+        afterUnlockedPage = {$plugin.tx_flogin.settings.redirect.afterUnlockedPage}
+        alreadyAuthenticatedPage = {$plugin.tx_flogin.settings.redirect.alreadyAuthenticatedPage}
+        afterForgotPasswordNotificationSentPage = {$plugin.tx_flogin.settings.redirect.afterForgotPasswordNotificationSentPage}
+        afterResetPasswordFormSubmittedPage = {$plugin.tx_flogin.settings.redirect.afterResetPasswordFormSubmittedPage}
+        afterMagicLinkNotificationSentPage = {$plugin.tx_flogin.settings.redirect.afterMagicLinkNotificationSentPage}
+
+        error {
+            whenTokenExpiredPage = {$plugin.tx_flogin.settings.redirect.error.whenTokenExpiredPage}
+            whenTokenNotFoundPage = {$plugin.tx_flogin.settings.redirect.error.whenTokenNotFoundPage}
+            whenLockedPage = {$plugin.tx_flogin.settings.redirect.error.whenLockedPage}
+            whenOneTimeAccountHashNotFoundPage = {$plugin.tx_flogin.settings.redirect.error.whenOneTimeAccountHashNotFoundPage}
+        }
+    }
+
+    throttling {
+        maxAttempts = {$plugin.tx_flogin.settings.throttling.maxAttempts}
+        decayMinutes = {$plugin.tx_flogin.settings.throttling.decayMinutes}
+        lockIntervalInMinutes = {$plugin.tx_flogin.settings.throttling.lockIntervalInMinutes}
+    }
+
+    oneTimeAccount {
+        properties {
+            usergroup = {$plugin.tx_flogin.settings.oneTimeAccount.properties.usergroup}
+        }
+
+        lifetimeInMinutes = {$plugin.tx_flogin.settings.oneTimeAccount.lifetimeInMinutes}
+    }
+
+    email {
+        site = {$plugin.tx_flogin.settings.email.site}
+        logoPath = {$plugin.tx_flogin.settings.email.logoPath}
+        stylesPath = {$plugin.tx_flogin.settings.email.stylesPath}
+
+        magicLink {
+            subject = {$plugin.tx_flogin.settings.email.magicLink.subject}
+            linkLifetimeInMinutes = {$plugin.tx_flogin.settings.email.magicLink.linkLifetimeInMinutes}
+        }
+
+        passwordResetRequest {
+            subject = {$plugin.tx_flogin.settings.email.passwordResetRequest.subject}
+            linkLifetimeInMinutes = {$plugin.tx_flogin.settings.email.passwordResetRequest.linkLifetimeInMinutes}
+        }
+
+        passwordUpdated {
+            subject = {$plugin.tx_flogin.settings.email.passwordUpdated.subject}
+        }
+
+        lockout {
+            subject = {$plugin.tx_flogin.settings.email.lockout.subject}
+        }
+
+        login {
+            disabled = {$plugin.tx_flogin.settings.email.login.disabled}
+            subject = {$plugin.tx_flogin.settings.email.login.subject}
+        }
+    }
+
+}

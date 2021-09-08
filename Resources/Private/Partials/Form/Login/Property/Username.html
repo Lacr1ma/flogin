@@ -1,0 +1,24 @@
+<f:form.validationResults for="username">
+    <f:variable name="usernameErrors" value="{validationResults.errors}" />
+</f:form.validationResults>
+
+<div class="form-group username-block">
+    <label for="username-field">
+        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:username.label" />
+    </label>
+
+    <f:form.textfield
+        id="username-field"
+        class="form-control {f:if(then: 'is-invalid', condition: '{usernameErrors}')}"
+        name="username"
+        placeholder="{f:translate(key: 'LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:username.placeholder')}"
+        required="1"
+        autofocus="1" />
+
+    <f:for each="{usernameErrors}" as="error">
+        <div class="invalid-feedback username-is-invalid">
+            {error}
+        </div>
+    </f:for>
+
+</div>

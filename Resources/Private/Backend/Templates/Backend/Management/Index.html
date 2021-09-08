@@ -1,0 +1,48 @@
+{namespace be = TYPO3\CMS\Backend\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+
+    <div class="form-group">
+        <f:link.action action="createOneTimeAccountHash" class="btn btn-default btn-sm">
+            <f:translate key="temporary_account.generate" extensionName="flogin"/>
+        </f:link.action>
+    </div>
+
+    <f:render partial="Filters/User/Index" arguments="{demand: demand, groups: groups}" />
+
+    <div class="table-fit">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="col-title">
+                        <f:translate key="userName" extensionName="beuser"/> / <f:translate key="realName" extensionName="beuser"/>
+                    </th>
+                    <th>
+                        <f:translate key="lastLogin" extensionName="beuser"/>
+                    </th>
+                    <th class="col-control"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <f:for as="user" each="{paginator.paginatedItems}" iteration="iterator">
+                    <f:render partial="User/PaginatedList" arguments="{_all}" />
+                </f:for>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        {paginator.paginatedItems -> f:count()} <f:translate key="users" extensionName="beuser"/>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <f:render partial="Utility/Paginator" arguments="{_all}" />
+
+</f:section>

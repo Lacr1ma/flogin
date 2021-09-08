@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de">
+        <body>
+            <trans-unit id="resets">
+                <target>Passwort zurückgesetzt</target>
+            </trans-unit>
+            <trans-unit id="token">
+                <target>Token</target>
+            </trans-unit>
+            <trans-unit id="user">
+                <target>Rückschläger</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

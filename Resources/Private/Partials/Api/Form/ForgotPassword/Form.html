@@ -1,0 +1,19 @@
+<div class="collapse mt-2" id="forgot-request-form">
+    <div class="card card-body">
+
+        <form id="forgot_form_ajax"
+              class="needs-validation"
+              method="POST"
+              enctype="multipart/form-data"
+        >
+            <fieldset>
+                <f:render partial="Api/Form/ForgotPassword/Property/Email" arguments="{_all}"/>
+
+                <button id="send-forgot-link" type="submit" class="btn btn-primary">
+                    <f:translate key="LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:form_forgot.submit"/>
+                </button>
+            </fieldset>
+        </form>
+
+    </div>
+</div>

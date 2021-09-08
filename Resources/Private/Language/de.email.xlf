@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de">
+        <body>
+            <trans-unit id="login.subject">
+                <target>Sicherheitshinweis: Jemand hat sich in Ihr Konto eingeloggt.</target>
+            </trans-unit>
+            <trans-unit id="login.caption">
+                <target>Neuer Login-Versuch!</target>
+            </trans-unit>
+            <trans-unit id="login.caption_description">
+                <target>Jemand hat sich in das System eingeloggt. Unten können Sie einige Informationen sehen, die mit dem Anmeldeprozess verbunden sind.</target>
+            </trans-unit>
+            <trans-unit id="login.information_header">
+                <target>Informationen zum Anmeldeversuch:</target>
+            </trans-unit>
+            <trans-unit id="login.button_change_password">
+                <target>Passwort ändern</target>
+            </trans-unit>
+            <trans-unit id="login.ip">
+                <target>IP</target>
+            </trans-unit>
+            <trans-unit id="login.agent">
+                <target>Gerät</target>
+            </trans-unit>
+            <trans-unit id="login.time">
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="reset_password.subject">
+                <target>Sicherheitshinweis: Passwort zurücksetzen</target>
+            </trans-unit>
+            <trans-unit id="reset_password.caption">
+                <target>Passwort zurücksetzen</target>
+            </trans-unit>
+            <trans-unit id="reset_password.caption_description">
+                <target>Müssen Sie Ihr Passwort zurücksetzen? Kein Problem! Klicken Sie einfach auf den Button unten, und schon können Sie loslegen:</target>
+            </trans-unit>
+            <trans-unit id="reset_password.button_reset">
+                <target>Jetzt Passwort ändern</target>
+            </trans-unit>
+            <trans-unit id="reset_password.expire">
+                <target>Wenn Sie diese Anfrage nicht gestellt haben, sind keine weiteren Maßnahmen erforderlich. Sie wird in %s Minuten ablaufen.</target>
+            </trans-unit>
+            <trans-unit id="update_password.subject">
+                <target>Sicherheitshinweis: Passwort wurde geändert</target>
+            </trans-unit>
+            <trans-unit id="update_password.caption">
+                <target>Haben Sie Ihr Passwort geändert?</target>
+            </trans-unit>
+            <trans-unit id="update_password.caption_description">
+                <target>Wir haben bemerkt, dass das Passwort für Ihr Konto kürzlich geändert wurde. Wenn Sie das nicht waren, folgen Sie bitte dem untenstehenden Link.</target>
+            </trans-unit>
+            <trans-unit id="update_password.button_restore">
+                <target>Passwort wiederherstellen</target>
+            </trans-unit>
+            <trans-unit id="update_password.other_case">
+                <target>In anderen Fällen können Sie diese E-Mail getrost ignorieren.</target>
+            </trans-unit>
+            <trans-unit id="lockout.subject">
+                <target>Sicherheitshinweis: Konto wurde gesperrt</target>
+            </trans-unit>
+            <trans-unit id="lockout.caption">
+                <target>Konto wurde gesperrt.</target>
+            </trans-unit>
+            <trans-unit id="lockout.caption_description">
+                <target>Ihr Konto wurde aufgrund mehrerer ungültiger Anmeldeversuche gesperrt. Bitte warten Sie %s Minuten, bevor Sie versuchen, auf Ihr Konto zuzugreifen.</target>
+            </trans-unit>
+            <trans-unit id="lockout.button_unlock">
+                <target>Sperre aufheben.</target>
+            </trans-unit>
+            <trans-unit id="lockout.help">
+                <target>Zögern Sie nicht, uns zu kontaktieren, wenn Sie Hilfe benötigen.</target>
+            </trans-unit>
+            <trans-unit id="magic_link.subject">
+                <target>Einloggen via magic link.</target>
+            </trans-unit>
+            <trans-unit id="magic_link.caption">
+                <target>Hallo %s!</target>
+            </trans-unit>
+            <trans-unit id="magic_link.caption_description">
+                <target>Sie haben uns gebeten, Ihnen einen Magic Link zu schicken, mit dem Sie sich schnell in Ihr Konto einloggen können. Hier haben Sie ihn:</target>
+            </trans-unit>
+            <trans-unit id="magic_link.login_action">
+                <target>Einloggen</target>
+            </trans-unit>
+            <trans-unit id="magic_link.expire">
+                <target>Wenn Sie den Link nicht angefordert haben, sind keine weiteren Schritte erforderlich. Er läuft in %s Minuten ab.</target>
+            </trans-unit>
+            <trans-unit id="common.signature">
+                <target><![CDATA[Sie erhalten diese E-Mail aufgrund Ihres Kontos auf unserer <a href="%s">portal</a>]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,6 @@
+plugin.tx_flogin.settings.page {
+
+    # cat=plugin.tx_flogin//a; type=int+; label=Login Page ID (Where login form plugin is located and not restricted by page access rules).
+    login =
+
+}

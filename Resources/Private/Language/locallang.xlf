@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="flogin">
+		<body>
+			<trans-unit id="username.label">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="username.placeholder">
+				<source>Input your username...</source>
+			</trans-unit>
+			<trans-unit id="password.label">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="password.placeholder">
+				<source>Input your password...</source>
+			</trans-unit>
+			<trans-unit id="email.label">
+				<source>Email address</source>
+			</trans-unit>
+			<trans-unit id="email.placeholder">
+				<source>Input your email address...</source>
+			</trans-unit>
+			<trans-unit id="remember.label">
+				<source>Remember me</source>
+			</trans-unit>
+			<trans-unit id="password.new.label">
+				<source>New password</source>
+			</trans-unit>
+			<trans-unit id="password.new_confirmation.label">
+				<source>Confirm new password</source>
+			</trans-unit>
+			<trans-unit id="forgot.link">
+				<source>Forgot password ?</source>
+			</trans-unit>
+			<trans-unit id="magic.link">
+				<source>Magic link?</source>
+			</trans-unit>
+			<trans-unit id="form_login.submit">
+				<source>Login</source>
+			</trans-unit>
+			<trans-unit id="form_login.logout">
+				<source>Logout</source>
+			</trans-unit>
+			<trans-unit id="form_forgot.submit">
+				<source>Send the link</source>
+			</trans-unit>
+			<trans-unit id="form_magic.submit">
+				<source>Send magic link</source>
+			</trans-unit>
+			<trans-unit id="form_reset.submit">
+				<source>Change password</source>
+			</trans-unit>
+			<trans-unit id="temporary_account.generate">
+				<source>Generate temporary account</source>
+			</trans-unit>
+			<trans-unit id="ajax.loading">
+				<source>Loading...</source>
+			</trans-unit>
+			<trans-unit id="ajax.redirect">
+				<source>Redirecting...</source>
+			</trans-unit>
+			<trans-unit id="ajax.notification_sent">
+				<source>Notification has been sent successfully.</source>
+			</trans-unit>
+			<trans-unit id="username.locked">
+				<source>User has been locked</source>
+			</trans-unit>
+			<trans-unit id="username.not_found">
+				<source>Provided username is not found.</source>
+			</trans-unit>
+			<trans-unit id="password.not_match">
+				<source>Password is invalid</source>
+			</trans-unit>
+			<trans-unit id="email.not_found">
+				<source>This email address is not connected to any user in our system.</source>
+			</trans-unit>
+			<trans-unit id="login.limit_reached">
+				<source>Too much request! Please wait for %s minutes</source>
+			</trans-unit>
+			<trans-unit id="password_confirmation.not_match">
+				<source>Confirmation password does not match</source>
+			</trans-unit>
+			<trans-unit id="user.already_logged_in">
+				<source>User is already authenticated</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

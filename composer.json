@@ -1,0 +1,35 @@
+{
+	"name": "lms/flogin",
+	"type": "typo3-cms-extension",
+	"description": "Provides an authentication option for website users.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Serhii Borulko",
+			"email": "borulkosergey@icloud.com"
+		}
+	],
+	"require": {
+		"typo3/cms-core": "^9.5 || ^10 || ^11",
+		"lms/routes": "*",
+		"tijsverkoyen/css-to-inline-styles": "^2.2.3"
+	},
+	"require-dev": {
+		"vimeo/psalm": "^4.10",
+		"mockery/mockery": "^1.4.3",
+		"nimut/testing-framework": "^5.2.1",
+		"typo3/testing-framework": "^6.10.1",
+		"codeception/codeception": "^4.1.22",
+		"ericmartel/codeception-email-mailhog": "^1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"LMS\\Flogin\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"LMS\\Flogin\\Tests\\": "Tests"
+		}
+	}
+}

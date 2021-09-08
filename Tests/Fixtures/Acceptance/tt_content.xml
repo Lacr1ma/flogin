@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tt_content>
+        <uid>1</uid>
+        <pid>2</pid>
+        <CType>list</CType>
+        <list_type>login_login</list_type>
+        <imagecols>2</imagecols>
+    </tt_content>
+
+</dataset>
