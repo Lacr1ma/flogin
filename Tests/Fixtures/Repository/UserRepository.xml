@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <fe_users>
+        <uid>1</uid>
+        <pid>0</pid>
+        <username>dummy2</username>
+        <email>dummy2@example.com</email>
+    </fe_users>
+</dataset>

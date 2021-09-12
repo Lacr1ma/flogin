@@ -1,0 +1,101 @@
+login_users-current:
+  path:         api/login/users/current
+  controller:   LMS\Flogin\Controller\UserApiController::current
+  methods:      GET
+  defaults:
+    plugin:     UserApi
+  options:
+    middleware:
+      - auth
+
+login_users-authenticated:
+  path:         api/login/users/authenticated
+  controller:   LMS\Flogin\Controller\UserApiController::authenticated
+  methods:      GET
+  defaults:
+    plugin:     UserApi
+
+login_users-simulate:
+  path:         api/login/users/simulate/{username}
+  controller:   LMS\Flogin\Controller\UserApiController::simulateLogin
+  methods:      GET
+  defaults:
+    plugin:     UserApi
+  requirements:
+    username:   "[^/]+"
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\VerifyAdminBackendSession
+
+login_users-terminate:
+  path:         api/login/users/terminate/{user}
+  controller:   LMS\Flogin\Controller\UserApiController::terminateFrontendSession
+  methods:      GET
+  defaults:
+    plugin:     UserApi
+  requirements:
+    user:       \d+
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\VerifyAdminBackendSession
+
+login_users-one_time_account:
+  path:         api/login/users/one-time-account/{hash}
+  controller:   LMS\Flogin\Controller\UserApiController::createOneTimeAccount
+  methods:      GET
+  defaults:
+    plugin:     UserApi
+  requirements:
+    hash:       "[^/]+"
+  options:
+    middleware:
+      - LMS\Flogin\Middleware\Api\VerifyAccountCreationHash
+
+login_logins-auth:
+  path:         api/login/logins/auth
+  controller:   LMS\Flogin\Controller\Api\LoginApiController::auth
+  methods:      POST
+  format:       json
+  requirements:
+    username:   "[^/]+"
+    password:   "[^/]+"
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\Throttle:50,10
+  defaults:
+    plugin:     LoginApi
+    username:
+    password:
+    remember:   false
+
+login_logins-logout:
+  path:         api/login/logins/logout
+  controller:   LMS\Flogin\Controller\Api\LoginApiController::logout
+  methods:      GET
+  defaults:
+    plugin:     LoginApi
+  options:
+    middleware:
+      - LMS\Routes\Middleware\Api\Authenticate
+
+login_magiclink-send_magic_link_email:
+  path:         api/login/magic-link
+  controller:   LMS\Flogin\Controller\Api\MagicLinkApiController::sendMagicLinkEmail
+  methods:      POST
+  format:       json
+  requirements:
+    email:      "[^/]+"
+  defaults:
+    plugin:     MagicLinkApi
+    email:
+
+login_forgotpassword-send_reset_link_email:
+  path:         api/login/reset-password-link
+  controller:   LMS\Flogin\Controller\Api\ForgotPasswordApiController::sendResetLinkEmail
+  methods:      POST
+  format:       json
+  requirements:
+    email:      "[^/]+"
+  defaults:
+    plugin:     ForgotPasswordApi
+    email:

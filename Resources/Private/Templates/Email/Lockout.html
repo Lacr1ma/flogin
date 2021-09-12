@@ -1,0 +1,55 @@
+<f:layout name="Email"/>
+
+<f:section name="Header">
+    <img src="{f:uri.image(src: '{email.logoPath}', absolute: 1)}" class="logo" width="250"/>
+</f:section>
+
+<f:section name="Main">
+    <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#fcfcfc">
+
+        <tr>
+            <td class="es-m-txt-c" align="center">
+                <h2>
+                    <strong>
+                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.caption"/>
+                    </strong>
+                </h2>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="es-m-txt-l" bgcolor="transparent" align="left">
+                <span>
+                    <f:translate arguments="{0: '{user.lockMinutesInterval}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.caption_description"/>
+                </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" class="es-m-txt-c">
+                <span class="es-button-border">
+                    <f:cache.disable>
+                         <a href="{user.unlockActionUrl}" class="es-button" target="_blank">
+                            <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.button_unlock"/>
+                        </a>
+                    </f:cache.disable>
+                </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="es-m-txt-l" bgcolor="transparent" align="left">
+                <span>
+                    <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.help"/>
+                </span>
+            </td>
+        </tr>
+
+    </table>
+</f:section>
+
+<f:section name="Footer">
+    <f:format.raw>
+        <f:translate arguments="{0: '{email.site}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:common.signature"/>
+    </f:format.raw>
+</f:section>

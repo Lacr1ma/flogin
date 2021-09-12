@@ -1,0 +1,52 @@
+namespace: LMS\Flogin\Tests\Acceptance\Support
+
+suites:
+  acceptance:
+    actor: BackendTester
+    path: .
+    modules:
+      enabled:
+        - Db
+        - Cli
+        - Asserts
+        - Filesystem
+        - WebDriver:
+            url: http://login.ddev.site/
+            host: selenium__standalone-chrome
+            browser: chrome
+        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
+        - \LMS\Flogin\Tests\Acceptance\Support\Helper\Flogin:
+            sessions:
+              admin: 0bf0641e9490966de1157e71b7f46209
+      config:
+        Db:
+          dsn: 'mysql:host=db;dbname=db_at'
+          user: 'root'
+          password: 'root'
+
+extensions:
+  enabled:
+    - LMS\Flogin\Tests\Acceptance\Support\Extension\BackendEnvironment
+
+env:
+  github:
+    modules:
+      config:
+        WebDriver:
+          url: http://login.ddev.site
+          host: ddev-login-chrome
+        Db:
+          dsn: 'mysql:host=db;dbname=db_at'
+          user: 'root'
+          password: 'root'
+        MailHog:
+          url: http://login.ddev.site
+
+paths:
+  tests: Acceptance/Backend
+  data: Acceptance/_data
+  output: Acceptance/_output
+  support: Acceptance/Support
+
+settings:
+  colors: true

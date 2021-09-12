@@ -1,0 +1,106 @@
+<?php
+declare(strict_types = 1);
+
+namespace LMS\Flogin\Controller;
+
+/* * *************************************************************
+ *
+ *  Copyright notice
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ * ************************************************************* */
+
+use LMS\Facade\Extbase\Redirect;
+use LMS\Flogin\Domain\Model\User;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
+use LMS\Flogin\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
+
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
+ */
+class UserApiController extends Base\ApiController
+{
+    use SimulatesFrontendLogin, CreatesOneTimeAccount;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRootName(): string
+    {
+        return 'user';
+    }
+
+    /**
+     *  Return the data for currently authenticated user.
+     */
+    public function currentAction(): void
+    {
+        $this->showAction(
+            User::currentUid()
+        );
+    }
+
+    /**
+     * Check if the requested user is being authenticated.
+     */
+    public function authenticatedAction(): ResponseInterface
+    {
+        $this->view->assign('value', ['authenticated' => User::isLoggedIn()]);
+
+        return $this->jsonResponse();
+    }
+
+    /**
+     * Attempt to authenticate the requested user.
+     */
+    public function simulateLoginAction(string $username): ResponseInterface
+    {
+        $this->simulateLoginFor($username);
+
+        return $this->responseFactory->createResponse();
+    }
+
+    /**
+     * Logout a requested frontend user from all devices.
+     */
+    public function terminateFrontendSessionAction(int $user): ResponseInterface
+    {
+        $this->terminateSessionFor($user);
+
+        return $this->responseFactory->createResponse();
+    }
+
+    /**
+     * Attempt to create a temporary frontend user and authorize it.
+     */
+    public function createOneTimeAccountAction(string $hash): ResponseInterface
+    {
+        $pid = (int)$this->settings['redirect']['afterLoginPage'];
+
+        if ($user = $this->createTemporaryFrontendAccount($hash)) {
+            $this->authorizeTemporaryUser($user, $hash);
+        }
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
+    }
+}

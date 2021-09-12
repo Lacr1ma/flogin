@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tx_flogin_domain_model_resets>
+        <uid>1</uid>
+        <pid>0</pid>
+        <token>secret</token>
+        <user>1</user>
+    </tx_flogin_domain_model_resets>
+
+    <tx_flogin_domain_model_resets>
+        <uid>2</uid>
+        <pid>0</pid>
+        <token>my_token</token>
+        <user>2</user>
+        <crdate>1111111111</crdate>
+    </tx_flogin_domain_model_resets>
+</dataset>

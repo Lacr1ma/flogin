@@ -1,0 +1,10 @@
+<f:form class="form-horizontal" action="sendMagicLinkEmail" method="POST" enctype="multipart/form-data">
+
+    <f:render partial="Form/MagicLink/Property/Email" arguments="{_all}"/>
+
+    <f:form.submit
+        id="send-magic-link"
+        class="btn btn-primary"
+        value="{f:translate(key: 'LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:form_magic.submit')}"
+    />
+</f:form>

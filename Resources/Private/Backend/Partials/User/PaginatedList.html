@@ -1,0 +1,53 @@
+{namespace be = TYPO3\CMS\Backend\ViewHelpers}
+
+<tr class="{f:if(then: 'danger', condition: '{user.locked}')}">
+    <td>
+        <a href="#" class="t3js-contextmenutrigger" data-table="fe_users" data-uid="{user.uid}">
+            <core:icon identifier="status-user-frontend" />
+        </a>
+    </td>
+
+    <td class="col-title">
+        <be:link.editRecord table="fe_users" uid="{user.uid}" title="edit">
+            <b>{user.username}</b>
+        </be:link.editRecord>
+
+        <f:if condition="{user.online} && !{user.locked}">
+            <span class="label label-success">online</span>
+        </f:if>
+        <br>
+        <f:if condition="{user.firstName}">
+            <be:link.editRecord table="fe_users" uid="{user.uid}" title="edit">
+                {user.firstName} {user.lastName}
+            </be:link.editRecord>
+        </f:if>
+    </td>
+
+    <td>
+        <f:if condition="{user.lastLogin}">
+            <f:then>
+                <f:format.date format="Y-m-d H:i">{user.lastLogin}</f:format.date>
+            </f:then>
+            <f:else>
+                <f:translate key="never" extensionName="beuser"/>
+            </f:else>
+        </f:if>
+    </td>
+
+    <td class="nowrap">
+        <div class="btn-group" role="group">
+            <f:if condition="!{user.locked}">
+                <a id="simulate-user-{user.uid}" href="/api/login/users/simulate/{user.username}" class="btn btn-default">
+                    <core:icon identifier="actions-system-backend-user-switch" />
+                </a>
+
+                <f:if condition="{user.online}">
+                    <a id="terminate-user-{user.uid}" href="/api/login/users/terminate/{user.uid}" class="btn btn-default">
+                        <core:icon identifier="actions-ban"/>
+                    </a>
+                </f:if>
+            </f:if>
+        </div>
+    </td>
+
+</tr>

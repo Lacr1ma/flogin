@@ -1,0 +1,25 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <f:security.ifAuthenticated>
+                    <f:then>
+                        <a id="logout-link" class="btn btn-primary" href="#" onclick="performLogoutRedirect()">
+                            <f:translate key="LLL:EXT:flogin/Resources/Private/Language/locallang.xlf:form_login.logout" />
+                        </a>
+                    </f:then>
+                    <f:else>
+                        <f:render partial="Api/Form/Login/Body" arguments="{_all}"/>
+                    </f:else>
+                </f:security.ifAuthenticated>
+            </div>
+
+            <f:render partial="Api/Form/Login/Notification/Redirect"/>
+            <f:render partial="Api/Form/Login/Notification/HasBeenSentFeedback"/>
+        </div>
+    </div>
+
+</f:section>

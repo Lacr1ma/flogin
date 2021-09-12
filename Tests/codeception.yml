@@ -1,0 +1,55 @@
+namespace: LMS\Flogin\Tests\Acceptance\Support
+suites:
+  acceptance:
+    actor: AcceptanceTester
+    path: .
+    modules:
+      enabled:
+        - Db:
+            dsn: 'mysql:host=mysql;dbname=db_at'
+            user: 'root'
+            password: 'dev'
+            populate: true
+        - Cli
+        - MailHog:
+            url:  http://mailhog.dev
+            port: 8025
+        - Asserts
+        - Filesystem
+        - WebDriver:
+            url: http://login.ddev.site
+            host: selenium__standalone-chrome
+            browser: chrome
+        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
+
+extensions:
+  enabled:
+    - LMS\Flogin\Tests\Acceptance\Support\Extension\BackendEnvironment
+    - Codeception\Extension\Recorder
+
+params:
+  - env
+
+env:
+  github:
+    modules:
+      config:
+        WebDriver:
+          url: http://login.ddev.site
+          host: ddev-login-chrome
+        Db:
+          dsn: 'mysql:host=db;dbname=db'
+          user: 'root'
+          password: 'root'
+        MailHog:
+          url: http://login.ddev.site
+paths:
+  tests: Acceptance/Frontend
+  data: Acceptance/_data
+  output: Acceptance/_output
+  support: Acceptance/Support
+
+settings:
+  shuffle: false
+  lint: true
+  colors: true
