@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUndefinedMethodInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Command;
@@ -28,13 +30,22 @@ namespace LMS\Flogin\Command;
 
 use LMS\Facade\Assist\Collection;
 use LMS\Flogin\Domain\Repository\UserRepository;
-use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
+use Symfony\Component\Console\{Command\Command, Input\InputInterface, Output\OutputInterface};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class UnlockUserCommand extends \Symfony\Component\Console\Command\Command
+class UnlockUserCommand extends Command
 {
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $repository)
+    {
+        parent::__construct();
+
+        $this->userRepository = $repository;
+    }
+
     /**
      * @noinspection PhpMissingParentCallCommonInspection
      */
@@ -56,11 +67,13 @@ class UnlockUserCommand extends \Symfony\Component\Console\Command\Command
     }
 
     /**
-     * @return \LMS\Facade\Assist\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
-    protected function getUsersForUnlocking(): Collection
+    private function getUsersForUnlocking(): Collection
     {
-        return UserRepository::make()->findLocked()->filter->isTimeToUnlock();
+        return $this->userRepository
+            ->findLocked()
+            ->filter
+            ->isTimeToUnlock();
     }
 }

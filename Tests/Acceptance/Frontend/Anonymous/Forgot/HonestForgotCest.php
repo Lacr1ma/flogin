@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnused */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Forgot;
@@ -33,9 +35,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class HonestForgotCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function forgot_form_available(AcceptanceTester $I)
     {
         $I->wantTo('I am on <login> page, when i click on *forgot password* link, I wanna see <forgot password form>.');
@@ -43,9 +42,6 @@ class HonestForgotCest
         $I->amOnForgotPage();
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function forgot_form_contains_email(AcceptanceTester $I)
     {
         $I->wantTo('I expect to see <email> field in <forgot password form>.');
@@ -56,9 +52,6 @@ class HonestForgotCest
         $I->seeElement('#send-reset-link');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function forgot_link_could_be_sent(AcceptanceTester $I)
     {
         $I->wantTo('I expect to receive the <forgot password link> after I submit <forgot password form> with my email.');
@@ -73,9 +66,6 @@ class HonestForgotCest
         $I->seeInOpenedEmailSubject('Security Notice: Reset Password request');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function forgot_email_contains_proper_structure(AcceptanceTester $I)
     {
         $I->wantTo('When I open <forgot password link> notification, I expect to see the <restore> link inside');
@@ -92,9 +82,6 @@ class HonestForgotCest
         $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function redirect_after_forgot_submitted(AcceptanceTester $I)
     {
         $I->wantTo('When I submit <forgot password form>, I expect to be redirected to the proper page.');

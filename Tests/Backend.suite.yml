@@ -11,14 +11,13 @@ suites:
         - Asserts
         - Filesystem
         - WebDriver:
-            url: http://%TESTING_DOMAIN%/
+            url: http://login.ddev.site/
             host: selenium__standalone-chrome
             browser: chrome
         - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
-        - \TYPO3\TestingFramework\Core\Acceptance\Helper\Login:
+        - \LMS\Flogin\Tests\Acceptance\Support\Helper\Flogin:
             sessions:
-              editor: ff83dfd81e20b34c27d3e97771a4525a
-              admin: 886526ce72b86870739cc41991144ec1
+              admin: 0bf0641e9490966de1157e71b7f46209
       config:
         Db:
           dsn: 'mysql:host=db;dbname=db_at'
@@ -28,23 +27,8 @@ suites:
 extensions:
   enabled:
     - LMS\Flogin\Tests\Acceptance\Support\Extension\BackendEnvironment
-    - Codeception\Extension\RunFailed
-    - Codeception\Extension\Recorder
 
 env:
-  ddev:
-    modules:
-      config:
-        WebDriver:
-          url: https://lms.ddev.site
-          host: ddev-lms-chrome
-        Db:
-          dsn: 'mysql:host=db;dbname=db_at'
-          user: 'root'
-          password: 'root'
-        MailHog:
-          url: http://lms.ddev.site
-
   github:
     modules:
       config:

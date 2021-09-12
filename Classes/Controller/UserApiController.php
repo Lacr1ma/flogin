@@ -26,7 +26,10 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
 use LMS\Flogin\Domain\Model\User;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
 use LMS\Flogin\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
 
 /**
@@ -46,50 +49,58 @@ class UserApiController extends Base\ApiController
     }
 
     /**
-     * Give the logged in user information
+     *  Return the data for currently authenticated user.
      */
     public function currentAction(): void
     {
-        $this->showAction(User::currentUid());
+        $this->showAction(
+            User::currentUid()
+        );
     }
 
     /**
-     * Give the logged in user information
+     * Check if the requested user is being authenticated.
      */
-    public function authenticatedAction(): void
+    public function authenticatedAction(): ResponseInterface
     {
         $this->view->assign('value', ['authenticated' => User::isLoggedIn()]);
+
+        return $this->jsonResponse();
     }
 
     /**
-     * Attempt to login the FE user by it's name
-     *
-     * @param string $username
+     * Attempt to authenticate the requested user.
      */
-    public function simulateLoginAction(string $username): void
+    public function simulateLoginAction(string $username): ResponseInterface
     {
         $this->simulateLoginFor($username);
+
+        return $this->responseFactory->createResponse();
     }
 
     /**
-     * Attempt to logout the FE user by it's uid
-     *
-     * @param int $user
+     * Logout a requested frontend user from all devices.
      */
-    public function terminateFrontendSessionAction(int $user): void
+    public function terminateFrontendSessionAction(int $user): ResponseInterface
     {
         $this->terminateSessionFor($user);
+
+        return $this->responseFactory->createResponse();
     }
 
     /**
-     * Create one time user and log in
-     *
-     * @param string $hash
+     * Attempt to create a temporary frontend user and authorize it.
      */
-    public function createOneTimeAccountAction(string $hash): void
+    public function createOneTimeAccountAction(string $hash): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterLoginPage'];
+
         if ($user = $this->createTemporaryFrontendAccount($hash)) {
             $this->authorizeTemporaryUser($user, $hash);
         }
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 }

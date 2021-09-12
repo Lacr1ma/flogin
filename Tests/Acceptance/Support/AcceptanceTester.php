@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Acceptance\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Codeception\Actor;
 use LMS\Flogin\Tests\Acceptance\Support\_generated\AcceptanceTesterActions;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class AcceptanceTester extends \Codeception\Actor
+class AcceptanceTester extends Actor
 {
     use AcceptanceTesterActions;
 
@@ -47,9 +48,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#magic-link');
     }
 
-    /**
-     * @param string $toEmail
-     */
     public function amRequestingPasswordResetNotification(string $toEmail): void
     {
         $this->deleteAllEmails();
@@ -60,9 +58,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#send-reset-link');
     }
 
-    /**
-     * @param string $toEmail
-     */
     public function amRequestingMagicLinkNotification(string $toEmail): void
     {
         $this->deleteAllEmails();
@@ -73,9 +68,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#send-magic-link');
     }
 
-    /**
-     * @param string $email
-     */
     public function amOnResetPasswordPageRelatedTo(string $email): void
     {
         $this->amRequestingPasswordResetNotification($email);
@@ -85,9 +77,6 @@ class AcceptanceTester extends \Codeception\Actor
         );
     }
 
-    /**
-     * @return string
-     */
     public function extractLinkFromLastMail(): string
     {
         $this->fetchEmails();
@@ -98,12 +87,6 @@ class AcceptanceTester extends \Codeception\Actor
         return htmlspecialchars_decode($match[2]) ?: '';
     }
 
-    /**
-     * @param string $email
-     * @param string $password
-     * @param string $confirmation
-     * @param bool   $clearInbox
-     */
     public function amChangingPassword(string $email, string $password, string $confirmation, bool $clearInbox = true): void
     {
         $this->amOnResetPasswordPageRelatedTo($email);
@@ -118,10 +101,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#change-password-link');
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     */
     public function amLoggedInAs(string $username = 'dummy', string $password = 'password'): void
     {
         $this->amOnPage('/login');
@@ -133,10 +112,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#login-button');
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     */
     public function amLoggedByAjaxFormAs(string $username = 'dummy', string $password = 'password'): void
     {
         $this->amOnPage('/loginajax');
@@ -148,9 +123,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#login-button');
     }
 
-    /**
-     * @param string $email
-     */
     public function amRequestingMagicLinkAjax(string $email): void
     {
         $this->amOnPage('/loginajax');
@@ -161,9 +133,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('#send-magic-link');
     }
 
-    /**
-     * @param string $email
-     */
     public function amRequestingForgotLinkAjax(string $email): void
     {
         $this->amOnPage('/loginajax');

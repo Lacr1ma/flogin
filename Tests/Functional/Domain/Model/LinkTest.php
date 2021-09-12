@@ -27,11 +27,12 @@ namespace LMS\Flogin\Tests\Functional\Domain\Model;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\Link;
+use LMS\Flogin\Tests\Functional\BaseTest;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class LinkTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class LinkTest extends BaseTest
 {
     /**
      * @test

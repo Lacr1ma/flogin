@@ -26,7 +26,6 @@ namespace LMS\Flogin\Guard;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\StaticCreator;
 use LMS\Flogin\{Domain\Model\User, Domain\Repository\UserRepository, Event\SessionEvent};
 
 /**
@@ -34,20 +33,23 @@ use LMS\Flogin\{Domain\Model\User, Domain\Repository\UserRepository, Event\Sessi
  */
 class SessionGuard
 {
-    use SessionEvent, StaticCreator;
+    use SessionEvent;
+
+    protected UserRepository $userRepository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->userRepository = $repository;
+    }
 
     /**
      * Log a user into the application.
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
-     * @param bool                         $remember
-     * @param string                       $plainPassword
      */
-    public function login(User $user, string $plainPassword, bool $remember): void
+    public function login(User $user, string $plainPassword, bool $remember = false): void
     {
         $this->startCoreLogin($user->getUsername(), $plainPassword, $remember);
 
-        if ($GLOBALS['TSFE']->fe_user->loginFailure) {
+        if (!$GLOBALS['TSFE']->fe_user->loginSessionStarted) {
             $this->fireLoginFailedInCoreEvent($user);
             return;
         }
@@ -60,7 +62,7 @@ class SessionGuard
      */
     public function logoff(): void
     {
-        $user = UserRepository::make()->current();
+        $user = $this->userRepository->current();
 
         $GLOBALS['TSFE']->fe_user->logoff();
 
@@ -69,12 +71,8 @@ class SessionGuard
 
     /**
      * Initialize credentials and proxy the request to the TYPO3 Core
-     *
-     * @param string $username
-     * @param string $password
-     * @param bool   $remember
      */
-    public function startCoreLogin(string $username, string $password, bool $remember): void
+    public function startCoreLogin(string $username, string $password, bool $remember = false): void
     {
         $_POST['user'] = $username;
         $_POST['pass'] = $password;

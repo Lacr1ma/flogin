@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Validator\Login;
@@ -27,40 +29,44 @@ namespace LMS\Flogin\Domain\Validator\Login;
  * ************************************************************* */
 
 use LMS\Flogin\Hash\Hash;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use LMS\Flogin\Support\Redirection\UserRouter;
-use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
+use TYPO3\CMS\Core\Http\PropagateResponseException;
+use LMS\Flogin\Domain\{Model\User, Repository\UserRepository, Validator\DefaultValidator};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UserNotLockedValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class UserNotLockedValidator extends DefaultValidator
 {
     /**
      * Valid when user is real and it's not locked
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param string $username
+     * @param string $value | username
+     * @throws PropagateResponseException
      */
-    protected function isValid($username): void
+    protected function isValid($value): void
     {
-        $this->userFromRequest($username, function (User $user, string $plainPassword) {
-            if (!Hash::checkPassword($plainPassword, $user->getPassword()) || $user->isNotLocked()) {
+        $this->userFromRequest($value, function (User $user, string $plainPassword) {
+            $hash = GeneralUtility::makeInstance(Hash::class);
+
+            if (!$hash->checkPassword($plainPassword, $user->getPassword()) || $user->isNotLocked()) {
                 return;
             }
 
             $this->addError($this->translate('username.locked'), 1574293893);
 
-            UserRouter::redirectToLockedPage();
+            $response = UserRouter::redirectToLockedPage();
+
+            throw new PropagateResponseException($response);
         });
     }
 
     /**
      * Extract user from request and pass though callback back
-     *
-     * @param string $username
-     * @param callable $callback
      */
     private function userFromRequest(string $username, callable $callback): void
     {

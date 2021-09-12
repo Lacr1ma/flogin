@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
 
 declare(strict_types = 1);
 
@@ -27,29 +28,7 @@ declare(strict_types = 1);
 
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
-    ->registerImplementation(
-        \TYPO3\CMS\Extbase\Domain\Model\FrontendUser::class,
-        \LMS\Flogin\Domain\Model\User::class
-    );
-
-\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
-    ->registerImplementation(
-        \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup::class,
-        \LMS\Flogin\Domain\Model\UserGroup::class
-    );
-
-\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
-    ->registerImplementation(
-        \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository::class,
-        \LMS\Flogin\Domain\Repository\UserRepository::class
-    );
-
-\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
-    ->registerImplementation(
-        \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository::class,
-        \LMS\Flogin\Domain\Repository\UserGroupRepository::class
-    );
+use \LMS\Flogin\Controller\Backend\ManagementController;
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
     'Flogin',
@@ -57,7 +36,7 @@ defined('TYPO3') or die();
     'login',
     'bottom',
     [
-        \LMS\Flogin\Controller\Backend\ManagementController::class => 'index, createOneTimeAccountHash'
+        ManagementController::class => 'index, createOneTimeAccountHash'
     ],
     [
         'icon' => 'EXT:flogin/ext_icon.svg',

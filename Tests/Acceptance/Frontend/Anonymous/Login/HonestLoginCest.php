@@ -33,9 +33,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class HonestLoginCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function login_form_available(AcceptanceTester $I)
     {
         $I->wantTo('I see the sign in form, so i can be authenticated.');
@@ -50,9 +47,6 @@ class HonestLoginCest
         $I->seeElement('#login-button');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function redirect_arises(AcceptanceTester $I)
     {
         $I->wantTo('I submit sign in form with proper credentials and expect to be redirected to a proper page.');
@@ -62,9 +56,6 @@ class HonestLoginCest
         $I->seeInTitle('Catalog');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function email_is_send_after_login(AcceptanceTester $I)
     {
         $I->wantTo('I want to be notified, when someone logged in to my account.');

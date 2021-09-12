@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller\Api;
@@ -26,42 +28,57 @@ namespace LMS\Flogin\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
 use LMS\Flogin\Support\Controller\Login\AuthenticatesUsers;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LoginApiController extends \LMS\Flogin\Controller\Api\AbstractApiController
+class LoginApiController extends AbstractApiController
 {
     use AuthenticatesUsers;
 
     /**
      * Show the application's login form.
      */
-    public function showLoginFormAction(): void
+    public function showLoginFormAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
-     * @param string $username
-     * @param string $password
-     * @param bool   $remember
-     *
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UsernameValidator", param="username")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\PasswordValidator", param="password")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UserNotLockedValidator", param="username")
      */
-    public function authAction(string $username, string $password, bool $remember): void
+    public function authAction(string $username, string $password, bool $remember): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterLoginPage'];
+
         $this->login([$username, $password], $remember);
+
+        $redirect = Redirect::uriFor($pid, true);
+
+        return $this->jsonResponse(
+            collect(compact('redirect'))->toJson()
+        );
     }
 
     /**
      * Log the user out of the application.
      */
-    public function logoutAction(): void
+    public function logoutAction(): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterLogoutPage'];
+
         $this->logoff();
+
+        $redirect = Redirect::uriFor($pid, true);
+
+        return $this->jsonResponse(
+            collect(compact('redirect'))->toJson()
+        );
     }
 }

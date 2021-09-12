@@ -31,22 +31,13 @@ namespace LMS\Flogin\Support\Domain\Property;
  */
 trait User
 {
-    /**
-     * @var int
-     */
-    protected $user;
+    protected int $user = 0;
 
-    /**
-     * @return int
-     */
     public function getUser(): int
     {
         return $this->user;
     }
 
-    /**
-     * @param int $user
-     */
     public function setUser(int $user): void
     {
         $this->user = $user;

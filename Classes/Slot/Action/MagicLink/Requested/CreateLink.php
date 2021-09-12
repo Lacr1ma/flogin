@@ -27,7 +27,7 @@ namespace LMS\Flogin\Slot\Action\MagicLink\Requested;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\Link;
-use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Event\SendMagicLinkRequestEvent;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -38,14 +38,12 @@ class CreateLink
      * Create a fresh magic link
      *
      * @psalm-suppress InternalMethod
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
-    public function execute(MagicLinkRequest $request): void
+    public function __invoke(SendMagicLinkRequestEvent $e): void
     {
         Link::create([
-            'token' => $request->getToken(),
-            'user' => $request->getUser()->getUid()
+            'token' => $e->request()->getToken(),
+            'user' => $e->request()->getUser()->getUid()
         ]);
     }
 }

@@ -26,13 +26,14 @@ namespace LMS\Flogin\Tests\Unit\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 use LMS\Flogin\Domain\Model\User;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetPasswordRequestTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class ResetPasswordRequestTest extends UnitTestCase
 {
     /**
      * Initialize

@@ -26,23 +26,30 @@ namespace LMS\Flogin\Slot\Action\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\User;
 use LMS\Flogin\Guard\SessionGuard;
+use LMS\Flogin\Event\LoginAttemptEvent;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class Attempt
 {
+    protected SessionGuard $sessionGuard;
+
+    public function __construct(SessionGuard $guard)
+    {
+        $this->sessionGuard = $guard;
+    }
+
     /**
      * Attempt to authenticate a user using password
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
-     * @param string                       $plainPassword
-     * @param bool                         $remember
      */
-    public function execute(User $user, string $plainPassword, bool $remember): void
+    public function __invoke(LoginAttemptEvent $e): void
     {
-        SessionGuard::make()->login($user, $plainPassword, $remember);
+        $this->sessionGuard->login(
+            $e->receiver(),
+            $e->password(),
+            $e->isRememberable()
+        );
     }
 }

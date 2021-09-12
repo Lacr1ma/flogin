@@ -26,7 +26,7 @@ namespace LMS\Flogin\Slot\Action\Reset\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Event\SendResetLinkRequestEvent;
 use LMS\Flogin\Slot\Notification\ResetPasswordNotification;
 
 /**
@@ -34,11 +34,15 @@ use LMS\Flogin\Slot\Notification\ResetPasswordNotification;
  */
 class SendNotification
 {
-    /**
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
-     */
-    public function execute(ResetPasswordRequest $request): void
+    protected ResetPasswordNotification $notification;
+
+    public function __construct(ResetPasswordNotification $notification)
     {
-        ResetPasswordNotification::make()->send($request);
+        $this->notification = $notification;
+    }
+
+    public function __invoke(SendResetLinkRequestEvent $e): void
+    {
+        $this->notification->send($e->request());
     }
 }

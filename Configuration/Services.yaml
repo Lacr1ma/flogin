@@ -1,0 +1,128 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  LMS\Flogin\:
+    resource: '../Classes/*'
+
+  LMS\Flogin\Hash\Hash:
+    public: true
+    shared: false
+
+  LMS\Flogin\Manager\SessionManager:
+    public: true
+    shared: false
+
+  LMS\Flogin\Command\UnlockUserCommand:
+    tags:
+      - name: 'console.command'
+        command: 'login:unlock_users'
+
+  LMS\Flogin\Command\ResetGarbageCollectorCommand:
+    tags:
+      - name: 'console.command'
+        command: 'login:password-link_garbage'
+
+  LMS\Flogin\Command\MagicLinksGarbageCollectorCommand:
+    tags:
+      - name: 'console.command'
+        command: 'login:magic-link_garbage'
+
+  LMS\Flogin\Command\OnetimeAccountGarbageCollectorCommand:
+    tags:
+      - name: 'console.command'
+        command: 'login:onetime-user_garbage'
+
+# Password reset events
+  LMS\Flogin\Slot\Action\Reset\Requested\CreateLink:
+    tags:
+      - name: event.listener
+        identifier: 'createResetLink'
+        event: LMS\Flogin\Event\SendResetLinkRequestEvent
+
+  LMS\Flogin\Slot\Action\Reset\Requested\SendNotification:
+    tags:
+      - name: event.listener
+        identifier: 'sendResetLinkNotification'
+        after: 'createResetLink'
+        event: LMS\Flogin\Event\SendResetLinkRequestEvent
+
+  LMS\Flogin\Slot\Action\Reset\Applied\Logoff:
+    tags:
+      - name: event.listener
+        identifier: 'logoutUserAfterPasswordReset'
+        event: LMS\Flogin\Event\PasswordHasBeenResetEvent
+
+  LMS\Flogin\Slot\Action\Reset\Applied\SendNotification:
+    tags:
+      - name: event.listener
+        identifier: 'sendPasswordChangedNotification'
+        after: 'logoutUserAfterPasswordReset'
+        event: LMS\Flogin\Event\PasswordHasBeenResetEvent
+
+# Magic link events
+  LMS\Flogin\Slot\Action\MagicLink\Requested\CreateLink:
+    tags:
+      - name: event.listener
+        identifier: 'createMagicLink'
+        event: LMS\Flogin\Event\SendMagicLinkRequestEvent
+
+  LMS\Flogin\Slot\Action\MagicLink\Requested\SendNotification:
+    tags:
+      - name: event.listener
+        identifier: 'sendMagicLinkNotification'
+        after: 'createMagicLink'
+        event: LMS\Flogin\Event\SendMagicLinkRequestEvent
+
+  LMS\Flogin\Slot\Action\MagicLink\Applied\UtilizeLink:
+    tags:
+      - name: event.listener
+        identifier: 'removeUsedMagicLink'
+        event: LMS\Flogin\Event\MagicLinkAppliedEvent
+
+#Lockout events
+  LMS\Flogin\Slot\Action\LockoutAction:
+    tags:
+      - name: event.listener
+        identifier: 'lockUser'
+        event: LMS\Flogin\Event\LockoutEvent
+
+#Unlock events
+  LMS\Flogin\Slot\Action\Login\Success\ResetAttempts:
+    tags:
+      - name: event.listener
+        identifier: 'resetFailedLoginAttempts'
+        method: 'unlocked'
+        event: LMS\Flogin\Event\UserUnlockedEvent
+      - name: event.listener
+        identifier: 'resetFailedLoginAttemptsAfterSuccessLogin'
+        method: 'loggedIn'
+        event: LMS\Flogin\Event\LoginSuccessEvent
+
+#Login events
+  LMS\Flogin\Slot\Action\Login\Attempt:
+    tags:
+      - name: event.listener
+        identifier: 'loginAttempt'
+        event: LMS\Flogin\Event\LoginAttemptEvent
+
+  LMS\Flogin\Slot\Action\Login\Fail\IncrementAttempts:
+    tags:
+      - name: event.listener
+        identifier: 'incrementLoginAttempts'
+        event: LMS\Flogin\Event\LoginAttemptFailedEvent
+
+  LMS\Flogin\Slot\Action\Login\Success\SendNotification:
+    tags:
+      - name: event.listener
+        identifier: 'sendLoginNotification'
+        event: LMS\Flogin\Event\LoginSuccessEvent
+
+#Logout events
+  LMS\Flogin\Slot\Action\Logout\MarkInactive:
+    tags:
+      - name: event.listener
+        identifier: 'resetActivityAfterLogout'
+        event: LMS\Flogin\Event\LogoutSuccessEvent

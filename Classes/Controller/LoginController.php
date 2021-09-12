@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller;
@@ -26,42 +28,56 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use LMS\Flogin\Support\Controller\Login\AuthenticatesUsers;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LoginController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class LoginController extends ActionController
 {
     use AuthenticatesUsers;
 
     /**
      * Show the application's login form.
      */
-    public function showLoginFormAction(): void
+    public function showLoginFormAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
-     * @param string $username
-     * @param string $password
-     * @param bool   $remember
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\AttemptLimitNotReachedValidator", param="remember")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UserNotLockedValidator", param="username")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\UsernameValidator", param="username")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\Login\PasswordValidator", param="password")
      */
-    public function loginAction(string $username, string $password, bool $remember): void
+    public function loginAction(string $username, string $password, bool $remember): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterLoginPage'];
+
         $this->login([$username, $password], $remember);
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 
     /**
      * Log the user out of the application.
      */
-    public function logoutAction(): void
+    public function logoutAction(): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterLogoutPage'];
+
         $this->logoff();
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 }

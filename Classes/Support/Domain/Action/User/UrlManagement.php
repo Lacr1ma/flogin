@@ -28,7 +28,6 @@ namespace LMS\Flogin\Support\Domain\Action\User;
 
 use LMS\Facade\Extbase\Redirect;
 use LMS\Flogin\Support\TypoScript;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 /**
@@ -36,13 +35,6 @@ use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
  */
 trait UrlManagement
 {
-    /**
-     * @param string $action
-     * @param string $controller
-     * @param array  $arguments
-     *
-     * @return string
-     */
     public function buildUrl(string $action, string $controller, array $arguments = []): string
     {
         $extension = $plugin = 'Flogin';
@@ -52,17 +44,16 @@ trait UrlManagement
         );
     }
 
-    /**
-     * @return \TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder
-     */
     private static function urlBuilder(): UriBuilder
     {
+        $scheme = $GLOBALS['TYPO3_REQUEST']->getUri()->getScheme();
+
         $loginPage = (int)TypoScript::getSettings()['page.']['login'];
 
         return Redirect::uriBuilder()
             ->setTargetPageUid($loginPage)
             ->setCreateAbsoluteUri(true)
             ->setLinkAccessRestrictedPages(true)
-            ->setAbsoluteUriScheme(GeneralUtility::getIndpEnv('scheme'));
+            ->setAbsoluteUriScheme($scheme);
     }
 }

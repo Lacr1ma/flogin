@@ -1,4 +1,8 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpUnusedLocalVariableInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Login;
@@ -33,9 +37,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverLoginCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function login_and_password_required(AcceptanceTester $I)
     {
         $I->wantTo('I see the error messages when I am trying to login with invalid credentials.');
@@ -51,9 +52,6 @@ class DeceiverLoginCest
         $I->see('Password is invalid', '.password-is-invalid');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function username_error_is_not_visible_when_user_exists(AcceptanceTester $I)
     {
         $I->wantTo('I submit sign in form with existing <user>, but invalid password. I expect to see  password error only.');
@@ -69,9 +67,6 @@ class DeceiverLoginCest
         $I->see('Password is invalid', '.password-is-invalid');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function throttling_check(AcceptanceTester $I)
     {
         $I->wantTo('I wanna be blocked when trying to send too much requests from the same IP address.');
@@ -91,9 +86,6 @@ class DeceiverLoginCest
         $I->seeInOpenedEmailRecipients('lockme@example.com');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function user_can_be_unlocked(AcceptanceTester $I)
     {
         $I->wantTo('When my user is locked, I expect to be unlocked after following the <unlockUrl> that i grab from email.');

@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller;
@@ -26,13 +28,17 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use LMS\Flogin\Support\Controller\ForgotPassword\SendsPasswordResetEmails;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ForgotPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ForgotPasswordController extends ActionController
 {
     use SendsPasswordResetEmails;
 
@@ -42,25 +48,31 @@ class ForgotPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
      * There's an option when email could be already predefined, in that case we
      * set the passed $predefinedEmail inside a form.
      *
-     * @param string $predefinedEmail
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="predefinedEmail")
      */
-    public function showForgotFormAction(string $predefinedEmail = ''): void
+    public function showForgotFormAction(string $predefinedEmail = ''): ResponseInterface
     {
         $this->view->assignMultiple(
             compact('predefinedEmail')
         );
+
+        return $this->htmlResponse();
     }
 
     /**
      * We check weather the submitted email really exists in the fe_users table
      * and send the email or redirect back with an error notification.
      *
-     * @param string $email
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
      */
-    public function sendResetLinkEmailAction(string $email): void
+    public function sendResetLinkEmailAction(string $email): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterForgotPasswordNotificationSentPage'];
+
         $this->sendResetLinkEmail($email);
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 }

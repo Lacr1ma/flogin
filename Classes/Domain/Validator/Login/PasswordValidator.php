@@ -27,33 +27,34 @@ namespace LMS\Flogin\Domain\Validator\Login;
  * ************************************************************* */
 
 use LMS\Flogin\Hash\Hash;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use LMS\Flogin\Domain\Validator\DefaultValidator;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class PasswordValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class PasswordValidator extends DefaultValidator
 {
     /**
      * Valid when user password is correct
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param string $email
+     * @param string $value | email
      */
-    protected function isValid($email): void
+    protected function isValid($value): void
     {
-        $this->ensurePasswordIsValid($email);
+        $this->ensurePasswordIsValid($value);
     }
 
-    /**
-     * @param string $password
-     */
     private function ensurePasswordIsValid(string $password): void
     {
         $user = $this->findRequestAssociatedUser();
 
-        if ($user && Hash::checkPassword($password, $user->getPassword())) {
+        $hash = GeneralUtility::makeInstance(Hash::class);
+
+        if ($user && $hash->checkPassword($password, $user->getPassword())) {
             return;
         }
 

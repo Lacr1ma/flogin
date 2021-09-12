@@ -27,24 +27,28 @@ namespace LMS\Flogin\Controller\Api;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Validation;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class AbstractApiController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+abstract class AbstractApiController extends ActionController
 {
     /**
      * Build proper error messages for outside use
      *
      * @psalm-suppress ImplementedReturnTypeMismatch
      */
-    public function errorAction(): string
+    public function errorAction(): ResponseInterface
     {
         $errors = Validation::parseErorrs(
             $this->getControllerContext()->getArguments()
         );
 
-        return json_encode(compact('errors'));
+        $body = collect(compact('errors'))->toJson();
+
+        return $this->jsonResponse($body);
     }
 }

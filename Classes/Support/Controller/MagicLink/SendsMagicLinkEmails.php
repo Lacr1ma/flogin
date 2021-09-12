@@ -33,15 +33,20 @@ use LMS\Flogin\Domain\Repository\UserRepository;
  */
 trait SendsMagicLinkEmails
 {
+    protected UserRepository $userRepository;
+
+    public function injectUserRepository(UserRepository $repository): void
+    {
+        $this->userRepository = $repository;
+    }
+
     /**
      * Making an attempt to find a user by requested email,
      * and send magic link notification to that email.
-     *
-     * @param string $email
      */
     public function sendMagicLink(string $email): void
     {
-        if ($user = UserRepository::make()->retrieveByEmail($email)) {
+        if ($user = $this->userRepository->retrieveByEmail($email)) {
             $user->sendMagicLinkNotification();
         }
     }

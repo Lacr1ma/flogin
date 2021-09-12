@@ -26,13 +26,13 @@ namespace LMS\Flogin\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Event\SessionEvent, Support\ThrottlesLogins};
+use LMS\Flogin\{Domain\Validator\DefaultValidator, Event\SessionEvent, Support\ThrottlesLogins};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class AttemptLimitNotReachedValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class AttemptLimitNotReachedValidator extends DefaultValidator
 {
     use ThrottlesLogins, SessionEvent;
 
@@ -41,9 +41,9 @@ class AttemptLimitNotReachedValidator extends \LMS\Flogin\Domain\Validator\Defau
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param string $ip
+     * @param string $value
      */
-    protected function isValid($ip): void
+    protected function isValid($value): void
     {
         if ($this->hasTooManyAttempts()) {
             $this->addLockoutError();

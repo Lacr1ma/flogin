@@ -26,7 +26,7 @@ namespace LMS\Flogin\Slot\Action\Login\Success;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Event\LoginSuccessEvent;
 use LMS\Flogin\Slot\Notification\LoginNotification;
 
 /**
@@ -34,13 +34,18 @@ use LMS\Flogin\Slot\Notification\LoginNotification;
  */
 class SendNotification
 {
+    protected LoginNotification $notification;
+
+    public function __construct(LoginNotification $notification)
+    {
+        $this->notification = $notification;
+    }
+
     /**
      * Successful login attempt detected, send user notification
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
      */
-    public function execute(User $user): void
+    public function __invoke(LoginSuccessEvent $e): void
     {
-        LoginNotification::make()->send($user);
+        $this->notification->send($e->receiver());
     }
 }

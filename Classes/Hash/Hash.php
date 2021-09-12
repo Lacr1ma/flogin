@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Hash;
@@ -26,74 +28,41 @@ namespace LMS\Flogin\Hash;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\ObjectManageable;
-use TYPO3\CMS\Core\Crypto\{Random, PasswordHashing\PasswordHashFactory, PasswordHashing\PasswordHashInterface};
+use TYPO3\CMS\Core\Crypto\{PasswordHashing\PasswordHashFactory, PasswordHashing\PasswordHashInterface};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class Hash
 {
-    /**
-     * Generates cryptographic secure pseudo-random bytes
-     *
-     * @param int $length
-     *
-     * @return string
-     */
-    public static function randomString(int $length = 64): string
+    private PasswordHashFactory $passwordFactory;
+
+    public function __construct(PasswordHashFactory $factory)
     {
-        return md5(
-            self::getRandom()->generateRandomBytes($length)
-        );
+        $this->passwordFactory = $factory;
     }
 
     /**
      * Generates the hash for the passed plain password
-     *
-     * @param string $plain
-     *
-     * @return string
      */
-    public static function encryptPassword(string $plain): string
+    public function encryptPassword(string $plain): string
     {
-        return self::getHashFactory()->getHashedPassword($plain);
+        return $this->getHashFactory()->getHashedPassword($plain);
     }
 
     /**
      * Check if the passed <plain password> matches the <encrypted password>
-     *
-     * @param string $plain
-     * @param string $encrypted
-     *
-     * @return bool
      */
-    public static function checkPassword(string $plain, string $encrypted): bool
+    public function checkPassword(string $plain, string $encrypted): bool
     {
-        return self::getHashFactory()->checkPassword($plain, $encrypted);
+        return $this->getHashFactory()->checkPassword($plain, $encrypted);
     }
 
     /**
      * Determine configured default hash method and return an instance relate to FE scope
-     *
-     * @return \TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface
      */
-    public static function getHashFactory(): PasswordHashInterface
+    private function getHashFactory(): PasswordHashInterface
     {
-        return ObjectManageable::createObject(PasswordHashFactory::class)->getDefaultHashInstance('FE');
-    }
-
-    /**
-     * Returns TYPO3 Core pseudo-random generator
-     *
-     * @psalm-suppress LessSpecificReturnStatement
-     * @psalm-suppress MoreSpecificReturnType
-     * @noinspection   PhpIncompatibleReturnTypeInspection
-     *
-     * @return \TYPO3\CMS\Core\Crypto\Random
-     */
-    private static function getRandom(): Random
-    {
-        return ObjectManageable::createObject(Random::class);
+        return $this->passwordFactory->getDefaultHashInstance('FE');
     }
 }

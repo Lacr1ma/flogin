@@ -26,15 +26,14 @@ namespace LMS\Flogin\Slot\Action\MagicLink\Applied;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Event\MagicLinkAppliedEvent;
+
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class UtilizeLink
 {
-    /**
-     * @param string $token
-     */
-    public function execute(string $token): void
+    public function __invoke(MagicLinkAppliedEvent $event): void
     {
 
     }

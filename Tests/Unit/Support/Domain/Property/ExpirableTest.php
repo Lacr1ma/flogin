@@ -1,4 +1,6 @@
 <?php
+/** @noinspection ALL */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
@@ -28,11 +30,12 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
 
 use Carbon\Carbon;
 use LMS\Flogin\Support\Domain\Property\Expirable;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ExpirableTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class ExpirableTest extends UnitTestCase
 {
     /**
      * @var Expirable

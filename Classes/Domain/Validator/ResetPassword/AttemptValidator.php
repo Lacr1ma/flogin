@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Validator\ResetPassword;
@@ -26,6 +28,9 @@ namespace LMS\Flogin\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Http\PropagateResponseException;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
@@ -33,17 +38,18 @@ namespace LMS\Flogin\Domain\Validator\ResetPassword;
 class AttemptValidator extends RequestValidator
 {
     /**
-     * Valid when reset password request contains proper password and it's confirmation
+     * Valid when reset password request contains proper password, and it's confirmation
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $resetRequest
+     * @param ResetPasswordRequest $value
+     * @throws PropagateResponseException
      */
-    protected function isValid($resetRequest): void
+    protected function isValid($value): void
     {
-        parent::isValid($resetRequest);
+        parent::isValid($value);
 
-        if ($resetRequest->isConfirmationMatching()) {
+        if ($value->isConfirmationMatching()) {
             return;
         }
 

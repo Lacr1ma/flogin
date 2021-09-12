@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnusedParameterInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Support;
@@ -38,8 +40,6 @@ class TypoScript
     /**
      * We know that we use this helper only inside <login> extension, so we just overwrite
      * the extension key to *tx_flogin*
-     *
-     * {@inheritDoc}
      */
     public static function retrieveFullTypoScriptConfigurationFor(string $extensionKey): array
     {
@@ -48,9 +48,6 @@ class TypoScript
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function getStoragePid(): int
     {
         return TypoScriptConfiguration::getStoragePid(
@@ -58,9 +55,6 @@ class TypoScript
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function getSettings(): array
     {
         return TypoScriptConfiguration::getSettings(
@@ -68,9 +62,6 @@ class TypoScript
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public static function getView(): array
     {
         return TypoScriptConfiguration::getView(

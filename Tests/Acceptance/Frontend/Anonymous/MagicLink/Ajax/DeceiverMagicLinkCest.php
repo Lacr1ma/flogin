@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\MagicLink\Ajax;
@@ -33,9 +36,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverMagicLinkCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function email_required(AcceptanceTester $I)
     {
         $I->wantTo('I see the error messages when I am requesting the magic link to the unknown email address.');
@@ -46,9 +46,6 @@ class DeceiverMagicLinkCest
         $I->see('This email address is not connected to any user in our system.', '.email-is-invalid');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function notification_can_be_sent(AcceptanceTester $I)
     {
         $I->wantTo('I am requesting the magic link for my account and I get it.');

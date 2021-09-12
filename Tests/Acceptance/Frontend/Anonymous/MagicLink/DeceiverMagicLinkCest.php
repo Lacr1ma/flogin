@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpRedundantOptionalArgumentInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\MagicLink;
@@ -33,9 +36,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverMagicLinkCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_cant_be_used_twice(AcceptanceTester $I)
     {
         $I->wantTo('I wanna be redirected to the <tokenDoesNotExist> page when token has been already used.');
@@ -53,9 +53,6 @@ class DeceiverMagicLinkCest
         $I->seeInTitle('Token does not exist');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function already_authenticated_redirect(AcceptanceTester $I)
     {
         $I->wantTo('I am already logged in and I use the valid magic link. I want to be redirected to <alreadyAuthenticated> page.');
@@ -72,9 +69,6 @@ class DeceiverMagicLinkCest
         $I->canSeeInTitle('Already Authenticated');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_form_shows_error_when_email_does_not_exist(AcceptanceTester $I)
     {
         $I->wantTo('I wanna see an error, when I try to submit <magic link form> with invalid email address.');

@@ -26,20 +26,17 @@ namespace LMS\Flogin\Slot\Action\Logout;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Event\LogoutSuccessEvent;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class MarkInactive
 {
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user
-     */
-    public function execute(User $user): void
+    public function __invoke(LogoutSuccessEvent $event): void
     {
-        $user->resetOnlineTime();
+        $event->receiver()->resetOnlineTime();
 
-        $user->save();
+        $event->receiver()->save();
     }
 }

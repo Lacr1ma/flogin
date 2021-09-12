@@ -12,12 +12,12 @@ suites:
             populate: true
         - Cli
         - MailHog:
-            url: http://mailhog__mailhog
+            url:  http://mailhog.dev
             port: 8025
         - Asserts
         - Filesystem
         - WebDriver:
-            url: http://%TESTING_DOMAIN%/
+            url: http://login.ddev.site
             host: selenium__standalone-chrome
             browser: chrome
         - \TYPO3\TestingFramework\Core\Acceptance\Helper\Acceptance
@@ -31,19 +31,6 @@ params:
   - env
 
 env:
-  ddev:
-    modules:
-      config:
-        WebDriver:
-          url: https://lms.ddev.site
-          host: ddev-lms-chrome
-        Db:
-          dsn: 'mysql:host=db;dbname=db_at'
-          user: 'db'
-          password: 'db'
-        MailHog:
-          url: http://lms.ddev.site
-
   github:
     modules:
       config:
@@ -56,21 +43,6 @@ env:
           password: 'root'
         MailHog:
           url: http://login.ddev.site
-
-  local:
-    modules:
-      config:
-        WebDriver:
-          url: http://localhost:8080/
-          host: localhost
-          browser: chrome
-        Db:
-          dsn: 'mysql:host=localhost;dbname=typo3_test'
-          user: 'root'
-          password: 'root'
-        MailHog:
-          url: http://127.0.0.1
-
 paths:
   tests: Acceptance/Frontend
   data: Acceptance/_data

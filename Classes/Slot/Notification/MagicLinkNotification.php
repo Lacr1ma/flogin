@@ -27,16 +27,15 @@ namespace LMS\Flogin\Slot\Notification;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Notification\AbstractNotificationSender;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkNotification extends \LMS\Flogin\Notification\AbstractNotificationSender
+class MagicLinkNotification extends AbstractNotificationSender
 {
     /**
      * Build the MagicLinkNotification Template and email the user
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
     public function send(MagicLinkRequest $request): void
     {

@@ -26,7 +26,6 @@ namespace LMS\Flogin\Manager;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\ObjectManageable;
 use TYPO3\CMS\Core\Session\{Backend\SessionBackendInterface, SessionManager as ExtbaseSessionManager};
 
 /**
@@ -34,35 +33,25 @@ use TYPO3\CMS\Core\Session\{Backend\SessionBackendInterface, SessionManager as E
  */
 class SessionManager
 {
+    private ExtbaseSessionManager $manager;
+
+    public function __construct(ExtbaseSessionManager $manager)
+    {
+        $this->manager = $manager;
+    }
+
     /*
      * Destroy all existing frontend sessions for the passed user.
      */
-    public static function terminateFrontendSession(int $user): void
+    public function terminateFrontendSession(int $user): void
     {
-        self::manager()->invalidateAllSessionsByUserId(self::frontendSession(), $user);
+        $session = $this->frontendSession();
+
+        $this->manager->invalidateAllSessionsByUserId($session, $user);
     }
 
-    /**
-     * Give the session storage related to FE scope
-     *
-     * @return \TYPO3\CMS\Core\Session\Backend\SessionBackendInterface
-     */
-    public static function frontendSession(): SessionBackendInterface
+    private function frontendSession(): SessionBackendInterface
     {
-        return self::manager()->getSessionBackend('FE');
-    }
-
-    /**
-     * Returns the TYPO3 Core Session Manager
-     *
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress LessSpecificReturnStatement
-     * @noinspection   PhpIncompatibleReturnTypeInspection
-     *
-     * @return \TYPO3\CMS\Core\Session\SessionManager
-     */
-    public static function manager(): ExtbaseSessionManager
-    {
-        return ObjectManageable::createObject(ExtbaseSessionManager::class);
+        return $this->manager->getSessionBackend('FE');
     }
 }

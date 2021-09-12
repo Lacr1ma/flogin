@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Repository;
@@ -35,7 +37,7 @@ use LMS\Flogin\Domain\Model\Link;
 class LinkRepository extends \LMS\Flogin\Domain\Repository\AbstractTokenRepository
 {
     /**
-     * Find magic link by it's token
+     * Find magic link by its token
      *
      *{@inheritDoc}
      * @noinspection   PhpIncompatibleReturnTypeInspection
@@ -50,14 +52,15 @@ class LinkRepository extends \LMS\Flogin\Domain\Repository\AbstractTokenReposito
     /**
      * Find all not expired magic links related to requested user
      *
-     * @param int $user
-     *
-     * @return \LMS\Flogin\Domain\Model\Link[]
      * @noinspection PhpUndefinedMethodInspection
+     * @psalm-suppress InvalidArgument
+     * @return \LMS\Flogin\Domain\Model\Link[]
      */
     public function findActive(int $user): array
     {
-        return array_filter($this->findByUser($user)->toArray(), function (Link $link) {
+        $userMagicLinks = $this->findByUser($user)->toArray();
+
+        return array_filter($userMagicLinks, function (Link $link) {
             return $link->isExpired() === false;
         });
     }

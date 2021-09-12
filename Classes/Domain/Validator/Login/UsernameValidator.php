@@ -26,20 +26,22 @@ namespace LMS\Flogin\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Domain\Validator\DefaultValidator;
+
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UsernameValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class UsernameValidator extends DefaultValidator
 {
     /**
      * Valid when username from request does exist in the database
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param string $username
+     * @param string $value | username
      */
-    protected function isValid($username): void
+    protected function isValid($value): void
     {
         if (!$this->findRequestAssociatedUser()) {
             $this->addError($this->translate('username.not_found'), 1570638575);

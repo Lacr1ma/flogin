@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use LMS\Flogin\Support\Domain\Property\PasswordConfirmation as ContainsPasswordConfirmation;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class PasswordConfirmationTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class PasswordConfirmationTest extends UnitTestCase
 {
     /**
      * @var ContainsPasswordConfirmation

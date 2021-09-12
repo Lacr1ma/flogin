@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnused */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Reset;
@@ -33,9 +35,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class HonestResetCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function reset_link_clicked_and_reset_from_rendered(AcceptanceTester $I)
     {
         $I->wantTo('I follow <restore link> from my email and expect to see the <reset password form>.');
@@ -49,9 +48,6 @@ class HonestResetCest
         $I->seeElement('#change-password-link');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function reset_password_redirect_is_correct(AcceptanceTester $I)
     {
         $I->wantTo('After I change the password, I expect to be redirected to proper page.');
@@ -63,9 +59,6 @@ class HonestResetCest
         $I->seeInTitle('Change password form submitted');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function notification_has_been_sent_after_password_reset(AcceptanceTester $I)
     {
         $I->wantTo('After my password has been changed, I expect to be notified by email.');
@@ -82,9 +75,6 @@ class HonestResetCest
         $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function restore_password_link_in_email_works(AcceptanceTester $I)
     {
         $I->wantTo('I got <password updated> notification. I wanna be able to <restore> it back.');

@@ -26,7 +26,8 @@ namespace LMS\Flogin\Slot\Action\Reset\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\{Resets, Request\ResetPasswordRequest};
+use LMS\Flogin\Domain\Model\Resets;
+use LMS\Flogin\Event\SendResetLinkRequestEvent;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -35,14 +36,12 @@ class CreateLink
 {
     /**
      * @psalm-suppress InternalMethod
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
-    public function execute(ResetPasswordRequest $request): void
+    public function __invoke(SendResetLinkRequestEvent $e): void
     {
         Resets::create([
-            'token' => $request->getToken(),
-            'user' => $request->getUser()->getUid()
+            'token' => $e->request()->getToken(),
+            'user' => $e->request()->getUser()->getUid()
         ]);
     }
 }

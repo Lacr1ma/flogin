@@ -37,10 +37,17 @@ trait ResetsPasswords
 {
     use SessionEvent;
 
+    protected Hash $hash;
+    protected ResetsRepository $resetsRepository;
+
+    public function injectResetsRepository(ResetsRepository $repository, Hash $hash): void
+    {
+        $this->hash = $hash;
+        $this->resetsRepository = $repository;
+    }
+
     /**
      * Attempt to reset the password and notify the listeners
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function reset(ResetPasswordRequest $request): void
     {
@@ -53,27 +60,22 @@ trait ResetsPasswords
 
     /**
      * Reset the given user's password.
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
-     * @param string                       $newPlainPassword
      */
     private function resetPassword(User $user, string $newPlainPassword): void
     {
         $user->setPassword(
-            Hash::encryptPassword($newPlainPassword)
+           $this->hash->encryptPassword($newPlainPassword)
         );
 
         $user->save();
     }
 
     /**
-     * Erase reset token by it's hash
-     *
-     * @param string $token
+     * Erase reset token by its hash
      */
     private function deleteAssociatedPasswordResetToken(string $token): void
     {
-        if ($token = ResetsRepository::make()->find($token)) {
+        if ($token = $this->resetsRepository->find($token)) {
             $token->delete();
         }
     }

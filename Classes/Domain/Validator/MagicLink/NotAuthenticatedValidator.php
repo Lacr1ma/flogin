@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Validator\MagicLink;
@@ -28,21 +31,24 @@ namespace LMS\Flogin\Domain\Validator\MagicLink;
 
 use LMS\Facade\Extbase\User\StateContext;
 use LMS\Flogin\Support\Redirection\UserRouter;
+use LMS\Flogin\Domain\Validator\DefaultValidator;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class NotAuthenticatedValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class NotAuthenticatedValidator extends DefaultValidator
 {
     /**
      * Valid when use is not logged in at the current moment
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $loginRequest
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $value
+     * @throws PropagateResponseException
      */
-    protected function isValid($loginRequest): void
+    protected function isValid($value): void
     {
         if (StateContext::isNotLoggedIn()) {
             return;
@@ -50,6 +56,8 @@ class NotAuthenticatedValidator extends \LMS\Flogin\Domain\Validator\DefaultVali
 
         $this->addError($this->translate('user.already_logged_in'), 1574293894);
 
-        UserRouter::redirectToAlreadyAuthenticatedPage();
+        $response = UserRouter::redirectToAlreadyAuthenticatedPage();
+
+        throw new PropagateResponseException($response);
     }
 }

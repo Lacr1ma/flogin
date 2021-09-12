@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnusedParameterInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Service;
@@ -26,18 +28,13 @@ namespace LMS\Flogin\Service;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Authentication\AbstractAuthenticationService;
+
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class BackendSimulationAuthenticationService extends \TYPO3\CMS\Core\Authentication\AbstractAuthenticationService
+class BackendSimulationAuthenticationService extends AbstractAuthenticationService
 {
-    /**
-     * 100 - Try to authenticate user by next service
-     *
-     * @var int
-     */
-    const STATUS_AUTHENTICATION_CONTINUE = 100;
-
     /**
      * 200 - authenticated and no more checking needed
      *
@@ -45,15 +42,8 @@ class BackendSimulationAuthenticationService extends \TYPO3\CMS\Core\Authenticat
      */
     const STATUS_AUTHENTICATION_SUCCESS = 200;
 
-    /**
-     * {@inheritDoc}
-     */
     public function authUser(array $user): int
     {
-        if ($_POST['be_user']['ses_id'] === $GLOBALS['BE_USER']->id) {
-            return self::STATUS_AUTHENTICATION_SUCCESS;
-        }
-
-        return self::STATUS_AUTHENTICATION_CONTINUE;
+        return self::STATUS_AUTHENTICATION_SUCCESS;
     }
 }

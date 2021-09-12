@@ -27,22 +27,29 @@ namespace LMS\Flogin\Slot\Action\Reset\Applied;
  * ************************************************************* */
 
 use LMS\Flogin\Manager\SessionManager;
-use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Event\PasswordHasBeenResetEvent;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class Logoff
 {
+    private SessionManager $session;
+
+    public function __construct(SessionManager $manager)
+    {
+        $this->session = $manager;
+    }
+
     /**
      * Password has been update, clear all existing sessions
      *
      * @psalm-suppress InternalMethod
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
-    public function execute(ResetPasswordRequest $request): void
+    public function __invoke(PasswordHasBeenResetEvent $e): void
     {
-        SessionManager::terminateFrontendSession($request->getUser()->getUid());
+        $user = (int)$e->request()->getUser()->getUid();
+
+        $this->session->terminateFrontendSession($user);
     }
 }

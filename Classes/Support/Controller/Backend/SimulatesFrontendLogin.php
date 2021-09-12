@@ -33,25 +33,32 @@ use LMS\Flogin\{Manager\SessionManager, Guard\SessionGuard};
  */
 trait SimulatesFrontendLogin
 {
+    protected SessionGuard $guard;
+    private SessionManager $session;
+
+    public function injectSessionGuard(SessionGuard $guard): void
+    {
+        $this->guard = $guard;
+    }
+
+    public function injectSessionManager(SessionManager $manager): void
+    {
+        $this->session = $manager;
+    }
+
     /**
      * Signs up the requested user and connects the session to the currently logged in BE User.
-     *
-     * @param string $username
      */
     public function simulateLoginFor(string $username): void
     {
-        $_POST['be_user'] = $GLOBALS['BE_USER']->user;
-
-        SessionGuard::make()->startCoreLogin($username, $_POST['be_user']['ses_id'], false);
+        $this->guard->startCoreLogin($username, 'password');
     }
 
     /**
      * Finish all active sessions associated to passed user
-     *
-     * @param int $user
      */
     public function terminateSessionFor(int $user): void
     {
-        SessionManager::terminateFrontendSession($user);
+        $this->session->terminateFrontendSession($user);
     }
 }

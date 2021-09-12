@@ -37,54 +37,33 @@ trait Locked
 {
     use UpdateDate;
 
-    /**
-     * @var bool
-     */
-    protected $locked;
+    protected bool $locked = false;
 
-    /**
-     * @return bool
-     */
     public function isLocked(): bool
     {
         return $this->locked;
     }
 
-    /**
-     * @return bool
-     */
     public function isNotLocked(): bool
     {
         return !$this->locked;
     }
 
-    /**
-     * @param bool $locked
-     */
     public function setLocked(bool $locked): void
     {
         $this->locked = $locked;
     }
 
-    /**
-     * @return \Carbon\Carbon
-     */
     public function getUnlockTime(): Carbon
     {
         return $this->getUpdatedAt()->addMinutes(self::getLockMinutesInterval());
     }
 
-    /**
-     * @return bool
-     */
     public function isTimeToUnlock(): bool
     {
         return $this->getUnlockTime()->isPast();
     }
 
-    /**
-     * @return int
-     */
     public static function getLockMinutesInterval(): int
     {
         return (int)TypoScript::getSettings()['throttling.']['lockIntervalInMinutes'];

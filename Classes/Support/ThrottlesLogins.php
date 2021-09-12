@@ -53,8 +53,6 @@ trait ThrottlesLogins
 
     /**
      * Retrieve TypoScript settings related to throttling area
-     *
-     * @return array
      */
     private function settings(): array
     {

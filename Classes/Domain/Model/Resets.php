@@ -26,13 +26,14 @@ namespace LMS\Flogin\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Model\AbstractModel;
 use LMS\Flogin\Support\Domain\Property\{Expirable, User, Token};
 
 /**
  * @psalm-suppress MissingConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class Resets extends \LMS\Facade\Model\AbstractModel
+class Resets extends AbstractModel
 {
     use Expirable, User, Token;
 

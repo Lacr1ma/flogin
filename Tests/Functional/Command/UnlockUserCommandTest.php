@@ -1,4 +1,6 @@
 <?php
+/** @noinspection ALL */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Functional\Command;
@@ -26,17 +28,27 @@ namespace LMS\Flogin\Tests\Functional\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\UserRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UnlockUserCommandTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class UnlockUserCommandTest extends BaseTest
 {
     /**
      * @var array
      */
     protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
+
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     * @throws \TYPO3\TestingFramework\Core\Exception
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+    }
 
     /**
      * @test

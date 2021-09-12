@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
@@ -26,12 +28,14 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 use LMS\Flogin\Domain\Validator\Login\UserNotLockedValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UserNotLockedValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class UserNotLockedValidatorTest extends BaseTest
 {
     /**
      * @test
@@ -41,10 +45,10 @@ class UserNotLockedValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
         $username = 'locked';
 
         $this->initRequest($username, 'password');
+        $this->expectException(PropagateResponseException::class);
 
         $validator = new UserNotLockedValidator();
-
-        $this->assertTrue($validator->validate($username)->hasErrors());
+        $validator->validate($username)->hasErrors();
     }
 
     /**
@@ -89,10 +93,6 @@ class UserNotLockedValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
         $this->assertFalse($validator->validate($username)->hasErrors());
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     */
     private function initRequest(string $username, string $password): void
     {
         $_POST['tx_flogin_flogin'] = compact('username', 'password');

@@ -33,14 +33,19 @@ use LMS\Flogin\Domain\Repository\UserRepository;
  */
 trait SendsPasswordResetEmails
 {
+    protected UserRepository $userRepository;
+
+    public function injectUserRepository(UserRepository $repository): void
+    {
+        $this->userRepository = $repository;
+    }
+
     /**
      * Send a reset link to the given email.
-     *
-     * @param string $email
      */
     public function sendResetLinkEmail(string $email): void
     {
-        if ($user = UserRepository::make()->retrieveByEmail($email)) {
+        if ($user = $this->userRepository->retrieveByEmail($email)) {
             $user->sendPasswordResetNotification();
         }
     }

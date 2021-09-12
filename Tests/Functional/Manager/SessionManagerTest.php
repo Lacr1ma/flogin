@@ -1,4 +1,6 @@
 <?php
+/** @noinspection ALL */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Functional\Manager;
@@ -27,13 +29,15 @@ namespace LMS\Flogin\Tests\Functional\Manager;
  * ************************************************************* */
 
 use LMS\Flogin\Manager\SessionManager;
-use TYPO3\CMS\Frontend\Utility\EidUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Session\UserSessionManager;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class SessionManagerTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class SessionManagerTest extends FunctionalTestCase
 {
     /**
      * @var array
@@ -54,37 +58,20 @@ class SessionManagerTest extends \TYPO3\TestingFramework\Core\Functional\Functio
     /**
      * @test
      */
-    public function manager_instance_created(): void
-    {
-        $this->assertNotEmpty(SessionManager::manager());
-    }
-
-    /**
-     * @test
-     */
-    public function fe_session_initialized(): void
-    {
-        $this->assertNotEmpty(SessionManager::frontendSession());
-    }
-
-    /**
-     * EidUtility is deprecated, but for now we can accept that
-     *
-     * @test
-     */
     public function fe_session_can_be_terminated(): void
     {
         $user = BackendUtility::getRecord('fe_users', 1);
 
-        $GLOBALS['TSFE']->fe_user = EidUtility::initFeUser();
-        $GLOBALS['TSFE']->fe_user->createUserSession($user);
-        $GLOBALS['TSFE']->fe_user->user = $GLOBALS['TSFE']->fe_user->fetchUserSession();
-        $GLOBALS['TSFE']->fe_user->setAndSaveSessionData('ses', true);
+        $GLOBALS['TSFE']->fe_user = new FrontendUserAuthentication();
+        $GLOBALS['TSFE']->fe_user->initializeUserSessionManager();
 
-        $this->assertNotEmpty($GLOBALS['TSFE']->fe_user->fetchUserSession(true));
+        $session = $GLOBALS['TSFE']->fe_user->createUserSession($user);
 
-        SessionManager::terminateFrontendSession(1);
+        $this->assertNotEmpty($session->getUserId());
 
-        $this->assertFalse($GLOBALS['TSFE']->fe_user->fetchUserSession(true));
+        $this->getContainer()->get(SessionManager::class)->terminateFrontendSession(1);
+
+        $manager = UserSessionManager::create('FE');
+        $this->assertFalse($manager->isSessionPersisted($session));
     }
 }

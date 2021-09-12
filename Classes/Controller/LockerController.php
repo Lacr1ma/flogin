@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller;
@@ -26,13 +29,17 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
 use LMS\Flogin\Support\Controller\Locker\LockUsers;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LockerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class LockerController extends ActionController
 {
     use LockUsers;
 
@@ -40,11 +47,16 @@ class LockerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * We check weather the submitted email really exists in the fe_users table
      * and send the email or redirect back with an error notification.
      *
-     * @param string $email
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
      */
-    public function unlockAction(string $email): void
+    public function unlockAction(string $email): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterUnlockedPage'];
+
         $this->unlock($email);
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 }

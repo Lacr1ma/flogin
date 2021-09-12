@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Validator\ResetPassword;
@@ -26,32 +28,41 @@ namespace LMS\Flogin\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Support\Redirection\UserRouter, Domain\Repository\ResetsRepository};
+use LMS\Flogin\{Domain\Model\Request\ResetPasswordRequest,
+    Domain\Validator\DefaultValidator,
+    Support\Redirection\UserRouter,
+    Domain\Repository\ResetsRepository};
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class RequestValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class RequestValidator extends DefaultValidator
 {
     /**
-     * Valid when reset link does exist in the system and it's not expired
+     * Valid when reset link does exist in the system, and it's not expired
      *
      * @psalm-suppress PossiblyNullReference
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $resetRequest
+     * @param ResetPasswordRequest $value
+     * @throws PropagateResponseException
      */
-    protected function isValid($resetRequest): void
+    protected function isValid($value): void
     {
-        $resetToken = ResetsRepository::make()->find($resetRequest->getToken());
+        $resetToken = ResetsRepository::make()->find($value->getToken());
 
         if ($resetToken === null) {
-            UserRouter::redirectToTokenNotFoundPage();
+            throw new PropagateResponseException(
+                UserRouter::redirectToTokenNotFoundPage()
+            );
         }
 
         if ($resetToken->isExpired()) {
-            UserRouter::redirectToTokenExpiredPage();
+            throw new PropagateResponseException(
+                UserRouter::redirectToTokenExpiredPage()
+            );
         }
     }
 }

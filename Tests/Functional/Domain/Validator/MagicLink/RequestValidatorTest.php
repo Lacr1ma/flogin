@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Functional\Domain\Validator\MagicLink;
@@ -27,7 +29,8 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\MagicLink;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Flogin\Support\Redirection\UserRouter;
+use LMS\Flogin\Tests\Functional\BaseTest;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 use LMS\Flogin\Domain\Validator\MagicLink\RequestValidator;
 use LMS\Flogin\Domain\Model\{Link, Request\MagicLinkRequest};
 use LMS\Flogin\Domain\Repository\{LinkRepository, UserRepository};
@@ -35,22 +38,18 @@ use LMS\Flogin\Domain\Repository\{LinkRepository, UserRepository};
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class RequestValidatorTest extends BaseTest
 {
     /**
      * @test
      */
     public function redirect_to_token_not_found(): void
     {
-        $double = \Mockery::mock('overload:' . UserRouter::class);
-        $double->shouldReceive('redirectToTokenNotFoundPage')->andThrow(\Exception::class);
-        $double->shouldNotReceive('redirectToTokenExpiredPage');
-
         $request = new MagicLinkRequest(
             UserRepository::make()->retrieveByUsername('user')
         );
 
-        $this->expectException(\Exception::class);
+        $this->expectException(PropagateResponseException::class);
 
         (new RequestValidator())->validate($request);
     }
@@ -60,10 +59,6 @@ class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
      */
     public function redirect_to_token_expired(): void
     {
-        $double = \Mockery::mock('overload:' . UserRouter::class);
-        $double->shouldNotReceive('redirectToTokenNotFoundPage');
-        $double->shouldReceive('redirectToTokenExpiredPage')->andThrow(\Exception::class);
-
         $request = new MagicLinkRequest(
             UserRepository::make()->retrieveByUsername('user')
         );
@@ -75,7 +70,7 @@ class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
             'crdate' => Carbon::now()->subHour()->timestamp
         ]);
 
-        $this->expectException(\Exception::class);
+        $this->expectException(PropagateResponseException::class);
 
         (new RequestValidator())->validate($request);
     }

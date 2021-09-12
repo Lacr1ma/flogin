@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+/** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller;
@@ -26,6 +29,10 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 use LMS\Flogin\Support\Controller\ResetPassword\ResetsPasswords;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
@@ -34,12 +41,12 @@ use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ResetPasswordController extends ActionController
 {
     use ResetsPasswords;
 
     /**
-     * By default mapping for <request> property is not activated,
+     * By default, mapping for <request> property is not activated,
      * so we activate it and allow creation process.
      *
      * @psalm-suppress InternalMethod
@@ -63,23 +70,29 @@ class ResetPasswordController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
      * <whenTokenExpiredPage> when token still exists in system but has been expired
      * <whenTokenNotFoundPage> when token has been already cleared out by scheduler.
      *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\ResetPassword\RequestValidator", param="request")
      */
-    public function showResetFormAction(ResetPasswordRequest $request): void
+    public function showResetFormAction(ResetPasswordRequest $request): ResponseInterface
     {
         $this->view->assign('request', $request);
+
+        return $this->htmlResponse();
     }
 
     /**
-     * User has been submitted the new password and it's confirmation.
+     * User has been submitted the new password, and it's confirmation.
      * We check as before if request is still valid and also if password match
      *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\ResetPassword\AttemptValidator", param="request")
      */
-    public function resetAction(ResetPasswordRequest $request): void
+    public function resetAction(ResetPasswordRequest $request): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterResetPasswordFormSubmittedPage'];
+
         $this->reset($request);
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 }

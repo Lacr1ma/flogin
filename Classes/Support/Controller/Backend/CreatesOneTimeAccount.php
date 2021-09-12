@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnused */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Support\Controller\Backend;
@@ -27,48 +29,51 @@ namespace LMS\Flogin\Support\Controller\Backend;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Registry;
-use LMS\Flogin\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard, Hash\Hash};
+use LMS\Flogin\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 trait CreatesOneTimeAccount
 {
+    protected SessionGuard $guard;
+    protected OneTimeAccount $oneTimeAccount;
+
+    public function injectOneTimeAccount(OneTimeAccount $account): void
+    {
+        $this->oneTimeAccount = $account;
+    }
+
+    public function injectSessionsGuard(SessionGuard $guard): void
+    {
+        $this->guard = $guard;
+    }
+
     /**
      * Create one time account based on TypoScript settings
      *
      * @psalm-suppress MoreSpecificReturnType
-     *
-     * @param string $hash
-     *
-     * @return \LMS\Flogin\Domain\Model\User
      */
     public function createTemporaryFrontendAccount(string $hash): User
     {
         Registry::remove('tx_flogin_hash', $hash);
 
         return User::create(
-            OneTimeAccount::make()->getCombinedProperties($hash)
+            $this->oneTimeAccount->getCombinedProperties($hash)
         );
     }
 
-    /**
-     * Login user
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
-     * @param string                       $plainPassword
-     */
     public function authorizeTemporaryUser(User $user, string $plainPassword): void
     {
-        SessionGuard::make()->login($user, $plainPassword, false);
+        $this->guard->login($user, $plainPassword);
     }
 
     /**
-     * @return string
+     * @noinspection PhpUnhandledExceptionInspection
      */
     protected function createOneTimeHash(): string
     {
-        $value = Hash::randomString();
+        $value = md5(random_bytes(64));
 
         Registry::set('tx_flogin_hash', $value, true);
 

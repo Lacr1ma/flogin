@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnused */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Model;
@@ -26,13 +28,15 @@ namespace LMS\Flogin\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Model\AbstractUser;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use LMS\Flogin\Support\Domain\Action\User\{UrlManagement, Lockable};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class User extends \LMS\Facade\Model\AbstractUser
+class User extends AbstractUser
 {
     use Lockable, UrlManagement;
 
@@ -41,7 +45,9 @@ class User extends \LMS\Facade\Model\AbstractUser
      */
     public function sendPasswordResetNotification(): void
     {
-        (new Request\ResetPasswordRequest($this))->notify();
+        $request = GeneralUtility::makeInstance(Request\ResetPasswordRequest::class, $this);
+
+        $request->notify();
     }
 
     /**
@@ -49,12 +55,11 @@ class User extends \LMS\Facade\Model\AbstractUser
      */
     public function sendMagicLinkNotification(): void
     {
-        (new Request\MagicLinkRequest($this))->notify();
+        $request = GeneralUtility::makeInstance(Request\MagicLinkRequest::class, $this);
+
+        $request->notify();
     }
 
-    /**
-     * @return string
-     */
     public function getUnlockActionUrl(): string
     {
         $args = ['email' => $this->getEmail()];
@@ -62,9 +67,6 @@ class User extends \LMS\Facade\Model\AbstractUser
         return $this->buildUrl('unlock', 'Locker', $args);
     }
 
-    /**
-     * @return string
-     */
     public function getForgotPasswordFormUrl(): string
     {
         $args = ['predefinedEmail' => $this->getEmail()];

@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUndefinedMethodInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Api;
@@ -33,23 +35,15 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class ApiCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function user_info_present_when_user_authenticated(AcceptanceTester $I)
     {
-        $I->haveHttpHeader('Accept', 'application/json');
-        $I->haveHttpHeader('Cookie', 'fe_typo_user=53574eb0bafe1c0a4d8a2cfc0cf726da');
-        $I->haveHttpHeader('X-CSRF-TOKEN', '53574eb0bafe1c0a4d8a2cfc0cf726da');
+        $I = $this->setAccessHeadersFor($I);
 
         $I->sendGET('login/users/current');
 
         $I->seeResponseContainsJson(['email' => 'user@example.com']);
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function proper_hash_is_required_for_account_creation(AcceptanceTester $I)
     {
         $I->wantTo('I want to be redirected to the error page, when I try to create temporary user using invalid link.');
@@ -60,7 +54,7 @@ class ApiCest
     }
 
     /**
-     * @param AcceptanceTester $I
+     * @noinspection PhpUnused
      */
     public function authenticated_returns_false_when_user_not_logged_in(AcceptanceTester $I)
     {
@@ -71,46 +65,53 @@ class ApiCest
         $I->seeResponseContainsJson(['authenticated' => false]);
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function authenticated_returns_true_when_user_logged_in(AcceptanceTester $I)
     {
-        $I->haveHttpHeader('Cookie', 'fe_typo_user=53574eb0bafe1c0a4d8a2cfc0cf726da');
-        $I->haveHttpHeader('X-CSRF-TOKEN', '53574eb0bafe1c0a4d8a2cfc0cf726da');
-        $I->haveHttpHeader('Accept', 'application/json');
+        $I = $this->setAccessHeadersFor($I);
 
         $I->sendGET('login/users/authenticated');
 
         $I->seeResponseContainsJson(['authenticated' => true]);
     }
 
-
-    /**
-     * @param AcceptanceTester $I
-     */
     public function backend_user_session_required_for_simulate(AcceptanceTester $I)
     {
         $I->wantTo('When I want to simulate another FE user connection, I need to have an active BE session.');
 
-        $I->haveHttpHeader('Accept', 'application/json');
-
+        $I = $this->setAccessHeadersFor($I);
         $I->sendGET('login/users/simulate/user-name');
 
         $I->seeResponseCodeIs(403);
     }
 
     /**
-     * @param AcceptanceTester $I
+     * @noinspection PhpUnused
      */
     public function backend_user_session_required_for_terminate(AcceptanceTester $I)
     {
         $I->wantTo('When I want to delete another FE user active sessions, I need to have an active BE session.');
 
-        $I->haveHttpHeader('Accept', 'application/json');
-
+        $I = $this->setAccessHeadersFor($I);
         $I->sendGET('login/users/terminate/2');
 
         $I->seeResponseCodeIs(403);
+    }
+
+    private function setAccessHeadersFor(AcceptanceTester $session): AcceptanceTester
+    {
+        $session->haveHttpHeader('Accept', 'application/json');
+
+        return $this->authenticate($session);
+    }
+
+    private function authenticate(AcceptanceTester $session): AcceptanceTester
+    {
+        $csrf = '379939783ec09d17bbb6aea467c1154704fb498e'; // Token from VH
+        $encodedSessionID = '79f44e082be43f49b23e0016193bbe21'; // From Browser
+
+        $session->haveHttpHeader('X-CSRF-TOKEN', $csrf);
+        $session->haveHttpHeader('Cookie', 'fe_typo_user=' . $encodedSessionID);
+
+        return $session;
     }
 }

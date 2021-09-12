@@ -28,11 +28,12 @@ namespace LMS\Flogin\Tests\Functional\Command;
 
 use Carbon\Carbon;
 use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class OnetimeAccountGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class OnetimeAccountGarbageCollectorCommandTest extends FunctionalTestCase
 {
     /**
      * @var array

@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpComposerExtensionStubsInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Validator;
@@ -26,26 +28,22 @@ namespace LMS\Flogin\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Response;
 use Symfony\Component\HttpFoundation\Request;
+use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
+abstract class DefaultValidator extends AbstractValidator
 {
     /**
      * Mostly used for extracting username and password from the request.
-     *
-     * @param string $name
-     *
-     * @return string
      */
     protected function getRequestValue(string $name): string
     {
-        if (Response::isJson() && $json = Request::createFromGlobals()->getContent()) {
+        if ($this->isJson() && $json = Request::createFromGlobals()->getContent()) {
             return json_decode((string)$json, true)[$name] ?: '';
         }
 
@@ -54,8 +52,6 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
 
     /**
      * Attempt to retrieve the <username> that has been sent thought the current HTTP Request
-     *
-     * @return string
      */
     protected function getInputUserName(): string
     {
@@ -64,8 +60,6 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
 
     /**
      * Attempt to retrieve the <password> that has been sent thought the current HTTP Request
-     *
-     * @return string
      */
     protected function getInputPassword(): string
     {
@@ -74,11 +68,6 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
 
     /**
      * Helper for getting proper translations inside parent relations
-     *
-     * @param string $key
-     * @param array  $arguments
-     *
-     * @return string
      */
     protected function translate(string $key, array $arguments = []): string
     {
@@ -87,21 +76,23 @@ abstract class DefaultValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
 
     /**
      * Attempt to find user that is related to current login request
-     *
-     * @return \LMS\Flogin\Domain\Model\User|null
      */
     protected function findRequestAssociatedUser(): ?User
     {
-        return UserRepository::make()->retrieveByUsername($this->getInputUserName());
+        return UserRepository::make()->retrieveByUsername(
+            $this->getInputUserName()
+        );
     }
 
-    /**
-     * Retrieve passed properties
-     *
-     * @return array
-     */
     protected function requestProps(): array
     {
         return Request::createFromGlobals()->request->all();
+    }
+
+    protected function isJson(): bool
+    {
+        $accepts = collect(Request::createFromGlobals()->getAcceptableContentTypes());
+
+        return $accepts->contains('application/json');
     }
 }

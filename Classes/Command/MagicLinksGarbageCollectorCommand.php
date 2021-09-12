@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUndefinedMethodInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Command;
@@ -26,14 +28,23 @@ namespace LMS\Flogin\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\Link;
-use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
+use LMS\Flogin\Domain\Repository\LinkRepository;
+use Symfony\Component\Console\{Command\Command, Input\InputInterface, Output\OutputInterface};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinksGarbageCollectorCommand extends \Symfony\Component\Console\Command\Command
+class MagicLinksGarbageCollectorCommand extends Command
 {
+    private LinkRepository $linkRepository;
+
+    public function __construct(LinkRepository $repository)
+    {
+        parent::__construct();
+
+        $this->linkRepository = $repository;
+    }
+
     /**
      * @noinspection PhpMissingParentCallCommonInspection
      */
@@ -49,7 +60,7 @@ class MagicLinksGarbageCollectorCommand extends \Symfony\Component\Console\Comma
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        Link::repository()->findExpired()->map->delete();
+        $this->linkRepository->findExpired()->map->delete();
 
         return 0;
     }

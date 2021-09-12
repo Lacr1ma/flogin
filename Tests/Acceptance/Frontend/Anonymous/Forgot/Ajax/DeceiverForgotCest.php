@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Forgot\Ajax;
@@ -33,9 +36,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverForgotCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function email_required(AcceptanceTester $I)
     {
         $I->wantTo('I see the error messages when I am requesting the forget password to the unknown email address.');
@@ -46,9 +46,6 @@ class DeceiverForgotCest
         $I->see('This email address is not connected to any user in our system.', '.forgot-email-is-invalid');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function notification_can_be_sent(AcceptanceTester $I)
     {
         $I->wantTo('I am requesting the forget password notification and I get it.');

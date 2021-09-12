@@ -57,8 +57,7 @@ class BackendEnvironment extends \TYPO3\TestingFramework\Core\Acceptance\Extensi
             'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/tt_content.xml',
             'typo3conf/ext/flogin/Tests/Fixtures/Acceptance/sys_template.xml',
             'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
-            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml',
-            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml'
+            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml'
         ]
     ];
 }

@@ -28,11 +28,12 @@ namespace LMS\Flogin\Tests\Functional\Command;
 
 use Carbon\Carbon;
 use LMS\Flogin\Domain\{Model\Resets, Repository\ResetsRepository};
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class ResetGarbageCollectorCommandTest extends FunctionalTestCase
 {
     /**
      * @var array
@@ -49,13 +50,13 @@ class ResetGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Func
 
         Resets::create([
             'user' => 1,
-            'token' => 1,
+            'token' => 'token',
             'crdate' => Carbon::now()->subHour()->timestamp
         ]);
 
         Resets::create([
             'user' => 2,
-            'token' => 2,
+            'token' => 'token',
             'crdate' => Carbon::now()->addHour()->timestamp
         ]);
 

@@ -26,10 +26,13 @@ namespace LMS\Flogin\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Model\AbstractModel;
+
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UserGroup extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup
+class UserGroup extends AbstractModel
 {
+
 }

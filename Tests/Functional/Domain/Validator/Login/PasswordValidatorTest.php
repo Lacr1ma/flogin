@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Validator\Login\PasswordValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class PasswordValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class PasswordValidatorTest extends BaseTest
 {
     /**
      * @test

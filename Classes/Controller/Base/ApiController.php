@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller\Base;
@@ -26,24 +28,33 @@ namespace LMS\Flogin\Controller\Base;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Mvc\View\JsonView;
 use LMS\Flogin\Domain\Repository\UserRepository;
+use LMS\Facade\Controller\AbstractApiController;
 use TYPO3\CMS\Extbase\Persistence\RepositoryInterface;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class ApiController extends \LMS\Facade\Controller\AbstractApiController
+abstract class ApiController extends AbstractApiController
 {
+    protected UserRepository $userRepository;
+
     /**
      * @var string
      */
-    public $defaultViewObjectName = \LMS\Flogin\Mvc\View\JsonView::class;
+    public $defaultViewObjectName = JsonView::class;
+
+    public function injectUserRepository(UserRepository $repository)
+    {
+        $this->userRepository = $repository;
+    }
 
     /**
      * {@inheritdoc}
      */
     protected function getResourceRepository(): RepositoryInterface
     {
-        return UserRepository::make();
+        return $this->userRepository;
     }
 }

@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnusedParameterInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Slot\Action\Login\Success;
@@ -26,6 +28,8 @@ namespace LMS\Flogin\Slot\Action\Login\Success;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Event\LoginSuccessEvent;
+use LMS\Flogin\Event\UserUnlockedEvent;
 use LMS\Flogin\Support\ThrottlesLogins;
 
 /**
@@ -36,9 +40,17 @@ class ResetAttempts
     use ThrottlesLogins;
 
     /**
+     * User has been unlocked, clear all previous fails
+     */
+    public function unlocked(UserUnlockedEvent $event): void
+    {
+        $this->clearAttempts();
+    }
+
+    /**
      * Successful login attempt detected, clear all previous fails
      */
-    public function execute(): void
+    public function loggedIn(LoginSuccessEvent $event): void
     {
         $this->clearAttempts();
     }

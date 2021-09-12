@@ -27,11 +27,12 @@ namespace LMS\Flogin\Domain\Model;
  * ************************************************************* */
 
 use LMS\Flogin\Support\Domain\Property\Username;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class Demand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Demand extends AbstractEntity
 {
     use Username;
 }

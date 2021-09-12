@@ -26,7 +26,7 @@ namespace LMS\Flogin\Slot\Action\Reset\Applied;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
+use LMS\Flogin\Event\PasswordHasBeenResetEvent;
 use LMS\Flogin\Slot\Notification\PasswordChangedNotification;
 
 /**
@@ -34,15 +34,20 @@ use LMS\Flogin\Slot\Notification\PasswordChangedNotification;
  */
 class SendNotification
 {
-    /**
-     * Password has been updated, notify user
-     *
-     * @psalm-suppress InternalMethod
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
-     */
-    public function execute(ResetPasswordRequest $request): void
+    protected PasswordChangedNotification $notification;
+
+    public function __construct(PasswordChangedNotification $notification)
     {
-        PasswordChangedNotification::make()->send($request->getUser());
+        $this->notification = $notification;
+    }
+
+    /**
+     * @psalm-suppress InternalMethod
+     */
+    public function __invoke(PasswordHasBeenResetEvent $e): void
+    {
+        $user = $e->request()->getUser();
+
+        $this->notification->send($user);
     }
 }

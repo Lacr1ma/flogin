@@ -36,17 +36,27 @@ trait AuthenticatesUsers
 {
     use SessionEvent;
 
+    protected SessionGuard $guard;
+    protected UserRepository $userRepository;
+
+    public function injectUsersRepository(UserRepository $repository): void
+    {
+        $this->userRepository = $repository;
+    }
+
+    public function injectSessionGuard(SessionGuard $guard): void
+    {
+        $this->guard = $guard;
+    }
+
     /**
      * Attempt to find the user by credentials and notify listeners
-     *
-     * @param array $credentials
-     * @param bool  $remember
      */
-    public function login(array $credentials, bool $remember): void
+    public function login(array $credentials, bool $remember = false): void
     {
         [$username, $plainPassword] = $credentials;
 
-        if ($user = UserRepository::make()->retrieveByUsername($username)) {
+        if ($user = $this->userRepository->retrieveByUsername($username)) {
             $this->fireLoginAttemptEvent($user, $plainPassword, $remember);
         }
     }
@@ -56,6 +66,6 @@ trait AuthenticatesUsers
      */
     public function logoff(): void
     {
-        SessionGuard::make()->logoff();
+        $this->guard->logoff();
     }
 }

@@ -35,15 +35,20 @@ trait LockUsers
 {
     use SessionEvent;
 
+    protected UserRepository $userRepository;
+
+    public function injectUserRepository(UserRepository $repository): void
+    {
+        $this->userRepository = $repository;
+    }
+
     /**
      * Attempt to find associated to email user and unlock.
      * Fires the unlock event
-     *
-     * @param string $email
      */
     public function unlock(string $email): void
     {
-        if ($user = UserRepository::make()->retrieveByEmail($email)) {
+        if ($user = $this->userRepository->retrieveByEmail($email)) {
             $user->unlock();
             $this->fireLoginUnlockedEvent($user);
         }

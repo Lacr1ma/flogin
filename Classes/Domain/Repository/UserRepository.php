@@ -28,26 +28,17 @@ namespace LMS\Flogin\Domain\Repository;
 
 use LMS\Facade\Assist\Collection;
 use LMS\Flogin\{Domain\Model\User, Support\Repository\Demandable};
-use \TYPO3\CMS\Core\Database\Query\QueryBuilder as CoreQueryBuilder;
-use LMS\Facade\{Extbase\QueryBuilder, Repository\StaticCreation, Repository\CRUD as ProvidesCRUDActions};
+use TYPO3\CMS\Core\Database\Query\QueryBuilder as CoreQueryBuilder;
+use LMS\Facade\{Extbase\QueryBuilder, Repository\AbstractUnrespectableRepository};
 
 /**
+ * @psalm-suppress InvalidArgument
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+class UserRepository extends AbstractUnrespectableRepository
 {
-    use ProvidesCRUDActions, StaticCreation, Demandable;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function initializeObject(): void
-    {
-        $this->setDefaultQuerySettings(
-            $this->createQuery()->getQuerySettings()->setRespectStoragePage(false)
-        );
-    }
+    use Demandable;
 
     /**
      * Retrieve logged in user
@@ -55,8 +46,6 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
      * @psalm-suppress MoreSpecificReturnType
      * @psalm-suppress LessSpecificReturnStatement
      * @noinspection   PhpIncompatibleReturnTypeInspection
-     *
-     * @return \LMS\Flogin\Domain\Model\User|null
      */
     public function current(): ?User
     {
@@ -64,11 +53,9 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     }
 
     /**
-     * Attempt to find a user by it's username
+     * Attempt to find a user by its username
      *
-     * @param string $name
-     *
-     * @return \LMS\Flogin\Domain\Model\User|null
+     * @psalm-suppress InvalidArgument
      * @noinspection PhpUndefinedMethodInspection
      */
     public function retrieveByUsername(string $name): ?User
@@ -79,7 +66,6 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     /**
      * Retrieve all locked users
      *
-     * @return \LMS\Facade\Assist\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
     public function findLocked(): Collection
@@ -90,11 +76,8 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     }
 
     /**
-     * Attempt to find a user by it's email address
+     * Attempt to find a user by its email address
      *
-     * @param string $email
-     *
-     * @return \LMS\Flogin\Domain\Model\User|null
      * @noinspection PhpUndefinedMethodInspection
      */
     public function retrieveByEmail(string $email): ?User
@@ -105,7 +88,6 @@ class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRe
     /**
      * Predefined query that contains expired *where* clause.
      *
-     * @return \TYPO3\CMS\Core\Database\Query\QueryBuilder
      * @noinspection PhpUndefinedMethodInspection
      */
     public function expiredQuery(): CoreQueryBuilder

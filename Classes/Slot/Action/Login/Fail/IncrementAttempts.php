@@ -27,6 +27,7 @@ namespace LMS\Flogin\Slot\Action\Login\Fail;
  * ************************************************************* */
 
 use LMS\Flogin\Support\ThrottlesLogins;
+use LMS\Flogin\Event\LoginAttemptFailedEvent;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -38,7 +39,7 @@ class IncrementAttempts
     /**
      * Wrong login attempt detected, increment attempts
      */
-    public function execute(): void
+    public function __invoke(LoginAttemptFailedEvent $event): void
     {
         $this->incrementAttempts();
     }

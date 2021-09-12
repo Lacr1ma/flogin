@@ -38,10 +38,7 @@ trait Demandable
      * Attempt to find all users by demand scope
      *
      * @psalm-suppress InvalidReturnType
-     *
-     * @param \LMS\Flogin\Domain\Model\Demand $demand
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @noinspection PhpUnhandledExceptionInspection
      */
     public function findDemanded(Demand $demand): QueryResultInterface
     {

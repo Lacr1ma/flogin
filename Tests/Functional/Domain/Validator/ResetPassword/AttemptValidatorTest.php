@@ -27,6 +27,7 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\ResetPassword;
  * ************************************************************* */
 
 use Carbon\Carbon;
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\UserRepository;
 use LMS\Flogin\Domain\Validator\ResetPassword\AttemptValidator;
 use LMS\Flogin\Domain\Model\{Resets, Request\ResetPasswordRequest};
@@ -34,7 +35,7 @@ use LMS\Flogin\Domain\Model\{Resets, Request\ResetPasswordRequest};
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class AttemptValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class AttemptValidatorTest extends BaseTest
 {
     /**
      * @test

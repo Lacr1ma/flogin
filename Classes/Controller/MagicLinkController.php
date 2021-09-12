@@ -1,4 +1,8 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+/** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller;
@@ -26,7 +30,11 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\RedirectResponse;
 use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use LMS\Flogin\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagicLinkEmails};
 
@@ -34,12 +42,12 @@ use LMS\Flogin\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagi
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class MagicLinkController extends ActionController
 {
     use SendsMagicLinkEmails, AuthenticatesUsers;
 
     /**
-     * By default mapping for <request> property is not activated,
+     * By default, mapping for <request> property is not activated,
      * so we activate it and allow creation process.
      *
      * @psalm-suppress InternalMethod
@@ -60,21 +68,27 @@ class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * Renders the html form that contains only email field and submit button.
      * System uses the submitted email for sending the <magic link> email.
      */
-    public function showMagicLinkFormAction(): void
+    public function showMagicLinkFormAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
      * We check weather the submitted email really exists in the fe_users table
      * and send the email or redirect back with an error notification.
      *
-     * @param string $email
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\MagicLink\NotAuthenticatedValidator", param="email")
      */
-    public function sendMagicLinkEmailAction(string $email): void
+    public function sendMagicLinkEmailAction(string $email): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterMagicLinkNotificationSentPage'];
+
         $this->sendMagicLink($email);
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 
     /**
@@ -84,17 +98,22 @@ class MagicLinkController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * <whenTokenExpiredPage> when token still exists in system but has been expired
      * <whenTokenNotFoundPage> when token has been already cleared out by scheduler.
      *
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\MagicLink\RequestValidator", param="request")
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\MagicLink\NotAuthenticatedValidator", param="request")
      */
-    public function loginAction(MagicLinkRequest $request): void
+    public function loginAction(MagicLinkRequest $request): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterLoginPage'];
+
         $credentials = [
             $request->getUser()->getUsername(),
             $request->getUser()->getPassword()
         ];
 
-        $this->login($credentials, false);
+        $this->login($credentials);
+
+        return new RedirectResponse(
+            Redirect::uriFor($pid, true)
+        );
     }
 }

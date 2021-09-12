@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Login\Ajax;
@@ -33,9 +36,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverAjaxLoginCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function login_and_password_required(AcceptanceTester $I)
     {
         $I->wantTo('I see the error messages when I am trying to login with invalid credentials.');
@@ -51,9 +51,6 @@ class DeceiverAjaxLoginCest
         $I->see('Password is invalid', '.password-is-invalid');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function username_error_is_not_visible_when_user_exists(AcceptanceTester $I)
     {
         $I->wantTo('I submit sign in form with existing <user>, but invalid password. I expect to see  password error only.');
@@ -69,9 +66,6 @@ class DeceiverAjaxLoginCest
         $I->see('Password is invalid', '.password-is-invalid');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function user_can_be_logged_in(AcceptanceTester $I)
     {
         $I->wantTo('I can login using ajax form.');

@@ -26,8 +26,9 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Exception;
 use Carbon\Carbon;
-use LMS\Flogin\Support\Redirection\UserRouter;
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\UserRepository;
 use LMS\Flogin\Domain\Validator\ResetPassword\RequestValidator;
 use LMS\Flogin\Domain\Model\{Resets, Request\ResetPasswordRequest};
@@ -35,17 +36,13 @@ use LMS\Flogin\Domain\Model\{Resets, Request\ResetPasswordRequest};
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class RequestValidatorTest extends BaseTest
 {
     /**
      * @test
      */
     public function pass_when_link_is_valid(): void
     {
-        $double = \Mockery::mock('overload:' . UserRouter::class);
-        $double->shouldReceive('redirectToTokenNotFoundPage')->andThrow(\Exception::class);
-        $double->shouldReceive('redirectToTokenExpiredPage')->andThrow(\Exception::class);
-
         $request = new ResetPasswordRequest(
             UserRepository::make()->retrieveByUsername('user')
         );
@@ -67,14 +64,11 @@ class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
      */
     public function redirect_to_token_not_found(): void
     {
-        $double = \Mockery::mock('overload:' . UserRouter::class);
-        $double->shouldReceive('redirectToTokenNotFoundPage')->andThrow(\Exception::class);
-
         $request = new ResetPasswordRequest(
             UserRepository::make()->retrieveByUsername('user')
         );
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
 
         (new RequestValidator())->validate($request);
     }
@@ -84,9 +78,6 @@ class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
      */
     public function redirect_to_token_expired(): void
     {
-        $double = \Mockery::mock('overload:' . UserRouter::class);
-        $double->shouldReceive('redirectToTokenExpiredPage')->andThrow(\Exception::class);
-
         $request = new ResetPasswordRequest(
             UserRepository::make()->retrieveByUsername('user')
         );
@@ -98,7 +89,7 @@ class RequestValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
             'crdate' => Carbon::now()->subHour()->timestamp
         ]);
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
 
         (new RequestValidator())->validate($request);
     }

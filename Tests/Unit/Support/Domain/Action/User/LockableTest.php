@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Action\User;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use LMS\Flogin\Support\Domain\Action\User\Lockable;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class LockableTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class LockableTest extends UnitTestCase
 {
     /**
      * @var Lockable

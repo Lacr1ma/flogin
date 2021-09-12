@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpExpressionResultUnusedInspection */
+/** @noinspection PhpRedundantOptionalArgumentInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
@@ -28,11 +31,12 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
 
 use Carbon\Carbon;
 use LMS\Flogin\Support\Domain\Property\Locked;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class LockedTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class LockedTest extends UnitTestCase
 {
     /**
      * @var Locked
@@ -48,9 +52,6 @@ class LockedTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
         {
             use Locked;
 
-            /**
-             * @return int
-             */
             public static function getLockMinutesInterval(): int
             {
                 return 2;

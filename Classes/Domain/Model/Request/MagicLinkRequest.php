@@ -32,7 +32,7 @@ use LMS\Flogin\Domain\Model\Link;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkRequest extends \LMS\Flogin\Domain\Model\Request\AbstractRequest
+class MagicLinkRequest extends AbstractRequest
 {
     /**
      * {@inheritDoc}

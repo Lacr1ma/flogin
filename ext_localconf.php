@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
 
 declare(strict_types = 1);
 
@@ -27,27 +28,21 @@ declare(strict_types = 1);
 
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
-    'flogin',
-    'auth',
-    LMS\Flogin\Service\MagicLinkAuthenticationService::class,
-    [
-        'title' => 'Magic Link Authentication Service',
-        'description' => 'authentication for users based on Magic Link',
-        'subtype' => 'authUserFE',
-        'available' => true,
-        'priority' => 80,
-        'quality' => 80,
-        'os' => '',
-        'exec' => '',
-        'className' => LMS\Flogin\Service\MagicLinkAuthenticationService::class,
-    ]
-);
+use LMS\Flogin\Controller\LoginController;
+use LMS\Flogin\Controller\LockerController;
+use LMS\Flogin\Controller\UserApiController;
+use LMS\Flogin\Controller\MagicLinkController;
+use LMS\Flogin\Controller\Api\LoginApiController;
+use LMS\Flogin\Controller\ResetPasswordController;
+use LMS\Flogin\Controller\ForgotPasswordController;
+use LMS\Flogin\Controller\Api\MagicLinkApiController;
+use LMS\Flogin\Controller\Api\ForgotPasswordApiController;
+use LMS\Flogin\Service\BackendSimulationAuthenticationService;
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
     'flogin',
     'auth',
-    LMS\Flogin\Service\BackendSimulationAuthenticationService::class,
+    BackendSimulationAuthenticationService::class,
     [
         'title' => 'Backend Simulation for the FE users.',
         'description' => 'allows site administrator to sign up using selected FE user.',
@@ -57,7 +52,7 @@ defined('TYPO3') or die();
         'quality' => 82,
         'os' => '',
         'exec' => '',
-        'className' => LMS\Flogin\Service\BackendSimulationAuthenticationService::class,
+        'className' => BackendSimulationAuthenticationService::class
     ]
 );
 
@@ -65,18 +60,18 @@ defined('TYPO3') or die();
     'Flogin',
     'Flogin',
     [
-        \LMS\Flogin\Controller\LoginController::class => 'showLoginForm, login, logout',
-        \LMS\Flogin\Controller\ForgotPasswordController::class => 'showForgotForm, sendResetLinkEmail',
-        \LMS\Flogin\Controller\MagicLinkController::class => 'showMagicLinkForm, sendMagicLinkEmail, login',
-        \LMS\Flogin\Controller\ResetPasswordController::class => 'showResetForm, reset',
-        \LMS\Flogin\Controller\LockerController::class => 'unlock'
+        LoginController::class => 'showLoginForm, login, logout',
+        ForgotPasswordController::class => 'showForgotForm, sendResetLinkEmail',
+        MagicLinkController::class => 'showMagicLinkForm, sendMagicLinkEmail, login',
+        ResetPasswordController::class => 'showResetForm, reset',
+        LockerController::class => 'unlock'
     ],
     [
-        \LMS\Flogin\Controller\LoginController::class => 'showLoginForm, login, logout',
-        \LMS\Flogin\Controller\ForgotPasswordController::class => 'showForgotForm, sendResetLinkEmail',
-        \LMS\Flogin\Controller\MagicLinkController::class => 'showMagicLinkForm, sendMagicLinkEmail, login',
-        \LMS\Flogin\Controller\ResetPasswordController::class => 'showResetForm, reset',
-        \LMS\Flogin\Controller\LockerController::class => 'unlock'
+        LoginController::class => 'showLoginForm, login, logout',
+        ForgotPasswordController::class => 'showForgotForm, sendResetLinkEmail',
+        MagicLinkController::class => 'showMagicLinkForm, sendMagicLinkEmail, login',
+        ResetPasswordController::class => 'showResetForm, reset',
+        LockerController::class => 'unlock'
     ]
 );
 
@@ -84,10 +79,10 @@ defined('TYPO3') or die();
     'Flogin',
     'UserApi',
     [
-        \LMS\Flogin\Controller\UserApiController::class => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
+        UserApiController::class => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
     ],
     [
-        \LMS\Flogin\Controller\UserApiController::class => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
+        UserApiController::class => 'list, create, edit, destroy, fail, current, authenticated, simulateLogin, terminateFrontendSession, createOneTimeAccount'
     ]
 );
 
@@ -95,10 +90,10 @@ defined('TYPO3') or die();
     'Flogin',
     'LoginApi',
     [
-        \LMS\Flogin\Controller\Api\LoginApiController::class => 'showLoginForm, auth, logout'
+        LoginApiController::class => 'showLoginForm, auth, logout'
     ],
     [
-        \LMS\Flogin\Controller\Api\LoginApiController::class => 'showLoginForm, auth, logout'
+        LoginApiController::class => 'showLoginForm, auth, logout'
     ]
 );
 
@@ -106,10 +101,10 @@ defined('TYPO3') or die();
     'Flogin',
     'MagicLinkApi',
     [
-        \LMS\Flogin\Controller\Api\MagicLinkApiController::class => 'sendMagicLinkEmail'
+        MagicLinkApiController::class => 'sendMagicLinkEmail'
     ],
     [
-        \LMS\Flogin\Controller\Api\MagicLinkApiController::class => 'sendMagicLinkEmail'
+        MagicLinkApiController::class => 'sendMagicLinkEmail'
     ]
 );
 
@@ -117,182 +112,13 @@ defined('TYPO3') or die();
     'Flogin',
     'ForgotPasswordApi',
     [
-       \LMS\Flogin\Controller\Api\ForgotPasswordApiController::class => 'sendResetLinkEmail'
+       ForgotPasswordApiController::class => 'sendResetLinkEmail'
     ],
     [
-        \LMS\Flogin\Controller\Api\ForgotPasswordApiController::class => 'sendResetLinkEmail'
+        ForgotPasswordApiController::class => 'sendResetLinkEmail'
     ]
 );
 
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_flogin'])) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_flogin'] = [];
 }
-
-$signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendResetLinkRequest',
-    \LMS\Flogin\Slot\Action\Reset\Requested\CreateLink::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendResetLinkRequest',
-    \LMS\Flogin\Slot\Action\Reset\Requested\SendNotification::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendResetLinkRequest',
-    \LMS\Flogin\Slot\Action\Reset\Ajax\Requested::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendResetLinkRequest',
-    \LMS\Flogin\Slot\Action\Reset\Requested\Redirect::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'passwordHasBeenReset',
-    \LMS\Flogin\Slot\Action\Reset\Applied\Logoff::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'passwordHasBeenReset',
-    \LMS\Flogin\Slot\Action\Reset\Applied\SendNotification::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'passwordHasBeenReset',
-    \LMS\Flogin\Slot\Action\Reset\Applied\Redirect::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendMagicLinkRequest',
-    \LMS\Flogin\Slot\Action\MagicLink\Requested\CreateLink::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendMagicLinkRequest',
-    \LMS\Flogin\Slot\Action\MagicLink\Requested\SendNotification::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendMagicLinkRequest',
-    \LMS\Flogin\Slot\Action\MagicLink\Ajax\Requested::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'sendMagicLinkRequest',
-    \LMS\Flogin\Slot\Action\MagicLink\Requested\Redirect::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'magicLinkApplied',
-    \LMS\Flogin\Slot\Action\MagicLink\Applied\UtilizeLink::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'lockout',
-    \LMS\Flogin\Slot\Action\LockoutAction::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'userUnlocked',
-    \LMS\Flogin\Slot\Action\Login\Success\ResetAttempts::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'userUnlocked',
-    \LMS\Flogin\Slot\Action\Unlock\Redirect::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'loginAttempt',
-    \LMS\Flogin\Slot\Action\Login\Attempt::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'loginAttemptFailed',
-    \LMS\Flogin\Slot\Action\Login\Fail\IncrementAttempts::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'loginSuccess',
-    \LMS\Flogin\Slot\Action\Login\Success\ResetAttempts::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'loginSuccess',
-    \LMS\Flogin\Slot\Action\Login\Success\SendNotification::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'loginSuccess',
-    \LMS\Flogin\Slot\Action\Login\Ajax\SuccessfulLoginAttempt::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'loginSuccess',
-    \LMS\Flogin\Slot\Action\Login\Success\Redirect::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'logoutSuccess',
-    \LMS\Flogin\Slot\Action\Logout\MarkInactive::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'logoutSuccess',
-    \LMS\Flogin\Slot\Action\Login\Ajax\Logout::class,
-    'execute'
-);
-
-$signalSlotDispatcher->connect(
-    \LMS\Flogin\Event\SessionEvent::class,
-    'logoutSuccess',
-    \LMS\Flogin\Slot\Action\Logout\Redirect::class,
-    'execute'
-);

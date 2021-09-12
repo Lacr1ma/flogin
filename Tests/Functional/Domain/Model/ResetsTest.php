@@ -27,11 +27,12 @@ namespace LMS\Flogin\Tests\Functional\Domain\Model;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\Resets;
+use LMS\Flogin\Tests\Functional\BaseTest;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class ResetsTest extends BaseTest
 {
     /**
      * @test

@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Functional\Domain\Model\Request;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\{Repository\UserRepository, Model\Request\ResetPasswordRequest};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetPasswordRequestTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class ResetPasswordRequestTest extends BaseTest
 {
     /**
      * @test

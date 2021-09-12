@@ -26,26 +26,13 @@ namespace LMS\Flogin\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\TypoScript;
-use LMS\Facade\Repository\StaticCreation;
+use LMS\Facade\Repository\AbstractUnrespectableRepository;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UserGroupRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
+class UserGroupRepository extends AbstractUnrespectableRepository
 {
-    use StaticCreation;
 
-    /**
-     * {@inheritDoc}
-     */
-    public function initializeObject(): void
-    {
-        $settings = $this->createQuery()->getQuerySettings()->setStoragePageIds([
-            TypoScript::getStoragePid()
-        ]);
-
-        $this->setDefaultQuerySettings($settings);
-    }
 }

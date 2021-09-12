@@ -27,16 +27,22 @@ namespace LMS\Flogin\Command;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Repository\UserRepository;
-use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
+use Symfony\Component\Console\{Command\Command, Input\InputInterface, Output\OutputInterface};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class OnetimeAccountGarbageCollectorCommand extends \Symfony\Component\Console\Command\Command
+class OnetimeAccountGarbageCollectorCommand extends Command
 {
-    /**
-     * @noinspection PhpMissingParentCallCommonInspection
-     */
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $repository)
+    {
+        parent::__construct();
+
+        $this->userRepository = $repository;
+    }
+
     protected function configure(): void
     {
         $this->setDescription('Clear all one time accounts who have expired.');
@@ -49,7 +55,10 @@ class OnetimeAccountGarbageCollectorCommand extends \Symfony\Component\Console\C
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        UserRepository::make()->expiredQuery()->delete('fe_users')->execute();
+        $this->userRepository
+            ->expiredQuery()
+            ->delete('fe_users')
+            ->execute();
 
         return 0;
     }

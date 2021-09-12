@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller\Api;
@@ -26,13 +28,15 @@ namespace LMS\Flogin\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Facade\Extbase\Redirect;
+use Psr\Http\Message\ResponseInterface;
 use LMS\Flogin\Support\Controller\ForgotPassword\SendsPasswordResetEmails;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ForgotPasswordApiController extends \LMS\Flogin\Controller\Api\AbstractApiController
+class ForgotPasswordApiController extends AbstractApiController
 {
     use SendsPasswordResetEmails;
 
@@ -40,11 +44,18 @@ class ForgotPasswordApiController extends \LMS\Flogin\Controller\Api\AbstractApi
      * We check weather the submitted email really exists in the fe_users table
      * and send the email or redirect back with an error notification.
      *
-     * @param string $email
      * @TYPO3\CMS\Extbase\Annotation\Validate("LMS\Flogin\Domain\Validator\EmailValidator", param="email")
      */
-    public function sendResetLinkEmailAction(string $email): void
+    public function sendResetLinkEmailAction(string $email): ResponseInterface
     {
+        $pid = (int)$this->settings['redirect']['afterResetPasswordFormSubmittedPage'];
+
         $this->sendResetLinkEmail($email);
+
+        $redirect = Redirect::uriFor($pid, true);
+
+        return $this->jsonResponse(
+            collect(compact('redirect'))->toJson()
+        );
     }
 }

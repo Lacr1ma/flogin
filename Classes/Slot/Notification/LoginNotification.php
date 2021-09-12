@@ -28,16 +28,15 @@ namespace LMS\Flogin\Slot\Notification;
 
 use LMS\Flogin\Domain\Model\User;
 use Symfony\Component\HttpFoundation\Request;
+use LMS\Flogin\Notification\AbstractNotificationSender;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class LoginNotification extends \LMS\Flogin\Notification\AbstractNotificationSender
+class LoginNotification extends AbstractNotificationSender
 {
     /**
      * Build the LoginNotification Template and email the user
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function send(User $user): void
     {
@@ -53,8 +52,6 @@ class LoginNotification extends \LMS\Flogin\Notification\AbstractNotificationSen
 
     /**
      * Check if user notification activated in the TypoScript area
-     *
-     * @return bool
      */
     protected function isDisabled(): bool
     {

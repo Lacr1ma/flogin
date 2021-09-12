@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use LMS\Flogin\Support\Domain\Property\Token as ContainsToken;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class TokenTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
+class TokenTest extends UnitTestCase
 {
     /**
      * @var ContainsToken

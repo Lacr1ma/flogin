@@ -31,22 +31,13 @@ namespace LMS\Flogin\Support\Domain\Property;
  */
 trait Token
 {
-    /**
-     * @var string
-     */
-    protected $token;
+    protected string $token = '';
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
-        return (string)$this->token;
+        return $this->token;
     }
 
-    /**
-     * @param string $token
-     */
     public function setToken(string $token): void
     {
         $this->token = $token;

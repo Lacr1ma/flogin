@@ -26,7 +26,7 @@ namespace LMS\Flogin\Slot\Action\MagicLink\Requested;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
+use LMS\Flogin\Event\SendMagicLinkRequestEvent;
 use LMS\Flogin\Slot\Notification\MagicLinkNotification;
 
 /**
@@ -34,13 +34,18 @@ use LMS\Flogin\Slot\Notification\MagicLinkNotification;
  */
 class SendNotification
 {
+    protected MagicLinkNotification $notification;
+
+    public function __construct(MagicLinkNotification $notification)
+    {
+        $this->notification = $notification;
+    }
+
     /**
      * Mail user with magic link
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
      */
-    public function execute(MagicLinkRequest $request): void
+    public function  __invoke(SendMagicLinkRequestEvent $e): void
     {
-        MagicLinkNotification::make()->send($request);
+        $this->notification->send($e->request());
     }
 }

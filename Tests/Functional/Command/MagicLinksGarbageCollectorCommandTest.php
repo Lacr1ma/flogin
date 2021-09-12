@@ -28,11 +28,12 @@ namespace LMS\Flogin\Tests\Functional\Command;
 
 use Carbon\Carbon;
 use LMS\Flogin\Domain\{Model\Link, Repository\LinkRepository};
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class MagicLinksGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+class MagicLinksGarbageCollectorCommandTest extends FunctionalTestCase
 {
     /**
      * @var array
@@ -49,13 +50,13 @@ class MagicLinksGarbageCollectorCommandTest extends \TYPO3\TestingFramework\Core
 
         Link::create([
             'user' => 1,
-            'token' => 1,
+            'token' => 'token',
             'crdate' => Carbon::now()->subHour()->timestamp
         ]);
 
         Link::create([
             'user' => 2,
-            'token' => 2,
+            'token' => 'token',
             'crdate' => Carbon::now()->addHour()->timestamp
         ]);
 

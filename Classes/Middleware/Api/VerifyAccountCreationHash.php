@@ -29,12 +29,13 @@ namespace LMS\Flogin\Middleware\Api;
 use LMS\Facade\Extbase\Registry;
 use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Core\Utility\HttpUtility;
+use LMS\Routes\Middleware\Api\AbstractRouteMiddleware;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class VerifyAccountCreationHash extends \LMS\Routes\Middleware\Api\AbstractRouteMiddleware
+class VerifyAccountCreationHash extends AbstractRouteMiddleware
 {
     /**
      * Ensure valid hash is passed
@@ -52,9 +53,6 @@ class VerifyAccountCreationHash extends \LMS\Routes\Middleware\Api\AbstractRoute
         $this->redirectToHashErrorPage();
     }
 
-    /**
-     *
-     */
     private function redirectToHashErrorPage(): void
     {
         HttpUtility::redirect(
@@ -62,17 +60,11 @@ class VerifyAccountCreationHash extends \LMS\Routes\Middleware\Api\AbstractRoute
         );
     }
 
-    /**
-     * @return string
-     */
     private function invalidHashUrl(): string
     {
         return "/index.php?id={$this->hashErrorPage()}";
     }
 
-    /**
-     * @return int
-     */
     private function hashErrorPage(): int
     {
         return (int)TypoScript::getSettings()['redirect.']['error.']['whenOneTimeAccountHashNotFoundPage'];

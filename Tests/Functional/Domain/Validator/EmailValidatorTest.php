@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Validator\EmailValidator;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class EmailValidatorTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class EmailValidatorTest extends BaseTest
 {
     /**
      * @test

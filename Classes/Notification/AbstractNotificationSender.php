@@ -29,88 +29,59 @@ namespace LMS\Flogin\Notification;
 use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\MailMessage;
+use LMS\Facade\Extbase\View\HtmlView;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
-use LMS\Facade\{ObjectManageable, StaticCreator, Extbase\View\HtmlView};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 abstract class AbstractNotificationSender
 {
-    use HtmlView, StaticCreator;
+    use HtmlView;
+
+    protected MailMessage $mail;
+
+    public function __construct(MailMessage $message)
+    {
+        $this->mail = $message;
+    }
 
     /**
      * Sends the email to proper location based on abstract functions
-     *
-     * @param array $receiver
-     * @param array $variables
      */
     protected function sendViaMail(array $receiver, array $variables = []): void
     {
         $view = $this->getExtensionView($this->getTemplateSuffix(), $variables);
-
-        $message = $this->getMessage()->setTo($receiver);
         $html = $this->applyStyles($view->render());
 
-        $this->attachBody($message, $html)->send();
+        $this->mail
+            ->setSubject($this->getSubject())
+            ->setTo($receiver)
+            ->html($html)
+            ->send();
     }
 
-    /**
-     * @param string $html
-     * @return string
-     */
     protected function applyStyles(string $html): string
     {
+        $css = GeneralUtility::makeInstance(CssToInlineStyles::class);
+
         $cssPath = Environment::getPublicPath() . '/' . $this->getSettings()['stylesPath'];
 
-        return (new CssToInlineStyles)->convert($html, file_get_contents($cssPath));
-    }
-
-    /**
-     * Initialize Message Content
-     *
-     * @param \TYPO3\CMS\Core\Mail\MailMessage $msg
-     * @param string                           $html
-     *
-     * @return \TYPO3\CMS\Core\Mail\MailMessage
-     */
-    protected function attachBody(MailMessage $msg, string $html): MailMessage
-    {
-        if (method_exists($msg, 'html')) {
-            return $msg->html($html);
-        }
-
-        return $msg->setBody($html, 'text/html');
-    }
-
-    /**
-     * Create Mail Message
-     *
-     * @return \TYPO3\CMS\Core\Mail\MailMessage
-     */
-    protected function getMessage(): MailMessage
-    {
-        return ObjectManageable::createObject(MailMessage::class)->setSubject($this->getSubject());
+        return $css->convert($html, file_get_contents($cssPath));
     }
 
     /**
      * Retrieves the translation for the requested path
-     *
-     * @param string $path
-     * @param array  $arguments
-     *
-     * @return string
      */
-    protected function translate(string $path, $arguments = []): string
+    protected function translate(string $path, array $arguments = []): string
     {
         return LocalizationUtility::translate($path, null, $arguments) ?: '';
     }
 
     /**
      * Retrieves the TypoScript configuration related to email settings
-     *
-     * @return array
      */
     protected function getSettings(): array
     {
@@ -119,15 +90,11 @@ abstract class AbstractNotificationSender
 
     /**
      * The path starting from Template folder and ends with File folder
-     *
-     * @return string
      */
     abstract protected function getTemplateSuffix(): string;
 
     /**
      * Build email subject for the notification
-     *
-     * @return string
      */
     abstract protected function getSubject(): string;
 }

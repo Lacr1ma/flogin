@@ -26,13 +26,14 @@ namespace LMS\Flogin\Tests\Acceptance\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Codeception\Actor;
 use TYPO3\TestingFramework\Core\Acceptance\Step\FrameSteps;
 use LMS\Flogin\Tests\Acceptance\Support\_generated\BackendTesterActions;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class BackendTester extends \Codeception\Actor
+class BackendTester extends Actor
 {
     use BackendTesterActions, FrameSteps;
 }

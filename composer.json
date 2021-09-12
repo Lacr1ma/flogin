@@ -10,7 +10,7 @@
 		}
 	],
 	"require": {
-		"typo3/cms-core": "^9.5 || ^10 || ^11",
+		"typo3/cms-core": "^11.4.0",
 		"lms/routes": "*",
 		"tijsverkoyen/css-to-inline-styles": "^2.2.3"
 	},
@@ -31,5 +31,13 @@
 		"psr-4": {
 			"LMS\\Flogin\\Tests\\": "Tests"
 		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "flogin"
+		}
+	},
+	"replace": {
+		"lms/flogin": "self.version"
 	}
 }

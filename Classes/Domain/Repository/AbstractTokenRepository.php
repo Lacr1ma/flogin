@@ -27,22 +27,21 @@ namespace LMS\Flogin\Domain\Repository;
  * ************************************************************* */
 
 use LMS\Facade\Assist\Collection;
+use LMS\Facade\Repository\AbstractRepository;
 
 /**
+ * @psalm-suppress InvalidArgument
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class AbstractTokenRepository extends \LMS\Facade\Repository\AbstractRepository
+abstract class AbstractTokenRepository extends AbstractRepository
 {
     /**
      * Find link related to requested token
      *
-     * @param string $token
-     *
-     * @return object|null
      * @noinspection PhpUndefinedMethodInspection
      */
-    public function find(string $token)
+    public function find(string $token): ?object
     {
         return $this->findOneByToken($token);
     }
@@ -50,7 +49,6 @@ abstract class AbstractTokenRepository extends \LMS\Facade\Repository\AbstractRe
     /**
      * Find all expired tokens in the system
      *
-     * @return \LMS\Facade\Assist\Collection
      * @noinspection PhpUndefinedMethodInspection
      */
     public function findExpired(): Collection
@@ -60,10 +58,6 @@ abstract class AbstractTokenRepository extends \LMS\Facade\Repository\AbstractRe
 
     /**
      * TRUE if entity with provided token does exist
-     *
-     * @param string $token
-     *
-     * @return bool
      */
     public function exists(string $token): bool
     {

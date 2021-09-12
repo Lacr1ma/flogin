@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Functional;
@@ -26,12 +28,13 @@ namespace LMS\Flogin\Tests\Functional;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\{TypoScript, Redirection\UserRouter};
+use TYPO3\CMS\Core\Core\Bootstrap;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+abstract class BaseTest extends FunctionalTestCase
 {
     /**
      * @var array
@@ -46,37 +49,12 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
     {
         parent::setUp();
 
+        $this->setUpBackendUserFromFixture(1);
+        Bootstrap::initializeLanguageObject();
+
         $this->loadFixtures();
-        $this->mockTypoScript();
-        $this->mockRedirect();
     }
 
-    /**
-     *
-     */
-    protected function mockTypoScript(): void
-    {
-        $double = \Mockery::mock('overload:' . TypoScript::class);
-
-        $double->shouldReceive('getSettings')->andReturnUsing(function () {
-            return $this->getTypoScriptArray();
-        });
-    }
-
-    /**
-     *
-     */
-    protected function mockRedirect(): void
-    {
-        $double = \Mockery::mock('overload:' . UserRouter::class);
-
-        $double->shouldReceive('redirectToLockedPage')->andReturnNull();
-        $double->shouldReceive('redirectToAlreadyAuthenticatedPage')->andReturnNull();
-    }
-
-    /**
-     * @return array
-     */
     protected function getTypoScriptArray(): array
     {
         return [
@@ -130,9 +108,7 @@ abstract class BaseTest extends \TYPO3\TestingFramework\Core\Functional\Function
      */
     protected function loadFixtures(): void
     {
-        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml');
         $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml');
-        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml');
 
         $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/pages.xml');
         $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/fe_users.xml');

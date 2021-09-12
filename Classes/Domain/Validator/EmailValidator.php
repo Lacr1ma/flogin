@@ -32,29 +32,27 @@ use LMS\Flogin\Domain\Repository\UserRepository;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class EmailValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class EmailValidator extends DefaultValidator
 {
     /**
      * Valid only when email does exist in the system
      *
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param string $email
+     * @param string $value
      */
-    protected function isValid($email): void
+    protected function isValid($value): void
     {
-        $this->ensureEmailExists($email);
+        $this->ensureEmailExists($value);
     }
 
     /**
      * We check if passed email does exist in the fe_users table
      * If it's not exist we add an error to the current request
-     *
-     * @param string $email
      */
     private function ensureEmailExists(string $email): void
     {
-        if ($user = UserRepository::make()->retrieveByEmail($email)) {
+        if (UserRepository::make()->retrieveByEmail($email)) {
             return;
         }
 

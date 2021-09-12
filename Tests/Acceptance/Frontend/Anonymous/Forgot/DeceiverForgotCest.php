@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnused */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Forgot;
@@ -33,9 +35,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverForgotCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function forgot_form_shows_error_when_email_does_not_exist(AcceptanceTester $I)
     {
         $I->wantTo('When I submit <forgot password form> with invalid email, I see an error.');

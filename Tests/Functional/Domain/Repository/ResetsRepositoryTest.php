@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Functional\Domain\Repository;
@@ -26,12 +29,13 @@ namespace LMS\Flogin\Tests\Functional\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\ResetsRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class ResetsRepositoryTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class ResetsRepositoryTest extends BaseTest
 {
     /**
      * @throws \Doctrine\DBAL\DBALException

@@ -26,9 +26,9 @@ namespace LMS\Flogin\Domain\Model\Request;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Hash\Hash;
 use LMS\Flogin\Domain\Model\User;
 use LMS\Flogin\Event\SessionEvent;
+use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
 use LMS\Flogin\Support\Domain\{Property\Token, Action\User\UrlManagement};
 
 /**
@@ -37,27 +37,21 @@ use LMS\Flogin\Support\Domain\{Property\Token, Action\User\UrlManagement};
  *
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+abstract class AbstractRequest extends AbstractValueObject
 {
     use Token, SessionEvent, UrlManagement;
 
-    /**
-     * @var \LMS\Flogin\Domain\Model\User
-     */
-    protected $user;
+    protected User $user;
 
     /**
-     * @param \LMS\Flogin\Domain\Model\User $user
+     * @noinspection PhpUnhandledExceptionInspection
      */
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->token = Hash::randomString();
+        $this->token = md5(random_bytes(64));
     }
 
-    /**
-     * @return \LMS\Flogin\Domain\Model\User
-     */
     public function getUser(): User
     {
         return $this->user;
@@ -65,8 +59,6 @@ abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractV
 
     /**
      * Build the URL that associated to current request action
-     *
-     * @return string
      */
     abstract public function getUrl(): string;
 
@@ -78,8 +70,6 @@ abstract class AbstractRequest extends \TYPO3\CMS\Extbase\DomainObject\AbstractV
 
     /**
      * Every request link has a lifetime.
-     *
-     * @return int
      */
     abstract public function getExpires(): int;
 }

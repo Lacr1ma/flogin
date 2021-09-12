@@ -7,7 +7,7 @@ suites:
       enabled:
         - REST:
             depends: PhpBrowser
-            url: https://login.ddev.site/api/
+            url: http://login.ddev.site/api/
             part: Json
 
 extensions:

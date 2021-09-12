@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Mvc\View;

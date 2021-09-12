@@ -26,17 +26,16 @@ namespace LMS\Flogin\Slot\Notification;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Notification\AbstractNotificationSender;
 use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetPasswordNotification extends \LMS\Flogin\Notification\AbstractNotificationSender
+class ResetPasswordNotification extends AbstractNotificationSender
 {
     /**
      * Build the ResetPassword Template and email the user
-     *
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
      */
     public function send(ResetPasswordRequest $request): void
     {

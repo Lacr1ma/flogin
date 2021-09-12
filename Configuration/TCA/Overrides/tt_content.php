@@ -27,13 +27,13 @@ declare(strict_types = 1);
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 ExtensionUtility::registerPlugin(
-    'LMS.Flogin',
+    'Flogin',
     'Flogin',
     'LMS: Login Form'
 );
 
 ExtensionUtility::registerPlugin(
-    'LMS.Flogin',
+    'Flogin',
     'LoginApi',
     'LMS: Login Form (AJAX)'
 );

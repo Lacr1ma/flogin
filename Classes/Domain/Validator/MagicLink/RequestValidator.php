@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Validator\MagicLink;
@@ -26,32 +29,38 @@ namespace LMS\Flogin\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Domain\Repository\LinkRepository, Support\Redirection\UserRouter};
+use TYPO3\CMS\Core\Http\PropagateResponseException;
+use LMS\Flogin\{Domain\Repository\LinkRepository, Domain\Validator\DefaultValidator, Support\Redirection\UserRouter};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class RequestValidator extends \LMS\Flogin\Domain\Validator\DefaultValidator
+class RequestValidator extends DefaultValidator
 {
     /**
-     * Valid when magic link does exist in the database and it's not expired yet
+     * Valid when magic link does exist in the database, and it's not expired yet
      *
      * @psalm-suppress PossiblyNullReference
      * @psalm-suppress MoreSpecificImplementedParamType
      *
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $loginRequest
+     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $value
+     * @throws PropagateResponseException
      */
-    protected function isValid($loginRequest): void
+    protected function isValid($value): void
     {
-        $magicLink = LinkRepository::make()->find($loginRequest->getToken());
+        $magicLink = LinkRepository::make()->find($value->getToken());
 
         if ($magicLink === null) {
-            UserRouter::redirectToTokenNotFoundPage();
+            throw new PropagateResponseException(
+                UserRouter::redirectToTokenNotFoundPage()
+            );
         }
 
         if ($magicLink->isExpired()) {
-            UserRouter::redirectToTokenExpiredPage();
+            throw new PropagateResponseException(
+                UserRouter::redirectToTokenExpiredPage()
+            );
         }
 
         $magicLink->delete();

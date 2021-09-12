@@ -33,7 +33,7 @@ use LMS\Flogin\Support\Domain\Property\PasswordConfirmation;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetPasswordRequest extends \LMS\Flogin\Domain\Model\Request\AbstractRequest
+class ResetPasswordRequest extends AbstractRequest
 {
     use PasswordConfirmation;
 

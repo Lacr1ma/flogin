@@ -27,7 +27,7 @@ namespace LMS\Flogin\Event;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\User;
-use LMS\Facade\Extbase\Dispatcher;
+use LMS\Facade\Extbase\PsrDispatcher;
 use LMS\Flogin\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
 
 /**
@@ -35,96 +35,60 @@ use LMS\Flogin\Domain\Model\Request\{MagicLinkRequest, ResetPasswordRequest};
  */
 trait SessionEvent
 {
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user
-     * @param string                       $plainPassword
-     * @param bool                         $remember
-     */
-    public function fireLoginAttemptEvent(User $user, string $plainPassword, bool $remember): void
+    public function fireLoginAttemptEvent(User $user, string $plainPassword, bool $remember = false): void
     {
         $args = [$user, $plainPassword, $remember];
 
-        Dispatcher::emit(SessionEvent::class, 'loginAttempt', $args);
+        PsrDispatcher::emit(new LoginAttemptEvent(...$args));
     }
 
-    /**
-     * @param string $username
-     */
     public function fireLoginAttemptFailedEvent(string $username): void
     {
-        Dispatcher::emit(SessionEvent::class, 'loginAttemptFailed', [$username]);
+        PsrDispatcher::emit(new LoginAttemptFailedEvent($username));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user
-     */
     public function fireLoginFailedInCoreEvent(User $user): void
     {
-        Dispatcher::emit(SessionEvent::class, 'loginAttemptFailedInCore', [$user]);
+        PsrDispatcher::emit(new LoginAttemptFailedInCoreEvent($user));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user
-     * @param bool                         $remember
-     */
     public function fireLoginSucceededEvent(User $user, bool $remember): void
     {
-        Dispatcher::emit(SessionEvent::class, 'loginSuccess', [$user, $remember]);
+        PsrDispatcher::emit(new LoginSuccessEvent($user, $remember));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user
-     */
     public function fireLogoutSucceededEvent(User $user): void
     {
-        Dispatcher::emit(SessionEvent::class, 'logoutSuccess', [$user]);
+        PsrDispatcher::emit(new LogoutSuccessEvent($user));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user
-     */
     public function fireLoginLockoutEvent(User $user): void
     {
-        Dispatcher::emit(SessionEvent::class, 'lockout', [$user]);
+        PsrDispatcher::emit(new LockoutEvent($user));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
-     */
     public function firePasswordResetEvent(ResetPasswordRequest $request): void
     {
-        Dispatcher::emit(SessionEvent::class, 'passwordHasBeenReset', [$request]);
+        PsrDispatcher::emit(new PasswordHasBeenResetEvent($request));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\User $user $user
-     */
     public function fireLoginUnlockedEvent(User $user): void
     {
-        Dispatcher::emit(SessionEvent::class, 'userUnlocked', [$user]);
+        PsrDispatcher::emit(new UserUnlockedEvent($user));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\Request\ResetPasswordRequest $request
-     */
     public function fireSendResetLinkRequestEvent(ResetPasswordRequest $request): void
     {
-        Dispatcher::emit(SessionEvent::class, 'sendResetLinkRequest', [$request]);
+        PsrDispatcher::emit(new SendResetLinkRequestEvent($request));
     }
 
-    /**
-     * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $request
-     */
     public function fireSendMagicLinkEvent(MagicLinkRequest $request): void
     {
-        Dispatcher::emit(SessionEvent::class, 'sendMagicLinkRequest', [$request]);
+        PsrDispatcher::emit(new SendMagicLinkRequestEvent($request));
     }
 
-    /**
-     * @param string $token
-     */
     public function fireMagicLinkAppliedEvent(string $token): void
     {
-        Dispatcher::emit(SessionEvent::class, 'magicLinkApplied', [$token]);
+        PsrDispatcher::emit(new MagicLinkAppliedEvent($token));
     }
 }

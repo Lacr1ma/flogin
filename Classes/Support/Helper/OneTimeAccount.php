@@ -27,7 +27,6 @@ namespace LMS\Flogin\Support\Helper;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Facade\StaticCreator;
 use LMS\Flogin\{Hash\Hash, Support\TypoScript};
 
 /**
@@ -35,14 +34,15 @@ use LMS\Flogin\{Hash\Hash, Support\TypoScript};
  */
 class OneTimeAccount
 {
-    use StaticCreator;
+    protected Hash $hash;
+
+    public function __construct(Hash $hash)
+    {
+        $this->hash = $hash;
+    }
 
     /**
      * Create one time account based on hash
-     *
-     * @param string $hash
-     *
-     * @return array
      */
     public function getCombinedProperties(string $hash): array
     {
@@ -52,35 +52,25 @@ class OneTimeAccount
         );
     }
 
-    /**
-     * @param string $hash
-     *
-     * @return array
-     */
     public function getProperties(string $hash): array
     {
         return [
             'username' => $hash,
-            'email' => "{$hash}@example.com",
-            'password' => Hash::encryptPassword($hash),
-            'endtime' => $this->calculateTerminationTime()
+            'email' => "$hash@example.com",
+            'endtime' => $this->calculateTerminationTime(),
+            'password' => $this->hash->encryptPassword($hash)
         ];
     }
 
-    /**
-     * @return int
-     */
     protected function calculateTerminationTime(): int
     {
         $lifeTime = $this->accountSettings()['lifetimeInMinutes'];
 
-        return Carbon::now()->addMinutes($lifeTime)->timestamp;
+        return (int)Carbon::now()->addMinutes($lifeTime)->timestamp;
     }
 
     /**
      * Retrieve one time account related settings
-     *
-     * @return array
      */
     protected function accountSettings(): array
     {

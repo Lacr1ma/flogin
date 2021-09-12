@@ -26,29 +26,36 @@ namespace LMS\Flogin\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use LMS\Flogin\Support\Controller\Backend\CreatesOneTimeAccount;
 use LMS\Flogin\Domain\{Model\Demand, Repository\UserRepository};
-use TYPO3\CMS\Core\Pagination\SimplePagination;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ManagementController extends ActionController
 {
     use CreatesOneTimeAccount;
 
+    protected UserRepository $userRepository;
+
+    public function injectUserRepository(UserRepository $repository)
+    {
+        $this->userRepository = $repository;
+    }
+
     /**
      * Render table with existing FE users
-     *
-     * @param \LMS\Flogin\Domain\Model\Demand|null $demand
      */
-    public function indexAction(Demand $demand = null, int $currentPage = 1): void
+    public function indexAction(Demand $demand = null, int $currentPage = 1): ResponseInterface
     {
         $demand = $demand ?: new Demand();
 
-        $users = UserRepository::make()->findDemanded($demand);
+        $users = $this->userRepository->findDemanded($demand);
 
         $paginator = new QueryResultPaginator($users, $currentPage, 3);
         $pagination = new SimplePagination($paginator);
@@ -58,6 +65,8 @@ class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
             'paginator' => $paginator,
             'pagination' => $pagination
         ]);
+
+        return $this->htmlResponse();
     }
 
     /**
@@ -65,13 +74,15 @@ class ManagementController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
      *
      * @psalm-suppress UndefinedMethod
      */
-    public function createOneTimeAccountHashAction(): void
+    public function createOneTimeAccountHashAction(): ResponseInterface
     {
         $hash = $this->createOneTimeHash();
 
         $uri = $this->request->getUri();
         $baseUrl = "{$uri->getScheme()}://{$uri->getHost()}";
 
-        $this->view->assign("url", "{$baseUrl}api/login/users/one-time-account/{$hash}?no_cache=1");
+        $this->view->assign("url", "$baseUrl/api/login/users/one-time-account/$hash?no_cache=1");
+
+        return $this->htmlResponse();
     }
 }

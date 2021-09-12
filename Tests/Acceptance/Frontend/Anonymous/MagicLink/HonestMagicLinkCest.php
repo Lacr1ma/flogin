@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnused */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\MagicLink;
@@ -33,9 +35,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class HonestMagicLinkCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_form_available(AcceptanceTester $I)
     {
         $I->wantTo('I am on <login> page, when i click on *login by magic link*, I wanna see <magic link form>.');
@@ -43,9 +42,6 @@ class HonestMagicLinkCest
         $I->amOnMagicLinkPage();
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_form_contains_email(AcceptanceTester $I)
     {
         $I->wantTo('I expect to see <email> field in <magic link form>.');
@@ -56,9 +52,6 @@ class HonestMagicLinkCest
         $I->seeElement('#send-magic-link');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_could_be_sent(AcceptanceTester $I)
     {
         $I->wantTo('I expect to receive the <magic link> after I submit <magic link form> with my email.');
@@ -73,9 +66,6 @@ class HonestMagicLinkCest
         $I->seeInOpenedEmailSubject('Sign in via magic link');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_email_contains_proper_structure(AcceptanceTester $I)
     {
         $I->wantTo('When I open <magic link> notification, I expect to see the <sign in> link inside');
@@ -92,9 +82,6 @@ class HonestMagicLinkCest
         $I->seeInOpenedEmailRecipients('dummy@example.com');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function redirect_after_magic_link_submit_is_correct(AcceptanceTester $I)
     {
         $I->wantTo('When I submit <magic link form>, I expect to be redirected to a proper page.');
@@ -106,9 +93,6 @@ class HonestMagicLinkCest
         $I->seeInTitle('Email sent');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function magic_link_in_email_works(AcceptanceTester $I)
     {
         $I->wantTo('When I follow <magic link> from notification, I expect to be logged in and be redirected to <afterLoginPage>.');

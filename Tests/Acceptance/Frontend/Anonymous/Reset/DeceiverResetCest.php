@@ -26,7 +26,6 @@ namespace LMS\Flogin\Tests\Acceptance\Frontend\Anonymous\Reset;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Codeception\Util\HttpCode;
 use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
 
 /**
@@ -34,9 +33,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class DeceiverResetCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     public function redirect_token_not_found(AcceptanceTester $I)
     {
         $I->wantTo('I wanna be redirect to a <tokenDoesNotExist> page when token already deleted.');
@@ -57,9 +53,6 @@ class DeceiverResetCest
         $I->seeInTitle('Token does not exist');
     }
 
-    /**
-     * @param AcceptanceTester $I
-     */
     public function reset_password_should_match(AcceptanceTester $I)
     {
         $I->wantTo('I wanna see an error, when my confirmation password invalid.');

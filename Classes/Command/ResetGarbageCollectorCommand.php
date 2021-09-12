@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUndefinedMethodInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Command;
@@ -26,14 +28,23 @@ namespace LMS\Flogin\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\Resets;
-use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
+use LMS\Flogin\Domain\Repository\ResetsRepository;
+use Symfony\Component\Console\{Command\Command, Input\InputInterface, Output\OutputInterface};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetGarbageCollectorCommand extends \Symfony\Component\Console\Command\Command
+class ResetGarbageCollectorCommand extends Command
 {
+    private ResetsRepository $passwordRepository;
+
+    public function __construct(ResetsRepository $repository)
+    {
+        parent::__construct();
+
+        $this->passwordRepository = $repository;
+    }
+
     /**
      * @noinspection PhpMissingParentCallCommonInspection
      */
@@ -49,7 +60,7 @@ class ResetGarbageCollectorCommand extends \Symfony\Component\Console\Command\Co
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        Resets::repository()->findExpired()->map->delete();
+        $this->passwordRepository->findExpired()->map->delete();
 
         return 0;
     }

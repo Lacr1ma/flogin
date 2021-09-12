@@ -27,16 +27,15 @@ namespace LMS\Flogin\Slot\Notification;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Notification\AbstractNotificationSender;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class PasswordChangedNotification extends \LMS\Flogin\Notification\AbstractNotificationSender
+class PasswordChangedNotification extends AbstractNotificationSender
 {
     /**
      * Build the PasswordChanged Template and email the user
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
      */
     public function send(User $user): void
     {

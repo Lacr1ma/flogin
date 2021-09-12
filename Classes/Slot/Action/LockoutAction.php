@@ -26,7 +26,7 @@ namespace LMS\Flogin\Slot\Action;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Model\User;
+use LMS\Flogin\Event\LockoutEvent;
 use LMS\Flogin\Slot\Notification\LockoutNotification;
 
 /**
@@ -34,19 +34,26 @@ use LMS\Flogin\Slot\Notification\LockoutNotification;
  */
 class LockoutAction
 {
+    protected LockoutNotification $notification;
+
+    public function __construct(LockoutNotification $notification)
+    {
+        $this->notification = $notification;
+    }
+
     /**
      * User has been locked out. Notify user if no notification had been sent.
-     *
-     * @param \LMS\Flogin\Domain\Model\User $user
      */
-    public function execute(User $user): void
+    public function __invoke(LockoutEvent $e): void
     {
+        $user = $e->receiver();
+
         if ($user->isLocked()) {
             return;
         }
 
         $user->lock();
 
-        LockoutNotification::make()->send($user);
+        $this->notification->send($user);
     }
 }

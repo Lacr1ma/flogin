@@ -27,6 +27,7 @@ namespace LMS\Flogin\Support\Redirection;
  * ************************************************************* */
 
 use LMS\Facade\Extbase\Redirect;
+use TYPO3\CMS\Core\Http\Response;
 use LMS\Flogin\Support\TypoScript;
 
 /**
@@ -35,109 +36,57 @@ use LMS\Flogin\Support\TypoScript;
 class UserRouter
 {
     /**
-     * Redirect user to <afterLoginPage>
-     */
-    public static function redirectToAfterLoginPage(): void
-    {
-        $pid = (int)self::redirectSettings()['afterLoginPage'];
-
-        Redirect::toPage($pid);
-    }
-
-    /**
      * Redirect user to <alreadyAuthenticatedPage>
      */
-    public static function redirectToAlreadyAuthenticatedPage(): void
+    public static function redirectToAlreadyAuthenticatedPage(): Response
     {
         $pid = (int)self::redirectSettings()['alreadyAuthenticatedPage'];
 
-        Redirect::toPage($pid);
-    }
-
-    /**
-     * Redirect user to <afterLogoutPage>
-     */
-    public static function redirectToAfterLogoutPage(): void
-    {
-        $pid = (int)self::redirectSettings()['afterLogoutPage'];
-
-        Redirect::toPage($pid);
-    }
-
-    /**
-     * Redirect user to <afterForgotPasswordNotificationSentPage>
-     */
-    public static function redirectToAfterForgotPasswordNotificationSentPage(): void
-    {
-        $pid = (int)self::redirectSettings()['afterForgotPasswordNotificationSentPage'];
-
-        Redirect::toPage($pid);
-    }
-
-    /**
-     * Redirect user to <afterResetPasswordFormSubmittedPage>
-     */
-    public static function redirectToAfterResetPasswordFormSubmittedPage(): void
-    {
-        $pid = (int)self::redirectSettings()['afterResetPasswordFormSubmittedPage'];
-
-        Redirect::toPage($pid);
-    }
-
-    /**
-     * Redirect user to <afterMagicLinkNotificationSentPage>
-     */
-    public static function redirectToAfterMagicLinkNotificationSentPage(): void
-    {
-        $pid = (int)self::redirectSettings()['afterMagicLinkNotificationSentPage'];
-
-        Redirect::toPage($pid);
+        return Redirect::toPage($pid);
     }
 
     /**
      * Redirects user to <whenTokenExpiredPage>
      */
-    public static function redirectToTokenExpiredPage(): void
+    public static function redirectToTokenExpiredPage(): Response
     {
         $pid = (int)self::redirectSettings()['error.']['whenTokenExpiredPage'];
 
-        Redirect::toPage($pid);
+        return Redirect::toPage($pid);
     }
 
     /**
      * Redirects user to <whenTokenNotFoundPage>
      */
-    public static function redirectToTokenNotFoundPage(): void
+    public static function redirectToTokenNotFoundPage(): Response
     {
         $pid = (int)self::redirectSettings()['error.']['whenTokenNotFoundPage'];
 
-        Redirect::toPage($pid);
+        return Redirect::toPage($pid);
     }
 
     /**
      * Redirect user to <whenLockedPage>
      */
-    public static function redirectToLockedPage(): void
+    public static function redirectToLockedPage(): Response
     {
         $pid = (int)self::redirectSettings()['error.']['whenLockedPage'];
 
-        Redirect::toPage($pid);
+        return Redirect::toPage($pid);
     }
 
     /**
      * Redirect user to <afterUnlockedPage>
      */
-    public static function redirectToUnlockedPage(): void
+    public static function redirectToUnlockedPage(): Response
     {
         $pid = (int)self::redirectSettings()['afterUnlockedPage'];
 
-        Redirect::toPage($pid);
+        return Redirect::toPage($pid);
     }
 
     /**
-     * Retrieve TypoScript settings related to redirect area
-     *
-     * @return array
+     * Retrieve TypoScript settings related to redirect targets
      */
     private static function redirectSettings(): array
     {

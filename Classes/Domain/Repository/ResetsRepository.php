@@ -32,7 +32,7 @@ use LMS\Flogin\Domain\Model\Resets;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetsRepository extends \LMS\Flogin\Domain\Repository\AbstractTokenRepository
+class ResetsRepository extends AbstractTokenRepository
 {
     /**
      * Find reset link by it's token

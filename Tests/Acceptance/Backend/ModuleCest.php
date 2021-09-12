@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Backend;
@@ -33,21 +36,11 @@ use LMS\Flogin\Tests\Acceptance\Support\BackendTester;
  */
 class ModuleCest
 {
-    /**
-     * @param BackendTester $I
-     */
     public function _before(BackendTester $I)
     {
-        $I->useExistingSession('admin');
-
-        $I->click('LMS: Login', '#web_FloginLogin');
-
-        $I->switchToContentFrame();
+        $I->open();
     }
 
-    /**
-     * @param BackendTester $I
-     */
     public function create_one_time_account_copy_to_clipboard(BackendTester $I)
     {
         $I->wantTo('I want to create a temporary frontend account using <copy_to_clipboard> button.');
@@ -59,9 +52,6 @@ class ModuleCest
         $I->waitForElement('#username', 5);
     }
 
-    /**
-     * @param BackendTester $I
-     */
     public function simulate_user_session(BackendTester $I)
     {
         $I->wantTo('I can be logged in as a selected user in the frontend area.');
@@ -72,9 +62,6 @@ class ModuleCest
         $I->canSeeElement('#logout-link');
     }
 
-    /**
-     * @param BackendTester $I
-     */
     public function create_one_time_account(BackendTester $I)
     {
         $I->wantTo('I want to create a temporary frontend account.');
@@ -88,9 +75,6 @@ class ModuleCest
         $I->seeInTitle('Catalog');
     }
 
-    /**
-     * @param BackendTester $I
-     */
     public function terminate_user_session(BackendTester $I)
     {
         $I->wantTo('I can erase all existing sessions associated with selected user.');

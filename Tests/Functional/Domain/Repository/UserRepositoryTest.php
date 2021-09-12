@@ -26,12 +26,13 @@ namespace LMS\Flogin\Tests\Functional\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\UserRepository;
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
  */
-class UserRepositoryTest extends \LMS\Flogin\Tests\Functional\BaseTest
+class UserRepositoryTest extends BaseTest
 {
     /**
      * @test
@@ -59,18 +60,6 @@ class UserRepositoryTest extends \LMS\Flogin\Tests\Functional\BaseTest
     public function current_user_returns_null_when_user_is_not_logged_in(): void
     {
         $this->assertNull(
-            UserRepository::make()->current()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function current_user_can_be_retrieved(): void
-    {
-        $GLOBALS['TSFE']->fe_user->user['uid'] = 1;
-
-        $this->assertNotNull(
             UserRepository::make()->current()
         );
     }

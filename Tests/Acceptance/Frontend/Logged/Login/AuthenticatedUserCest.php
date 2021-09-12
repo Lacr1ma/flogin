@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnused */
+/** @noinspection PhpRedundantOptionalArgumentInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Tests\Acceptance\Frontend\Logged\Login;
@@ -33,9 +36,6 @@ use LMS\Flogin\Tests\Acceptance\Support\AcceptanceTester;
  */
 class AuthenticatedUserCest
 {
-    /**
-     * @param AcceptanceTester $I
-     */
     protected function login_and_go_to_logout_page(AcceptanceTester $I)
     {
         $I->amLoggedInAs('dummy');
@@ -43,7 +43,6 @@ class AuthenticatedUserCest
     }
 
     /**
-     * @param AcceptanceTester $I
      * @before login_and_go_to_logout_page
      */
     protected function logout(AcceptanceTester $I)
@@ -52,7 +51,6 @@ class AuthenticatedUserCest
     }
 
     /**
-     * @param AcceptanceTester $I
      * @before login_and_go_to_logout_page
      */
     public function logout_form_rendered(AcceptanceTester $I)
@@ -63,7 +61,6 @@ class AuthenticatedUserCest
     }
 
     /**
-     * @param AcceptanceTester $I
      * @before logout
      */
     public function logout_redirect(AcceptanceTester $I)
@@ -74,7 +71,6 @@ class AuthenticatedUserCest
     }
 
     /**
-     * @param AcceptanceTester $I
      * @before logout
      */
     public function login_possible(AcceptanceTester $I)

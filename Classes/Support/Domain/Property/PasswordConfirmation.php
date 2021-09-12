@@ -33,32 +33,20 @@ trait PasswordConfirmation
 {
     use Password;
 
-    /**
-     * @var string
-     */
-    protected $passwordConfirmation = '';
+    protected string $passwordConfirmation = '';
 
-    /**
-     * @return string
-     */
     public function getPasswordConfirmation(): string
     {
         return $this->passwordConfirmation;
     }
 
-    /**
-     * @param string $password
-     */
     public function setPasswordConfirmation(string $password): void
     {
         $this->passwordConfirmation = $password;
     }
 
-    /**
-     * @return bool
-     */
     public function isConfirmationMatching(): bool
     {
-        return (bool)strlen($this->password) && $this->password === $this->passwordConfirmation;
+        return strlen($this->password) && $this->password === $this->passwordConfirmation;
     }
 }
