@@ -1,20 +1,44 @@
 <?php
 
-$loader = new Dotenv\Dotenv(__DIR__ . '/../../', '.env.dist');
-$loader->overload();
+/**
+ * #ddev-generated: Automatically generated TYPO3 AdditionalConfiguration.php file.
+ * ddev manages this file and may delete or overwrite the file unless this comment is removed.
+ * It is recommended that you leave this file alone.
+ */
 
-// Database Credentials
-$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] = getenv('TYPO3_DB_CONNECTIONS_DEFAULT_HOST');
-$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['port'] = getenv('TYPO3_DB_CONNECTIONS_DEFAULT_PORT');
-$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] = getenv('TYPO3_DB_CONNECTIONS_DEFAULT_USER');
-$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] = getenv('TYPO3_DB_CONNECTIONS_DEFAULT_PASS');
-$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] = getenv('TYPO3_DB_CONNECTIONS_DEFAULT_NAME');
-// Graphics
-$GLOBALS['TYPO3_CONF_VARS']['GFX']['processor'] = getenv('TYPO3_GFX_PROCESSOR');
-$GLOBALS['TYPO3_CONF_VARS']['GFX']['processor_path'] = getenv('TYPO3_GFX_PROCESSOR_PATH');
-$GLOBALS['TYPO3_CONF_VARS']['GFX']['processor_path_lzw'] = getenv('TYPO3_GFX_PROCESSOR_PATH_LZW');
-// Mail
-$GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport'] = getenv('TYPO3_MAIL_TRANSPORT');
-$GLOBALS['TYPO3_CONF_VARS']['MAIL']['transport_smtp_server'] = getenv('TYPO3_MAIL_TRANSPORT_SMTP_SERVER');
-// System
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['trustedHostsPattern'] = getenv('TYPO3_TRUSTED_HOST_PATTERN');
+if (getenv('IS_DDEV_PROJECT') == 'true') {
+    $GLOBALS['TYPO3_CONF_VARS'] = array_replace_recursive(
+        $GLOBALS['TYPO3_CONF_VARS'],
+        [
+            'DB' => [
+                'Connections' => [
+                    'Default' => [
+                        'dbname' => 'db',
+                        'host' => 'db',
+                        'password' => 'db',
+                        'port' => '3306',
+                        'user' => 'db',
+                    ],
+                ],
+            ],
+            // This GFX configuration allows processing by installed ImageMagick 6
+            'GFX' => [
+                'processor' => 'ImageMagick',
+                'processor_path' => '/usr/bin/',
+                'processor_path_lzw' => '/usr/bin/',
+            ],
+            // This mail configuration sends all emails to mailhog
+            'MAIL' => [
+                'transport' => 'smtp',
+                'transport_smtp_server' => 'localhost:1025',
+            ],
+            'SYS' => [
+                'trustedHostsPattern' => '.*.*',
+                'devIPmask' => '*',
+                'displayErrors' => 1,
+            ],
+        ]
+    );
+}
+
+$GLOBALS['TYPO3_CONF_VARS']['FE']['disableRoutesAuthMiddleware'] = true;

@@ -1,17 +1,18 @@
-APIVersion: v1.13.1
 name: login
 type: typo3
 docroot: public
-php_version: "7.3"
+php_version: "7.4"
 webserver_type: nginx-fpm
 router_http_port: "80"
 router_https_port: "443"
 xdebug_enabled: false
-additional_hostnames: []
 additional_fqdns: []
-mariadb_version: "10.4"
-nfs_mount_enabled: false
-provider: default
+mariadb_version: "10.5"
+use_dns_when_possible: true
+composer_version: "2"
+web_environment:
+  - TYPO3_CONTEXT=Development
+timezone: "Europe/Berlin"
 hooks:
   post-start:
     - exec: sudo echo alias typo3=\"/var/www/html/bin/typo3\" >> ~/.bashrc && source ~/.bashrc

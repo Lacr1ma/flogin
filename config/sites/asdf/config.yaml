@@ -1,5 +1,8 @@
 rootPageId: 1
-base: '%env(SITE_INTRODUCTION_BASE)%'
+routeEnhancers:
+  ApplyRoutesCollection:
+    type: Routes
+base: 'http://login.ddev.site/'
 languages:
   -
     languageId: '0'
