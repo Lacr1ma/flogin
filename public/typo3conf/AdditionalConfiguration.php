@@ -40,5 +40,3 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
         ]
     );
 }
-
-$GLOBALS['TYPO3_CONF_VARS']['FE']['disableRoutesAuthMiddleware'] = true;
