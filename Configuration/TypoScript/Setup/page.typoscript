@@ -1,7 +1,3 @@
-page.includeJSFooterlibs {
-    login_auth = EXT:flogin/Resources/Public/JavaScript/Auth.js
-}
-
 page.inlineLanguageLabelFiles {
     login = EXT:flogin/Resources/Private/Language/locallang.xlf
 }

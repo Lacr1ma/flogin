@@ -26,19 +26,20 @@ namespace LMS\Flogin\Support\Controller\Locker;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Event\SessionEvent, Domain\Repository\UserRepository};
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use LMS\Flogin\{Domain\Repository\UserRepository, Event\UserUnlockedEvent};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 trait LockUsers
 {
-    use SessionEvent;
-
+    protected EventDispatcher $dispatcher;
     protected UserRepository $userRepository;
 
-    public function injectUserRepository(UserRepository $repository): void
+    public function injectUserRepository(UserRepository $repository, EventDispatcher $dispatcher): void
     {
+        $this->dispatcher = $dispatcher;
         $this->userRepository = $repository;
     }
 
@@ -50,7 +51,10 @@ trait LockUsers
     {
         if ($user = $this->userRepository->retrieveByEmail($email)) {
             $user->unlock();
-            $this->fireLoginUnlockedEvent($user);
+
+            $this->dispatcher->dispatch(
+                new UserUnlockedEvent($user)
+            );
         }
     }
 }

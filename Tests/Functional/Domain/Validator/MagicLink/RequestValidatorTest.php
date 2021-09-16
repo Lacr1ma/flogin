@@ -46,7 +46,7 @@ class RequestValidatorTest extends BaseTest
     public function redirect_to_token_not_found(): void
     {
         $request = new MagicLinkRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         $this->expectException(PropagateResponseException::class);
@@ -60,7 +60,7 @@ class RequestValidatorTest extends BaseTest
     public function redirect_to_token_expired(): void
     {
         $request = new MagicLinkRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         Link::create([
@@ -81,7 +81,7 @@ class RequestValidatorTest extends BaseTest
     public function link_deleted_when_request_is_valid(): void
     {
         $request = new MagicLinkRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         Link::create([
@@ -94,7 +94,7 @@ class RequestValidatorTest extends BaseTest
         (new RequestValidator())->validate($request);
 
         $this->assertNull(
-            LinkRepository::make()->find($request->getToken())
+            $this->getContainer()->get(LinkRepository::class)->find($request->getToken())
         );
     }
 }

@@ -27,20 +27,21 @@ namespace LMS\Flogin\Support\Controller\Login;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Repository\UserRepository;
-use LMS\Flogin\{Event\SessionEvent, Guard\SessionGuard};
+use LMS\Flogin\{Event\LoginAttemptEvent, Guard\SessionGuard};
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 trait AuthenticatesUsers
 {
-    use SessionEvent;
-
     protected SessionGuard $guard;
+    protected EventDispatcher $dispatcher;
     protected UserRepository $userRepository;
 
-    public function injectUsersRepository(UserRepository $repository): void
+    public function injectUsersRepository(UserRepository $repository, EventDispatcher $dispatcher): void
     {
+        $this->dispatcher = $dispatcher;
         $this->userRepository = $repository;
     }
 
@@ -57,7 +58,9 @@ trait AuthenticatesUsers
         [$username, $plainPassword] = $credentials;
 
         if ($user = $this->userRepository->retrieveByUsername($username)) {
-            $this->fireLoginAttemptEvent($user, $plainPassword, $remember);
+            $this->dispatcher->dispatch(
+                new LoginAttemptEvent($user, $plainPassword, $remember)
+            );
         }
     }
 

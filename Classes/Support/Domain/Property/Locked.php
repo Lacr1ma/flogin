@@ -28,7 +28,6 @@ namespace LMS\Flogin\Support\Domain\Property;
 
 use Carbon\Carbon;
 use LMS\Flogin\Support\TypoScript;
-use LMS\Facade\Model\Property\UpdateDate;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

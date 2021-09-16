@@ -28,7 +28,6 @@ namespace LMS\Flogin\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
 use Psr\Http\Message\ResponseInterface;
 use LMS\Flogin\Support\Controller\Login\AuthenticatesUsers;
 
@@ -59,7 +58,7 @@ class LoginApiController extends AbstractApiController
 
         $this->login([$username, $password], $remember);
 
-        $redirect = Redirect::uriFor($pid, true);
+        $redirect = $this->redirect->uriFor($pid, true);
 
         return $this->jsonResponse(
             collect(compact('redirect'))->toJson()
@@ -75,7 +74,7 @@ class LoginApiController extends AbstractApiController
 
         $this->logoff();
 
-        $redirect = Redirect::uriFor($pid, true);
+        $redirect = $this->redirect->uriFor($pid, true);
 
         return $this->jsonResponse(
             collect(compact('redirect'))->toJson()

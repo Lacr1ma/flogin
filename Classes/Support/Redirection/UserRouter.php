@@ -26,69 +26,76 @@ namespace LMS\Flogin\Support\Redirection;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
-use TYPO3\CMS\Core\Http\Response;
+use LMS\Flogin\Support\Redirect;
 use LMS\Flogin\Support\TypoScript;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class UserRouter
 {
+    protected Redirect $redirect;
+
+    public function __construct(Redirect $redirect)
+    {
+        $this->redirect = $redirect;
+    }
+
     /**
      * Redirect user to <alreadyAuthenticatedPage>
      */
-    public static function redirectToAlreadyAuthenticatedPage(): Response
+    public function redirectToAlreadyAuthenticatedPage(): ResponseInterface
     {
         $pid = (int)self::redirectSettings()['alreadyAuthenticatedPage'];
 
-        return Redirect::toPage($pid);
+        return $this->redirect->toPage($pid);
     }
 
     /**
      * Redirects user to <whenTokenExpiredPage>
      */
-    public static function redirectToTokenExpiredPage(): Response
+    public function redirectToTokenExpiredPage(): ResponseInterface
     {
         $pid = (int)self::redirectSettings()['error.']['whenTokenExpiredPage'];
 
-        return Redirect::toPage($pid);
+        return $this->redirect->toPage($pid);
     }
 
     /**
      * Redirects user to <whenTokenNotFoundPage>
      */
-    public static function redirectToTokenNotFoundPage(): Response
+    public function redirectToTokenNotFoundPage(): ResponseInterface
     {
         $pid = (int)self::redirectSettings()['error.']['whenTokenNotFoundPage'];
 
-        return Redirect::toPage($pid);
+        return $this->redirect->toPage($pid);
     }
 
     /**
      * Redirect user to <whenLockedPage>
      */
-    public static function redirectToLockedPage(): Response
+    public function redirectToLockedPage(): ResponseInterface
     {
         $pid = (int)self::redirectSettings()['error.']['whenLockedPage'];
 
-        return Redirect::toPage($pid);
+        return $this->redirect->toPage($pid);
     }
 
     /**
      * Redirect user to <afterUnlockedPage>
      */
-    public static function redirectToUnlockedPage(): Response
+    public function redirectToUnlockedPage(): ResponseInterface
     {
         $pid = (int)self::redirectSettings()['afterUnlockedPage'];
 
-        return Redirect::toPage($pid);
+        return $this->redirect->toPage($pid);
     }
 
     /**
      * Retrieve TypoScript settings related to redirect targets
      */
-    private static function redirectSettings(): array
+    private function redirectSettings(): array
     {
         return TypoScript::getSettings()['redirect.'];
     }

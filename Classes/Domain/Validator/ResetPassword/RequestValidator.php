@@ -28,9 +28,9 @@ namespace LMS\Flogin\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use LMS\Flogin\{Domain\Model\Request\ResetPasswordRequest,
     Domain\Validator\DefaultValidator,
-    Support\Redirection\UserRouter,
     Domain\Repository\ResetsRepository};
 use TYPO3\CMS\Core\Http\PropagateResponseException;
 
@@ -51,17 +51,19 @@ class RequestValidator extends DefaultValidator
      */
     protected function isValid($value): void
     {
-        $resetToken = ResetsRepository::make()->find($value->getToken());
+        $resetsRepository = GeneralUtility::makeInstance(ResetsRepository::class);
+
+        $resetToken = $resetsRepository->find($value->getToken());
 
         if ($resetToken === null) {
             throw new PropagateResponseException(
-                UserRouter::redirectToTokenNotFoundPage()
+                $this->router()->redirectToTokenNotFoundPage()
             );
         }
 
         if ($resetToken->isExpired()) {
             throw new PropagateResponseException(
-                UserRouter::redirectToTokenExpiredPage()
+                $this->router()->redirectToTokenExpiredPage()
             );
         }
     }

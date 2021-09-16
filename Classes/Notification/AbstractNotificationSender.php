@@ -29,7 +29,7 @@ namespace LMS\Flogin\Notification;
 use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Mail\MailMessage;
-use LMS\Facade\Extbase\View\HtmlView;
+use LMS\Flogin\Support\Helper\HtmlView;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;

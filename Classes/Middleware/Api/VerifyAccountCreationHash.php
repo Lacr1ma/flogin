@@ -25,10 +25,11 @@ namespace LMS\Flogin\Middleware\Api;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
-
-use LMS\Facade\Extbase\Registry;
+use LMS\Flogin\Support\Registry;
 use LMS\Flogin\Support\TypoScript;
 use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Registry as CoreRegistry;
 use LMS\Routes\Middleware\Api\AbstractRouteMiddleware;
 
 /**
@@ -46,7 +47,7 @@ class VerifyAccountCreationHash extends AbstractRouteMiddleware
     {
         $hash = $this->getRequest()->getQueryParams()['hash'];
 
-        if (Registry::contains('tx_flogin_hash', $hash)) {
+        if ($this->registry()->contains('tx_flogin_hash', $hash)) {
             return;
         }
 
@@ -68,5 +69,12 @@ class VerifyAccountCreationHash extends AbstractRouteMiddleware
     private function hashErrorPage(): int
     {
         return (int)TypoScript::getSettings()['redirect.']['error.']['whenOneTimeAccountHashNotFoundPage'];
+    }
+
+    private function registry(): Registry
+    {
+        $coreRegistry = GeneralUtility::makeInstance(CoreRegistry::class);
+
+        return GeneralUtility::makeInstance(Registry::class, $coreRegistry);
     }
 }

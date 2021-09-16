@@ -28,17 +28,21 @@ namespace LMS\Flogin\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Model\AbstractUser;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use LMS\Flogin\Support\Domain\Property\Email;
+use LMS\Flogin\Support\Domain\Property\Endtime;
+use LMS\Flogin\Support\Domain\Property\IsOnline;
+use LMS\Flogin\Support\Domain\Property\Password;
+use LMS\Flogin\Support\Domain\Property\Username;
 use LMS\Flogin\Support\Domain\Action\User\{UrlManagement, Lockable};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class User extends AbstractUser
+class User extends AbstractModel
 {
-    use Lockable, UrlManagement;
+    use Endtime, IsOnline, Email, Password, Username, Lockable, UrlManagement;
 
     /**
      * Create new Reset Password Request and process it

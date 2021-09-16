@@ -60,8 +60,10 @@ class MagicLinksGarbageCollectorCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->linkRepository->findExpired()->map->delete();
+        foreach ($this->linkRepository->findExpired() as $expiredPasswordRequest) {
+            $expiredPasswordRequest->delete();
+        }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

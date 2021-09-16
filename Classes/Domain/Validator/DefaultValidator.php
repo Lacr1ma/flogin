@@ -28,7 +28,13 @@ namespace LMS\Flogin\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Support\Redirect;
+use TYPO3\CMS\Core\Http\ResponseFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Symfony\Component\HttpFoundation\Request;
+use LMS\Flogin\Support\Redirection\UserRouter;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
 
@@ -79,7 +85,9 @@ abstract class DefaultValidator extends AbstractValidator
      */
     protected function findRequestAssociatedUser(): ?User
     {
-        return UserRepository::make()->retrieveByUsername(
+        $userRepository = GeneralUtility::makeInstance(UserRepository::class);
+
+        return $userRepository->retrieveByUsername(
             $this->getInputUserName()
         );
     }
@@ -94,5 +102,20 @@ abstract class DefaultValidator extends AbstractValidator
         $accepts = collect(Request::createFromGlobals()->getAcceptableContentTypes());
 
         return $accepts->contains('application/json');
+    }
+
+    protected function dispatcher(): EventDispatcher
+    {
+        return GeneralUtility::makeInstance(EventDispatcher::class);
+    }
+
+    protected function router(): UserRouter
+    {
+        $uri = GeneralUtility::makeInstance(UriBuilder::class);
+        $factory = GeneralUtility::makeInstance(ResponseFactory::class);
+
+        $redirect = GeneralUtility::makeInstance(Redirect::class, $factory, $uri);
+
+        return GeneralUtility::makeInstance(UserRouter::class, $redirect);
     }
 }

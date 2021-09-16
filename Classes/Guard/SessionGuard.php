@@ -26,19 +26,24 @@ namespace LMS\Flogin\Guard;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Domain\Model\User, Domain\Repository\UserRepository, Event\SessionEvent};
+use LMS\Flogin\{Domain\Model\User,
+    Domain\Repository\UserRepository,
+    Event\LoginAttemptFailedInCoreEvent,
+    Event\LoginSuccessEvent,
+    Event\LogoutSuccessEvent};
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class SessionGuard
 {
-    use SessionEvent;
-
+    protected EventDispatcher $dispatcher;
     protected UserRepository $userRepository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, EventDispatcher $dispatcher)
     {
+        $this->dispatcher = $dispatcher;
         $this->userRepository = $repository;
     }
 
@@ -50,11 +55,15 @@ class SessionGuard
         $this->startCoreLogin($user->getUsername(), $plainPassword, $remember);
 
         if (!$GLOBALS['TSFE']->fe_user->loginSessionStarted) {
-            $this->fireLoginFailedInCoreEvent($user);
+            $this->dispatcher->dispatch(
+                new LoginAttemptFailedInCoreEvent($user)
+            );
             return;
         }
 
-        $this->fireLoginSucceededEvent($user, $remember);
+        $this->dispatcher->dispatch(
+            new LoginSuccessEvent($user, $remember)
+        );
     }
 
     /**
@@ -62,11 +71,15 @@ class SessionGuard
      */
     public function logoff(): void
     {
-        $user = $this->userRepository->current();
+        if (!$user = $this->userRepository->current()) {
+            return;
+        }
 
         $GLOBALS['TSFE']->fe_user->logoff();
 
-        $user && $this->fireLogoutSucceededEvent($user);
+        $this->dispatcher->dispatch(
+            new LogoutSuccessEvent($user)
+        );
     }
 
     /**

@@ -44,7 +44,7 @@ class RequestValidatorTest extends BaseTest
     public function pass_when_link_is_valid(): void
     {
         $request = new ResetPasswordRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         Resets::create([
@@ -65,7 +65,7 @@ class RequestValidatorTest extends BaseTest
     public function redirect_to_token_not_found(): void
     {
         $request = new ResetPasswordRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         $this->expectException(Exception::class);
@@ -79,7 +79,7 @@ class RequestValidatorTest extends BaseTest
     public function redirect_to_token_expired(): void
     {
         $request = new ResetPasswordRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         Resets::create([

@@ -54,7 +54,7 @@ class ResetsRepositoryTest extends BaseTest
     public function reset_password_link_can_be_found(): void
     {
         $this->assertNotNull(
-            ResetsRepository::make()->findExpired()
+            $this->getContainer()->get(ResetsRepository::class)->findExpired()
         );
     }
 
@@ -64,7 +64,7 @@ class ResetsRepositoryTest extends BaseTest
     public function exist_return_true_when_reset_password_link_persisted(): void
     {
         $this->assertTrue(
-            ResetsRepository::make()->exists('secret')
+            $this->getContainer()->get(ResetsRepository::class)->exists('secret')
         );
     }
 
@@ -74,7 +74,7 @@ class ResetsRepositoryTest extends BaseTest
     public function exist_return_false_when_reset_password_link_does_not_exist(): void
     {
         $this->assertFalse(
-            ResetsRepository::make()->exists('invalid')
+            $this->getContainer()->get(ResetsRepository::class)->exists('invalid')
         );
     }
 
@@ -84,7 +84,7 @@ class ResetsRepositoryTest extends BaseTest
     public function find_returns_null_when_reset_password_link_is_not_found(): void
     {
         $this->assertNull(
-            ResetsRepository::make()->find('invalid')
+            $this->getContainer()->get(ResetsRepository::class)->find('invalid')
         );
     }
 
@@ -94,18 +94,7 @@ class ResetsRepositoryTest extends BaseTest
     public function magic_link_can_be_found(): void
     {
         $this->assertNotEmpty(
-            ResetsRepository::make()->find('secret')
+            $this->getContainer()->get(ResetsRepository::class)->find('secret')
         );
-    }
-
-    /**
-     * @test
-     */
-    public function extension_key_should_be_related_to_the_correct_scope(): void
-    {
-        $testMethod = new \ReflectionMethod(ResetsRepository::class, 'getExtensionKey');
-        $testMethod->setAccessible(true);
-
-        $this->assertSame('tx_flogin', $testMethod->invoke(ResetsRepository::make()));
     }
 }

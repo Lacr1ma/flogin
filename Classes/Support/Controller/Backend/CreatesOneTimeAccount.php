@@ -28,7 +28,7 @@ namespace LMS\Flogin\Support\Controller\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Registry;
+use LMS\Flogin\Support\Registry;
 use LMS\Flogin\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard};
 
 /**
@@ -36,6 +36,7 @@ use LMS\Flogin\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionG
  */
 trait CreatesOneTimeAccount
 {
+    protected Registry $registry;
     protected SessionGuard $guard;
     protected OneTimeAccount $oneTimeAccount;
 
@@ -49,6 +50,11 @@ trait CreatesOneTimeAccount
         $this->guard = $guard;
     }
 
+    public function injectRegistry(Registry $registry): void
+    {
+        $this->registry = $registry;
+    }
+
     /**
      * Create one time account based on TypoScript settings
      *
@@ -56,7 +62,7 @@ trait CreatesOneTimeAccount
      */
     public function createTemporaryFrontendAccount(string $hash): User
     {
-        Registry::remove('tx_flogin_hash', $hash);
+        $this->registry->remove('tx_flogin_hash', $hash);
 
         return User::create(
             $this->oneTimeAccount->getCombinedProperties($hash)
@@ -75,7 +81,7 @@ trait CreatesOneTimeAccount
     {
         $value = md5(random_bytes(64));
 
-        Registry::set('tx_flogin_hash', $value, true);
+        $this->registry->set('tx_flogin_hash', $value, '1');
 
         return $value;
     }

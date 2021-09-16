@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Slot\Action\Reset\Applied;
+namespace LMS\Flogin\Support;
 
 /* * *************************************************************
  *
@@ -26,18 +26,32 @@ namespace LMS\Flogin\Slot\Action\Reset\Applied;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\Redirection\UserRouter;
+use TYPO3\CMS\Core\Registry as CoreRegistry;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class Redirect
+class Registry
 {
-    /**
-     * Password has been updated, redirect to proper page
-     */
-    public function execute(): void
+    protected CoreRegistry $registry;
+
+    public function __construct(CoreRegistry $registry)
     {
-        UserRouter::redirectToAfterResetPasswordFormSubmittedPage();
+        $this->registry = $registry;
+    }
+
+    public function set(string $namespace, string $key, string $value): void
+    {
+        $this->registry->set($namespace, $key, $value);
+    }
+
+    public function remove(string $namespace, string $key): void
+    {
+        $this->registry->remove($namespace, $key);
+    }
+
+    public function contains(string $namespace, string $key): bool
+    {
+        return (bool)$this->registry->get($namespace, $key);
     }
 }

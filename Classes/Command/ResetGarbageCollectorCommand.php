@@ -60,8 +60,10 @@ class ResetGarbageCollectorCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->passwordRepository->findExpired()->map->delete();
+        foreach ($this->passwordRepository->findExpired() as $expiredPasswordRequest) {
+            $expiredPasswordRequest->delete();
+        }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

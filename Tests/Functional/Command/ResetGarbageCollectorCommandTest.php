@@ -27,8 +27,8 @@ namespace LMS\Flogin\Tests\Functional\Command;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Flogin\Domain\{Model\Resets, Repository\ResetsRepository};
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use LMS\Flogin\Domain\{Model\Resets, Repository\ResetsRepository};
 
 /**
  * @author Borulko Sergey <borulkosergey@icloud.com>
@@ -46,7 +46,7 @@ class ResetGarbageCollectorCommandTest extends FunctionalTestCase
      */
     public function execute(): void
     {
-        $repository = ResetsRepository::make();
+        $repository = $this->getContainer()->get(ResetsRepository::class);
 
         Resets::create([
             'user' => 1,
@@ -60,10 +60,10 @@ class ResetGarbageCollectorCommandTest extends FunctionalTestCase
             'crdate' => Carbon::now()->addHour()->timestamp
         ]);
 
-        $this->assertSame(1, $repository->findExpired()->count());
+        $this->assertSame(1, count($repository->findExpired()));
 
         exec('/var/www/html/bin/typo3 login:password-link_garbage');
 
-        $this->assertSame(0, $repository->findExpired()->count());
+        $this->assertSame(0, count($repository->findExpired()));
     }
 }

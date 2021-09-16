@@ -28,11 +28,8 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Mockery;
 use LMS\Flogin\Tests\Functional\BaseTest;
-use LMS\Facade\Extbase\User\StateContext;
 use LMS\Flogin\Domain\Repository\UserRepository;
-use TYPO3\CMS\Core\Http\PropagateResponseException;
 use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
 use LMS\Flogin\Domain\Validator\MagicLink\NotAuthenticatedValidator;
 
@@ -43,32 +40,10 @@ class NotAuthenticatedValidatorTest extends BaseTest
 {
     /**
      * @test
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
-    public function error_thrown_when_user_already_authenticated(): void
-    {
-        $double = Mockery::mock('overload:' . StateContext::class);
-        $double->shouldReceive('isNotLoggedIn')->andReturnUsing(function () {
-            return false;
-        });
-
-        $this->expectException(PropagateResponseException::class);
-
-        $user = UserRepository::make()->retrieveByUsername('user');
-
-        $validator = new NotAuthenticatedValidator();
-        $validator->validate(
-            new MagicLinkRequest($user)
-        );
-    }
-
-    /**
-     * @test
      */
     public function pass_when_user_not_authenticated(): void
     {
-        $user = UserRepository::make()->retrieveByUsername('user');
+        $user = $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user');
 
         $validator = new NotAuthenticatedValidator();
 

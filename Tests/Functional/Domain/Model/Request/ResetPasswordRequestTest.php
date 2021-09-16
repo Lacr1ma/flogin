@@ -37,25 +37,9 @@ class ResetPasswordRequestTest extends BaseTest
     /**
      * @test
      */
-    public function notification_fired(): void
-    {
-        $user = UserRepository::make()->retrieveByUsername('user');
-
-        $mock = $this->getAccessibleMock(ResetPasswordRequest::class, ['fireSendResetLinkRequestEvent'], [$user]);
-        $mock
-            ->expects($this->once())
-            ->method('fireSendResetLinkRequestEvent')
-            ->with($mock);
-
-        $mock->_call('notify');
-    }
-
-    /**
-     * @test
-     */
     public function link_url_is_generated(): void
     {
-        $user = UserRepository::make()->retrieveByUsername('user');
+        $user = $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user');
 
         $mock = $this->getAccessibleMock(ResetPasswordRequest::class, ['buildUrl'], [$user]);
         $mock
@@ -72,7 +56,7 @@ class ResetPasswordRequestTest extends BaseTest
     public function password_restore_link_expiration_interval_can_be_retrieved(): void
     {
         $request = new ResetPasswordRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         $this->assertSame(5, $request->getExpires());

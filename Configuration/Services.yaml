@@ -76,12 +76,6 @@ services:
         after: 'createMagicLink'
         event: LMS\Flogin\Event\SendMagicLinkRequestEvent
 
-  LMS\Flogin\Slot\Action\MagicLink\Applied\UtilizeLink:
-    tags:
-      - name: event.listener
-        identifier: 'removeUsedMagicLink'
-        event: LMS\Flogin\Event\MagicLinkAppliedEvent
-
 #Lockout events
   LMS\Flogin\Slot\Action\LockoutAction:
     tags:

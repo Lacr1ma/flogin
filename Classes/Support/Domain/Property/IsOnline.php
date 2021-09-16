@@ -1,9 +1,10 @@
 <?php
+/** @noinspection DuplicatedCode */
 /** @noinspection PhpUndefinedMethodInspection */
 
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Command;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -28,44 +29,44 @@ namespace LMS\Flogin\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Domain\Repository\UserRepository;
-use Symfony\Component\Console\{Command\Command, Input\InputInterface, Output\OutputInterface};
+use Carbon\Carbon;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class UnlockUserCommand extends Command
+trait IsOnline
 {
-    private UserRepository $userRepository;
+    protected int $isOnline = 0;
 
-    public function __construct(UserRepository $repository)
+    public function resetOnlineTime(): void
     {
-        parent::__construct();
+        $this->isOnline = 0;
+    }
 
-        $this->userRepository = $repository;
+    public function getOnline(): bool
+    {
+        return $this->hasActiveSession() || $this->wasActiveRecently();
     }
 
     /**
-     * @noinspection PhpMissingParentCallCommonInspection
+     * @psalm-suppress PossiblyInvalidMethodCall
+     * @psalm-suppress InternalMethod
      */
-    protected function configure(): void
+    public function hasActiveSession(): bool
     {
-        $this->setDescription('Unlock locked users.');
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class);
+
+        $builder = $connection->getQueryBuilderForTable('fe_sessions');
+
+        $where = [$builder->expr()->eq('ses_userid', $this->getUid())];
+
+        return (bool)$builder->count('ses_userid')->from('fe_sessions')->where(...$where)->execute()->fetchColumn();
     }
 
-    /**
-     * Unlock all the users that should be released
-     *
-     * {@inheritDoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    public function wasActiveRecently(): bool
     {
-        foreach ($this->userRepository->findLocked() as $user) {
-            if ($user->isTimeToUnlock()) {
-                $user->unlock();
-            }
-        }
-
-        return Command::SUCCESS;
+        return $this->isOnline > 0 && Carbon::createFromTimestamp($this->isOnline)->diffInMinutes(Carbon::now()) <= 1;
     }
 }

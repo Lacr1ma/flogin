@@ -28,16 +28,19 @@ namespace LMS\Flogin\Controller\Base;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use LMS\Flogin\Support\Redirect;
 use LMS\Flogin\Mvc\View\JsonView;
 use LMS\Flogin\Domain\Repository\UserRepository;
-use LMS\Facade\Controller\AbstractApiController;
-use TYPO3\CMS\Extbase\Persistence\RepositoryInterface;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class ApiController extends AbstractApiController
+abstract class ApiController extends ActionController
 {
+    protected Context $context;
+    protected Redirect $redirect;
     protected UserRepository $userRepository;
 
     /**
@@ -45,16 +48,18 @@ abstract class ApiController extends AbstractApiController
      */
     public $defaultViewObjectName = JsonView::class;
 
-    public function injectUserRepository(UserRepository $repository)
+    public function injectStateContext(Context $ctx): void
     {
-        $this->userRepository = $repository;
+        $this->context = $ctx;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function getResourceRepository(): RepositoryInterface
+    public function injectRedirectService(Redirect $service): void
     {
-        return $this->userRepository;
+        $this->redirect = $service;
+    }
+
+    public function injectUserRepository(UserRepository $repository): void
+    {
+        $this->userRepository = $repository;
     }
 }

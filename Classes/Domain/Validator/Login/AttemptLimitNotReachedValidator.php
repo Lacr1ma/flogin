@@ -26,7 +26,11 @@ namespace LMS\Flogin\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Domain\Validator\DefaultValidator, Event\SessionEvent, Support\ThrottlesLogins};
+use LMS\Flogin\{Domain\Validator\DefaultValidator,
+    Event\LockoutEvent,
+    Event\LoginAttemptFailedEvent,
+    Support\ThrottlesLogins};
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -34,8 +38,6 @@ use LMS\Flogin\{Domain\Validator\DefaultValidator, Event\SessionEvent, Support\T
  */
 class AttemptLimitNotReachedValidator extends DefaultValidator
 {
-    use ThrottlesLogins, SessionEvent;
-
     /**
      * Valid if request IP is not locked
      *
@@ -45,12 +47,14 @@ class AttemptLimitNotReachedValidator extends DefaultValidator
      */
     protected function isValid($value): void
     {
-        if ($this->hasTooManyAttempts()) {
+        if ($this->throttler()->hasTooManyAttempts()) {
             $this->addLockoutError();
             return;
         }
 
-        $this->fireLoginAttemptFailedEvent($this->getInputUserName());
+        $this->dispatcher()->dispatch(
+            new LoginAttemptFailedEvent($this->getInputUserName())
+        );
     }
 
     /**
@@ -60,7 +64,9 @@ class AttemptLimitNotReachedValidator extends DefaultValidator
     {
         // We fire lock out event only when we have a real user
         if ($user = $this->findRequestAssociatedUser()) {
-            $this->fireLoginLockoutEvent($user);
+            $this->dispatcher()->dispatch(
+                new LockoutEvent($user)
+            );
         }
 
         $waitingTime = $this->calculateWaitingTimeInMinutes();
@@ -73,10 +79,15 @@ class AttemptLimitNotReachedValidator extends DefaultValidator
      */
     protected function calculateWaitingTimeInMinutes(): float
     {
-        $seconds = $this->limiter()->availableIn(
-            $this->throttleKey()
+        $seconds = $this->throttler()->limiter()->availableIn(
+            $this->throttler()->throttleKey()
         );
 
         return ceil(ceil($seconds / 60) / 60);
+    }
+
+    private function throttler(): ThrottlesLogins
+    {
+        return GeneralUtility::makeInstance(ThrottlesLogins::class);
     }
 }

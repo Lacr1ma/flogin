@@ -1,7 +1,9 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Support\Domain\Action\User;
+namespace LMS\Flogin\Support\Helper;
 
 /* * *************************************************************
  *
@@ -27,38 +29,41 @@ namespace LMS\Flogin\Support\Domain\Action\User;
  * ************************************************************* */
 
 use LMS\Flogin\Support\TypoScript;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-trait UrlManagement
+trait HtmlView
 {
-    public function buildUrl(string $action, string $controller, array $arguments = []): string
+    public function getExtensionView(string $template, array $variables = []): StandaloneView
     {
-        $extension = $plugin = 'Flogin';
+        $view = $this->createView();
 
-        return htmlspecialchars_decode(
-            $this->urlBuilder()->uriFor($action, $arguments, $controller, $extension, $plugin)
+        $viewTS = TypoScript::getView();
+
+        $settings = $this->typoScriptService()->convertTypoScriptArrayToPlainArray(
+            TypoScript::getSettings()
         );
+
+        $view->setFormat('html');
+        $view->setLayoutRootPaths($viewTS['layoutRootPaths.'] ?: []);
+        $view->setPartialRootPaths($viewTS['partialRootPaths.'] ?: []);
+        $view->setTemplateRootPaths($viewTS['templateRootPaths.'] ?: []);
+        $view->setTemplate($template);
+
+        return $view->assignMultiple(array_merge($settings, $variables));
     }
 
-    private function urlBuilder(): UriBuilder
+    protected function typoScriptService(): TypoScriptService
     {
-        $scheme = $GLOBALS['TYPO3_REQUEST']->getUri()->getScheme();
-
-        $loginPage = (int)TypoScript::getSettings()['page.']['login'];
-
-        return $this->builder()
-            ->setTargetPageUid($loginPage)
-            ->setCreateAbsoluteUri(true)
-            ->setLinkAccessRestrictedPages(true)
-            ->setAbsoluteUriScheme($scheme);
+        return GeneralUtility::makeInstance(TypoScriptService::class);
     }
 
-    private function builder(): UriBuilder
+    protected function createView(): StandaloneView
     {
-        return GeneralUtility::makeInstance(UriBuilder::class);
+        return GeneralUtility::makeInstance(StandaloneView::class);
     }
 }

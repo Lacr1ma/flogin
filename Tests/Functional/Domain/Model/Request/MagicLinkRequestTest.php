@@ -37,25 +37,9 @@ class MagicLinkRequestTest extends BaseTest
     /**
      * @test
      */
-    public function notification_fired(): void
-    {
-        $user = UserRepository::make()->retrieveByUsername('user');
-
-        $mock = $this->getAccessibleMock(MagicLinkRequest::class, ['fireSendMagicLinkEvent'], [$user]);
-        $mock
-            ->expects($this->once())
-            ->method('fireSendMagicLinkEvent')
-            ->with($mock);
-
-        $mock->_call('notify');
-    }
-
-    /**
-     * @test
-     */
     public function link_url_is_generated(): void
     {
-        $user = UserRepository::make()->retrieveByUsername('user');
+        $user = $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user');
 
         $mock = $this->getAccessibleMock(MagicLinkRequest::class, ['buildUrl'], [$user]);
         $mock
@@ -72,7 +56,7 @@ class MagicLinkRequestTest extends BaseTest
     public function magic_link_expiration_interval_can_be_retrieved(): void
     {
         $request = new MagicLinkRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         $this->assertSame(6, $request->getExpires());

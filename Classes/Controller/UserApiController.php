@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpComposerExtensionStubsInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Controller;
@@ -26,8 +29,6 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
-use LMS\Flogin\Domain\Model\User;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RedirectResponse;
 use LMS\Flogin\Support\Controller\Backend\{CreatesOneTimeAccount, SimulatesFrontendLogin};
@@ -41,21 +42,17 @@ class UserApiController extends Base\ApiController
     use SimulatesFrontendLogin, CreatesOneTimeAccount;
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getRootName(): string
-    {
-        return 'user';
-    }
-
-    /**
      *  Return the data for currently authenticated user.
      */
-    public function currentAction(): void
+    public function currentAction(): ResponseInterface
     {
-        $this->showAction(
-            User::currentUid()
-        );
+        $authUid = (int)$this->context->getPropertyFromAspect('frontend.user', 'id');
+
+        $user =  $this->userRepository->findByUid($authUid);
+
+        $json = json_encode($user->_getProperties());
+
+        return $this->jsonResponse($json);
     }
 
     /**
@@ -63,9 +60,11 @@ class UserApiController extends Base\ApiController
      */
     public function authenticatedAction(): ResponseInterface
     {
-        $this->view->assign('value', ['authenticated' => User::isLoggedIn()]);
+        $authenticated = $this->context->getPropertyFromAspect('frontend.user', 'isLoggedIn');
 
-        return $this->jsonResponse();
+        $json = json_encode(compact('authenticated'));
+
+        return $this->jsonResponse($json);
     }
 
     /**
@@ -100,7 +99,7 @@ class UserApiController extends Base\ApiController
         }
 
         return new RedirectResponse(
-            Redirect::uriFor($pid, true)
+            $this->redirect->uriFor($pid, true)
         );
     }
 }

@@ -29,17 +29,15 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RedirectResponse;
 use LMS\Flogin\Support\Controller\Locker\LockUsers;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class LockerController extends ActionController
+class LockerController extends Base\CommonController
 {
     use LockUsers;
 
@@ -56,7 +54,7 @@ class LockerController extends ActionController
         $this->unlock($email);
 
         return new RedirectResponse(
-            Redirect::uriFor($pid, true)
+            $this->redirect->uriFor($pid, true)
         );
     }
 }

@@ -46,7 +46,7 @@ class OnetimeAccountGarbageCollectorCommandTest extends FunctionalTestCase
      */
     public function execute(): void
     {
-        $repository = UserRepository::make();
+        $repository = $this->getContainer()->get(UserRepository::class);
 
         User::create([
             'username' => 'temp',

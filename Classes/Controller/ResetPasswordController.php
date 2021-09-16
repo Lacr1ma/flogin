@@ -29,10 +29,8 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RedirectResponse;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 use LMS\Flogin\Support\Controller\ResetPassword\ResetsPasswords;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
@@ -41,7 +39,7 @@ use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ResetPasswordController extends ActionController
+class ResetPasswordController extends Base\CommonController
 {
     use ResetsPasswords;
 
@@ -92,7 +90,7 @@ class ResetPasswordController extends ActionController
         $this->reset($request);
 
         return new RedirectResponse(
-            Redirect::uriFor($pid, true)
+            $this->redirect->uriFor($pid, true)
         );
     }
 }

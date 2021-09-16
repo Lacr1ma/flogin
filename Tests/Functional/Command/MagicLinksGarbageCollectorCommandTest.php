@@ -46,7 +46,7 @@ class MagicLinksGarbageCollectorCommandTest extends FunctionalTestCase
      */
     public function execute(): void
     {
-        $repository = LinkRepository::make();
+        $repository = $this->getContainer()->get(LinkRepository::class);
 
         Link::create([
             'user' => 1,
@@ -60,10 +60,10 @@ class MagicLinksGarbageCollectorCommandTest extends FunctionalTestCase
             'crdate' => Carbon::now()->addHour()->timestamp
         ]);
 
-        $this->assertSame(1, $repository->findExpired()->count());
+        $this->assertSame(1, count($repository->findExpired()));
 
         exec('/var/www/html/bin/typo3 login:magic-link_garbage');
 
-        $this->assertSame(0, $repository->findExpired()->count());
+        $this->assertSame(0, count($repository->findExpired()));
     }
 }

@@ -26,7 +26,6 @@ namespace LMS\Flogin\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Model\AbstractModel;
 use LMS\Flogin\Support\Domain\Property\{Expirable, User, Token};
 
 /**

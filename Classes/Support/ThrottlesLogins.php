@@ -26,29 +26,65 @@ namespace LMS\Flogin\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Traits\Throttler;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-trait ThrottlesLogins
+class ThrottlesLogins
 {
-    use Throttler;
+    private int $maxAttempts;
+    private int $decayMinutes;
+    private RateLimiter $limiter;
 
-    /**
-     * {@inheritDoc}
-     */
-    public function maxAttempts(): int
+    public function __construct()
     {
-        return (int)$this->settings()['maxAttempts'];
+        $this->maxAttempts = (int)$this->settings()['maxAttempts'];
+        $this->decayMinutes = (int)$this->settings()['decayMinutes'];
+
+        $this->limiter = GeneralUtility::makeInstance(RateLimiter::class);
+    }
+
+    public function limiter(): RateLimiter
+    {
+        return $this->limiter;
     }
 
     /**
-     * {@inheritDoc}
+     * Determine if the session has too many attempts
      */
-    public function decayMinutes(): int
+    public function hasTooManyAttempts(): bool
     {
-        return (int)$this->settings()['decayMinutes'];
+        return $this->limiter->tooManyAttempts(
+            $this->throttleKey(), $this->maxAttempts
+        );
+    }
+
+    /**
+     * Increment the attempts count for the session.
+     */
+    public function incrementAttempts(): void
+    {
+        $this->limiter->hit(
+            $this->throttleKey(), $this->decayMinutes * 60
+        );
+    }
+
+    /**
+     * Clear registered attempts associated with REQUEST IP
+     */
+    public function clearAttempts(): void
+    {
+        $this->limiter->clear($this->throttleKey());
+    }
+
+    /**
+     * Use request ip address as a throttle key
+     */
+    public function throttleKey(): string
+    {
+        return md5(Request::createFromGlobals()->getClientIp() ?? '');
     }
 
     /**

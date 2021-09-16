@@ -43,7 +43,7 @@ class ManagementController extends ActionController
 
     protected UserRepository $userRepository;
 
-    public function injectUserRepository(UserRepository $repository)
+    public function injectUserRepository(UserRepository $repository): void
     {
         $this->userRepository = $repository;
     }

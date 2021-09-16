@@ -28,17 +28,15 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RedirectResponse;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use LMS\Flogin\Support\Controller\ForgotPassword\SendsPasswordResetEmails;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class ForgotPasswordController extends ActionController
+class ForgotPasswordController extends Base\CommonController
 {
     use SendsPasswordResetEmails;
 
@@ -72,7 +70,7 @@ class ForgotPasswordController extends ActionController
         $this->sendResetLinkEmail($email);
 
         return new RedirectResponse(
-            Redirect::uriFor($pid, true)
+            $this->redirect->uriFor($pid, true)
         );
     }
 }

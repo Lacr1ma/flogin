@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Slot\Action\MagicLink\Applied;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,15 +26,27 @@ namespace LMS\Flogin\Slot\Action\MagicLink\Applied;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Event\MagicLinkAppliedEvent;
+use Carbon\Carbon;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class UtilizeLink
+trait CreationDate
 {
-    public function __invoke(MagicLinkAppliedEvent $event): void
-    {
+    protected int $crdate = 0;
 
+    public function getCrdate(): int
+    {
+        return $this->crdate;
+    }
+
+    public function setCrdate(int $crdate): void
+    {
+        $this->crdate = $crdate;
+    }
+
+    public function getCreatedAt(): Carbon
+    {
+        return Carbon::createFromTimestamp($this->crdate);
     }
 }

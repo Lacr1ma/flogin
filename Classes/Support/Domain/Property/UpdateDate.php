@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Slot\Action\Reset\Ajax;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,43 +26,27 @@ namespace LMS\Flogin\Slot\Action\Reset\Ajax;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\TypoScript;
-use LMS\Facade\Extbase\{Redirect, Response};
+use Carbon\Carbon;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class Requested
+trait UpdateDate
 {
-    /**
-     * Send back a proper redirect feedback for async usage mode.
-     */
-    public function execute(): void
+    protected int $tstamp = 0;
+
+    public function getTstamp(): int
     {
-        if (!Response::isJson()) {
-            return;
-        }
-
-        echo json_encode($this->responseData());
-
-        exit;
+        return $this->tstamp;
     }
 
-    /**
-     * @return array
-     */
-    private function responseData(): array
+    public function setTstamp(int $unix): void
     {
-        return [
-            'redirect' => Redirect::uriFor($this->redirectPage(), true)
-        ];
+        $this->tstamp = $unix;
     }
 
-    /**
-     * @return int
-     */
-    private function redirectPage(): int
+    public function getUpdatedAt(): Carbon
     {
-        return (int)TypoScript::getSettings()['redirect.']['afterResetPasswordFormSubmittedPage'];
+        return Carbon::createFromTimestamp($this->tstamp);
     }
 }

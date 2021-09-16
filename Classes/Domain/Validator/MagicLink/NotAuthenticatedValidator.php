@@ -29,8 +29,8 @@ namespace LMS\Flogin\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\User\StateContext;
-use LMS\Flogin\Support\Redirection\UserRouter;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use LMS\Flogin\Domain\Validator\DefaultValidator;
 use TYPO3\CMS\Core\Http\PropagateResponseException;
 
@@ -47,17 +47,32 @@ class NotAuthenticatedValidator extends DefaultValidator
      *
      * @param \LMS\Flogin\Domain\Model\Request\MagicLinkRequest $value
      * @throws PropagateResponseException
+     * @noinspection PhpUnhandledExceptionInspection
      */
     protected function isValid($value): void
     {
-        if (StateContext::isNotLoggedIn()) {
+        $authenticated = self::context()
+            ->getPropertyFromAspect('frontend.user', 'isLoggedIn');
+
+        if (!$authenticated) {
             return;
         }
 
         $this->addError($this->translate('user.already_logged_in'), 1574293894);
 
-        $response = UserRouter::redirectToAlreadyAuthenticatedPage();
+        $response = $this->router()->redirectToAlreadyAuthenticatedPage();
 
         throw new PropagateResponseException($response);
+    }
+
+    /**
+     * Retrieve the Context Instance
+     *
+     * @psalm-suppress LessSpecificReturnStatement
+     * @psalm-suppress MoreSpecificReturnType
+     */
+    private static function context(): Context
+    {
+        return GeneralUtility::makeInstance(Context::class);
     }
 }

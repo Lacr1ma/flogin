@@ -30,7 +30,6 @@ namespace LMS\Flogin\Domain\Validator\Login;
 
 use LMS\Flogin\Hash\Hash;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use LMS\Flogin\Support\Redirection\UserRouter;
 use TYPO3\CMS\Core\Http\PropagateResponseException;
 use LMS\Flogin\Domain\{Model\User, Repository\UserRepository, Validator\DefaultValidator};
 
@@ -59,7 +58,7 @@ class UserNotLockedValidator extends DefaultValidator
 
             $this->addError($this->translate('username.locked'), 1574293893);
 
-            $response = UserRouter::redirectToLockedPage();
+            $response = $this->router()->redirectToLockedPage();
 
             throw new PropagateResponseException($response);
         });
@@ -70,7 +69,9 @@ class UserNotLockedValidator extends DefaultValidator
      */
     private function userFromRequest(string $username, callable $callback): void
     {
-        if ($user = UserRepository::make()->retrieveByUsername($username)) {
+        $userRepository = GeneralUtility::makeInstance(UserRepository::class);
+
+        if ($user = $userRepository->retrieveByUsername($username)) {
             $callback($user, $this->getInputPassword());
         }
     }

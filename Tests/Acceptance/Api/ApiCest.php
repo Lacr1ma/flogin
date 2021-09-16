@@ -106,8 +106,8 @@ class ApiCest
 
     private function authenticate(AcceptanceTester $session): AcceptanceTester
     {
-        $csrf = '379939783ec09d17bbb6aea467c1154704fb498e'; // Token from VH
-        $encodedSessionID = '79f44e082be43f49b23e0016193bbe21'; // From Browser
+        $csrf = '586134db1289b48c58540492a272eff3302e4d2f'; // Token from VH
+        $encodedSessionID = '51b1302d0581963940972ad0df5879d9'; // From Browser
 
         $session->haveHttpHeader('X-CSRF-TOKEN', $csrf);
         $session->haveHttpHeader('Cookie', 'fe_typo_user=' . $encodedSessionID);

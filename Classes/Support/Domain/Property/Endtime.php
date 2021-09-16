@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Slot\Action\Unlock;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,18 +26,20 @@ namespace LMS\Flogin\Slot\Action\Unlock;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\Redirection\UserRouter;
-
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class Redirect
+trait Endtime
 {
-    /**
-     * User has been unlocked after lockout. Redirect...
-     */
-    public function execute(): void
+    protected int $endtime = 0;
+
+    public function getEndtime(): int
     {
-        UserRouter::redirectToUnlockedPage();
+        return $this->endtime;
+    }
+
+    public function setEndtime(int $endtime): void
+    {
+        $this->endtime = $endtime;
     }
 }

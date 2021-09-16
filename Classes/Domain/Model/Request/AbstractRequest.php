@@ -27,7 +27,8 @@ namespace LMS\Flogin\Domain\Model\Request;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\User;
-use LMS\Flogin\Event\SessionEvent;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
 use LMS\Flogin\Support\Domain\{Property\Token, Action\User\UrlManagement};
 
@@ -39,7 +40,7 @@ use LMS\Flogin\Support\Domain\{Property\Token, Action\User\UrlManagement};
  */
 abstract class AbstractRequest extends AbstractValueObject
 {
-    use Token, SessionEvent, UrlManagement;
+    use Token, UrlManagement;
 
     protected User $user;
 
@@ -55,6 +56,11 @@ abstract class AbstractRequest extends AbstractValueObject
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function dispatcher(): EventDispatcher
+    {
+        return GeneralUtility::makeInstance(EventDispatcher::class);
     }
 
     /**

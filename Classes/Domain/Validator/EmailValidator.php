@@ -26,6 +26,7 @@ namespace LMS\Flogin\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use LMS\Flogin\Domain\Repository\UserRepository;
 
 /**
@@ -52,7 +53,9 @@ class EmailValidator extends DefaultValidator
      */
     private function ensureEmailExists(string $email): void
     {
-        if (UserRepository::make()->retrieveByEmail($email)) {
+        $userRepository = GeneralUtility::makeInstance(UserRepository::class);
+
+        if ($userRepository->retrieveByEmail($email)) {
             return;
         }
 

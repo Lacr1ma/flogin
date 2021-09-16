@@ -28,44 +28,58 @@ namespace LMS\Flogin\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\{ExtensionHelper, TypoScriptConfiguration};
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface as Configuration;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 class TypoScript
 {
-    use ExtensionHelper;
-
     /**
-     * We know that we use this helper only inside <login> extension, so we just overwrite
-     * the extension key to *tx_flogin*
+     * Retrieve the requested view configuration
      */
-    public static function retrieveFullTypoScriptConfigurationFor(string $extensionKey): array
+    public static function getView(): array
     {
-        return TypoScriptConfiguration::retrieveFullTypoScriptConfigurationFor(
-            self::extensionTypoScriptKey()
-        );
-    }
+        $ts = self::retrieveFullTypoScriptConfigurationFor('tx_flogin');
 
-    public static function getStoragePid(): int
-    {
-        return TypoScriptConfiguration::getStoragePid(
-            self::extensionTypoScriptKey()
-        );
+        return (array)$ts['view.'] ?: [];
     }
 
     public static function getSettings(): array
     {
-        return TypoScriptConfiguration::getSettings(
-            self::extensionTypoScriptKey()
-        );
+        $ts = self::retrieveFullTypoScriptConfigurationFor('tx_flogin');
+
+        return (array)$ts['settings.'];
     }
 
-    public static function getView(): array
+    /**
+     *  Get all TypoScript definition for the requested extension (tx_extensionKey)
+     *
+     * @psalm-suppress InternalMethod
+     */
+    public static function retrieveFullTypoScriptConfigurationFor(string $extensionKey): array
     {
-        return TypoScriptConfiguration::getView(
-            self::extensionTypoScriptKey()
-        );
+        try {
+            $ts = self::getConfigurationManager()
+                ->getConfiguration(Configuration::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        } catch (InvalidConfigurationTypeException $e) {
+            return [];
+        }
+
+        return $ts['plugin.'][$extensionKey . '.'] ?: [];
+    }
+
+    /**
+     * Returns the Configuration Manager instance
+     *
+     * @psalm-suppress MoreSpecificReturnType
+     * @psalm-suppress LessSpecificReturnStatement
+     */
+    private static function getConfigurationManager(): ConfigurationManager
+    {
+        return GeneralUtility::makeInstance(ConfigurationManager::class);
     }
 }

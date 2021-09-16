@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUndefinedMethodInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Domain\Repository;
@@ -26,19 +28,40 @@ namespace LMS\Flogin\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Assist\Collection;
-use LMS\Flogin\{Domain\Model\User, Support\Repository\Demandable};
-use TYPO3\CMS\Core\Database\Query\QueryBuilder as CoreQueryBuilder;
-use LMS\Facade\{Extbase\QueryBuilder, Repository\AbstractUnrespectableRepository};
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use LMS\Flogin\{Domain\Model\User, Support\Repository\CRUD, Support\Repository\Demandable};
 
 /**
  * @psalm-suppress InvalidArgument
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UserRepository extends AbstractUnrespectableRepository
+class UserRepository extends Repository
 {
-    use Demandable;
+    use Demandable, CRUD;
+
+    protected Context $context;
+    protected ConnectionPool $connection;
+
+    public function injectStateContext(Context $ctx): void
+    {
+        $this->context = $ctx;
+    }
+
+    public function injectConnection(ConnectionPool $connection): void
+    {
+        $this->connection = $connection;
+    }
+
+    public function initializeObject(): void
+    {
+        $settings = $this->createQuery()->getQuerySettings()->setRespectStoragePage(false);
+
+        $this->setDefaultQuerySettings($settings);
+    }
 
     /**
      * Retrieve logged in user
@@ -46,10 +69,13 @@ class UserRepository extends AbstractUnrespectableRepository
      * @psalm-suppress MoreSpecificReturnType
      * @psalm-suppress LessSpecificReturnStatement
      * @noinspection   PhpIncompatibleReturnTypeInspection
+     * @noinspection PhpUnhandledExceptionInspection
      */
     public function current(): ?User
     {
-        return $this->findByUid(\LMS\Facade\Extbase\User::currentUid());
+        $authUid = $this->context->getPropertyFromAspect('frontend.user', 'id');
+
+        return $this->findByUid($authUid);
     }
 
     /**
@@ -66,13 +92,11 @@ class UserRepository extends AbstractUnrespectableRepository
     /**
      * Retrieve all locked users
      *
-     * @noinspection PhpUndefinedMethodInspection
+     * @return User[]
      */
-    public function findLocked(): Collection
+    public function findLocked(): array
     {
-        return collect(
-            $this->findByLocked(true)->toArray()
-        );
+        return $this->findByLocked(true)->toArray();
     }
 
     /**
@@ -90,9 +114,10 @@ class UserRepository extends AbstractUnrespectableRepository
      *
      * @noinspection PhpUndefinedMethodInspection
      */
-    public function expiredQuery(): CoreQueryBuilder
+    public function expiredQuery(): QueryBuilder
     {
-        $query = QueryBuilder::getQueryBuilderFor('fe_users');
+
+        $query = $this->connection->getQueryBuilderForTable('fe_users');
 
         return $query->where(
             $query->expr()->gt('endtime', 0),

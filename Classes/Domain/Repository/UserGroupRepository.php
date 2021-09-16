@@ -26,13 +26,18 @@ namespace LMS\Flogin\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Repository\AbstractUnrespectableRepository;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class UserGroupRepository extends AbstractUnrespectableRepository
+class UserGroupRepository extends Repository
 {
+    public function initializeObject(): void
+    {
+        $settings = $this->createQuery()->getQuerySettings()->setRespectStoragePage(false);
 
+        $this->setDefaultQuerySettings($settings);
+    }
 }

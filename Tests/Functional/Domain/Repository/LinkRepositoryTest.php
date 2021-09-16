@@ -54,7 +54,7 @@ class LinkRepositoryTest extends BaseTest
     public function not_expired_link_for_user_can_be_found(): void
     {
         $this->assertNotNull(
-            LinkRepository::make()->findActive(1)
+            $this->getContainer()->get(LinkRepository::class)->findActive(1)
         );
     }
 
@@ -64,7 +64,7 @@ class LinkRepositoryTest extends BaseTest
     public function find_active_returns_an_empty_array_when_no_related_links_exist(): void
     {
         $this->assertEmpty(
-            LinkRepository::make()->findActive(999)
+            $this->getContainer()->get(LinkRepository::class)->findActive(999)
         );
     }
 
@@ -74,7 +74,7 @@ class LinkRepositoryTest extends BaseTest
     public function expired_magic_link_can_be_found(): void
     {
         $this->assertNotNull(
-            LinkRepository::make()->findExpired()
+            $this->getContainer()->get(LinkRepository::class)->findExpired()
         );
     }
 
@@ -84,7 +84,7 @@ class LinkRepositoryTest extends BaseTest
     public function exist_return_true_when_magic_link_persisted(): void
     {
         $this->assertTrue(
-            LinkRepository::make()->exists('secret')
+            $this->getContainer()->get(LinkRepository::class)->exists('secret')
         );
     }
 
@@ -94,7 +94,7 @@ class LinkRepositoryTest extends BaseTest
     public function exist_return_false_when_magic_link_does_not_exist(): void
     {
         $this->assertFalse(
-            LinkRepository::make()->exists('invalid')
+            $this->getContainer()->get(LinkRepository::class)->exists('invalid')
         );
     }
 
@@ -104,7 +104,7 @@ class LinkRepositoryTest extends BaseTest
     public function find_returns_null_when_magic_link_is_not_found(): void
     {
         $this->assertNull(
-            LinkRepository::make()->find('invalid')
+            $this->getContainer()->get(LinkRepository::class)->find('invalid')
         );
     }
 
@@ -114,18 +114,7 @@ class LinkRepositoryTest extends BaseTest
     public function magic_link_can_be_found(): void
     {
         $this->assertNotEmpty(
-            LinkRepository::make()->find('secret')
+            $this->getContainer()->get(LinkRepository::class)->find('secret')
         );
-    }
-
-    /**
-     * @test
-     */
-    public function extension_key_should_be_related_to_the_correct_scope(): void
-    {
-        $testMethod = new \ReflectionMethod(LinkRepository::class, 'getExtensionKey');
-        $testMethod->setAccessible(true);
-
-        $this->assertSame('tx_flogin', $testMethod->invoke(LinkRepository::make()));
     }
 }

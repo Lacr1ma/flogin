@@ -27,7 +27,8 @@ namespace LMS\Flogin\Support\Controller\ResetPassword;
  * ************************************************************* */
 
 use LMS\Flogin\Hash\Hash;
-use LMS\Flogin\Event\SessionEvent;
+use LMS\Flogin\Event\PasswordHasBeenResetEvent;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use LMS\Flogin\Domain\{Model\User, Model\Request\ResetPasswordRequest, Repository\ResetsRepository};
 
 /**
@@ -35,14 +36,14 @@ use LMS\Flogin\Domain\{Model\User, Model\Request\ResetPasswordRequest, Repositor
  */
 trait ResetsPasswords
 {
-    use SessionEvent;
-
     protected Hash $hash;
+    protected EventDispatcher $dispatcher;
     protected ResetsRepository $resetsRepository;
 
-    public function injectResetsRepository(ResetsRepository $repository, Hash $hash): void
+    public function injectResetsRepository(ResetsRepository $repository, Hash $hash, EventDispatcher $dispatcher): void
     {
         $this->hash = $hash;
+        $this->dispatcher = $dispatcher;
         $this->resetsRepository = $repository;
     }
 
@@ -55,12 +56,11 @@ trait ResetsPasswords
 
         $this->deleteAssociatedPasswordResetToken($request->getToken());
 
-        $this->firePasswordResetEvent($request);
+        $this->dispatcher->dispatch(
+            new PasswordHasBeenResetEvent($request)
+        );
     }
 
-    /**
-     * Reset the given user's password.
-     */
     private function resetPassword(User $user, string $newPlainPassword): void
     {
         $user->setPassword(
@@ -70,9 +70,6 @@ trait ResetsPasswords
         $user->save();
     }
 
-    /**
-     * Erase reset token by its hash
-     */
     private function deleteAssociatedPasswordResetToken(string $token): void
     {
         if ($token = $this->resetsRepository->find($token)) {

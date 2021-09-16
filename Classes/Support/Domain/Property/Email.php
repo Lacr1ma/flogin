@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Slot\Action\Login\Ajax;
+namespace LMS\Flogin\Support\Domain\Property;
 
 /* * *************************************************************
  *
@@ -26,44 +26,20 @@ namespace LMS\Flogin\Slot\Action\Login\Ajax;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\TypoScript;
-use LMS\Facade\Extbase\{Redirect, Response};
-
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class SuccessfulLoginAttempt
+trait Email
 {
-    /**
-     * Successful login attempt via ajax detected, process it...
-     */
-    public function execute(): void
+    protected string $email = '';
+
+    public function getEmail(): string
     {
-        if (!Response::isJson()) {
-            return;
-        }
-
-        header('Content-Type: application/json');
-
-        echo json_encode($this->responseData());
-        exit;
+        return $this->email;
     }
 
-    /**
-     * @return array
-     */
-    private function responseData(): array
+    public function setEmail(string $email): void
     {
-        return [
-            'redirect' => Redirect::uriFor($this->afterLoginPage(), true)
-        ];
-    }
-
-    /**
-     * @return int
-     */
-    private function afterLoginPage(): int
-    {
-        return (int)TypoScript::getSettings()['redirect.']['afterLoginPage'];
+        $this->email = $email;
     }
 }

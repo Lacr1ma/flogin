@@ -26,16 +26,26 @@ namespace LMS\Flogin\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Assist\Collection;
-use LMS\Facade\Repository\AbstractRepository;
+use LMS\Flogin\Domain\Model\Resets;
+use LMS\Flogin\Support\Repository\CRUD;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * @psalm-suppress InvalidArgument
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-abstract class AbstractTokenRepository extends AbstractRepository
+abstract class AbstractTokenRepository extends Repository
 {
+    use CRUD;
+
+    public function initializeObject(): void
+    {
+        $settings = $this->createQuery()->getQuerySettings()->setRespectStoragePage(false);
+
+        $this->setDefaultQuerySettings($settings);
+    }
+
     /**
      * Find link related to requested token
      *
@@ -49,11 +59,19 @@ abstract class AbstractTokenRepository extends AbstractRepository
     /**
      * Find all expired tokens in the system
      *
-     * @noinspection PhpUndefinedMethodInspection
+     * @return Resets[]
      */
-    public function findExpired(): Collection
+    public function findExpired(): array
     {
-        return collect($this->findAll())->filter->isExpired();
+        $result = [];
+
+        foreach ($this->findAll() as $token) {
+            if (!$token->isExpired()) {
+                $result[] = $token;
+            }
+        }
+
+        return $result;
     }
 
     /**

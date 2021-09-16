@@ -27,6 +27,7 @@ namespace LMS\Flogin\Domain\Model\Request;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\Link;
+use LMS\Flogin\Event\SendMagicLinkRequestEvent;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -49,7 +50,9 @@ class MagicLinkRequest extends AbstractRequest
      */
     public function notify(): void
     {
-        $this->fireSendMagicLinkEvent($this);
+        $event = new SendMagicLinkRequestEvent($this);
+
+        $this->dispatcher()->dispatch($event);
     }
 
     /**

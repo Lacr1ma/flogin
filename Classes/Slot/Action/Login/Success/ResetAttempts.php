@@ -37,14 +37,19 @@ use LMS\Flogin\Support\ThrottlesLogins;
  */
 class ResetAttempts
 {
-    use ThrottlesLogins;
+    protected ThrottlesLogins $throttler;
+
+    public function injectThrottler(ThrottlesLogins $throttler): void
+    {
+        $this->throttler = $throttler;
+    }
 
     /**
      * User has been unlocked, clear all previous fails
      */
     public function unlocked(UserUnlockedEvent $event): void
     {
-        $this->clearAttempts();
+        $this->throttler->clearAttempts();
     }
 
     /**
@@ -52,6 +57,6 @@ class ResetAttempts
      */
     public function loggedIn(LoginSuccessEvent $event): void
     {
-        $this->clearAttempts();
+        $this->throttler->clearAttempts();
     }
 }

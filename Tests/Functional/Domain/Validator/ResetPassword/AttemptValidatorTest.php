@@ -43,7 +43,7 @@ class AttemptValidatorTest extends BaseTest
     public function pass_when_password_match(): void
     {
         $request = new ResetPasswordRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         $request->setPassword('secret');
@@ -67,7 +67,7 @@ class AttemptValidatorTest extends BaseTest
     public function fail_when_password_does_not_match(): void
     {
         $request = new ResetPasswordRequest(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
         $request->setPassword('secret');

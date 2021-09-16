@@ -27,6 +27,7 @@ namespace LMS\Flogin\Domain\Model\Request;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\Resets;
+use LMS\Flogin\Event\SendResetLinkRequestEvent;
 use LMS\Flogin\Support\Domain\Property\PasswordConfirmation;
 
 /**
@@ -52,7 +53,9 @@ class ResetPasswordRequest extends AbstractRequest
      */
     public function notify(): void
     {
-        $this->fireSendResetLinkRequestEvent($this);
+        $event = new SendResetLinkRequestEvent($this);
+
+        $this->dispatcher()->dispatch($event);
     }
 
     /**

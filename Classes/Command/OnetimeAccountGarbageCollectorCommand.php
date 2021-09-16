@@ -60,6 +60,6 @@ class OnetimeAccountGarbageCollectorCommand extends Command
             ->delete('fe_users')
             ->execute();
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

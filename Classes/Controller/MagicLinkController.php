@@ -30,11 +30,9 @@ namespace LMS\Flogin\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Redirect;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RedirectResponse;
 use LMS\Flogin\Domain\Model\Request\MagicLinkRequest;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use LMS\Flogin\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagicLinkEmails};
 
@@ -42,7 +40,7 @@ use LMS\Flogin\Support\Controller\{Login\AuthenticatesUsers, MagicLink\SendsMagi
  * @psalm-suppress PropertyNotSetInConstructor
  * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class MagicLinkController extends ActionController
+class MagicLinkController extends Base\CommonController
 {
     use SendsMagicLinkEmails, AuthenticatesUsers;
 
@@ -87,7 +85,7 @@ class MagicLinkController extends ActionController
         $this->sendMagicLink($email);
 
         return new RedirectResponse(
-            Redirect::uriFor($pid, true)
+            $this->redirect->uriFor($pid, true)
         );
     }
 
@@ -113,7 +111,7 @@ class MagicLinkController extends ActionController
         $this->login($credentials);
 
         return new RedirectResponse(
-            Redirect::uriFor($pid, true)
+            $this->redirect->uriFor($pid, true)
         );
     }
 }

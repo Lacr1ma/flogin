@@ -56,12 +56,12 @@ class UnlockUserCommandTest extends BaseTest
      */
     public function execute(): void
     {
-        $repository = UserRepository::make();
+        $repository = $this->getContainer()->get(UserRepository::class);
 
-        $this->assertSame(1, $repository->findLocked()->count());
+        $this->assertSame(1, count($repository->findLocked()));
 
         exec('/var/www/html/bin/typo3 login:unlock_users');
 
-        $this->assertSame(0, $repository->findLocked()->count());
+        $this->assertSame(0, count($repository->findLocked()));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Support\Domain\Action\User;
+namespace LMS\Flogin\Support;
 
 /* * *************************************************************
  *
@@ -26,39 +26,54 @@ namespace LMS\Flogin\Support\Domain\Action\User;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Support\TypoScript;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\ResponseFactory;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-trait UrlManagement
+class Redirect
 {
-    public function buildUrl(string $action, string $controller, array $arguments = []): string
-    {
-        $extension = $plugin = 'Flogin';
+    private UriBuilder $uri;
+    private ResponseFactory $factory;
 
-        return htmlspecialchars_decode(
-            $this->urlBuilder()->uriFor($action, $arguments, $controller, $extension, $plugin)
-        );
+    public function __construct(ResponseFactory $factory, UriBuilder $uri)
+    {
+        $this->factory = $factory;
+        $this->uri = $uri->reset();
     }
 
-    private function urlBuilder(): UriBuilder
+    public function toPage(int $pid): ResponseInterface
     {
-        $scheme = $GLOBALS['TYPO3_REQUEST']->getUri()->getScheme();
+        $url = $this->uriFor($pid);
 
-        $loginPage = (int)TypoScript::getSettings()['page.']['login'];
+        return $this->toUri($url);
+    }
 
-        return $this->builder()
-            ->setTargetPageUid($loginPage)
-            ->setCreateAbsoluteUri(true)
+    public function toUri(string $uri, int $status = 303): ResponseInterface
+    {
+        $response = $this->factory->createResponse($status);
+
+        return $response->withAddedHeader('location', $uri);
+    }
+
+    public function uriFor(int $pid, bool $absolute = false): string
+    {
+        return $this->uri
             ->setLinkAccessRestrictedPages(true)
-            ->setAbsoluteUriScheme($scheme);
+            ->setCreateAbsoluteUri($absolute)
+            ->setTargetPageUid($pid)
+            ->build();
     }
 
-    private function builder(): UriBuilder
+    public function factory(): ResponseFactory
     {
-        return GeneralUtility::makeInstance(UriBuilder::class);
+        return $this->factory;
+    }
+
+    public function uriBuilder(): UriBuilder
+    {
+        return $this->uri;
     }
 }

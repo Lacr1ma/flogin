@@ -28,10 +28,12 @@ namespace LMS\Flogin\Mvc\View;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
-class JsonView extends \LMS\Facade\Mvc\View\JsonView
+class JsonView extends \TYPO3\CMS\Extbase\Mvc\View\JsonView
 {
     /**
      * @var array
@@ -43,4 +45,19 @@ class JsonView extends \LMS\Facade\Mvc\View\JsonView
             ]
         ]
     ];
+
+    /**
+     * Always transforming Object Storage to Arrays for the JSON view
+     *
+     * @param mixed $value
+     * @param bool $firstLevel
+     */
+    protected function transformValue($value, array $configuration, $firstLevel = false)
+    {
+        if ($value instanceof ObjectStorage) {
+            $value = $value->toArray();
+        }
+
+        return parent::transformValue($value, $configuration) ?? [];
+    }
 }

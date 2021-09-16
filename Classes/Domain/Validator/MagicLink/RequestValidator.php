@@ -29,8 +29,9 @@ namespace LMS\Flogin\Domain\Validator\MagicLink;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\PropagateResponseException;
-use LMS\Flogin\{Domain\Repository\LinkRepository, Domain\Validator\DefaultValidator, Support\Redirection\UserRouter};
+use LMS\Flogin\{Domain\Repository\LinkRepository, Domain\Validator\DefaultValidator};
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -49,17 +50,19 @@ class RequestValidator extends DefaultValidator
      */
     protected function isValid($value): void
     {
-        $magicLink = LinkRepository::make()->find($value->getToken());
+        $linkRepository = GeneralUtility::makeInstance(LinkRepository::class);
+
+        $magicLink = $linkRepository->find($value->getToken());
 
         if ($magicLink === null) {
             throw new PropagateResponseException(
-                UserRouter::redirectToTokenNotFoundPage()
+                $this->router()->redirectToTokenNotFoundPage()
             );
         }
 
         if ($magicLink->isExpired()) {
             throw new PropagateResponseException(
-                UserRouter::redirectToTokenExpiredPage()
+                $this->router()->redirectToTokenExpiredPage()
             );
         }
 

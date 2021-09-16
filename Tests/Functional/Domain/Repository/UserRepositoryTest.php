@@ -40,7 +40,7 @@ class UserRepositoryTest extends BaseTest
     public function can_be_found_by_username(): void
     {
         $this->assertNotNull(
-            UserRepository::make()->retrieveByUsername('user')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
     }
 
@@ -50,7 +50,7 @@ class UserRepositoryTest extends BaseTest
     public function find_by_username_returns_null_when_user_not_found(): void
     {
         $this->assertNull(
-            UserRepository::make()->retrieveByUsername('invalid')
+            $this->getContainer()->get(UserRepository::class)->retrieveByUsername('invalid')
         );
     }
 
@@ -60,7 +60,7 @@ class UserRepositoryTest extends BaseTest
     public function current_user_returns_null_when_user_is_not_logged_in(): void
     {
         $this->assertNull(
-            UserRepository::make()->current()
+            $this->getContainer()->get(UserRepository::class)->current()
         );
     }
 
@@ -70,7 +70,7 @@ class UserRepositoryTest extends BaseTest
     public function can_be_found_by_email(): void
     {
         $this->assertNotNull(
-            UserRepository::make()->retrieveByEmail('user@example.com')
+            $this->getContainer()->get(UserRepository::class)->retrieveByEmail('user@example.com')
         );
     }
 
@@ -80,7 +80,7 @@ class UserRepositoryTest extends BaseTest
     public function cant_be_found_by_email_when_invalid(): void
     {
         $this->assertNull(
-            UserRepository::make()->retrieveByEmail('invalid@example.com')
+            $this->getContainer()->get(UserRepository::class)->retrieveByEmail('invalid@example.com')
         );
     }
 
@@ -90,7 +90,7 @@ class UserRepositoryTest extends BaseTest
     public function locked_user_can_be_found(): void
     {
         $this->assertNotEmpty(
-            UserRepository::make()->findLocked()->all()
+            $this->getContainer()->get(UserRepository::class)->findLocked()
         );
     }
 }

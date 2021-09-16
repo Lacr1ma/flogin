@@ -29,7 +29,6 @@ namespace LMS\Flogin\Support\Domain\Property;
  * ************************************************************* */
 
 use Carbon\Carbon;
-use LMS\Facade\Model\Property\CreationDate;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

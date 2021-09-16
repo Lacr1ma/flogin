@@ -26,8 +26,9 @@ namespace LMS\Flogin\Controller\Api;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Facade\Extbase\Validation;
+use LMS\Flogin\Support\Redirect;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -36,6 +37,13 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  */
 abstract class AbstractApiController extends ActionController
 {
+    protected Redirect $redirect;
+
+    public function __construct(Redirect $redirect)
+    {
+        $this->redirect = $redirect;
+    }
+
     /**
      * Build proper error messages for outside use
      *
@@ -43,12 +51,23 @@ abstract class AbstractApiController extends ActionController
      */
     public function errorAction(): ResponseInterface
     {
-        $errors = Validation::parseErorrs(
+        $errors = $this->parseErrors(
             $this->getControllerContext()->getArguments()
         );
 
         $body = collect(compact('errors'))->toJson();
 
         return $this->jsonResponse($body);
+    }
+
+    public function parseErrors(Arguments $args): array
+    {
+        $errors = [];
+
+        foreach ($args->validate()->getFlattenedErrors() as $propertyName => $propertyErrors) {
+            $errors[$propertyName] = collect($propertyErrors)->map->getMessage()->all();
+        }
+
+        return $errors;
     }
 }

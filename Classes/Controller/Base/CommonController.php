@@ -1,7 +1,9 @@
 <?php
+/** @noinspection PhpDocSignatureIsNotCompleteInspection */
+
 declare(strict_types = 1);
 
-namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
+namespace LMS\Flogin\Controller\Base;
 
 /* * *************************************************************
  *
@@ -26,29 +28,19 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\Tests\Functional\BaseTest;
-use LMS\Flogin\Domain\Validator\Login\AttemptLimitNotReachedValidator;
+use LMS\Flogin\Support\Redirect;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
- * @author Borulko Sergey <borulkosergey@icloud.com>
+ * @psalm-suppress PropertyNotSetInConstructor
+ * @author         Sergey Borulko <borulkosergey@icloud.com>
  */
-class AttemptLimitNotReachedValidatorTest extends BaseTest
+class CommonController extends ActionController
 {
-    /**
-     * @test
-     */
-    public function error_thrown_when_too_many_attempts(): void
+    protected Redirect $redirect;
+
+    public function __construct(Redirect $redirect)
     {
-        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
-
-        $validator = new AttemptLimitNotReachedValidator();
-
-        $validator->validate('127.0.0.1');
-        $validator->validate('127.0.0.1');
-        $validator->validate('127.0.0.1');
-        $validator->validate('127.0.0.1');
-        $validator->validate('127.0.0.1');
-
-        $this->assertTrue($validator->validate('127.0.0.1')->hasErrors());
+        $this->redirect = $redirect;
     }
 }

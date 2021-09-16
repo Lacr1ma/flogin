@@ -34,13 +34,18 @@ use LMS\Flogin\Event\LoginAttemptFailedEvent;
  */
 class IncrementAttempts
 {
-    use ThrottlesLogins;
+    protected ThrottlesLogins $throttler;
+
+    public function injectThrottler(ThrottlesLogins $throttler): void
+    {
+        $this->throttler = $throttler;
+    }
 
     /**
      * Wrong login attempt detected, increment attempts
      */
     public function __invoke(LoginAttemptFailedEvent $event): void
     {
-        $this->incrementAttempts();
+        $this->throttler->incrementAttempts();
     }
 }
