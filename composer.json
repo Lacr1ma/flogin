@@ -1,5 +1,5 @@
 {
-    "name": "test/routes",
+    "name": "test/flogin",
     "description": "Testing sandbox for extensions",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -47,9 +47,7 @@
     "autoload": {
         "psr-4": {
             "LMS\\Flogin\\": "public/typo3conf/ext/flogin/Classes",
-            "LMS\\Facade\\": "public/typo3conf/ext/facade/Classes",
             "LMS\\Flogin\\Tests\\": "public/typo3conf/ext/flogin/Tests"
-        },
-        "files": ["public/typo3conf/ext/facade/helpers.php"]
+        }
     }
 }
