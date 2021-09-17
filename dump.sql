@@ -1795,6 +1795,25 @@ CREATE TABLE `tx_scheduler_task_group` (
   KEY `parent` (`pid`,`deleted`,`hidden`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- Create syntax for TABLE 'cache_tx_facade'
+CREATE TABLE `cache_tx_facade` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `expires` int(10) unsigned NOT NULL DEFAULT 0,
+  `content` longblob DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cache_id` (`identifier`(180),`expires`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Create syntax for TABLE 'cache_tx_facade_tags'
+CREATE TABLE `cache_tx_facade_tags` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tag` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `cache_id` (`identifier`(191)),
+  KEY `cache_tag` (`tag`(191))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
