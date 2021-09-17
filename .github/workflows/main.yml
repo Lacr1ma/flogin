@@ -22,10 +22,8 @@ jobs:
         run: ddev import-db --src=./dump.sql
 
       - name: Install composer packages
-        run: ddev composer install --prefer-dist
-
-      - name: Allow public access of var folder
-        run: sudo chmod 0777 ./var
+        run: ddev composer install
+gst
 
       - name: Psalm
         run: ddev exec bin/psalm
