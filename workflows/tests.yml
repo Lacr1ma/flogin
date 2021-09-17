@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testsuite:
+    name: all tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Start DDEV
+        uses: jonaseberle/github-action-setup-ddev@v1
+
+      - name: Import database
+        run: ddev import-db --src=./dump.sql
+
+      - name: Install composer packages
+        run: ddev composer install --prefer-dist
+
+      - name: Allow public access of var folder
+        run: sudo chmod 0777 ./var
+
+      - name: Psalm
+        run: ddev exec psalm
+
+      - name: Unit test suit
+        run: ddev exec phpunit -c public/typo3conf/ext/routes/Tests/Build/UnitTests.xml
+
+      - name: Run acceptance tests
+        run: ddev exec bin/codecept run acceptance -d -c Tests/codeception.yml
