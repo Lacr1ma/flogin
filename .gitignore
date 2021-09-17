@@ -16,3 +16,4 @@
 /.idea
 composer.lock
 Tests/Acceptance/Support/_generated/
+/public/typo3conf/autoload/*
