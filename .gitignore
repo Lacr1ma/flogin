@@ -1,2 +1,4 @@
+/Tests/Build/.phpunit.result.cache
 /Tests/Acceptance/_output/
+/Tests/Acceptance/Support/_generated
 Documentation-GENERATED-temp/

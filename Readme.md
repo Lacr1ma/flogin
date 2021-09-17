@@ -1,4 +1,4 @@
-# TYPO3 Extension ``flogin`` [![Build Status](https://travis-ci.org/Lacr1ma/flogin.svg?branch=master)](https://travis-ci.org/Lacr1ma/flogin)
+# TYPO3 Extension ``flogin``
 
 This extension provides an authentication option for website users.
 

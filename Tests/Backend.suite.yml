@@ -7,9 +7,6 @@ suites:
     modules:
       enabled:
         - Db
-        - Cli
-        - Asserts
-        - Filesystem
         - WebDriver:
             url: http://login.ddev.site/
             host: selenium__standalone-chrome
