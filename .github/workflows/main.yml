@@ -23,7 +23,6 @@ jobs:
 
       - name: Install composer packages
         run: ddev composer install
-gst
 
       - name: Psalm
         run: ddev exec bin/psalm
