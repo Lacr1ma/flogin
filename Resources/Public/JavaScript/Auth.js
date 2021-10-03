@@ -236,9 +236,13 @@ const placeError = async (field, notice, message) => {
  * @return {Object}
  */
 const requestMagicLinkAttempt = async (url, email) => {
-    const result = await axios.post(url, {email});
+    const response = await fetch(url, {
+        body: JSON.stringify({email}),
+        headers: getRequestHeaders(),
+        method: 'POST'
+    });
 
-    return result.data;
+    return await response.json();
 };
 
 /**
@@ -251,9 +255,13 @@ const requestMagicLinkAttempt = async (url, email) => {
  * @return {Object}
  */
 const loginAttempt = async (url, username, password, remember) => {
-    const result = await axios.post(url, {username, password, remember});
+    const response = await fetch(url, {
+        body: JSON.stringify({username, password, remember}),
+        headers: getRequestHeaders(),
+        method: 'POST'
+    });
 
-    return result.data;
+    return await response.json();
 };
 
 /**
@@ -262,9 +270,22 @@ const loginAttempt = async (url, username, password, remember) => {
  * @return {string}
  */
 const logout = async () => {
-    initializeRequestHeaders();
+    const response = await fetch('/api/login/logins/logout', {
+        headers: getRequestHeaders(),
+        method: 'GET'
+    });
 
-    const result = await axios.get('/api/login/logins/logout');
+    const result = await response.json();
 
-    return result.data.redirect;
+    return result.redirect;
+};
+
+const getRequestHeaders = () => {
+    const csrf = document.head.querySelector('meta[name="x-csrf-token"]');
+
+    return {
+        'Accept': 'application/json',
+        'ContentType': 'application/json',
+        'X-CSRF-TOKEN': csrf ? csrf.content : ''
+    }
 };

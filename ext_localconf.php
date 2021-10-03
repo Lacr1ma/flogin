@@ -39,6 +39,14 @@ use LMS\Flogin\Controller\Api\MagicLinkApiController;
 use LMS\Flogin\Controller\Api\ForgotPasswordApiController;
 use LMS\Flogin\Service\BackendSimulationAuthenticationService;
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptConstants(
+    "@import 'EXT:flogin/Configuration/TypoScript/constants.typoscript'"
+);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
+    "@import 'EXT:flogin/Configuration/TypoScript/setup.typoscript'"
+);
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
     'flogin',
     'auth',
