@@ -261,6 +261,8 @@ const loginAttempt = async (url, username, password, remember) => {
         method: 'POST'
     });
 
+    console.log(response);
+
     return await response.json();
 };
 

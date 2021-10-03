@@ -29,7 +29,7 @@ namespace LMS\Flogin\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
@@ -67,6 +67,11 @@ trait IsOnline
 
     public function wasActiveRecently(): bool
     {
-        return $this->isOnline > 0 && Carbon::createFromTimestamp($this->isOnline)->diffInMinutes(Carbon::now()) <= 1;
+        $now = new DateTime();
+        $online = DateTime::createFromFormat('U', (string)$this->isOnline);
+
+        $diff = date_diff($online, $now);
+
+        return $this->isOnline > 0 && $diff->d <= 1;
     }
 }

@@ -26,7 +26,7 @@ namespace LMS\Flogin\Support\Helper;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\{Hash\Hash, Support\TypoScript};
 
 /**
@@ -66,7 +66,10 @@ class OneTimeAccount
     {
         $lifeTime = $this->accountSettings()['lifetimeInMinutes'];
 
-        return (int)Carbon::now()->addMinutes($lifeTime)->timestamp;
+        $now = new DateTime();
+        $now->modify("+{$lifeTime} minutes");
+
+        return $now->getTimestamp();
     }
 
     /**

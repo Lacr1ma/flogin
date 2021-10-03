@@ -99,9 +99,9 @@ abstract class DefaultValidator extends AbstractValidator
 
     protected function isJson(): bool
     {
-        $accepts = collect(Request::createFromGlobals()->getAcceptableContentTypes());
+        $accepts = Request::createFromGlobals()->getAcceptableContentTypes();
 
-        return $accepts->contains('application/json');
+        return in_array('application/json', $accepts);
     }
 
     protected function dispatcher(): EventDispatcher

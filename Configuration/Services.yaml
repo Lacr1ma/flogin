@@ -15,6 +15,9 @@ services:
     public: true
     shared: false
 
+  LMS\Flogin\Middleware\Api\VerifyAccountCreationHash:
+    public: true
+
   LMS\Flogin\Command\UnlockUserCommand:
     tags:
       - name: 'console.command'

@@ -28,7 +28,7 @@ namespace LMS\Flogin\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -42,17 +42,17 @@ trait Expirable
      */
     public function isExpired(): bool
     {
-        return $this->getExpirationTime()->isPast();
+        return new DateTime() > $this->getExpirationTime();
     }
 
     /**
      * Get the exact time when entity expires
      */
-    public function getExpirationTime(): Carbon
+    public function getExpirationTime(): DateTime
     {
-        return $this->getCreatedAt()->addMinutes(
-            $this->getLifetimeInMinutes()
-        );
+        $interval = $this->getLifetimeInMinutes();
+
+        return $this->getCreatedAt()->modify("+{$interval} minutes");
     }
 
     /**

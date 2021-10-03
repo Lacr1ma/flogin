@@ -26,7 +26,7 @@ namespace LMS\Flogin\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\Support\TypoScript;
 
 /**
@@ -53,14 +53,16 @@ trait Locked
         $this->locked = $locked;
     }
 
-    public function getUnlockTime(): Carbon
+    public function getUnlockTime(): DateTime
     {
-        return $this->getUpdatedAt()->addMinutes(self::getLockMinutesInterval());
+        $interval = self::getLockMinutesInterval();
+
+        return $this->getUpdatedAt()->modify("+{$interval} minutes");
     }
 
     public function isTimeToUnlock(): bool
     {
-        return $this->getUnlockTime()->isPast();
+        return new DateTime() > $this->getUnlockTime();
     }
 
     public static function getLockMinutesInterval(): int

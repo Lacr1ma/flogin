@@ -26,7 +26,7 @@ namespace LMS\Flogin\Support;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
@@ -54,7 +54,11 @@ class RateLimiter
      */
     public function availableAt(int $delayInMinutes): int
     {
-        return Carbon::now()->addMinutes($delayInMinutes)->getTimestamp();
+        $now = new DateTime();
+
+        $now->modify("+{$delayInMinutes} minutes");
+
+        return $now->getTimestamp();
     }
 
     /**

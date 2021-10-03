@@ -54,7 +54,7 @@ class ForgotPasswordApiController extends AbstractApiController
         $redirect = $this->redirect->uriFor($pid, true);
 
         return $this->jsonResponse(
-            collect(compact('redirect'))->toJson()
+            (string)json_encode(compact('redirect'))
         );
     }
 }

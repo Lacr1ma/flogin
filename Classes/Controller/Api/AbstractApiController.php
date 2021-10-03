@@ -27,6 +27,7 @@ namespace LMS\Flogin\Controller\Api;
  * ************************************************************* */
 
 use LMS\Flogin\Support\Redirect;
+use TYPO3\CMS\Extbase\Validation\Error;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -55,7 +56,7 @@ abstract class AbstractApiController extends ActionController
             $this->getControllerContext()->getArguments()
         );
 
-        $body = collect(compact('errors'))->toJson();
+        $body = (string)json_encode(compact('errors'));
 
         return $this->jsonResponse($body);
     }
@@ -65,7 +66,10 @@ abstract class AbstractApiController extends ActionController
         $errors = [];
 
         foreach ($args->validate()->getFlattenedErrors() as $propertyName => $propertyErrors) {
-            $errors[$propertyName] = collect($propertyErrors)->map->getMessage()->all();
+            /** @var Error $error */
+            foreach ($propertyErrors as $error) {
+                $errors[$propertyName] = $error->getMessage();
+            }
         }
 
         return $errors;

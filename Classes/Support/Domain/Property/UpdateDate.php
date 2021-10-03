@@ -26,7 +26,7 @@ namespace LMS\Flogin\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
@@ -45,8 +45,8 @@ trait UpdateDate
         $this->tstamp = $unix;
     }
 
-    public function getUpdatedAt(): Carbon
+    public function getUpdatedAt(): DateTime
     {
-        return Carbon::createFromTimestamp($this->tstamp);
+        return DateTime::createFromFormat('U', (string)$this->tstamp);
     }
 }

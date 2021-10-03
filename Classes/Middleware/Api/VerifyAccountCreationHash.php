@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Middleware\Api;
@@ -25,11 +27,12 @@ namespace LMS\Flogin\Middleware\Api;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
+
 use LMS\Flogin\Support\Registry;
 use LMS\Flogin\Support\TypoScript;
-use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Registry as CoreRegistry;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
 use LMS\Routes\Middleware\Api\AbstractRouteMiddleware;
 
 /**
@@ -56,14 +59,9 @@ class VerifyAccountCreationHash extends AbstractRouteMiddleware
 
     private function redirectToHashErrorPage(): void
     {
-        HttpUtility::redirect(
-            $this->invalidHashUrl()
+        throw new PropagateResponseException(
+            $this->redirect->toPage($this->hashErrorPage())
         );
-    }
-
-    private function invalidHashUrl(): string
-    {
-        return "/index.php?id={$this->hashErrorPage()}";
     }
 
     private function hashErrorPage(): int
