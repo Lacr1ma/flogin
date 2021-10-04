@@ -33,8 +33,8 @@ use TYPO3\CMS\Core\Http\ResponseFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Symfony\Component\HttpFoundation\Request;
 use LMS\Flogin\Support\Redirection\UserRouter;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
 

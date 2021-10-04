@@ -30,6 +30,7 @@ namespace LMS\Flogin\Support\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -48,7 +49,7 @@ trait CRUD
 
         try {
             $this->remove($object);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 
@@ -61,7 +62,7 @@ trait CRUD
     {
         try {
             $this->update($object);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $object;
         }
 
@@ -89,7 +90,7 @@ trait CRUD
     {
         try {
             $this->add($entity);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 

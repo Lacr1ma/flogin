@@ -67,7 +67,7 @@ class OneTimeAccount
         $lifeTime = $this->accountSettings()['lifetimeInMinutes'];
 
         $now = new DateTime();
-        $now->modify("+{$lifeTime} minutes");
+        $now->modify("+$lifeTime minutes");
 
         return $now->getTimestamp();
     }

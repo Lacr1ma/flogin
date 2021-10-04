@@ -26,11 +26,13 @@ namespace LMS\Flogin\Guard;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Domain\Model\User,
-    Domain\Repository\UserRepository,
-    Event\LoginAttemptFailedInCoreEvent,
+use LMS\Flogin\{
+    Domain\Model\User,
     Event\LoginSuccessEvent,
-    Event\LogoutSuccessEvent};
+    Event\LogoutSuccessEvent,
+    Domain\Repository\UserRepository,
+    Event\LoginAttemptFailedInCoreEvent
+};
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**

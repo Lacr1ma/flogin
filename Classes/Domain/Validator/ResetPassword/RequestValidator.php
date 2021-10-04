@@ -29,10 +29,10 @@ namespace LMS\Flogin\Domain\Validator\ResetPassword;
  * ************************************************************* */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use LMS\Flogin\{Domain\Model\Request\ResetPasswordRequest,
-    Domain\Validator\DefaultValidator,
-    Domain\Repository\ResetsRepository};
+use LMS\Flogin\Domain\Validator\DefaultValidator;
+use LMS\Flogin\Domain\Repository\ResetsRepository;
 use TYPO3\CMS\Core\Http\PropagateResponseException;
+use LMS\Flogin\Domain\Model\Request\ResetPasswordRequest;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor

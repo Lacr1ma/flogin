@@ -52,7 +52,7 @@ trait Expirable
     {
         $interval = $this->getLifetimeInMinutes();
 
-        return $this->getCreatedAt()->modify("+{$interval} minutes");
+        return $this->getCreatedAt()->modify("+$interval minutes");
     }
 
     /**

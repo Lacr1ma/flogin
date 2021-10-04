@@ -1,5 +1,6 @@
 <?php
 /** @noinspection PhpUnused */
+/** @noinspection PhpIncompatibleReturnTypeInspection */
 
 declare(strict_types = 1);
 

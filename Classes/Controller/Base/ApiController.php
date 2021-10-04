@@ -30,8 +30,8 @@ namespace LMS\Flogin\Controller\Base;
 
 use LMS\Flogin\Support\Redirect;
 use LMS\Flogin\Mvc\View\JsonView;
-use LMS\Flogin\Domain\Repository\UserRepository;
 use TYPO3\CMS\Core\Context\Context;
+use LMS\Flogin\Domain\Repository\UserRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**

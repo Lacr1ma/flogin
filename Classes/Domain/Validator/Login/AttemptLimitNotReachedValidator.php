@@ -26,10 +26,12 @@ namespace LMS\Flogin\Domain\Validator\Login;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use LMS\Flogin\{Domain\Validator\DefaultValidator,
+use LMS\Flogin\{
     Event\LockoutEvent,
+    Support\ThrottlesLogins,
     Event\LoginAttemptFailedEvent,
-    Support\ThrottlesLogins};
+    Domain\Validator\DefaultValidator
+};
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**

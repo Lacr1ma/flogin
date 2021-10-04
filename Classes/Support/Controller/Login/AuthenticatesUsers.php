@@ -27,8 +27,8 @@ namespace LMS\Flogin\Support\Controller\Login;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Repository\UserRepository;
-use LMS\Flogin\{Event\LoginAttemptEvent, Guard\SessionGuard};
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use LMS\Flogin\{Event\LoginAttemptEvent, Guard\SessionGuard};
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>

@@ -56,7 +56,7 @@ class RateLimiter
     {
         $now = new DateTime();
 
-        $now->modify("+{$delayInMinutes} minutes");
+        $now->modify("+$delayInMinutes minutes");
 
         return $now->getTimestamp();
     }

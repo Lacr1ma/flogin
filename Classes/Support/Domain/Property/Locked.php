@@ -57,7 +57,7 @@ trait Locked
     {
         $interval = self::getLockMinutesInterval();
 
-        return $this->getUpdatedAt()->modify("+{$interval} minutes");
+        return $this->getUpdatedAt()->modify("+$interval minutes");
     }
 
     public function isTimeToUnlock(): bool

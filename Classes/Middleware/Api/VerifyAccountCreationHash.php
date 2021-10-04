@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpInternalEntityUsedInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 declare(strict_types = 1);
