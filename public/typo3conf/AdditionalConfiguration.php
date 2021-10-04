@@ -14,7 +14,7 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
                 'Connections' => [
                     'Default' => [
                         'dbname' => 'db',
-                        'host' => 'db',
+                        'host' => 'ddev-login-db',
                         'password' => 'db',
                         'port' => '3306',
                         'user' => 'db',
