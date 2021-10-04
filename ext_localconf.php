@@ -26,8 +26,6 @@ declare(strict_types = 1);
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-defined('TYPO3') or die();
-
 use LMS\Flogin\Controller\LoginController;
 use LMS\Flogin\Controller\LockerController;
 use LMS\Flogin\Controller\UserApiController;
@@ -38,6 +36,11 @@ use LMS\Flogin\Controller\ForgotPasswordController;
 use LMS\Flogin\Controller\Api\MagicLinkApiController;
 use LMS\Flogin\Controller\Api\ForgotPasswordApiController;
 use LMS\Flogin\Service\BackendSimulationAuthenticationService;
+
+defined('TYPO3') or die();
+
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][899] =
+    'EXT:flogin/Resources/Private/Templates/Email';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptConstants(
     "@import 'EXT:flogin/Configuration/TypoScript/constants.typoscript'"

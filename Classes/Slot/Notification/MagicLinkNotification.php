@@ -59,6 +59,6 @@ class MagicLinkNotification extends AbstractNotificationSender
      */
     protected function getTemplateSuffix(): string
     {
-        return 'Email/MagicLink';
+        return 'MagicLink';
     }
 }

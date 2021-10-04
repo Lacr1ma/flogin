@@ -59,6 +59,6 @@ class ResetPasswordNotification extends AbstractNotificationSender
      */
     protected function getTemplateSuffix(): string
     {
-        return 'Email/Password/ResetRequest';
+        return 'Password/ResetRequest';
     }
 }

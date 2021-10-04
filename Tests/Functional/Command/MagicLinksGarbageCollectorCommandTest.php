@@ -26,7 +26,7 @@ namespace LMS\Flogin\Tests\Functional\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\Domain\{Model\Link, Repository\LinkRepository};
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -48,16 +48,20 @@ class MagicLinksGarbageCollectorCommandTest extends FunctionalTestCase
     {
         $repository = $this->getContainer()->get(LinkRepository::class);
 
+        $oneHourBack = (new DateTime())->modify('-1 hours');
+
         Link::create([
             'user' => 1,
             'token' => 'token',
-            'crdate' => Carbon::now()->subHour()->timestamp
+            'crdate' => $oneHourBack->getTimestamp()
         ]);
+
+        $oneHourFuture = (new DateTime())->modify('+1 hours');
 
         Link::create([
             'user' => 2,
             'token' => 'token',
-            'crdate' => Carbon::now()->addHour()->timestamp
+            'crdate' => $oneHourFuture->getTimestamp()
         ]);
 
         $this->assertSame(1, count($repository->findExpired()));

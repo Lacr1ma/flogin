@@ -29,7 +29,7 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\Support\Domain\Property\Locked;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -80,7 +80,8 @@ class LockedTest extends UnitTestCase
         $time = time();
         $this->trait->setTstamp($time);
 
-        $unlockTime = Carbon::createFromTimestamp($time)->addMinutes(2);
+        $unlockTime = DateTime::createFromFormat('U', (string)$time);
+        $unlockTime->modify("+2 minutes");
 
         $this->assertSame($unlockTime->getTimestamp(), $this->trait->getUnlockTime()->getTimestamp());
     }
@@ -90,9 +91,10 @@ class LockedTest extends UnitTestCase
      */
     public function lockIntervalTimeHasPassed(): void
     {
-        $threeMinutesAgo = Carbon::createFromTimestamp(time())->subMinutes(3)->getTimestamp();
+        $threeMinutesAgo = new DateTime();
+        $threeMinutesAgo->modify("-3 minutes");
 
-        $this->trait->setTstamp($threeMinutesAgo);
+        $this->trait->setTstamp($threeMinutesAgo->getTimestamp());
 
         $this->assertTrue($this->trait->isTimeToUnlock());
     }
@@ -102,9 +104,10 @@ class LockedTest extends UnitTestCase
      */
     public function lockIntervalTimeNotPassed(): void
     {
-        $oneMinutesAgo = Carbon::createFromTimestamp(time())->subMinutes(1)->getTimestamp();
+        $oneMinutesAgo = new DateTime();
+        $oneMinutesAgo->modify("-1 minutes");
 
-        $this->trait->setTstamp($oneMinutesAgo);
+        $this->trait->setTstamp($oneMinutesAgo->getTimestamp());
 
         $this->assertFalse($this->trait->isTimeToUnlock());
     }

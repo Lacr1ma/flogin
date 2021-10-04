@@ -59,6 +59,6 @@ class LockoutNotification extends AbstractNotificationSender
      */
     protected function getTemplateSuffix(): string
     {
-        return 'Email/Lockout';
+        return 'Lockout';
     }
 }

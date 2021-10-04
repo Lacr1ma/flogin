@@ -26,7 +26,7 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\UserRepository;
 use LMS\Flogin\Domain\Validator\ResetPassword\AttemptValidator;
@@ -49,11 +49,13 @@ class AttemptValidatorTest extends BaseTest
         $request->setPassword('secret');
         $request->setPasswordConfirmation('secret');
 
+        $oneHourFuture = (new DateTime())->modify('+1 hours');
+
         Resets::create([
             'pid' => 0,
             'token' => $request->getToken(),
             'user' => $request->getUser()->getUid(),
-            'crdate' => Carbon::now()->addHour()->timestamp
+            'crdate' => $oneHourFuture->getTimestamp()
         ]);
 
         $this->assertFalse(
@@ -73,11 +75,13 @@ class AttemptValidatorTest extends BaseTest
         $request->setPassword('secret');
         $request->setPasswordConfirmation('invalid');
 
+        $oneHourFuture = (new DateTime())->modify('+1 hours');
+
         Resets::create([
             'pid' => 0,
             'token' => $request->getToken(),
             'user' => $request->getUser()->getUid(),
-            'crdate' => Carbon::now()->addHour()->timestamp
+            'crdate' => $oneHourFuture->getTimestamp()
         ]);
 
         $this->assertTrue(

@@ -73,6 +73,6 @@ class LoginNotification extends AbstractNotificationSender
      */
     protected function getTemplateSuffix(): string
     {
-        return 'Email/Login';
+        return 'Login';
     }
 }

@@ -28,7 +28,7 @@ namespace LMS\Flogin\Tests\Unit\Support\Domain\Property;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\Support\Domain\Property\Expirable;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -73,7 +73,8 @@ class ExpirableTest extends UnitTestCase
         $time = time();
         $this->trait->setCrdate($time);
 
-        $expirationTime = Carbon::createFromTimestamp($time)->addMinutes(2);
+        $expirationTime = DateTime::createFromFormat('U', (string)$time);
+        $expirationTime->modify("+2 minutes");
 
         $this->assertSame($expirationTime->getTimestamp(), $this->trait->getExpirationTime()->getTimestamp());
     }
@@ -83,7 +84,7 @@ class ExpirableTest extends UnitTestCase
      */
     public function expiredWhenLifeTimeHasPassed(): void
     {
-        $threeMinutesAgo = Carbon::createFromTimestamp(time())->subMinutes(3)->getTimestamp();
+        $threeMinutesAgo = (new DateTime())->modify('-3 minutes')->getTimestamp();
 
         $this->trait->setCrdate($threeMinutesAgo);
 
@@ -95,9 +96,9 @@ class ExpirableTest extends UnitTestCase
      */
     public function expiredWhenLifeTimeHasNotPassed(): void
     {
-        $oneMinutesAgo = Carbon::createFromTimestamp(time())->subMinutes(1)->getTimestamp();
+        $oneMinuteAgo = (new DateTime())->modify('-1 minutes')->getTimestamp();
 
-        $this->trait->setCrdate($oneMinutesAgo);
+        $this->trait->setCrdate($oneMinuteAgo);
 
         $this->assertFalse($this->trait->isExpired());
     }

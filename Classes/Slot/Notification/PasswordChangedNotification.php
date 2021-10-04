@@ -59,6 +59,6 @@ class PasswordChangedNotification extends AbstractNotificationSender
      */
     protected function getTemplateSuffix(): string
     {
-        return 'Email/Password/Changed';
+        return 'Password/Changed';
     }
 }

@@ -1,53 +1,22 @@
-<f:layout name="Email"/>
+<f:layout name="SystemEmail" />
 
-<f:section name="Header">
-    <img src="{f:uri.image(src: '{email.logoPath}', absolute: 1)}" class="logo" width="250"/>
-</f:section>
+<f:section name="Title">{headline}</f:section>
 
 <f:section name="Main">
-    <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#fcfcfc">
+    <h3>
+        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.caption"/>
+    </h3>
 
-        <tr>
-            <td class="es-m-txt-c" align="center">
-                <h2>
-                    <strong>
-                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.caption"/>
-                    </strong>
-                </h2>
-            </td>
-        </tr>
+    <p>
+        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.caption_description"/>
 
-        <tr>
-            <td class="es-m-txt-l" bgcolor="transparent" align="left">
-                <span>
-                    <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.caption_description"/>
-                </span>
-            </td>
-        </tr>
+        <a href="{data.request.url -> f:format.raw()}" class="es-button" target="_blank">
+            <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.button_reset"/>
+        </a>
+        <br/>
+    </p>
 
-        <tr>
-            <td align="center" class="es-m-txt-c">
-                <span class="es-button-border">
-                    <a href="{request.url -> f:format.raw()}" class="es-button" target="_blank">
-                        <f:translate key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.button_reset"/>
-                    </a>
-                </span>
-            </td>
-        </tr>
-
-        <tr>
-            <td class="es-m-txt-l" bgcolor="transparent" align="left">
-                <span>
-                    <f:translate arguments="{0: '{request.expires}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.expire"/>
-                </span>
-            </td>
-        </tr>
-
-    </table>
-</f:section>
-
-<f:section name="Footer">
-    <f:format.raw>
-        <f:translate arguments="{0: '{email.site}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:common.signature" />
-    </f:format.raw>
+    <p>
+        <f:translate arguments="{0: '{data.request.expires}'}" key="LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.expire"/>
+    </p>
 </f:section>

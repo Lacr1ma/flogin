@@ -26,7 +26,7 @@ namespace LMS\Flogin\Tests\Functional\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use LMS\Flogin\Domain\{Model\User, Repository\UserRepository};
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -48,9 +48,11 @@ class OnetimeAccountGarbageCollectorCommandTest extends FunctionalTestCase
     {
         $repository = $this->getContainer()->get(UserRepository::class);
 
+        $endTime = (new DateTime())->modify('-1 seconds');
+
         User::create([
             'username' => 'temp',
-            'endtime' => Carbon::now()->subSecond()->timestamp
+            'endtime' => $endTime->getTimestamp()
         ]);
 
         $beforeCount = $repository->countAll();

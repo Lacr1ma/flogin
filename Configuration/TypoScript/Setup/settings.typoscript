@@ -36,10 +36,6 @@ plugin.tx_flogin.settings {
     }
 
     email {
-        site = {$plugin.tx_flogin.settings.email.site}
-        logoPath = {$plugin.tx_flogin.settings.email.logoPath}
-        stylesPath = {$plugin.tx_flogin.settings.email.stylesPath}
-
         magicLink {
             subject = {$plugin.tx_flogin.settings.email.magicLink.subject}
             linkLifetimeInMinutes = {$plugin.tx_flogin.settings.email.magicLink.linkLifetimeInMinutes}

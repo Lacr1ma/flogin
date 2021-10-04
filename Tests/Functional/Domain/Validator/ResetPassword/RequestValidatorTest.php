@@ -26,8 +26,8 @@ namespace LMS\Flogin\Tests\Functional\Domain\Validator\ResetPassword;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use DateTime;
 use Exception;
-use Carbon\Carbon;
 use LMS\Flogin\Tests\Functional\BaseTest;
 use LMS\Flogin\Domain\Repository\UserRepository;
 use LMS\Flogin\Domain\Validator\ResetPassword\RequestValidator;
@@ -47,11 +47,13 @@ class RequestValidatorTest extends BaseTest
             $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
+        $oneHourFuture = (new DateTime())->modify('+1 hours');
+
         Resets::create([
             'pid' => 0,
             'token' => $request->getToken(),
             'user' => $request->getUser()->getUid(),
-            'crdate' => Carbon::now()->addHour()->timestamp
+            'crdate' => $oneHourFuture->getTimestamp()
         ]);
 
         $this->assertFalse($this->hasExpectationOnOutput());
@@ -82,11 +84,13 @@ class RequestValidatorTest extends BaseTest
             $this->getContainer()->get(UserRepository::class)->retrieveByUsername('user')
         );
 
+        $oneHourBack = (new DateTime())->modify('-1 hours');
+
         Resets::create([
             'pid' => 0,
             'token' => $request->getToken(),
             'user' => $request->getUser()->getUid(),
-            'crdate' => Carbon::now()->subHour()->timestamp
+            'crdate' => $oneHourBack->getTimestamp()
         ]);
 
         $this->expectException(Exception::class);

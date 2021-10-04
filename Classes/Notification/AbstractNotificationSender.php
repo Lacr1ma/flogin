@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types = 1);
 
 namespace LMS\Flogin\Notification;
@@ -26,26 +28,23 @@ namespace LMS\Flogin\Notification;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Mail\Mailer;
 use LMS\Flogin\Support\TypoScript;
-use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Mail\MailMessage;
-use LMS\Flogin\Support\Helper\HtmlView;
+use TYPO3\CMS\Core\Mail\FluidEmail;
+use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 /**
  * @author Sergey Borulko <borulkosergey@icloud.com>
  */
 abstract class AbstractNotificationSender
 {
-    use HtmlView;
+    protected Mailer $mailer;
 
-    protected MailMessage $mail;
-
-    public function __construct(MailMessage $message)
+    public function __construct(Mailer $mailer)
     {
-        $this->mail = $message;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -53,23 +52,17 @@ abstract class AbstractNotificationSender
      */
     protected function sendViaMail(array $receiver, array $variables = []): void
     {
-        $view = $this->getExtensionView($this->getTemplateSuffix(), $variables);
-        $html = $this->applyStyles($view->render());
+        $to = new Address(array_key_first($receiver) ?: '', array_shift($receiver));
 
-        $this->mail
-            ->setSubject($this->getSubject())
-            ->setTo($receiver)
-            ->html($html)
-            ->send();
-    }
+        $mail = GeneralUtility::makeInstance(FluidEmail::class)
+            ->to($to)
+            ->format('html')
+            ->subject($this->getSubject())
+            ->setTemplate($this->getTemplateSuffix())
+            ->assign('data', $variables)
+            ->assign('headline', $this->getSubject());
 
-    protected function applyStyles(string $html): string
-    {
-        $css = GeneralUtility::makeInstance(CssToInlineStyles::class);
-
-        $cssPath = Environment::getPublicPath() . '/' . $this->getSettings()['stylesPath'];
-
-        return $css->convert($html, file_get_contents($cssPath));
+        $this->mailer->send($mail);
     }
 
     /**

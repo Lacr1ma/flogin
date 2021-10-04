@@ -26,7 +26,7 @@ namespace LMS\Flogin\Tests\Functional\Command;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-use Carbon\Carbon;
+use DateTime;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use LMS\Flogin\Domain\{Model\Resets, Repository\ResetsRepository};
 
@@ -48,16 +48,20 @@ class ResetGarbageCollectorCommandTest extends FunctionalTestCase
     {
         $repository = $this->getContainer()->get(ResetsRepository::class);
 
+        $oneHourBack = (new DateTime())->modify('-1 hours');
+
         Resets::create([
             'user' => 1,
             'token' => 'token',
-            'crdate' => Carbon::now()->subHour()->timestamp
+            'crdate' => $oneHourBack->getTimestamp()
         ]);
+
+        $oneHourFuture = (new DateTime())->modify('+1 hours');
 
         Resets::create([
             'user' => 2,
             'token' => 'token',
-            'crdate' => Carbon::now()->addHour()->timestamp
+            'crdate' => $oneHourFuture->getTimestamp()
         ]);
 
         $this->assertSame(1, count($repository->findExpired()));
