@@ -39,7 +39,7 @@ abstract class BaseTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin', 'typo3conf/ext/routes'];
 
     /**
      * @throws \Doctrine\DBAL\DBALException
@@ -49,7 +49,6 @@ abstract class BaseTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->setUpBackendUserFromFixture(1);
         Bootstrap::initializeLanguageObject();
 
         $this->loadFixtures();
@@ -108,8 +107,6 @@ abstract class BaseTest extends FunctionalTestCase
      */
     protected function loadFixtures(): void
     {
-        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml');
-
         $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/pages.xml');
         $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/fe_users.xml');
         $this->importDataSet(__DIR__ . '/../Fixtures/Acceptance/fe_groups.xml');

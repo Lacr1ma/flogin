@@ -39,7 +39,7 @@ class UnlockUserCommandTest extends BaseTest
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/flogin'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin', 'typo3conf/ext/routes'];
 
     /**
      * @throws \Doctrine\DBAL\DBALException
