@@ -39,7 +39,7 @@ abstract class BaseTest extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/flogin', 'typo3conf/ext/routes'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/flogin', 'typo3conf/ext/routes', 'typo3conf/ext/bootstrap_package'];
 
     /**
      * @throws \Doctrine\DBAL\DBALException
@@ -52,54 +52,6 @@ abstract class BaseTest extends FunctionalTestCase
         Bootstrap::initializeLanguageObject();
 
         $this->loadFixtures();
-    }
-
-    protected function getTypoScriptArray(): array
-    {
-        return [
-            'page.' => [
-                'login' => '2'
-            ],
-            'redirect.' => [
-                'afterLoginPage' => '5',
-                'afterLogoutPage' => '12',
-                'afterUnlockedPage' => '16',
-                'alreadyAuthenticatedPage' => '425',
-                'afterForgotPasswordNotificationSentPage' => '7',
-                'afterResetPasswordFormSubmittedPage' => '11',
-                'afterMagicLinkNotificationSentPage' => '14',
-                'error.' => [
-                    'whenTokenExpiredPage' => '9',
-                    'whenTokenNotFoundPage' => '10',
-                    'whenLockedPage' => '15'
-                ]
-            ],
-            'throttling.' => [
-                'maxAttempts' => '5',
-                'decayMinutes' => '1',
-                'lockIntervalInMinutes' => '10'
-            ],
-            'email.' => [
-                'magicLink.' => [
-                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:magic_link.subject',
-                    'linkLifetimeInMinutes' => '6'
-                ],
-                'passwordResetRequest.' => [
-                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:reset_password.subject',
-                    'linkLifetimeInMinutes' => '5'
-                ],
-                'passwordUpdated.' => [
-                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:update_password.subject'
-                ],
-                'lockout.' => [
-                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:lockout.subject'
-                ],
-                'login.' => [
-                    'disabled' => '0',
-                    'subject' => 'LLL:EXT:flogin/Resources/Private/Language/email.xlf:login.subject'
-                ]
-            ]
-        ];
     }
 
     /**
