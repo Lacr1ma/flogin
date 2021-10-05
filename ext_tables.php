@@ -39,7 +39,7 @@ use \LMS\Flogin\Controller\Backend\ManagementController;
         ManagementController::class => 'index, createOneTimeAccountHash'
     ],
     [
-        'icon' => 'EXT:flogin/ext_icon.svg',
+        'icon' => 'typo3conf/ext/flogin/ext_icon.svg',
         'access' => 'admin',
         'labels' => 'LLL:EXT:flogin/Resources/Private/Language/locallang_mod.xlf'
     ]
