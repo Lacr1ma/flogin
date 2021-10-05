@@ -70,7 +70,7 @@ class DeceiverAjaxLoginCest
     {
         $I->wantTo('I can login using ajax form.');
 
-        $I->amLoggedByAjaxFormAs('dummy');
+        $I->amLoggedByAjaxFormAs();
 
         $I->waitForElement('#login_success_block');
     }

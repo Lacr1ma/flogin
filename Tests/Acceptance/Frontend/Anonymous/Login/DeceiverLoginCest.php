@@ -1,5 +1,6 @@
 <?php
 /** @noinspection PhpUnused */
+/** @noinspection PhpUndefinedMethodInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /** @noinspection PhpUnusedLocalVariableInspection */
 
