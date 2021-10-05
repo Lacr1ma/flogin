@@ -1,14 +1,15 @@
-rootPageId: 1
-routeEnhancers:
-  ApplyRoutesCollection:
-    type: Routes
 base: 'http://login.ddev.site/'
+errorHandling:
+  -
+    errorCode: 404
+    errorHandler: Page
+    errorContentSource: 't3://page?uid=5'
 languages:
   -
-    languageId: '0'
+    languageId: 0
     title: English
     navigationTitle: English
-    base: '/'
+    base: /
     locale: en_US.UTF8
     iso-639-1: en
     hreflang: en-US
@@ -17,10 +18,10 @@ languages:
     flag: us
     enabled: true
   -
-    languageId: '2'
+    languageId: 2
     title: German
     navigationTitle: Deutsch
-    base: '/de/'
+    base: /de/
     locale: de_DE.UTF8
     iso-639-1: de
     hreflang: de-DE
@@ -30,14 +31,13 @@ languages:
     fallbackType: fallback
     fallbacks: '0'
     enabled: true
-errorHandling:
-  -
-    errorCode: '404'
-    errorHandler: Page
-    errorContentSource: 't3://page?uid=5'
-baseVariants: {  }
+rootPageId: 1
+routeEnhancers:
+  ApplyRoutesCollection:
+    type: Routes
 routes:
   -
     route: robots.txt
     type: staticText
     content: "User-agent: *\r\nDisallow: /typo3/\r\nDisallow: /typo3_src/"
+websiteTitle: ''
