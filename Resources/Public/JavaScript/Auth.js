@@ -3,7 +3,7 @@
  *
  * @return {void}
  */
-$(function () {
+ $(function () {
     initializeLoginForm();
     initializeMagicLinkForm();
     initializeResetPasswordForm();
@@ -111,7 +111,7 @@ const performLogoutRedirect = async () => {
     $('#logout-link').remove();
     $('#login_success_block').removeClass('d-none');
 
-    const redirectUrl = await logout();
+    const redirectUrl = logout();
 
     window.location.replace(redirectUrl);
 };
@@ -260,8 +260,6 @@ const loginAttempt = async (url, username, password, remember) => {
         headers: getRequestHeaders(),
         method: 'POST'
     });
-
-    console.log(response);
 
     return await response.json();
 };
