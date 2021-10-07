@@ -52,9 +52,7 @@ abstract class AbstractApiController extends ActionController
      */
     public function errorAction(): ResponseInterface
     {
-        $errors = $this->parseErrors(
-            $this->getControllerContext()->getArguments()
-        );
+        $errors = $this->parseErrors($this->arguments);
 
         $body = (string)json_encode(compact('errors'));
 
