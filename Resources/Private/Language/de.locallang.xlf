@@ -30,7 +30,7 @@
                 <target>Bestätige neues Passwort</target>
             </trans-unit>
             <trans-unit id="forgot.link">
-                <target>Passwort vergessen ?</target>
+                <target>Passwort vergessen?</target>
             </trans-unit>
             <trans-unit id="magic.link">
                 <target>Magischer Link?</target>
