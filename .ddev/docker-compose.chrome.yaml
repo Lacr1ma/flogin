@@ -3,7 +3,7 @@ version: '3.6'
 services:
   selenium:
     container_name: ddev-${DDEV_SITENAME}-chrome
-    image: selenium/standalone-chrome:3.12
+    image: selenium/standalone-chrome:4.1
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
       - HTTP_EXPOSE=4444
