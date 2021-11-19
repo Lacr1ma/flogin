@@ -34,12 +34,8 @@ jobs:
         run: ddev exec bin/phpunit -c public/typo3conf/ext/flogin/Tests/Build/FunctionalTests.xml
 
       - name: Acceptance General
-        run: ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/flogin/Tests/codeception.yml --env github
-
-      - name: Acceptance API
-        run: ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/flogin/Tests/api.suite.yml --env github
-        if: ${{ false }}
+        run: ddev exec bin/codecept run acceptance -f -vvv -c public/typo3conf/ext/flogin/Tests/codeception.yml --env github
 
       - name: Acceptance Backend
-        run: ddev exec bin/codecept run acceptance -f -c public/typo3conf/ext/flogin/Tests/Backend.suite.yml --env github
+        run: ddev exec bin/codecept run acceptance -f -vvv -c public/typo3conf/ext/flogin/Tests/Backend.suite.yml --env github
         if: ${{ false }}

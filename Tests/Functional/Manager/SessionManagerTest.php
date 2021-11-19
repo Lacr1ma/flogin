@@ -28,10 +28,12 @@ namespace LMS\Flogin\Tests\Functional\Manager;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Context\Context;
 use LMS\Flogin\Manager\SessionManager;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Session\UserSessionManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
@@ -61,6 +63,11 @@ class SessionManagerTest extends FunctionalTestCase
     public function fe_session_can_be_terminated(): void
     {
         $user = BackendUtility::getRecord('fe_users', 1);
+
+        $context = new Context();
+        $GLOBALS['TSFE'] = static::getMockBuilder(TypoScriptFrontendController::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $GLOBALS['TSFE']->fe_user = new FrontendUserAuthentication();
         $GLOBALS['TSFE']->fe_user->initializeUserSessionManager();

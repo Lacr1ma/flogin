@@ -48,11 +48,11 @@ class UserApiController extends Base\ApiController
     {
         $authUid = (int)$this->context->getPropertyFromAspect('frontend.user', 'id');
 
-        $user =  $this->userRepository->findByUid($authUid);
+        if ($user = $this->userRepository->findByUid($authUid)) {
+            $json = (string)json_encode($user->_getProperties());
+        }
 
-        $json = json_encode($user->_getProperties());
-
-        return $this->jsonResponse($json);
+        return $this->jsonResponse($json ?? '');
     }
 
     /**

@@ -130,6 +130,8 @@ $GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][899] =
     ]
 );
 
-if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_flogin'])) {
+$cacheConfig = $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'];
+
+if (!array_key_exists('tx_flogin', $cacheConfig)) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['tx_flogin'] = [];
 }

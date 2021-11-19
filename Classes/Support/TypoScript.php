@@ -45,7 +45,7 @@ class TypoScript
     {
         $ts = self::retrieveFullTypoScriptConfigurationFor('tx_flogin');
 
-        return (array)$ts['view.'] ?: [];
+        return (array)$ts['view.'];
     }
 
     public static function getSettings(): array
@@ -69,7 +69,7 @@ class TypoScript
             return [];
         }
 
-        return $ts['plugin.'][$extensionKey . '.'] ?: [];
+        return $ts['plugin.'][$extensionKey . '.'] ?? [];
     }
 
     /**
