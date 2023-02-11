@@ -22,8 +22,5 @@
 		"typo3/cms": {
 			"extension-key": "flogin"
 		}
-	},
-	"replace": {
-		"lms/flogin": "self.version"
 	}
 }
