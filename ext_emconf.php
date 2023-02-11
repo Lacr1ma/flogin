@@ -11,7 +11,7 @@ $EM_CONF['flogin'] = [
     'version' => '11.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.3-11.5.99',
+            'typo3' => '12.2.0-12.6.99',
             'routes' => '*'
         ]
     ]
