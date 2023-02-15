@@ -108,7 +108,7 @@ class MagicLinkController extends Base\CommonController
             $request->getUser()->getPassword()
         ];
 
-        $this->login($credentials);
+        $this->login($credentials, false, $this->request);
 
         return new RedirectResponse(
             $this->redirect->uriFor($pid, true)

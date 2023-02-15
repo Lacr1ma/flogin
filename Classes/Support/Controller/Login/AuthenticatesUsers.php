@@ -27,6 +27,7 @@ namespace LMS\Flogin\Support\Controller\Login;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Repository\UserRepository;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use LMS\Flogin\{Event\LoginAttemptEvent, Guard\SessionGuard};
 
@@ -53,13 +54,13 @@ trait AuthenticatesUsers
     /**
      * Attempt to find the user by credentials and notify listeners
      */
-    public function login(array $credentials, bool $remember = false): void
+    public function login(array $credentials, bool $remember = false, ServerRequestInterface $request): void
     {
         [$username, $plainPassword] = $credentials;
 
         if ($user = $this->userRepository->retrieveByUsername($username)) {
             $this->dispatcher->dispatch(
-                new LoginAttemptEvent($user, $plainPassword, $remember)
+                new LoginAttemptEvent($user, $plainPassword, $remember, $request)
             );
         }
     }

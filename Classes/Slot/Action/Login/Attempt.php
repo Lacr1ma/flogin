@@ -49,7 +49,8 @@ class Attempt
         $this->sessionGuard->login(
             $e->receiver(),
             $e->password(),
-            $e->isRememberable()
+            $e->isRememberable(),
+            $e->request()
         );
     }
 }

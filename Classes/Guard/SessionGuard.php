@@ -33,6 +33,7 @@ use LMS\Flogin\{
     Domain\Repository\UserRepository,
     Event\LoginAttemptFailedInCoreEvent
 };
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
@@ -52,9 +53,9 @@ class SessionGuard
     /**
      * Log a user into the application.
      */
-    public function login(User $user, string $plainPassword, bool $remember = false): void
+    public function login(User $user, string $plainPassword, bool $remember = false, ServerRequestInterface $request): void
     {
-        $this->startCoreLogin($user->getUsername(), $plainPassword, $remember);
+        $this->startCoreLogin($user->getUsername(), $plainPassword, $remember, $request);
 
         if (!$GLOBALS['TSFE']->fe_user->loginSessionStarted) {
             $this->dispatcher->dispatch(
@@ -87,7 +88,7 @@ class SessionGuard
     /**
      * Initialize credentials and proxy the request to the TYPO3 Core
      */
-    public function startCoreLogin(string $username, string $password, bool $remember = false): void
+    public function startCoreLogin(string $username, string $password, bool $remember = false, ServerRequestInterface $request): void
     {
         $_POST['user'] = $username;
         $_POST['pass'] = $password;
@@ -95,6 +96,6 @@ class SessionGuard
         $_POST['permalogin'] = (int)$remember;
 
         $GLOBALS['TSFE']->fe_user->checkPid = false;
-        $GLOBALS['TSFE']->fe_user->start();
+        $GLOBALS['TSFE']->fe_user->start($request);
     }
 }

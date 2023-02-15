@@ -56,7 +56,7 @@ class LoginApiController extends AbstractApiController
     {
         $pid = (int)$this->settings['redirect']['afterLoginPage'];
 
-        $this->login([$username, $password], $remember);
+        $this->login([$username, $password], $remember, $this->request);
 
         $redirect = $this->redirect->uriFor($pid, true);
 

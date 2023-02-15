@@ -95,7 +95,7 @@ class UserApiController extends Base\ApiController
         $pid = (int)$this->settings['redirect']['afterLoginPage'];
 
         if ($user = $this->createTemporaryFrontendAccount($hash)) {
-            $this->authorizeTemporaryUser($user, $hash);
+            $this->authorizeTemporaryUser($user, $hash, $this->request);
         }
 
         return new RedirectResponse(

@@ -30,6 +30,7 @@ namespace LMS\Flogin\Support\Controller\Backend;
  * ************************************************************* */
 
 use LMS\Flogin\Support\Registry;
+use Psr\Http\Message\ServerRequestInterface;
 use LMS\Flogin\{Support\Helper\OneTimeAccount, Domain\Model\User, Guard\SessionGuard};
 
 /**
@@ -70,9 +71,9 @@ trait CreatesOneTimeAccount
         );
     }
 
-    public function authorizeTemporaryUser(User $user, string $plainPassword): void
+    public function authorizeTemporaryUser(User $user, string $plainPassword, ServerRequestInterface $request): void
     {
-        $this->guard->login($user, $plainPassword);
+        $this->guard->login($user, $plainPassword, false, $request);
     }
 
     /**

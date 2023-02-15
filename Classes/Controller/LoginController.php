@@ -58,7 +58,7 @@ class LoginController extends Base\CommonController
     {
         $pid = (int)$this->settings['redirect']['afterLoginPage'];
 
-        $this->login([$username, $password], $remember);
+        $this->login([$username, $password], $remember, $this->request);
 
         return new RedirectResponse(
             $this->redirect->uriFor($pid, true)

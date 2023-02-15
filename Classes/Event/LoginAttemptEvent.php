@@ -27,6 +27,7 @@ namespace LMS\Flogin\Event;
  * ************************************************************* */
 
 use LMS\Flogin\Domain\Model\User;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * @author Borulko Serhii <borulkosergey@icloud.com>
@@ -37,6 +38,7 @@ final class LoginAttemptEvent
      * Who's a notification receiver?
      */
     private User $receiver;
+    private ServerRequestInterface $request;
 
     /**
      * Should we remember the session?
@@ -48,11 +50,12 @@ final class LoginAttemptEvent
      */
     private string $password;
 
-    public function __construct(User $user, string $plainPassword, bool $remember)
+    public function __construct(User $user, string $plainPassword, bool $remember, ServerRequestInterface $request)
     {
         $this->receiver = $user;
         $this->remember = $remember;
         $this->password = $plainPassword;
+        $this->request = $request;
     }
 
     public function receiver(): User
@@ -68,5 +71,10 @@ final class LoginAttemptEvent
     public function isRememberable(): bool
     {
         return $this->remember;
+    }
+
+    public function request(): ServerRequestInterface
+    {
+        return $this->request;
     }
 }
